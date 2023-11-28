@@ -1,0 +1,20 @@
+﻿private void retrive_Click(object sender, EventArgs e)
+        {
+            using (SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM Account", connection))
+            {
+                connection.Open();
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Access data using reader["column_name"]
+                        string username = reader["username"].ToString();
+                        string password = reader["password"].ToString();
+                        // Do something with the data, e.g., display it in a MessageBox
+                        MessageBox.Show($"Username: {username}, Password: {password}");
+                    }
+                }
+                connection.Close();
+            }
+        }
+
