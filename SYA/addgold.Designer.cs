@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             panel1 = new Panel();
             panel28 = new Panel();
             panel27 = new Panel();
@@ -68,7 +68,7 @@
             panel9 = new Panel();
             panel5 = new Panel();
             panel34 = new Panel();
-            textBox1 = new TextBox();
+            itemcountandgrossweight = new TextBox();
             panel32 = new Panel();
             panel23 = new Panel();
             panel21 = new Panel();
@@ -260,16 +260,16 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { select, tagno, type, caret, gross, net, labour, other, huid1, huid2, size, comment });
             dataGridView1.Dock = DockStyle.Fill;
@@ -280,6 +280,7 @@
             dataGridView1.Size = new Size(1660, 482);
             dataGridView1.TabIndex = 13;
             dataGridView1.CellEnter += dataGridView1_CellEnter;
+            dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
             // 
             // select
             // 
@@ -290,8 +291,8 @@
             // 
             // tagno
             // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            tagno.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            tagno.DefaultCellStyle = dataGridViewCellStyle8;
             tagno.HeaderText = "TAG NO";
             tagno.MinimumWidth = 6;
             tagno.Name = "tagno";
@@ -300,8 +301,8 @@
             // 
             // type
             // 
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            type.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            type.DefaultCellStyle = dataGridViewCellStyle9;
             type.HeaderText = "ITEM";
             type.MinimumWidth = 6;
             type.Name = "type";
@@ -309,8 +310,8 @@
             // 
             // caret
             // 
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            caret.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            caret.DefaultCellStyle = dataGridViewCellStyle10;
             caret.HeaderText = "CARET";
             caret.MinimumWidth = 6;
             caret.Name = "caret";
@@ -424,23 +425,23 @@
             // 
             // panel34
             // 
-            panel34.Controls.Add(textBox1);
+            panel34.Controls.Add(itemcountandgrossweight);
             panel34.Dock = DockStyle.Fill;
             panel34.Location = new Point(36, 5);
             panel34.Name = "panel34";
             panel34.Size = new Size(1660, 55);
             panel34.TabIndex = 13;
             // 
-            // textBox1
+            // itemcountandgrossweight
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(0, 0);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(1660, 47);
-            textBox1.TabIndex = 0;
-            textBox1.Text = "Item : 10      Gross Weight : 30.789";
-            textBox1.TextAlign = HorizontalAlignment.Center;
+            itemcountandgrossweight.Dock = DockStyle.Fill;
+            itemcountandgrossweight.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            itemcountandgrossweight.Location = new Point(0, 0);
+            itemcountandgrossweight.Name = "itemcountandgrossweight";
+            itemcountandgrossweight.Size = new Size(1660, 47);
+            itemcountandgrossweight.TabIndex = 0;
+            itemcountandgrossweight.Text = "Item : 10      Gross Weight : 30.789";
+            itemcountandgrossweight.TextAlign = HorizontalAlignment.Center;
             // 
             // panel32
             // 
@@ -683,7 +684,7 @@
         private Panel panel21;
         private Panel panel33;
         private Panel panel34;
-        private TextBox textBox1;
+        private TextBox itemcountandgrossweight;
         private DataGridView dataGridView1;
         private DataGridViewCheckBoxColumn select;
         private DataGridViewTextBoxColumn tagno;

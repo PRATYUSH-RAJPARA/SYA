@@ -11,7 +11,11 @@ namespace SYA
     {
         private SQLiteConnection connection;
         private const int ItemNameColumnIndex = 2;
-        private const int ItemCaretColumnIndex = 3;
+        private string previousTypeValue = string.Empty;
+        private string previousCaretValue = string.Empty;
+        // Store item count and gross weight sum
+        private int itemCount = 0;
+        private decimal grossWeightSum = 0;
         private void addgold_Load(object sender, EventArgs e)
         {
 
@@ -29,7 +33,6 @@ namespace SYA
         {
             InitializeComponent();
             InitializeDatabaseConnection();
-
             // Manually add columns to the DataGridView
             dataGridView1.AutoGenerateColumns = false;
 
@@ -53,14 +56,14 @@ namespace SYA
             dataGridView1.RowsAdded += (s, args) => UpdateRowNumbers();
             dataGridView1.RowsRemoved += (s, args) => UpdateRowNumbers();
         }
-        private string previousTypeValue = string.Empty;
-        private string previousCaretValue = string.Empty;
-
+        // Copy value from previous row to current row
+        // Type and Caret column
         private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             // Check if entering the first column of a new row
             if (e.ColumnIndex == 0 && e.RowIndex == dataGridView1.Rows.Count - 1)
             {
+                UpdateItemCountAndGrossWeight();
                 // Copy values from the previous row's combo boxes
                 if (dataGridView1.Rows.Count > 1)
                 {
@@ -79,6 +82,43 @@ namespace SYA
                 }
             }
         }
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            // Update item count and gross weight sum when cell values change
+            // UpdateItemCountAndGrossWeight();
+        }
+        // Update item count and gross weight sum based on DataGridView data
+        private void UpdateItemCountAndGrossWeight()
+        {
+            // Reset counts
+            itemCount = 0;
+            grossWeightSum = 0;
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                // Check if the row is not empty and not in edit mode
+                //if (!row.IsNewRow && !row.DataGridView.IsCurrentRowDirty)
+                if (!row.IsNewRow)
+                {
+                    itemCount++;
+
+                    // Check if the "gross" cell is not null or empty
+                    if (row.Cells["gross"].Value != null && decimal.TryParse(row.Cells["gross"].Value.ToString(), out decimal gross))
+                    {
+                        grossWeightSum += gross;
+                    }
+                }
+            }
+
+            // Update the TextBox with the latest counts
+            UpdateItemCountAndGrossWeightTextBox();
+        }
+        // Update the TextBox with the latest item count and gross weight sum
+        private void UpdateItemCountAndGrossWeightTextBox()
+        {
+            // Assuming you have a TextBox named textBoxItemCountGrossWeight on your form
+            itemcountandgrossweight.Text = $"Total Item Count: {itemCount}, Total Gross Weight: {grossWeightSum}";
+        }
         private void UpdateRowNumbers()
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -86,7 +126,6 @@ namespace SYA
                 row.HeaderCell.Value = $"{row.Index + 1}";
             }
         }
-
         private void InitializeLogging()
         {
             Log.Logger = new LoggerConfiguration()
@@ -94,14 +133,10 @@ namespace SYA
                 .WriteTo.File("C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\LOG\\logs.txt", rollingInterval: RollingInterval.Day) // Log to a file with daily rolling
                 .CreateLogger();
         }
-
-
-
         private void InitializeDatabaseConnection()
         {
             connection = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;");
         }
-
         private void InitializeComboBoxColumns()
         {
             // Load TYPE values
@@ -110,7 +145,6 @@ namespace SYA
             // Load CARET values
             LoadComboBoxValues("GQ", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["caret"]);
         }
-
         private void LoadComboBoxValues(string itemType, string columnName, string displayMember, DataGridViewComboBoxColumn comboBoxColumn)
         {
             using (SQLiteConnection con = new SQLiteConnection(connection.ConnectionString))
@@ -128,8 +162,67 @@ namespace SYA
                 }
             }
         }
+        private DataTable GetEmptyDataTable()
+        {
+            DataTable dataTable = new DataTable();
 
-        // Modify the UpdateTagNo method
+            // Add columns to match your DataGridView
+            dataTable.Columns.Add("select", typeof(bool));
+            dataTable.Columns.Add("tagno", typeof(string));
+            dataTable.Columns.Add("type", typeof(string));
+            dataTable.Columns.Add("caret", typeof(string));
+            dataTable.Columns.Add("gross", typeof(decimal));
+            dataTable.Columns.Add("net", typeof(decimal));
+            dataTable.Columns.Add("labour", typeof(decimal));
+            dataTable.Columns.Add("other", typeof(decimal));
+            dataTable.Columns.Add("huid1", typeof(string));
+            dataTable.Columns.Add("huid2", typeof(string));
+            dataTable.Columns.Add("size", typeof(string));
+            dataTable.Columns.Add("comment", typeof(string));
+            dataTable.Columns.Add("prcode", typeof(string));
+
+            return dataTable;
+        }
+        private void btnAddGoldSave_Click(object sender, EventArgs e)
+        {
+            UpdateItemCountAndGrossWeight();
+            SaveData();
+        }
+        private void SaveData()
+        {
+            // Check if there are rows in the DataGridView
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("DataGridView is empty. Check your data population logic.");
+                return;
+            }
+
+            using (SQLiteConnection con = new SQLiteConnection(connection.ConnectionString))
+            {
+                con.Open();
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    // Check if the row is not empty
+                    if (!row.IsNewRow)
+                    {
+
+
+                        // Check if the "tagno" cell is not null or empty
+                        if (row.Cells["tagno"].Value != null && !string.IsNullOrEmpty(row.Cells["tagno"].Value.ToString()))
+                        {
+                            // If tagno is generated, update the existing entry in the database
+                            UpdateData(row, con);
+                        }
+                        else
+                        {
+                            // If tagno is not generated, insert a new entry in the database
+                            InsertData(row, con);
+                        }
+                    }
+                }
+            }
+        }
         private void UpdateTagNo(int rowIndex)
         {
             if (rowIndex >= 0 && rowIndex < dataGridView1.Rows.Count)
@@ -161,8 +254,6 @@ namespace SYA
                 }
             }
         }
-
-
         private int GetNextSequenceNumber(string prefix, string prCode, string caret)
         {
             int prefixLength = prefix.Length + prCode.Length + caret.Length;
@@ -181,7 +272,6 @@ namespace SYA
                 }
             }
         }
-
         private string GetPRCode(string itemName)
         {
             using (SQLiteConnection con = new SQLiteConnection(connection.ConnectionString))
@@ -198,36 +288,7 @@ namespace SYA
                 }
             }
         }
-
-        private DataTable GetEmptyDataTable()
-        {
-            DataTable dataTable = new DataTable();
-
-            // Add columns to match your DataGridView
-            dataTable.Columns.Add("select", typeof(bool));
-            dataTable.Columns.Add("tagno", typeof(string));
-            dataTable.Columns.Add("type", typeof(string));
-            dataTable.Columns.Add("caret", typeof(string));
-            dataTable.Columns.Add("gross", typeof(decimal));
-            dataTable.Columns.Add("net", typeof(decimal));
-            dataTable.Columns.Add("labour", typeof(decimal));
-            dataTable.Columns.Add("other", typeof(decimal));
-            dataTable.Columns.Add("huid1", typeof(string));
-            dataTable.Columns.Add("huid2", typeof(string));
-            dataTable.Columns.Add("size", typeof(string));
-            dataTable.Columns.Add("comment", typeof(string));
-            dataTable.Columns.Add("prcode", typeof(string));
-
-            return dataTable;
-        }
-
-        private void btnAddGoldSave_Click(object sender, EventArgs e)
-        {
-            SaveData();
-        }
-
         // Modify the SaveData method to call UpdateTagNo for each row before saving
-
         private bool ValidateData(DataGridViewRow row)
         {
             // Validate each column's data in the row
@@ -308,51 +369,11 @@ namespace SYA
 
             return true; // All data is valid
         }
-
         private void SelectCell(DataGridView dataGridView, int rowIndex, string columnName)
         {
             dataGridView.CurrentCell = dataGridView.Rows[rowIndex].Cells[columnName];
             dataGridView.BeginEdit(true);
         }
-
-
-        private void SaveData()
-        {
-            // Check if there are rows in the DataGridView
-            if (dataGridView1.Rows.Count == 0)
-            {
-                MessageBox.Show("DataGridView is empty. Check your data population logic.");
-                return;
-            }
-
-            using (SQLiteConnection con = new SQLiteConnection(connection.ConnectionString))
-            {
-                con.Open();
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    // Check if the row is not empty
-                    if (!row.IsNewRow)
-                    {
-
-
-                        // Check if the "tagno" cell is not null or empty
-                        if (row.Cells["tagno"].Value != null && !string.IsNullOrEmpty(row.Cells["tagno"].Value.ToString()))
-                        {
-                            // If tagno is generated, update the existing entry in the database
-                            UpdateData(row, con);
-                        }
-                        else
-                        {
-                            // If tagno is not generated, insert a new entry in the database
-                            InsertData(row, con);
-                        }
-                    }
-                }
-            }
-        }
-
-
         private void UpdateData(DataGridViewRow row, SQLiteConnection con)
         {
             if (!ValidateData(row))
@@ -380,7 +401,6 @@ namespace SYA
                 updateCommand.ExecuteNonQuery();
             }
         }
-
         private void InsertData(DataGridViewRow row, SQLiteConnection con)
         {
             using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW, LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, COMMENT, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net, @labour, @other, @huid1, @huid2, @size, @comment, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)", con))
@@ -422,15 +442,10 @@ namespace SYA
                 insertCommand.ExecuteNonQuery();
             }
         }
-
-
-
-
         private void btnAddGoldPrintTag_Click(object sender, EventArgs e)
         {
             PrintData();
         }
-
         private void PrintData()
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -446,7 +461,6 @@ namespace SYA
                 }
             }
         }
-
 
     }
 }
