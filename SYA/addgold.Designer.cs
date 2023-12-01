@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             panel1 = new Panel();
             panel28 = new Panel();
             panel27 = new Panel();
@@ -75,6 +75,8 @@
             panel10 = new Panel();
             panelBackground = new Panel();
             panel6 = new Panel();
+            btnSelectAll = new Button();
+            panel35 = new Panel();
             panel33 = new Panel();
             btnAddGoldSave = new Button();
             panel16 = new Panel();
@@ -260,16 +262,16 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { select, tagno, type, caret, gross, net, labour, other, huid1, huid2, size, comment });
             dataGridView1.Dock = DockStyle.Fill;
@@ -279,6 +281,7 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1660, 482);
             dataGridView1.TabIndex = 13;
+            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
             dataGridView1.CellEnter += dataGridView1_CellEnter;
             dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
             // 
@@ -291,8 +294,8 @@
             // 
             // tagno
             // 
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            tagno.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            tagno.DefaultCellStyle = dataGridViewCellStyle3;
             tagno.HeaderText = "TAG NO";
             tagno.MinimumWidth = 6;
             tagno.Name = "tagno";
@@ -301,8 +304,8 @@
             // 
             // type
             // 
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            type.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            type.DefaultCellStyle = dataGridViewCellStyle4;
             type.HeaderText = "ITEM";
             type.MinimumWidth = 6;
             type.Name = "type";
@@ -310,8 +313,8 @@
             // 
             // caret
             // 
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            caret.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            caret.DefaultCellStyle = dataGridViewCellStyle5;
             caret.HeaderText = "CARET";
             caret.MinimumWidth = 6;
             caret.Name = "caret";
@@ -348,6 +351,7 @@
             // huid1
             // 
             huid1.HeaderText = "HUID1";
+            huid1.MaxInputLength = 6;
             huid1.MinimumWidth = 6;
             huid1.Name = "huid1";
             huid1.Width = 125;
@@ -355,6 +359,7 @@
             // huid2
             // 
             huid2.HeaderText = "HUID2";
+            huid2.MaxInputLength = 6;
             huid2.MinimumWidth = 6;
             huid2.Name = "huid2";
             huid2.Width = 125;
@@ -368,10 +373,10 @@
             // 
             // comment
             // 
+            comment.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             comment.HeaderText = "COMMENT";
             comment.MinimumWidth = 6;
             comment.Name = "comment";
-            comment.Width = 125;
             // 
             // panel31
             // 
@@ -497,6 +502,8 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(255, 192, 192);
+            panel6.Controls.Add(btnSelectAll);
+            panel6.Controls.Add(panel35);
             panel6.Controls.Add(panel33);
             panel6.Controls.Add(btnAddGoldSave);
             panel6.Controls.Add(panel16);
@@ -513,6 +520,26 @@
             panel6.Name = "panel6";
             panel6.Size = new Size(1732, 65);
             panel6.TabIndex = 5;
+            // 
+            // btnSelectAll
+            // 
+            btnSelectAll.Dock = DockStyle.Left;
+            btnSelectAll.Font = new Font("Segoe UI", 17.5F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSelectAll.Location = new Point(72, 5);
+            btnSelectAll.Name = "btnSelectAll";
+            btnSelectAll.Size = new Size(190, 55);
+            btnSelectAll.TabIndex = 19;
+            btnSelectAll.Text = "SELECT ALL";
+            btnSelectAll.UseVisualStyleBackColor = true;
+            btnSelectAll.Click += btnSelectAll_Click;
+            // 
+            // panel35
+            // 
+            panel35.Dock = DockStyle.Left;
+            panel35.Location = new Point(36, 5);
+            panel35.Name = "panel35";
+            panel35.Size = new Size(36, 55);
+            panel35.TabIndex = 18;
             // 
             // panel33
             // 
@@ -698,5 +725,7 @@
         private DataGridViewTextBoxColumn huid2;
         private DataGridViewTextBoxColumn size;
         private DataGridViewTextBoxColumn comment;
+        private Button btnSelectAll;
+        private Panel panel35;
     }
 }

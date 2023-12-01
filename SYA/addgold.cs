@@ -35,7 +35,7 @@ namespace SYA
             InitializeDatabaseConnection();
             // Manually add columns to the DataGridView
             dataGridView1.AutoGenerateColumns = false;
-
+            gridviewstyle();
             DataGridViewTextBoxColumn textBoxColumn = new DataGridViewTextBoxColumn();
             textBoxColumn.HeaderText = "PR_CODE";
             textBoxColumn.Name = "prcode";
@@ -60,6 +60,16 @@ namespace SYA
         // Type and Caret column
         private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            if (dataGridView1.CurrentCell is DataGridViewTextBoxCell)
+            {
+                dataGridView1.BeginEdit(true);
+
+                // Select all text in the cell
+                if (dataGridView1.EditingControl is TextBox textBox)
+                {
+                    textBox.SelectAll();
+                }
+            }
             // Check if entering the first column of a new row
             if (e.ColumnIndex == 0 && e.RowIndex == dataGridView1.Rows.Count - 1)
             {
@@ -79,6 +89,21 @@ namespace SYA
                     // Save the values for future reference
                     previousTypeValue = previousRow.Cells["type"].Value?.ToString();
                     previousCaretValue = previousRow.Cells["caret"].Value?.ToString();
+                }
+            }
+        }
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                // Check if the edited cell is in the "gross" column
+                if (dataGridView1.Columns[e.ColumnIndex].Name == "gross")
+                {
+                    // Copy the value from the "gross" column to the corresponding "net" column
+                    dataGridView1.Rows[e.RowIndex].Cells["net"].Value = dataGridView1.Rows[e.RowIndex].Cells["gross"].Value;
+
+                    // Update the item count and gross weight sum
+                    UpdateItemCountAndGrossWeight();
                 }
             }
         }
@@ -461,6 +486,48 @@ namespace SYA
                 }
             }
         }
+        private void gridviewstyle()
+        {
+            // Customize DataGridView appearance
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                // Set cell alignment to middle center
+                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+                // Set font size for cells
+                column.DefaultCellStyle.Font = new Font("Arial", 10); // Adjust the font and size as needed
+
+                // Set column width
+                if (column.Name == "select") // Adjust the column name
+                {
+                    column.Width = 40; // Adjust the width as needed
+                }
+                else if (column.Name == "type") // Adjust the column name
+                {
+                    column.Width = 250; // Adjust the width as needed
+                }
+                else if (column.Name == "tagno") // Adjust the column name
+                {
+                    column.Width = 150; // Adjust the width as needed
+                }
+                // Add more conditions for other columns as needed
+                column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // Set font size for column headers
+                column.HeaderCell.Style.Font = new Font("Arial", 12, FontStyle.Bold); // Adjust the font and size as needed
+
+            }
+        }
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            // Iterate through all rows except the last one and set the value of the "select" column to true
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            {
+                dataGridView1.Rows[i].Cells["select"].Value = true;
+            }
+        }
+
+       
     }
 }
