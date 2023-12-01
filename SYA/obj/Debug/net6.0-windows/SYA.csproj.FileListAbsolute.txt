@@ -32,3 +32,5 @@ C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Debug\net6.0-windows\ref\SYA.dll
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Debug\net6.0-windows\SYA.main.resources
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Debug\net6.0-windows\SYA.login.resources
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Debug\net6.0-windows\SYA.addgold.resources
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Debug\net6.0-windows\Serilog.dll
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Debug\net6.0-windows\Serilog.Sinks.File.dll

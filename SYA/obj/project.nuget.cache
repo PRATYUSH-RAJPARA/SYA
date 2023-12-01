@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lQhUYnvlysGUsIClGKuNUuhaZpgpAt/hTZZeQnOzweY13jSqcWUlZNsfiGdLR6r0+lmRLasTXJGz11A7o046Jg==",
+  "dgSpecHash": "OfBAHM70Cj/YdnFXzSaTrs6GpTFa7L0liX4s1D3I9JfU+zxPvgKlHYtJ496r1BWZquZyLWxrO7jSk38WMs0P4Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYA\\SYA.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,8 @@
     "C:\\Users\\pvraj\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\pvraj\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\pvraj\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\pvraj\\.nuget\\packages\\serilog\\3.1.1\\serilog.3.1.1.nupkg.sha512",
+    "C:\\Users\\pvraj\\.nuget\\packages\\serilog.sinks.file\\5.0.0\\serilog.sinks.file.5.0.0.nupkg.sha512",
     "C:\\Users\\pvraj\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.118\\stub.system.data.sqlite.core.netstandard.1.0.118.nupkg.sha512",
     "C:\\Users\\pvraj\\.nuget\\packages\\system.codedom\\4.7.0\\system.codedom.4.7.0.nupkg.sha512",
     "C:\\Users\\pvraj\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",

@@ -279,7 +279,7 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1660, 482);
             dataGridView1.TabIndex = 13;
-            dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
+            dataGridView1.CellEnter += dataGridView1_CellEnter;
             // 
             // select
             // 
@@ -295,6 +295,7 @@
             tagno.HeaderText = "TAG NO";
             tagno.MinimumWidth = 6;
             tagno.Name = "tagno";
+            tagno.ReadOnly = true;
             tagno.Width = 125;
             // 
             // type
