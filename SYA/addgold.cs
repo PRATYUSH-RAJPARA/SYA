@@ -228,84 +228,83 @@ namespace SYA
 
         // Modify the SaveData method to call UpdateTagNo for each row before saving
 
-        private bool ValidateData()
+        private bool ValidateData(DataGridViewRow row)
         {
+            // Validate each column's data in the row
+            // The validation logic can be customized based on your requirements
+            // For example, you can check if the "type" column is not null or empty
 
-            for (int i = 0; i < (dataGridView1.Rows.Count); i++)
+
+
+            // Validate each column's data in the row
+            if (row.Cells["type"].Value == null || string.IsNullOrWhiteSpace(row.Cells["type"].Value.ToString()))
             {
-
-                if (dataGridView1.Rows[i].Cells["tagno"].Value != null && !string.IsNullOrEmpty(dataGridView1.Rows[i].Cells["tagno"].Value.ToString()))
-                {
-
-                    // Validate each column's data in the row
-                    if (dataGridView1.Rows[i].Cells["type"].Value == null || string.IsNullOrWhiteSpace(dataGridView1.Rows[i].Cells["type"].Value.ToString()))
-                    {
-                        MessageBox.Show($"Please add a valid type for Row {i + 1}.");
-                        SelectCell(dataGridView1, i, "type");
-                        return false;
-                    }
-
-                    if (!decimal.TryParse(dataGridView1.Rows[i].Cells["gross"].Value?.ToString(), out decimal grossWeight) || grossWeight < 0)
-                    {
-                        MessageBox.Show($"Gross weight should be a non-negative numeric value for Row {i + 1}.");
-                        SelectCell(dataGridView1, i, "gross");
-                        return false;
-                    }
-
-                    if (!decimal.TryParse(dataGridView1.Rows[i].Cells["net"].Value?.ToString(), out decimal netWeight) || netWeight < 0)
-                    {
-                        MessageBox.Show($"Net weight should be a non-negative numeric value for Row {i + 1}.");
-                        SelectCell(dataGridView1, i, "net");
-                        return false;
-                    }
-
-                    if (grossWeight < netWeight)
-                    {
-                        MessageBox.Show($"Gross weight should be greater than or equal to net weight for Row {i + 1}.");
-                        SelectCell(dataGridView1, i, "gross");
-                        return false;
-                    }
-
-                    if (!decimal.TryParse(dataGridView1.Rows[i].Cells["labour"].Value?.ToString(), out decimal labour) || labour < 0)
-                    {
-                        MessageBox.Show($"Labour should be a non-negative numeric value for Row {i + 1}.");
-                        SelectCell(dataGridView1, i, "labour");
-                        return false;
-                    }
-
-                    if (dataGridView1.Rows[i].Cells["other"].Value != null && (!decimal.TryParse(dataGridView1.Rows[i].Cells["other"].Value?.ToString(), out decimal other) || other < 0))
-                    {
-                        MessageBox.Show($"Other should be a non-negative numeric value for Row {i + 1}.");
-                        SelectCell(dataGridView1, i, "other");
-                        return false;
-                    }
-
-                    string huid1 = dataGridView1.Rows[i].Cells["huid1"].Value?.ToString();
-                    string huid2 = dataGridView1.Rows[i].Cells["huid2"].Value?.ToString();
-
-                    if (!string.IsNullOrEmpty(huid1) && huid1.Length != 6)
-                    {
-                        MessageBox.Show($"HUID1 should contain exactly 6 characters for Row {i + 1}.");
-                        SelectCell(dataGridView1, i, "huid1");
-                        return false;
-                    }
-
-                    if (!string.IsNullOrEmpty(huid2) && huid2.Length != 6)
-                    {
-                        MessageBox.Show($"HUID2 should contain exactly 6 characters for Row {i + 1}.");
-                        SelectCell(dataGridView1, i, "huid2");
-                        return false;
-                    }
-
-                    if (string.IsNullOrEmpty(huid1) && !string.IsNullOrEmpty(huid2))
-                    {
-                        MessageBox.Show($"If HUID1 is null, please add HUID in the correct column for Row {i + 1}.");
-                        SelectCell(dataGridView1, i, "huid1");
-                        return false;
-                    }
-                }
-
+                MessageBox.Show($"Please add a valid type for Row {row.Index + 1}.");
+                SelectCell(dataGridView1, row.Index, "type");
+                return false;
             }
+
+            if (!decimal.TryParse(row.Cells["gross"].Value?.ToString(), out decimal grossWeight) || grossWeight < 0)
+            {
+                MessageBox.Show($"Gross weight should be a non-negative numeric value for Row {row.Index + 1}.");
+                SelectCell(dataGridView1, row.Index, "gross");
+                return false;
+            }
+
+            if (!decimal.TryParse(row.Cells["net"].Value?.ToString(), out decimal netWeight) || netWeight < 0)
+            {
+                MessageBox.Show($"Net weight should be a non-negative numeric value for Row {row.Index + 1}.");
+                SelectCell(dataGridView1, row.Index, "net");
+                return false;
+            }
+
+            if (grossWeight < netWeight)
+            {
+                MessageBox.Show($"Gross weight should be greater than or equal to net weight for Row {row.Index + 1}.");
+                SelectCell(dataGridView1, row.Index, "gross");
+                return false;
+            }
+
+            if (!decimal.TryParse(row.Cells["labour"].Value?.ToString(), out decimal labour) || labour < 0)
+            {
+                MessageBox.Show($"Labour should be a non-negative numeric value for Row {row.Index + 1}.");
+                SelectCell(dataGridView1, row.Index, "labour");
+                return false;
+            }
+
+            if (row.Cells["other"].Value != null && (!decimal.TryParse(row.Cells["other"].Value?.ToString(), out decimal other) || other < 0))
+            {
+                MessageBox.Show($"Other should be a non-negative numeric value for Row {row.Index + 1}.");
+                SelectCell(dataGridView1, row.Index, "other");
+                return false;
+            }
+
+            string huid1 = row.Cells["huid1"].Value?.ToString();
+            string huid2 = row.Cells["huid2"].Value?.ToString();
+
+            if (!string.IsNullOrEmpty(huid1) && huid1.Length != 6)
+            {
+                MessageBox.Show($"HUID1 should contain exactly 6 characters for Row {row.Index + 1}.");
+                SelectCell(dataGridView1, row.Index, "huid1");
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(huid2) && huid2.Length != 6)
+            {
+                MessageBox.Show($"HUID2 should contain exactly 6 characters for Row {row.Index + 1}.");
+                SelectCell(dataGridView1, row.Index, "huid2");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(huid1) && !string.IsNullOrEmpty(huid2))
+            {
+                MessageBox.Show($"If HUID1 is null, please add HUID in the correct column for Row {row.Index + 1}.");
+                SelectCell(dataGridView1, row.Index, "huid1");
+                return false;
+            }
+
+
+
 
             return true; // All data is valid
         }
@@ -317,8 +316,6 @@ namespace SYA
         }
 
 
-
-
         private void SaveData()
         {
             // Check if there are rows in the DataGridView
@@ -327,87 +324,105 @@ namespace SYA
                 MessageBox.Show("DataGridView is empty. Check your data population logic.");
                 return;
             }
-            // Call the ValidateData function
-            if (!ValidateData())
-            {
-                // Validation failed, return or handle accordingly
-                return;
-            }
 
             using (SQLiteConnection con = new SQLiteConnection(connection.ConnectionString))
             {
                 con.Open();
 
-                using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW, LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, COMMENT, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net, @labour, @other, @huid1, @huid2, @size, @comment, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)", con))
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    // Check if the row is not empty
+                    if (!row.IsNewRow)
                     {
-                        // Call UpdateTagNo for each row
-                        UpdateTagNo(row.Index);
 
-                        // Check if the row is not empty and the "tagno" cell is not null or empty
-                        if (!row.IsNewRow && row.Cells["tagno"].Value != null && !string.IsNullOrEmpty(row.Cells["tagno"].Value.ToString()))
+
+                        // Check if the "tagno" cell is not null or empty
+                        if (row.Cells["tagno"].Value != null && !string.IsNullOrEmpty(row.Cells["tagno"].Value.ToString()))
                         {
-                            // Rest of the code remains the same...
-                            string tagNo = row.Cells["tagno"].Value?.ToString();
-                            string type = row.Cells["type"].Value?.ToString();
-                            string caret = row.Cells["caret"].Value?.ToString();
-                            decimal gross = Convert.IsDBNull(row.Cells["gross"].Value) ? 0 : Convert.ToDecimal(row.Cells["gross"].Value);
-                            decimal net = Convert.IsDBNull(row.Cells["net"].Value) ? 0 : Convert.ToDecimal(row.Cells["net"].Value);
-                            decimal labour = Convert.IsDBNull(row.Cells["labour"].Value) ? 0 : Convert.ToDecimal(row.Cells["labour"].Value);
-                            decimal other = Convert.IsDBNull(row.Cells["other"].Value) ? 0 : Convert.ToDecimal(row.Cells["other"].Value);
-                            string huid1 = row.Cells["huid1"].Value?.ToString();
-                            string huid2 = row.Cells["huid2"].Value?.ToString();
-                            string size = row.Cells["size"].Value?.ToString();
-                            string comment = row.Cells["comment"].Value?.ToString();
-                            string prCode = row.Cells["prcode"].Value?.ToString();
-
-                            // Add the fixed data
-                            string coYear = "2023-2024";
-                            string coBook = "015";
-                            string vchNo = "00000";
-                            DateTime vchDate = DateTime.Now; // Current date and time
-                            decimal price = 0;
-                            string status = "INSTOCK";
-                            string acCode = null; // Blank
-                            string acName = null; // Blank
-
-                            // Insert new data into the database
-                            insertCommand.Parameters.AddWithValue("@tagNo", tagNo);
-                            insertCommand.Parameters.AddWithValue("@type", type);
-                            insertCommand.Parameters.AddWithValue("@caret", caret);
-                            insertCommand.Parameters.AddWithValue("@gross", gross);
-                            insertCommand.Parameters.AddWithValue("@net", net);
-                            insertCommand.Parameters.AddWithValue("@labour", labour);
-                            insertCommand.Parameters.AddWithValue("@other", other);
-                            insertCommand.Parameters.AddWithValue("@huid1", huid1);
-                            insertCommand.Parameters.AddWithValue("@huid2", huid2);
-                            insertCommand.Parameters.AddWithValue("@size", size);
-                            insertCommand.Parameters.AddWithValue("@comment", comment);
-                            insertCommand.Parameters.AddWithValue("@prCode", prCode);
-
-                            // Add parameters for fixed data
-                            insertCommand.Parameters.AddWithValue("@coYear", coYear);
-                            insertCommand.Parameters.AddWithValue("@coBook", coBook);
-                            insertCommand.Parameters.AddWithValue("@vchNo", vchNo);
-                            insertCommand.Parameters.AddWithValue("@vchDate", vchDate);
-                            insertCommand.Parameters.AddWithValue("@price", price);
-                            insertCommand.Parameters.AddWithValue("@status", status);
-                            insertCommand.Parameters.AddWithValue("@acCode", acCode);
-                            insertCommand.Parameters.AddWithValue("@acName", acName);
-
-                            string executedQuery = insertCommand.CommandText;
-                            string parameterValues = string.Join(", ", insertCommand.Parameters.Cast<SQLiteParameter>().Select(p => $"{p.ParameterName} = {p.Value}"));
-                            Log.Information("Executed Query: {ExecutedQuery}, Parameters: {ParameterValues}", executedQuery, parameterValues);
-
-
-                            insertCommand.ExecuteNonQuery();
-                            insertCommand.Parameters.Clear();
+                            // If tagno is generated, update the existing entry in the database
+                            UpdateData(row, con);
+                        }
+                        else
+                        {
+                            // If tagno is not generated, insert a new entry in the database
+                            InsertData(row, con);
                         }
                     }
                 }
             }
         }
+
+
+        private void UpdateData(DataGridViewRow row, SQLiteConnection con)
+        {
+            if (!ValidateData(row))
+            {
+                // Validation failed, return or handle accordingly
+                return;
+            }
+            using (SQLiteCommand updateCommand = new SQLiteCommand("UPDATE MAIN_DATA SET ITEM_DESC = @type, ITEM_PURITY = @caret, GW = @gross, NW = @net, LABOUR_AMT = @labour, OTHER_AMT = @other, HUID1 = @huid1, HUID2 = @huid2, SIZE = @size, COMMENT = @comment, ITEM_CODE = @prCode WHERE TAG_NO = @tagNo", con))
+            {
+                // Set parameters for the update query
+                updateCommand.Parameters.AddWithValue("@tagNo", row.Cells["tagno"].Value?.ToString());
+                updateCommand.Parameters.AddWithValue("@type", row.Cells["type"].Value?.ToString());
+                updateCommand.Parameters.AddWithValue("@caret", row.Cells["caret"].Value?.ToString());
+                updateCommand.Parameters.AddWithValue("@gross", Convert.IsDBNull(row.Cells["gross"].Value) ? 0 : Convert.ToDecimal(row.Cells["gross"].Value));
+                updateCommand.Parameters.AddWithValue("@net", Convert.IsDBNull(row.Cells["net"].Value) ? 0 : Convert.ToDecimal(row.Cells["net"].Value));
+                updateCommand.Parameters.AddWithValue("@labour", Convert.IsDBNull(row.Cells["labour"].Value) ? 0 : Convert.ToDecimal(row.Cells["labour"].Value));
+                updateCommand.Parameters.AddWithValue("@other", Convert.IsDBNull(row.Cells["other"].Value) ? 0 : Convert.ToDecimal(row.Cells["other"].Value));
+                updateCommand.Parameters.AddWithValue("@huid1", row.Cells["huid1"].Value?.ToString());
+                updateCommand.Parameters.AddWithValue("@huid2", row.Cells["huid2"].Value?.ToString());
+                updateCommand.Parameters.AddWithValue("@size", row.Cells["size"].Value?.ToString());
+                updateCommand.Parameters.AddWithValue("@comment", row.Cells["comment"].Value?.ToString());
+                updateCommand.Parameters.AddWithValue("@prCode", row.Cells["prcode"].Value?.ToString());
+
+                // Execute the update query
+                updateCommand.ExecuteNonQuery();
+            }
+        }
+
+        private void InsertData(DataGridViewRow row, SQLiteConnection con)
+        {
+            using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW, LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, COMMENT, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net, @labour, @other, @huid1, @huid2, @size, @comment, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)", con))
+            {
+                // Call UpdateTagNo for each row
+                UpdateTagNo(row.Index);
+                if (!ValidateData(row))
+                {
+                    row.Cells["tagno"].Value = null;
+                    // Validation failed, return or handle accordingly
+                    return;
+                }
+                // Set parameters for the insert query
+                insertCommand.Parameters.AddWithValue("@tagNo", row.Cells["tagno"].Value?.ToString());
+                insertCommand.Parameters.AddWithValue("@type", row.Cells["type"].Value?.ToString());
+                insertCommand.Parameters.AddWithValue("@caret", row.Cells["caret"].Value?.ToString());
+                insertCommand.Parameters.AddWithValue("@gross", Convert.IsDBNull(row.Cells["gross"].Value) ? 0 : Convert.ToDecimal(row.Cells["gross"].Value));
+                insertCommand.Parameters.AddWithValue("@net", Convert.IsDBNull(row.Cells["net"].Value) ? 0 : Convert.ToDecimal(row.Cells["net"].Value));
+                insertCommand.Parameters.AddWithValue("@labour", Convert.IsDBNull(row.Cells["labour"].Value) ? 0 : Convert.ToDecimal(row.Cells["labour"].Value));
+                insertCommand.Parameters.AddWithValue("@other", Convert.IsDBNull(row.Cells["other"].Value) ? 0 : Convert.ToDecimal(row.Cells["other"].Value));
+                insertCommand.Parameters.AddWithValue("@huid1", row.Cells["huid1"].Value?.ToString());
+                insertCommand.Parameters.AddWithValue("@huid2", row.Cells["huid2"].Value?.ToString());
+                insertCommand.Parameters.AddWithValue("@size", row.Cells["size"].Value?.ToString());
+                insertCommand.Parameters.AddWithValue("@comment", row.Cells["comment"].Value?.ToString());
+                insertCommand.Parameters.AddWithValue("@prCode", row.Cells["prcode"].Value?.ToString());
+
+                // Add parameters for fixed data
+                // (these might need to be adjusted based on your actual requirements)
+                insertCommand.Parameters.AddWithValue("@coYear", "2023-2024");
+                insertCommand.Parameters.AddWithValue("@coBook", "015");
+                insertCommand.Parameters.AddWithValue("@vchNo", "00000");
+                insertCommand.Parameters.AddWithValue("@vchDate", DateTime.Now);
+                insertCommand.Parameters.AddWithValue("@price", 0);
+                insertCommand.Parameters.AddWithValue("@status", "INSTOCK");
+                insertCommand.Parameters.AddWithValue("@acCode", null);
+                insertCommand.Parameters.AddWithValue("@acName", null);
+
+                // Execute the insert query
+                insertCommand.ExecuteNonQuery();
+            }
+        }
+
 
 
 
@@ -432,6 +447,6 @@ namespace SYA
             }
         }
 
-       
+
     }
 }
