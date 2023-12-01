@@ -18,3 +18,89 @@
             }
         }
 
+
+
+        using System;
+using System.Data;
+using System.Data.SQLite;
+using System.Windows.Forms;
+
+namespace YourNamespace
+{
+    public partial class YourForm : Form
+    {
+        // Replace these with your actual column indices
+        private const int ItemCodeColumnIndex = 10; // Assuming ITEM_CODE is at index 10
+        private const int TagNoColumnIndex = 5; // Assuming TAG_NO is at index 5
+
+        private SQLiteConnection connection;
+        private SQLiteDataAdapter dataAdapter;
+        private DataSet dataSet;
+
+        public YourForm()
+        {
+            InitializeComponent();
+
+            // Initialize your SQLite connection and adapter
+            connection = new SQLiteConnection("your_connection_string_here");
+            dataAdapter = new SQLiteDataAdapter("SELECT * FROM YourTableName", connection);
+            dataSet = new DataSet();
+
+            // Load data into the DataGridView
+            dataAdapter.Fill(dataSet, "YourTableName");
+            dataGridView1.DataSource = dataSet.Tables["YourTableName"];
+
+            // Subscribe to the CellValueChanged event
+            dataGridView1.CellValueChanged += DataGridView1_CellValueChanged;
+        }
+
+        private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == ItemCodeColumnIndex)
+            {
+                UpdateTagNo(e.RowIndex);
+            }
+        }
+
+        private void UpdateTagNo(int rowIndex)
+        {
+            string itemCode = dataGridView1.Rows[rowIndex].Cells[ItemCodeColumnIndex].Value.ToString();
+            int newSequenceNumber = GetNextSequenceNumber(itemCode);
+
+            string newTagNo = $"{itemCode}{newSequenceNumber:D5}";
+
+            // Update TAG_NO in DataGridView
+            dataGridView1.Rows[rowIndex].Cells[TagNoColumnIndex].Value = newTagNo;
+
+            // Update TAG_NO in the database (execute your SQL UPDATE statement here)
+            // For simplicity, assuming a single table named YourTableName with columns ID, ITEM_CODE, TAG_NO
+            using (SQLiteCommand updateCommand = new SQLiteCommand("UPDATE YourTableName SET TAG_NO = @tagNo WHERE ID = @id", connection))
+            {
+                updateCommand.Parameters.AddWithValue("@tagNo", newTagNo);
+                updateCommand.Parameters.AddWithValue("@id", dataGridView1.Rows[rowIndex].Cells[0].Value); // Assuming ID is at index 0
+
+                connection.Open();
+                updateCommand.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        private int GetNextSequenceNumber(string itemCode)
+        {
+            using (SQLiteCommand command = new SQLiteCommand($"SELECT MAX(SUBSTR(TAG_NO, LENGTH('{itemCode}') + 1)) FROM YourTableName WHERE ITEM_CODE = '{itemCode}'", connection))
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                connection.Close();
+
+                if (result != DBNull.Value)
+                {
+                    return Convert.ToInt32(result) + 1;
+                }
+
+                return 1;
+            }
+        }
+    }
+}
+ = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;");

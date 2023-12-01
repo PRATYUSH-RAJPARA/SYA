@@ -29,7 +29,7 @@ namespace SYA
             // Perform authentication logic
             if (AuthenticateUser(username, password))
             {
-                MessageBox.Show("Login successful!");
+                
 
                 // Hide the login form
                 this.Hide();

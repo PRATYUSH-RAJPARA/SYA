@@ -35,26 +35,30 @@
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(394, 127);
+            txtUsername.BackColor = SystemColors.InactiveCaption;
+            txtUsername.BorderStyle = BorderStyle.FixedSingle;
+            txtUsername.Location = new Point(353, 164);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(125, 27);
             txtUsername.TabIndex = 0;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(400, 197);
+            txtPassword.BackColor = SystemColors.InactiveCaption;
+            txtPassword.Location = new Point(353, 211);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(125, 27);
             txtPassword.TabIndex = 1;
             // 
             // btnlogin
             // 
-            btnlogin.Location = new Point(353, 277);
+            btnlogin.BackColor = SystemColors.ActiveCaption;
+            btnlogin.Location = new Point(353, 258);
             btnlogin.Name = "btnlogin";
-            btnlogin.Size = new Size(94, 29);
+            btnlogin.Size = new Size(125, 29);
             btnlogin.TabIndex = 2;
             btnlogin.Text = "LOGIN";
-            btnlogin.UseVisualStyleBackColor = true;
+            btnlogin.UseVisualStyleBackColor = false;
             btnlogin.Click += btnlogin_Click;
             // 
             // login
