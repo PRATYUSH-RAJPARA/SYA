@@ -75,6 +75,8 @@
             panel10 = new Panel();
             panelBackground = new Panel();
             panel6 = new Panel();
+            btnFetch = new Button();
+            panel36 = new Panel();
             btnSelectAll = new Button();
             panel35 = new Panel();
             panel33 = new Panel();
@@ -275,6 +277,7 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { select, tagno, type, caret, gross, net, labour, other, huid1, huid2, size, comment });
             dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView1.Location = new Point(36, 5);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
@@ -502,6 +505,8 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(255, 192, 192);
+            panel6.Controls.Add(btnFetch);
+            panel6.Controls.Add(panel36);
             panel6.Controls.Add(btnSelectAll);
             panel6.Controls.Add(panel35);
             panel6.Controls.Add(panel33);
@@ -520,6 +525,26 @@
             panel6.Name = "panel6";
             panel6.Size = new Size(1732, 65);
             panel6.TabIndex = 5;
+            // 
+            // btnFetch
+            // 
+            btnFetch.Dock = DockStyle.Left;
+            btnFetch.Font = new Font("Segoe UI", 17.5F, FontStyle.Regular, GraphicsUnit.Point);
+            btnFetch.Location = new Point(298, 5);
+            btnFetch.Name = "btnFetch";
+            btnFetch.Size = new Size(190, 55);
+            btnFetch.TabIndex = 21;
+            btnFetch.Text = "FETCH";
+            btnFetch.UseVisualStyleBackColor = true;
+            btnFetch.Click += btnFetch_Click;
+            // 
+            // panel36
+            // 
+            panel36.Dock = DockStyle.Left;
+            panel36.Location = new Point(262, 5);
+            panel36.Name = "panel36";
+            panel36.Size = new Size(36, 55);
+            panel36.TabIndex = 20;
             // 
             // btnSelectAll
             // 
@@ -727,5 +752,7 @@
         private DataGridViewTextBoxColumn comment;
         private Button btnSelectAll;
         private Panel panel35;
+        private Button btnFetch;
+        private Panel panel36;
     }
 }

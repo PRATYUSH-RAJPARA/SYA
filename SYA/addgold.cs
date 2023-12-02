@@ -4,12 +4,14 @@ using System.Data;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SQLite;
 using System.Windows.Forms;
+using System.Data.OleDb;
 
 namespace SYA
 {
     public partial class addgold : Form
     {
-        private SQLiteConnection connection;
+        private SQLiteConnection connectionToSYADatabase;
+        private SQLiteConnection connectionToDatacare;
         private const int ItemNameColumnIndex = 2;
         private string previousTypeValue = string.Empty;
         private string previousCaretValue = string.Empty;
@@ -160,7 +162,9 @@ namespace SYA
         }
         private void InitializeDatabaseConnection()
         {
-            connection = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;");
+            connectionToSYADatabase = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;");
+            connectionToDatacare = new SQLiteConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23 - Copy.mdb\";");
+
         }
         private void InitializeComboBoxColumns()
         {
@@ -172,7 +176,7 @@ namespace SYA
         }
         private void LoadComboBoxValues(string itemType, string columnName, string displayMember, DataGridViewComboBoxColumn comboBoxColumn)
         {
-            using (SQLiteConnection con = new SQLiteConnection(connection.ConnectionString))
+            using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
             {
                 using (SQLiteCommand command = new SQLiteCommand($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'", con))
                 {
@@ -222,7 +226,7 @@ namespace SYA
                 return;
             }
 
-            using (SQLiteConnection con = new SQLiteConnection(connection.ConnectionString))
+            using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
             {
                 con.Open();
 
@@ -283,7 +287,7 @@ namespace SYA
         {
             int prefixLength = prefix.Length + prCode.Length + caret.Length;
 
-            using (SQLiteConnection con = new SQLiteConnection(connection.ConnectionString))
+            using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
             {
                 using (SQLiteCommand command = new SQLiteCommand($"SELECT MAX(CAST(SUBSTR(TAG_NO, {prefixLength + 1}) AS INTEGER)) FROM MAIN_DATA WHERE ITEM_CODE = '{prCode}'", con))
                 {
@@ -299,7 +303,7 @@ namespace SYA
         }
         private string GetPRCode(string itemName)
         {
-            using (SQLiteConnection con = new SQLiteConnection(connection.ConnectionString))
+            using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
             {
                 using (SQLiteCommand command = new SQLiteCommand($"SELECT PR_CODE FROM ITEM_MASTER WHERE IT_NAME = '{itemName}' AND IT_TYPE = 'G'", con))
                 {
@@ -527,7 +531,134 @@ namespace SYA
                 dataGridView1.Rows[i].Cells["select"].Value = true;
             }
         }
+        private void btnFetch_Click(object sender, EventArgs e)
+        {
+            FetchDataFromMSAccessAndInsertIntoSQLite();
+        }
 
-       
+        private void FetchDataFromMSAccessAndInsertIntoSQLite()
+        {
+            try
+            {
+                // Connection string for MS Access (.mdb)
+                string accessConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23Copy.mdb\"";
+
+                // Query to select data from your Access table
+                string query = "SELECT * FROM MAIN_TAG_DATA";
+
+                using (OleDbConnection accessConnection = new OleDbConnection(accessConnectionString))
+                {
+                    accessConnection.Open();
+
+                    using (OleDbDataAdapter adapter = new OleDbDataAdapter(query, accessConnection))
+                    {
+                        DataTable accessData = new DataTable();
+                        adapter.Fill(accessData);
+
+                        // Insert data into SQLite
+                        InsertDataIntoSQLite(accessData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error fetching data from Access and inserting into SQLite: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void InsertDataIntoSQLite(DataTable data)
+        {
+            if (data != null && data.Rows.Count > 0)
+            {
+                try
+                {
+                    using (SQLiteConnection sqliteConnection = connectionToSYADatabase)
+                    {
+                        sqliteConnection.Open();
+
+                        foreach (DataRow row in data.Rows)
+                        {
+                            using (SQLiteCommand command = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, OTHER_AMT, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW, @LABOUR_AMT, @OTHER_AMT, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @HUID1, @HUID2, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
+                            {
+                                // Map MS Access column values to SQLite parameters
+                                command.Parameters.AddWithValue("@CO_YEAR", row["CO_YEAR"]);
+                                command.Parameters.AddWithValue("@CO_BOOK", row["CO_BOOK"]);
+                                command.Parameters.AddWithValue("@VCH_NO", row["VCH_NO"]);
+                                command.Parameters.AddWithValue("@VCH_DATE", row["VCH_DATE"]);
+                                command.Parameters.AddWithValue("@TAG_NO", row["TAG_NO"]);
+                                command.Parameters.AddWithValue("@GW", row["ITM_GWT"]);
+                                command.Parameters.AddWithValue("@NW", row["ITM_NWT"]);
+                                command.Parameters.AddWithValue("@LABOUR_AMT", row["LBR_RATE"]);
+                                command.Parameters.AddWithValue("@OTHER_AMT", row["OTH_AMT"]);
+                                command.Parameters.AddWithValue("@ITEM_CODE", row["PR_CODE"]);
+                                command.Parameters.AddWithValue("@ITEM_PURITY", GetItemPurity(row["IT_CODE"].ToString()));
+
+                                // Extract ITEM_DESC based on mappings
+                                string prCode = row["PR_CODE"].ToString();
+                                string itemType = "G"; // Assuming this is a constant value
+                                string itemDesc = GetItemDescFromSQLite(prCode, itemType);
+                                command.Parameters.AddWithValue("@ITEM_DESC", itemDesc);
+
+                                command.Parameters.AddWithValue("@HUID1", DBNull.Value); // Set to DBNull since it's NULL in MS Access
+                                command.Parameters.AddWithValue("@HUID2", DBNull.Value); // Set to DBNull since it's NULL in MS Access
+                                command.Parameters.AddWithValue("@SIZE", row["ITM_SIZE"]);
+                                command.Parameters.AddWithValue("@PRICE", row["MRP"]);
+                                command.Parameters.AddWithValue("@STATUS", "INSTOCK"); // Assuming this is a constant value
+                                command.Parameters.AddWithValue("@AC_CODE", DBNull.Value); // Set to DBNull since it's NULL in MS Access
+                                command.Parameters.AddWithValue("@AC_NAME", DBNull.Value); // Set to DBNull since it's NULL in MS Access
+                                command.Parameters.AddWithValue("@COMMENT", row["DESIGN"]);
+
+                                // Execute the insert query
+                                command.ExecuteNonQuery();
+                            }
+                        }
+                    }
+
+                    MessageBox.Show("Data fetched from Access and inserted into SQLite successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error inserting data into SQLite: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No data to insert.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private string GetItemPurity(string itCode)
+        {
+            // Assuming itCode has a format like "PR_CODEXXX" where XXX is the item purity
+            return itCode.Replace("PR_CODE", "");
+        }
+
+        private string GetItemDescFromSQLite(string prCode, string itemType)
+        {
+            // Implement logic to fetch ITEM_DESC from SQLite based on PR_CODE and IT_TYPE
+            // You can modify this method based on your database schema and logic
+            // For example, you might need to query the ITEM_MASTER table
+
+            // Sample logic (replace with actual query and logic)
+            using (SQLiteConnection con = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;"))
+            {
+                using (SQLiteCommand command = new SQLiteCommand($"SELECT IT_NAME FROM ITEM_MASTER WHERE PR_CODE = @prCode AND IT_TYPE = @itemType", con))
+                {
+                    command.Parameters.AddWithValue("@prCode", prCode);
+                    command.Parameters.AddWithValue("@itemType", itemType);
+
+                    con.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        return result.ToString();
+                    }
+                    return string.Empty;
+                }
+            }
+        }
+
+   
+
+
     }
 }
