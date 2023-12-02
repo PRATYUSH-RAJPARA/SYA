@@ -5,6 +5,7 @@ using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SQLite;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace SYA
 {
@@ -15,22 +16,8 @@ namespace SYA
         private const int ItemNameColumnIndex = 2;
         private string previousTypeValue = string.Empty;
         private string previousCaretValue = string.Empty;
-        // Store item count and gross weight sum
         private int itemCount = 0;
         private decimal grossWeightSum = 0;
-        private void addgold_Load(object sender, EventArgs e)
-        {
-
-            InitializeLogging();
-
-
-
-            // Update row numbers initially
-            UpdateRowNumbers();
-
-
-
-        }
         public addgold()
         {
             InitializeComponent();
@@ -58,8 +45,36 @@ namespace SYA
             dataGridView1.RowsAdded += (s, args) => UpdateRowNumbers();
             dataGridView1.RowsRemoved += (s, args) => UpdateRowNumbers();
         }
-        // Copy value from previous row to current row
-        // Type and Caret column
+        private void addgold_Load(object sender, EventArgs e)
+        {
+
+            InitializeLogging();
+
+
+
+            // Update row numbers initially
+            UpdateRowNumbers();
+
+
+
+        }
+        private void InitializeDatabaseConnection()
+        {
+            connectionToSYADatabase = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;");
+            connectionToDatacare = new SQLiteConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23 - Copy.mdb\";");
+
+        }
+        private void InitializeComboBoxColumns()
+        {
+            // Load TYPE values
+            LoadComboBoxValues("G", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["type"]);
+
+            // Load CARET values
+            LoadComboBoxValues("GQ", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["caret"]);
+        }
+        // --------------------------------------------------------------------------------------------
+        // Events
+        // --------------------------------------------------------------------------------------------
         private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.CurrentCell is DataGridViewTextBoxCell)
@@ -114,7 +129,56 @@ namespace SYA
             // Update item count and gross weight sum when cell values change
             // UpdateItemCountAndGrossWeight();
         }
-        // Update item count and gross weight sum based on DataGridView data
+        // --------------------------------------------------------------------------------------------
+        // Logging
+        // --------------------------------------------------------------------------------------------
+        private void InitializeLogging()
+        {
+            Log.Logger = new LoggerConfiguration()
+
+                .WriteTo.File("C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\LOG\\logs.txt", rollingInterval: RollingInterval.Day) // Log to a file with daily rolling
+                .CreateLogger();
+        }
+        // --------------------------------------------------------------------------------------------
+        // Styling Handling
+        // --------------------------------------------------------------------------------------------
+        private void SelectCell(DataGridView dataGridView, int rowIndex, string columnName)
+        {
+            dataGridView.CurrentCell = dataGridView.Rows[rowIndex].Cells[columnName];
+            dataGridView.BeginEdit(true);
+        }
+        private void gridviewstyle()
+        {
+            // Customize DataGridView appearance
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                // Set cell alignment to middle center
+                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // Set font size for cells
+                column.DefaultCellStyle.Font = new Font("Arial", 10); // Adjust the font and size as needed
+
+                // Set column width
+                if (column.Name == "select") // Adjust the column name
+                {
+                    column.Width = 40; // Adjust the width as needed
+                }
+                else if (column.Name == "type") // Adjust the column name
+                {
+                    column.Width = 250; // Adjust the width as needed
+                }
+                else if (column.Name == "tagno") // Adjust the column name
+                {
+                    column.Width = 150; // Adjust the width as needed
+                }
+                // Add more conditions for other columns as needed
+                column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // Set font size for column headers
+                column.HeaderCell.Style.Font = new Font("Arial", 12, FontStyle.Bold); // Adjust the font and size as needed
+
+            }
+        }
         private void UpdateItemCountAndGrossWeight()
         {
             // Reset counts
@@ -140,7 +204,6 @@ namespace SYA
             // Update the TextBox with the latest counts
             UpdateItemCountAndGrossWeightTextBox();
         }
-        // Update the TextBox with the latest item count and gross weight sum
         private void UpdateItemCountAndGrossWeightTextBox()
         {
             // Assuming you have a TextBox named textBoxItemCountGrossWeight on your form
@@ -152,27 +215,6 @@ namespace SYA
             {
                 row.HeaderCell.Value = $"{row.Index + 1}";
             }
-        }
-        private void InitializeLogging()
-        {
-            Log.Logger = new LoggerConfiguration()
-
-                .WriteTo.File("C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\LOG\\logs.txt", rollingInterval: RollingInterval.Day) // Log to a file with daily rolling
-                .CreateLogger();
-        }
-        private void InitializeDatabaseConnection()
-        {
-            connectionToSYADatabase = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;");
-            connectionToDatacare = new SQLiteConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23 - Copy.mdb\";");
-
-        }
-        private void InitializeComboBoxColumns()
-        {
-            // Load TYPE values
-            LoadComboBoxValues("G", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["type"]);
-
-            // Load CARET values
-            LoadComboBoxValues("GQ", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["caret"]);
         }
         private void LoadComboBoxValues(string itemType, string columnName, string displayMember, DataGridViewComboBoxColumn comboBoxColumn)
         {
@@ -212,6 +254,9 @@ namespace SYA
 
             return dataTable;
         }
+        // --------------------------------------------------------------------------------------------
+        // Save Data
+        // --------------------------------------------------------------------------------------------
         private void btnAddGoldSave_Click(object sender, EventArgs e)
         {
             UpdateItemCountAndGrossWeight();
@@ -317,7 +362,6 @@ namespace SYA
                 }
             }
         }
-        // Modify the SaveData method to call UpdateTagNo for each row before saving
         private bool ValidateData(DataGridViewRow row)
         {
             // Validate each column's data in the row
@@ -398,11 +442,6 @@ namespace SYA
 
             return true; // All data is valid
         }
-        private void SelectCell(DataGridView dataGridView, int rowIndex, string columnName)
-        {
-            dataGridView.CurrentCell = dataGridView.Rows[rowIndex].Cells[columnName];
-            dataGridView.BeginEdit(true);
-        }
         private void UpdateData(DataGridViewRow row, SQLiteConnection con)
         {
             if (!ValidateData(row))
@@ -471,9 +510,20 @@ namespace SYA
                 insertCommand.ExecuteNonQuery();
             }
         }
+        // --------------------------------------------------------------------------------------------
+        // Printing Tags
+        // --------------------------------------------------------------------------------------------
         private void btnAddGoldPrintTag_Click(object sender, EventArgs e)
         {
             PrintData();
+        }
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            // Iterate through all rows except the last one and set the value of the "select" column to true
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            {
+                dataGridView1.Rows[i].Cells["select"].Value = true;
+            }
         }
         private void PrintData()
         {
@@ -490,47 +540,9 @@ namespace SYA
                 }
             }
         }
-        private void gridviewstyle()
-        {
-            // Customize DataGridView appearance
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
-            {
-                // Set cell alignment to middle center
-                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                // Set font size for cells
-                column.DefaultCellStyle.Font = new Font("Arial", 10); // Adjust the font and size as needed
-
-                // Set column width
-                if (column.Name == "select") // Adjust the column name
-                {
-                    column.Width = 40; // Adjust the width as needed
-                }
-                else if (column.Name == "type") // Adjust the column name
-                {
-                    column.Width = 250; // Adjust the width as needed
-                }
-                else if (column.Name == "tagno") // Adjust the column name
-                {
-                    column.Width = 150; // Adjust the width as needed
-                }
-                // Add more conditions for other columns as needed
-                column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                // Set font size for column headers
-                column.HeaderCell.Style.Font = new Font("Arial", 12, FontStyle.Bold); // Adjust the font and size as needed
-
-            }
-        }
-
-        private void btnSelectAll_Click(object sender, EventArgs e)
-        {
-            // Iterate through all rows except the last one and set the value of the "select" column to true
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
-            {
-                dataGridView1.Rows[i].Cells["select"].Value = true;
-            }
-        }
+        // --------------------------------------------------------------------------------------------
+        // Fetch data from access to sqlite
+        // --------------------------------------------------------------------------------------------
         private void btnFetch_Click(object sender, EventArgs e)
         {
             FetchDataFromMSAccessAndInsertIntoSQLite();
@@ -544,7 +556,7 @@ namespace SYA
                 string accessConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23Copy.mdb\"";
 
                 // Query to select data from your Access table
-                string query = "SELECT * FROM MAIN_TAG_DATA";
+                string query = "SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '015'";
 
                 using (OleDbConnection accessConnection = new OleDbConnection(accessConnectionString))
                 {
@@ -570,66 +582,120 @@ namespace SYA
         {
             if (data != null && data.Rows.Count > 0)
             {
+                List<int> errorRows = new List<int>();
+                int insertedCount = 0;
+                int updatedCount = 0;
                 try
                 {
-                    using (SQLiteConnection sqliteConnection = connectionToSYADatabase)
+                    using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionToSYADatabase))
                     {
                         sqliteConnection.Open();
 
-                        foreach (DataRow row in data.Rows)
+                        for (int rowIndex = 0; rowIndex < data.Rows.Count; rowIndex++)
                         {
-                            using (SQLiteCommand command = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, OTHER_AMT, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW, @LABOUR_AMT, @OTHER_AMT, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @HUID1, @HUID2, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
+                            DataRow row = data.Rows[rowIndex];
+                            try
                             {
-                                // Map MS Access column values to SQLite parameters
-                                command.Parameters.AddWithValue("@CO_YEAR", row["CO_YEAR"]);
-                                command.Parameters.AddWithValue("@CO_BOOK", row["CO_BOOK"]);
-                                command.Parameters.AddWithValue("@VCH_NO", row["VCH_NO"]);
-                                command.Parameters.AddWithValue("@VCH_DATE", row["VCH_DATE"]);
-                                command.Parameters.AddWithValue("@TAG_NO", row["TAG_NO"]);
-                                command.Parameters.AddWithValue("@GW", row["ITM_GWT"]);
-                                command.Parameters.AddWithValue("@NW", row["ITM_NWT"]);
-                                command.Parameters.AddWithValue("@LABOUR_AMT", row["LBR_RATE"]);
-                                command.Parameters.AddWithValue("@OTHER_AMT", row["OTH_AMT"]);
-                                command.Parameters.AddWithValue("@ITEM_CODE", row["PR_CODE"]);
-                                command.Parameters.AddWithValue("@ITEM_PURITY", GetItemPurity(row["IT_CODE"].ToString()));
+                                // Check if a row with the same TAG_NO already exists in MAIN_DATA
+                                using (SQLiteCommand checkCommand = new SQLiteCommand("SELECT COUNT(*) FROM MAIN_DATA WHERE TAG_NO = @TAG_NO", sqliteConnection))
+                                {
+                                    checkCommand.Parameters.AddWithValue("@TAG_NO", row["TAG_NO"]);
+                                    int rowCount = Convert.ToInt32(checkCommand.ExecuteScalar());
 
-                                // Extract ITEM_DESC based on mappings
-                                string prCode = row["PR_CODE"].ToString();
-                                string itemType = "G"; // Assuming this is a constant value
-                                string itemDesc = GetItemDescFromSQLite(prCode, itemType);
-                                command.Parameters.AddWithValue("@ITEM_DESC", itemDesc);
+                                    if (rowCount > 0)
+                                    {
+                                        // Row with the same TAG_NO already exists, perform an update
+                                        using (SQLiteCommand updateCommand = new SQLiteCommand("UPDATE MAIN_DATA SET CO_YEAR = @CO_YEAR, CO_BOOK = @CO_BOOK, VCH_NO = @VCH_NO, VCH_DATE = @VCH_DATE, GW = @GW, NW = @NW, LABOUR_AMT = @LABOUR_AMT, OTHER_AMT = @OTHER_AMT, ITEM_CODE = @ITEM_CODE, ITEM_PURITY = @ITEM_PURITY, ITEM_DESC = @ITEM_DESC, HUID1 = @HUID1, HUID2 = @HUID2, SIZE = @SIZE, PRICE = @PRICE, STATUS = @STATUS, AC_CODE = @AC_CODE, AC_NAME = @AC_NAME, COMMENT = @COMMENT WHERE TAG_NO = @TAG_NO", sqliteConnection))
+                                        {
+                                            // Map MS Access column values to SQLite parameters for update
+                                            MapParameters(updateCommand.Parameters, row);
 
-                                command.Parameters.AddWithValue("@HUID1", DBNull.Value); // Set to DBNull since it's NULL in MS Access
-                                command.Parameters.AddWithValue("@HUID2", DBNull.Value); // Set to DBNull since it's NULL in MS Access
-                                command.Parameters.AddWithValue("@SIZE", row["ITM_SIZE"]);
-                                command.Parameters.AddWithValue("@PRICE", row["MRP"]);
-                                command.Parameters.AddWithValue("@STATUS", "INSTOCK"); // Assuming this is a constant value
-                                command.Parameters.AddWithValue("@AC_CODE", DBNull.Value); // Set to DBNull since it's NULL in MS Access
-                                command.Parameters.AddWithValue("@AC_NAME", DBNull.Value); // Set to DBNull since it's NULL in MS Access
-                                command.Parameters.AddWithValue("@COMMENT", row["DESIGN"]);
+                                            // Execute the update query
+                                            updateCommand.ExecuteNonQuery();
+                                            updatedCount++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // Row with the same TAG_NO doesn't exist, perform an insert
+                                        using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, OTHER_AMT, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW, @LABOUR_AMT, @OTHER_AMT, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @HUID1, @HUID2, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
+                                        {
+                                            // Map MS Access column values to SQLite parameters for insert
+                                            MapParameters(insertCommand.Parameters, row);
 
-                                // Execute the insert query
-                                command.ExecuteNonQuery();
+                                            // Execute the insert query
+                                            insertCommand.ExecuteNonQuery();
+                                            insertedCount++;
+
+                                        }
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                // If an error occurs, add the current row index to the list of error rows
+                                errorRows.Add(rowIndex + 1); // Adding 1 to make it 1-based index for display
+                                MessageBox.Show($"Error in row {rowIndex + 1}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
 
-                    MessageBox.Show("Data fetched from Access and inserted into SQLite successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (errorRows.Count > 0)
+                    {
+                        // If there are error rows, show them in a DataGridView in a separate dialog box
+                        ShowErrorRowsDialog(errorRows, data);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Data fetched from Access and inserted/updated in SQLite successfully.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error inserting data into SQLite: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error inserting/updating data into SQLite: {ex.Message}.\nInserted Rows: { insertedCount}\nUpdated Rows: { updatedCount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("No data to insert.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No data to insert/update.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        private string GetItemPurity(string itCode)
+
+        private void MapParameters(SQLiteParameterCollection parameters, DataRow row)
+        {
+            // Map MS Access column values to SQLite parameters
+            parameters.AddWithValue("@CO_YEAR", row["CO_YEAR"]);
+            parameters.AddWithValue("@CO_BOOK", row["CO_BOOK"]);
+            parameters.AddWithValue("@VCH_NO", row["VCH_NO"]);
+            parameters.AddWithValue("@VCH_DATE", row["VCH_DATE"]);
+            parameters.AddWithValue("@TAG_NO", row["TAG_NO"]);
+            parameters.AddWithValue("@GW", row["ITM_GWT"]);
+            parameters.AddWithValue("@NW", row["ITM_NWT"]);
+            parameters.AddWithValue("@LABOUR_AMT", row["LBR_RATE"]);
+            parameters.AddWithValue("@OTHER_AMT", row["OTH_AMT"]);
+            parameters.AddWithValue("@ITEM_CODE", row["PR_CODE"]);
+            string prCode = row["PR_CODE"].ToString();
+            parameters.AddWithValue("@ITEM_PURITY", GetItemPurity(row["IT_CODE"].ToString(), prCode));
+
+            // Extract ITEM_DESC based on mappings
+            string itemType = row["IT_TYPE"].ToString(); // Assuming this is a constant value
+            string itemDesc = GetItemDescFromSQLite(prCode, itemType);
+            parameters.AddWithValue("@ITEM_DESC", itemDesc);
+
+            parameters.AddWithValue("@HUID1", DBNull.Value); // Set to DBNull since it's NULL in MS Access
+            parameters.AddWithValue("@HUID2", DBNull.Value); // Set to DBNull since it's NULL in MS Access
+            parameters.AddWithValue("@SIZE", row["ITM_SIZE"]);
+            parameters.AddWithValue("@PRICE", row["MRP"]);
+            parameters.AddWithValue("@STATUS", "INSTOCK"); // Assuming this is a constant value
+            parameters.AddWithValue("@AC_CODE", DBNull.Value); // Set to DBNull since it's NULL in MS Access
+            parameters.AddWithValue("@AC_NAME", DBNull.Value); // Set to DBNull since it's NULL in MS Access
+            parameters.AddWithValue("@COMMENT", row["DESIGN"]);
+        }
+
+        private string GetItemPurity(string itCode, string prcode)
         {
             // Assuming itCode has a format like "PR_CODEXXX" where XXX is the item purity
-            return itCode.Replace("PR_CODE", "");
+            return itCode.Replace(prcode, "");
         }
 
         private string GetItemDescFromSQLite(string prCode, string itemType)
@@ -657,8 +723,76 @@ namespace SYA
             }
         }
 
-   
+        private void ShowErrorRowsDialog(List<int> errorRows, DataTable data)
+        {
+            // Create a new form to display error rows
+            Form errorForm = new Form();
+            errorForm.Text = "Error Rows";
 
+            // Set the height of the form based on the number of rows
+            int rowHeight = 22; // Adjust this value based on the actual row height
+            int formHeight = Math.Min(errorRows.Count * rowHeight + 100, Screen.PrimaryScreen.WorkingArea.Height);
 
+            // Set the width of the form to the full available width
+            errorForm.Width = Screen.PrimaryScreen.WorkingArea.Width;
+
+            // Center the form on the screen
+            errorForm.StartPosition = FormStartPosition.CenterScreen;
+
+            // Create a DataGridView to display error rows along with original data
+            DataGridView errorGridView = new DataGridView();
+            errorGridView.Dock = DockStyle.Fill;
+            errorGridView.AllowUserToAddRows = false;
+            errorGridView.ReadOnly = true;
+
+            // Add columns to display both error information and relevant original data
+            errorGridView.Columns.Add("RowNumber", "Row Number");
+            errorGridView.Columns.Add("ErrorMessage", "Error Message");
+
+            // Add columns relevant to insertion
+            foreach (string columnName in new[] { "TAG_NO", "VCH_DATE", "ITM_GWT", "ITM_NWT", "LBR_RATE", "OTH_AMT", "PR_CODE", "IT_CODE", "IT_DESC", "ITM_SIZE", "MRP", "DESIGN" })
+            {
+                errorGridView.Columns.Add(columnName, columnName);
+            }
+
+            // Populate the DataGridView with error row numbers and error messages
+            foreach (int rowNum in errorRows)
+            {
+                errorGridView.Rows.Add(rowNum, "Error occurred in this row");
+
+                // Add the original data from the row with an error
+                DataRow errorRow = data.Rows[rowNum - 1]; // Adjusting to 0-based index
+
+                // Populate relevant data columns
+                object[] rowData = new object[]
+                {
+                    "","",
+            errorRow["TAG_NO"],
+            errorRow["VCH_DATE"],
+            errorRow["ITM_GWT"],
+            errorRow["ITM_NWT"],
+            errorRow["LBR_RATE"],
+            errorRow["OTH_AMT"],
+            errorRow["PR_CODE"],
+            errorRow["IT_CODE"],
+            errorRow["IT_DESC"],
+            errorRow["ITM_SIZE"],
+            errorRow["MRP"],
+            errorRow["DESIGN"],
+                };
+
+                errorGridView.Rows.Add(rowData);
+            }
+
+            // Add the DataGridView to the form
+            errorForm.Controls.Add(errorGridView);
+
+            // Calculate the height of the form title bar and add it to the form height
+            int titleBarHeight = errorForm.Height - errorForm.ClientRectangle.Height;
+            errorForm.Height = formHeight + titleBarHeight;
+
+            // Show the form
+            errorForm.ShowDialog();
+        }
     }
 }
