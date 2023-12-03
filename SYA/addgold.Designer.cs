@@ -75,6 +75,8 @@
             panel10 = new Panel();
             panelBackground = new Panel();
             panel6 = new Panel();
+            btnAddGoldQuickSaveAndPrint = new Button();
+            panel37 = new Panel();
             btnFetch = new Button();
             panel36 = new Panel();
             btnSelectAll = new Button();
@@ -505,6 +507,8 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(255, 192, 192);
+            panel6.Controls.Add(btnAddGoldQuickSaveAndPrint);
+            panel6.Controls.Add(panel37);
             panel6.Controls.Add(btnFetch);
             panel6.Controls.Add(panel36);
             panel6.Controls.Add(btnSelectAll);
@@ -525,6 +529,26 @@
             panel6.Name = "panel6";
             panel6.Size = new Size(1732, 65);
             panel6.TabIndex = 5;
+            // 
+            // btnAddGoldQuickSaveAndPrint
+            // 
+            btnAddGoldQuickSaveAndPrint.Dock = DockStyle.Left;
+            btnAddGoldQuickSaveAndPrint.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAddGoldQuickSaveAndPrint.Location = new Point(524, 5);
+            btnAddGoldQuickSaveAndPrint.Name = "btnAddGoldQuickSaveAndPrint";
+            btnAddGoldQuickSaveAndPrint.Size = new Size(190, 55);
+            btnAddGoldQuickSaveAndPrint.TabIndex = 23;
+            btnAddGoldQuickSaveAndPrint.Text = "QUICK SAVE AND PRINT ";
+            btnAddGoldQuickSaveAndPrint.UseVisualStyleBackColor = true;
+            // 
+            // panel37
+            // 
+            panel37.Dock = DockStyle.Left;
+            panel37.Location = new Point(488, 5);
+            panel37.Name = "panel37";
+            panel37.Size = new Size(36, 55);
+            panel37.TabIndex = 22;
+            panel37.Paint += panel37_Paint;
             // 
             // btnFetch
             // 
@@ -754,5 +778,7 @@
         private Panel panel35;
         private Button btnFetch;
         private Panel panel36;
+        private Panel panel37;
+        private Button btnAddGoldQuickSaveAndPrint;
     }
 }

@@ -39,6 +39,7 @@
             btnAddItem = new Button();
             panel2 = new Panel();
             panelsecond = new Panel();
+            button21 = new Button();
             button20 = new Button();
             button19 = new Button();
             button18 = new Button();
@@ -61,7 +62,6 @@
             button1 = new Button();
             panel1 = new Panel();
             panelChild = new Panel();
-            button21 = new Button();
             panelfirst.SuspendLayout();
             panelsecond.SuspendLayout();
             SuspendLayout();
@@ -235,6 +235,18 @@
             panelsecond.Name = "panelsecond";
             panelsecond.Size = new Size(160, 895);
             panelsecond.TabIndex = 6;
+            // 
+            // button21
+            // 
+            button21.Dock = DockStyle.Top;
+            button21.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button21.Location = new Point(0, 1135);
+            button21.Margin = new Padding(0);
+            button21.Name = "button21";
+            button21.Size = new Size(160, 50);
+            button21.TabIndex = 20;
+            button21.Text = "DELETE ITEM";
+            button21.UseVisualStyleBackColor = true;
             // 
             // button20
             // 
@@ -437,8 +449,9 @@
             button4.Name = "button4";
             button4.Size = new Size(160, 65);
             button4.TabIndex = 3;
-            button4.Text = "DATACARE ADD";
+            button4.Text = "ADD HUID";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -494,18 +507,6 @@
             panelChild.Name = "panelChild";
             panelChild.Size = new Size(1604, 895);
             panelChild.TabIndex = 1;
-            // 
-            // button21
-            // 
-            button21.Dock = DockStyle.Top;
-            button21.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button21.Location = new Point(0, 1135);
-            button21.Margin = new Padding(0);
-            button21.Name = "button21";
-            button21.Size = new Size(160, 50);
-            button21.TabIndex = 20;
-            button21.Text = "DELETE ITEM";
-            button21.UseVisualStyleBackColor = true;
             // 
             // main
             // 

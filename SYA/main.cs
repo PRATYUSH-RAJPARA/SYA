@@ -149,7 +149,11 @@ namespace SYA
             panelsecond.Visible = false;
             LoadForm(new addgold());
         }
-
-
+        // BUTTON DATACARE ADD
+        private void button4_Click(object sender, EventArgs e)
+        {
+            panelsecond.Visible = false;
+            LoadForm(new DataCareData());
+        }
     }
 }

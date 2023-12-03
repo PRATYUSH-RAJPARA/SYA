@@ -7,6 +7,9 @@
     <Compile Update="addgold.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="DataCareData.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="login.cs">
       <SubType>Form</SubType>
     </Compile>

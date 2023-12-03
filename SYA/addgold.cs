@@ -652,7 +652,7 @@ namespace SYA
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error inserting/updating data into SQLite: {ex.Message}.\nInserted Rows: { insertedCount}\nUpdated Rows: { updatedCount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error inserting/updating data into SQLite: {ex.Message}.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -793,6 +793,11 @@ namespace SYA
 
             // Show the form
             errorForm.ShowDialog();
+        }
+
+
+        private void panel37_Paint(object sender, PaintEventArgs e)
+        {
         }
     }
 }
