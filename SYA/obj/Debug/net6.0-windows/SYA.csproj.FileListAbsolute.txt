@@ -41,3 +41,4 @@ C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Debug\net6.0-windows\System.Security
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Data.OleDb.dll
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Debug\net6.0-windows\SYA.DataCareData.resources
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Debug\net6.0-windows\SYA.addSilver.resources

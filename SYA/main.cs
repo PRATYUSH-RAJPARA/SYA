@@ -155,5 +155,11 @@ namespace SYA
             panelsecond.Visible = false;
             LoadForm(new DataCareData());
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panelsecond.Visible = false;
+            LoadForm(new addSilver());
+        }
     }
 }

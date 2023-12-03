@@ -91,11 +91,11 @@
             panel17 = new Panel();
             panel8 = new Panel();
             panel1 = new Panel();
+            textBox1 = new TextBox();
             panel28 = new Panel();
             panel27 = new Panel();
             panel22 = new Panel();
             panel19 = new Panel();
-            textBox1 = new TextBox();
             panel5.SuspendLayout();
             panel34.SuspendLayout();
             panelBackground.SuspendLayout();
@@ -726,6 +726,17 @@
             panel1.Size = new Size(1732, 65);
             panel1.TabIndex = 0;
             // 
+            // textBox1
+            // 
+            textBox1.Dock = DockStyle.Fill;
+            textBox1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(36, 5);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(1660, 47);
+            textBox1.TabIndex = 12;
+            textBox1.Text = "ADD HUID DATA";
+            textBox1.TextAlign = HorizontalAlignment.Center;
+            // 
             // panel28
             // 
             panel28.BackColor = Color.Black;
@@ -761,17 +772,6 @@
             panel19.Name = "panel19";
             panel19.Size = new Size(1732, 5);
             panel19.TabIndex = 3;
-            // 
-            // textBox1
-            // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(36, 5);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(1660, 47);
-            textBox1.TabIndex = 12;
-            textBox1.Text = "ADD HUID DATA";
-            textBox1.TextAlign = HorizontalAlignment.Center;
             // 
             // DataCareData
             // 

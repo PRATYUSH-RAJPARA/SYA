@@ -78,7 +78,7 @@ namespace SYA
         {
             string query = "SELECT TAG_NO, HUID1, HUID2, COMMENT, GW, NW, ITEM_DESC, ITEM_PURITY,VCH_DATE " +
                                    "FROM MAIN_DATA " +
-                                   "WHERE VCH_NO <> '00000' " +
+                                   "WHERE VCH_NO <> 'SYA00' " +
                                    "ORDER BY VCH_DATE DESC";
             LoadDataFromSQLite(query);
         }
@@ -87,7 +87,7 @@ namespace SYA
         {
             string query = "SELECT TAG_NO, HUID1, HUID2, COMMENT, GW, NW, ITEM_DESC, ITEM_PURITY,VCH_DATE " +
                                    "FROM MAIN_DATA " +
-                                   "WHERE VCH_NO = '00000' " +
+                                   "WHERE VCH_NO = 'SYA00' " +
                                    "ORDER BY VCH_DATE DESC";
             LoadDataFromSQLite(query);
         }

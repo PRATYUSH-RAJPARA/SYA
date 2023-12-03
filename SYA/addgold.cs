@@ -471,7 +471,7 @@ namespace SYA
         }
         private void InsertData(DataGridViewRow row, SQLiteConnection con)
         {
-            using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW, LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, COMMENT, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net, @labour, @other, @huid1, @huid2, @size, @comment, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)", con))
+            using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW, LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, COMMENT,IT_TYPE, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net, @labour, @other, @huid1, @huid2, @size, @comment,@ittype, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)", con))
             {
                 // Call UpdateTagNo for each row
                 UpdateTagNo(row.Index);
@@ -497,9 +497,14 @@ namespace SYA
 
                 // Add parameters for fixed data
                 // (these might need to be adjusted based on your actual requirements)
-                insertCommand.Parameters.AddWithValue("@coYear", "2023-2024");
+                int currentYear = DateTime.Now.Year;
+                insertCommand.Parameters.AddWithValue("@coYear", $"{currentYear}-{currentYear + 1}");
+
+
+
                 insertCommand.Parameters.AddWithValue("@coBook", "015");
-                insertCommand.Parameters.AddWithValue("@vchNo", "00000");
+                insertCommand.Parameters.AddWithValue("@vchNo", "SYA00");
+                insertCommand.Parameters.AddWithValue("@ittype", "G");
                 insertCommand.Parameters.AddWithValue("@vchDate", DateTime.Now);
                 insertCommand.Parameters.AddWithValue("@price", 0);
                 insertCommand.Parameters.AddWithValue("@status", "INSTOCK");
@@ -605,7 +610,7 @@ namespace SYA
                                     if (rowCount > 0)
                                     {
                                         // Row with the same TAG_NO already exists, perform an update
-                                        using (SQLiteCommand updateCommand = new SQLiteCommand("UPDATE MAIN_DATA SET CO_YEAR = @CO_YEAR, CO_BOOK = @CO_BOOK, VCH_NO = @VCH_NO, VCH_DATE = @VCH_DATE, GW = @GW, NW = @NW, LABOUR_AMT = @LABOUR_AMT, OTHER_AMT = @OTHER_AMT, ITEM_CODE = @ITEM_CODE, ITEM_PURITY = @ITEM_PURITY, ITEM_DESC = @ITEM_DESC, HUID1 = @HUID1, HUID2 = @HUID2, SIZE = @SIZE, PRICE = @PRICE, STATUS = @STATUS, AC_CODE = @AC_CODE, AC_NAME = @AC_NAME, COMMENT = @COMMENT WHERE TAG_NO = @TAG_NO", sqliteConnection))
+                                        using (SQLiteCommand updateCommand = new SQLiteCommand("UPDATE MAIN_DATA SET CO_YEAR = @CO_YEAR, CO_BOOK = @CO_BOOK, VCH_NO = @VCH_NO, VCH_DATE = @VCH_DATE, GW = @GW, NW = @NW, LABOUR_AMT = @LABOUR_AMT, OTHER_AMT = @OTHER_AMT,IT_TYPE = @IT_TYPE, ITEM_CODE = @ITEM_CODE, ITEM_PURITY = @ITEM_PURITY, ITEM_DESC = @ITEM_DESC, HUID1 = @HUID1, HUID2 = @HUID2, SIZE = @SIZE, PRICE = @PRICE, STATUS = @STATUS, AC_CODE = @AC_CODE, AC_NAME = @AC_NAME, COMMENT = @COMMENT WHERE TAG_NO = @TAG_NO", sqliteConnection))
                                         {
                                             // Map MS Access column values to SQLite parameters for update
                                             MapParameters(updateCommand.Parameters, row);
@@ -618,7 +623,7 @@ namespace SYA
                                     else
                                     {
                                         // Row with the same TAG_NO doesn't exist, perform an insert
-                                        using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, OTHER_AMT, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW, @LABOUR_AMT, @OTHER_AMT, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @HUID1, @HUID2, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
+                                        using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, OTHER_AMT,IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW, @LABOUR_AMT, @OTHER_AMT, @IT_TYPE, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @HUID1, @HUID2, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
                                         {
                                             // Map MS Access column values to SQLite parameters for insert
                                             MapParameters(insertCommand.Parameters, row);
@@ -673,6 +678,7 @@ namespace SYA
             parameters.AddWithValue("@NW", row["ITM_NWT"]);
             parameters.AddWithValue("@LABOUR_AMT", row["LBR_RATE"]);
             parameters.AddWithValue("@OTHER_AMT", row["OTH_AMT"]);
+            parameters.AddWithValue("@IT_TYPE", row["IT_TYPE"]);
             parameters.AddWithValue("@ITEM_CODE", row["PR_CODE"]);
             string prCode = row["PR_CODE"].ToString();
             parameters.AddWithValue("@ITEM_PURITY", GetItemPurity(row["IT_CODE"].ToString(), prCode));
