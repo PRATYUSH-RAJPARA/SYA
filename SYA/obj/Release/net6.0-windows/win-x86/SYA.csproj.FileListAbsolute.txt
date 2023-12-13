@@ -525,3 +525,11 @@ C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\refin
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\SYA.pdb
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\SYA.genruntimeconfig.cache
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\ref\SYA.dll
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Release\net6.0-windows\win-x86\QRCoder.dll
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Release\net6.0-windows\win-x86\Serilog.dll
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Release\net6.0-windows\win-x86\Serilog.Sinks.File.dll
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Release\net6.0-windows\win-x86\System.Data.OleDb.dll
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Release\net6.0-windows\win-x86\zxing.dll
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\SYA.addSilver.resources
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\SYA.DataCareData.resources
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\SYA.Search.resources

@@ -6,6 +6,12 @@ using System.Data.SQLite;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using static System.Data.Entity.Infrastructure.Design.Executor;
+using System.ComponentModel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using TextBox = System.Windows.Forms.TextBox;
+using QRCoder;
+using System.Drawing.Printing;
+using System.Runtime.InteropServices;
 
 namespace SYA
 {
@@ -44,6 +50,8 @@ namespace SYA
             // Add an event handler to update row numbers when rows are added or removed
             dataGridView1.RowsAdded += (s, args) => UpdateRowNumbers();
             dataGridView1.RowsRemoved += (s, args) => UpdateRowNumbers();
+
+
         }
         private void addgold_Load(object sender, EventArgs e)
         {
@@ -58,6 +66,7 @@ namespace SYA
 
 
         }
+
         private void InitializeDatabaseConnection()
         {
             connectionToSYADatabase = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;");
@@ -91,6 +100,9 @@ namespace SYA
             if (e.ColumnIndex == 0 && e.RowIndex == dataGridView1.Rows.Count - 1)
             {
                 UpdateItemCountAndGrossWeight();
+                dataGridView1.Rows[e.RowIndex].Cells["labour"].Value = "650";
+                dataGridView1.Rows[e.RowIndex].Cells["wholeLabour"].Value = "0";
+                dataGridView1.Rows[e.RowIndex].Cells["other"].Value = "0";
                 // Copy values from the previous row's combo boxes
                 if (dataGridView1.Rows.Count > 1)
                 {
@@ -102,7 +114,9 @@ namespace SYA
 
                     typeCell.Value = previousRow.Cells["type"].Value;
                     caretCell.Value = previousRow.Cells["caret"].Value;
-
+                    dataGridView1.Rows[e.RowIndex].Cells["labour"].Value = (previousRow.Cells["labour"].Value ?? "0").ToString();
+                    dataGridView1.Rows[e.RowIndex].Cells["wholeLabour"].Value = (previousRow.Cells["wholeLabour"].Value ?? "0").ToString();
+                    dataGridView1.Rows[e.RowIndex].Cells["other"].Value = (previousRow.Cells["other"].Value ?? "0").ToString();
                     // Save the values for future reference
                     previousTypeValue = previousRow.Cells["type"].Value?.ToString();
                     previousCaretValue = previousRow.Cells["caret"].Value?.ToString();
@@ -119,9 +133,11 @@ namespace SYA
                     // Copy the value from the "gross" column to the corresponding "net" column
                     dataGridView1.Rows[e.RowIndex].Cells["net"].Value = dataGridView1.Rows[e.RowIndex].Cells["gross"].Value;
 
+
                     // Update the item count and gross weight sum
                     UpdateItemCountAndGrossWeight();
                 }
+
             }
         }
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -136,7 +152,7 @@ namespace SYA
         {
             Log.Logger = new LoggerConfiguration()
 
-                .WriteTo.File("C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\LOG\\logs.txt", rollingInterval: RollingInterval.Day) // Log to a file with daily rolling
+                .WriteTo.File("C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\LOG\\logs_tagno.txt", rollingInterval: RollingInterval.Day) // Log to a file with daily rolling
                 .CreateLogger();
         }
         // --------------------------------------------------------------------------------------------
@@ -147,8 +163,27 @@ namespace SYA
             dataGridView.CurrentCell = dataGridView.Rows[rowIndex].Cells[columnName];
             dataGridView.BeginEdit(true);
         }
+
         private void gridviewstyle()
         {
+
+
+            dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(114, 131, 89); // Color for row headers
+
+            //  dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(233, 245, 219);
+            dataGridView1.Columns["select"].HeaderCell.Style.BackColor = Color.FromArgb(151, 169, 124);
+            dataGridView1.Columns["tagno"].HeaderCell.Style.BackColor = Color.FromArgb(166, 185, 139);
+            dataGridView1.Columns["type"].HeaderCell.Style.BackColor = Color.FromArgb(181, 201, 154);
+            dataGridView1.Columns["caret"].HeaderCell.Style.BackColor = Color.FromArgb(194, 213, 170);
+            dataGridView1.Columns["gross"].HeaderCell.Style.BackColor = Color.FromArgb(207, 225, 185);
+            dataGridView1.Columns["net"].HeaderCell.Style.BackColor = Color.FromArgb(220, 235, 202);
+            dataGridView1.Columns["labour"].HeaderCell.Style.BackColor = Color.FromArgb(233, 245, 219);
+            dataGridView1.Columns["wholeLabour"].HeaderCell.Style.BackColor = Color.FromArgb(220, 235, 202);
+            dataGridView1.Columns["other"].HeaderCell.Style.BackColor = Color.FromArgb(207, 225, 185);
+            dataGridView1.Columns["huid1"].HeaderCell.Style.BackColor = Color.FromArgb(194, 213, 170);
+            dataGridView1.Columns["huid2"].HeaderCell.Style.BackColor = Color.FromArgb(181, 201, 154);
+            dataGridView1.Columns["size"].HeaderCell.Style.BackColor = Color.FromArgb(166, 185, 139);
+            dataGridView1.Columns["comment"].HeaderCell.Style.BackColor = Color.FromArgb(151, 169, 124);// Color for Column1
             // Customize DataGridView appearance
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
@@ -156,7 +191,7 @@ namespace SYA
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 // Set font size for cells
-                column.DefaultCellStyle.Font = new Font("Arial", 10); // Adjust the font and size as needed
+                column.DefaultCellStyle.Font = new Font("Arial", (float)12.5); // Adjust the font and size as needed
 
                 // Set column width
                 if (column.Name == "select") // Adjust the column name
@@ -165,17 +200,33 @@ namespace SYA
                 }
                 else if (column.Name == "type") // Adjust the column name
                 {
-                    column.Width = 250; // Adjust the width as needed
+                    column.Width = 225; // Adjust the width as needed
                 }
                 else if (column.Name == "tagno") // Adjust the column name
                 {
-                    column.Width = 150; // Adjust the width as needed
+                    column.Width = 200; // Adjust the width as needed
+                }
+                else if (column.Name == "caret") // Adjust the column name
+                {
+                    column.Width = 75; // Adjust the width as needed
+                }
+                else if (column.Name == "gross") // Adjust the column name
+                {
+                    column.Width = 100; // Adjust the width as needed
+                }
+                else if (column.Name == "net") // Adjust the column name
+                {
+                    column.Width = 100; // Adjust the width as needed
+                }
+                else if (column.Name == "size") // Adjust the column name
+                {
+                    column.Width = 80; // Adjust the width as needed
                 }
                 // Add more conditions for other columns as needed
                 column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 // Set font size for column headers
-                column.HeaderCell.Style.Font = new Font("Arial", 12, FontStyle.Bold); // Adjust the font and size as needed
+                column.HeaderCell.Style.Font = new Font("Arial", (float)12.5, FontStyle.Bold); // Adjust the font and size as needed
 
             }
         }
@@ -218,20 +269,16 @@ namespace SYA
         }
         private void LoadComboBoxValues(string itemType, string columnName, string displayMember, DataGridViewComboBoxColumn comboBoxColumn)
         {
-            using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
+
+            using (SQLiteDataReader reader = helper.FetchDFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'"))
             {
-                using (SQLiteCommand command = new SQLiteCommand($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'", con))
+                while (reader.Read())
                 {
-                    con.Open();
-                    using (SQLiteDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            comboBoxColumn.Items.Add(reader[displayMember].ToString());
-                        }
-                    }
+                    comboBoxColumn.Items.Add(reader[displayMember].ToString());
                 }
             }
+
+
         }
         private DataTable GetEmptyDataTable()
         {
@@ -262,18 +309,16 @@ namespace SYA
             UpdateItemCountAndGrossWeight();
             SaveData();
         }
-        private void SaveData()
+        private bool SaveData()
         {
-            // Check if there are rows in the DataGridView
-            if (dataGridView1.Rows.Count == 0)
+            try
             {
-                MessageBox.Show("DataGridView is empty. Check your data population logic.");
-                return;
-            }
-
-            using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
-            {
-                con.Open();
+                // Check if there are rows in the DataGridView
+                if (dataGridView1.Rows.Count == 0)
+                {
+                    MessageBox.Show("DataGridView is empty. Check your data population logic.");
+                    return false;
+                }
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
@@ -283,18 +328,27 @@ namespace SYA
 
 
                         // Check if the "tagno" cell is not null or empty
-                        if (row.Cells["tagno"].Value != null && !string.IsNullOrEmpty(row.Cells["tagno"].Value.ToString()))
+                        if (row.Cells["tagno"].Value != null && !string.IsNullOrEmpty(row.Cells["tagno"].Value.ToString()) && row.Cells["tagno"].Value.ToString() != "0")
                         {
                             // If tagno is generated, update the existing entry in the database
-                            UpdateData(row, con);
+                            UpdateData(row);
                         }
                         else
                         {
                             // If tagno is not generated, insert a new entry in the database
-                            InsertData(row, con);
+                            InsertData(row);
                         }
                     }
                 }
+
+                // If execution reaches here, the save was successful
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // If there's an exception, return false
+                return false;
             }
         }
         private void UpdateTagNo(int rowIndex)
@@ -371,42 +425,43 @@ namespace SYA
 
 
             // Validate each column's data in the row
-            if (row.Cells["type"].Value == null || string.IsNullOrWhiteSpace(row.Cells["type"].Value.ToString()))
+            if (!helper.validateType(row.Cells["type"].Value.ToString()))
             {
                 MessageBox.Show($"Please add a valid type for Row {row.Index + 1}.");
                 SelectCell(dataGridView1, row.Index, "type");
                 return false;
             }
 
-            if (!decimal.TryParse(row.Cells["gross"].Value?.ToString(), out decimal grossWeight) || grossWeight < 0)
+            if (!helper.validateWeight(row.Cells["gross"].Value?.ToString()))
             {
                 MessageBox.Show($"Gross weight should be a non-negative numeric value for Row {row.Index + 1}.");
                 SelectCell(dataGridView1, row.Index, "gross");
                 return false;
             }
-
-            if (!decimal.TryParse(row.Cells["net"].Value?.ToString(), out decimal netWeight) || netWeight < 0)
+            if (!helper.validateWeight(row.Cells["net"].Value?.ToString()))
             {
                 MessageBox.Show($"Net weight should be a non-negative numeric value for Row {row.Index + 1}.");
                 SelectCell(dataGridView1, row.Index, "net");
                 return false;
             }
 
-            if (grossWeight < netWeight)
+
+
+            if (!helper.validateWeight(row.Cells["gross"].Value?.ToString(), row.Cells["net"].Value?.ToString()))
             {
                 MessageBox.Show($"Gross weight should be greater than or equal to net weight for Row {row.Index + 1}.");
                 SelectCell(dataGridView1, row.Index, "gross");
                 return false;
             }
 
-            if (!decimal.TryParse(row.Cells["labour"].Value?.ToString(), out decimal labour) || labour < 0)
+            if (!helper.validateLabour(row.Cells["labour"].Value?.ToString()))
             {
                 MessageBox.Show($"Labour should be a non-negative numeric value for Row {row.Index + 1}.");
                 SelectCell(dataGridView1, row.Index, "labour");
                 return false;
             }
 
-            if (row.Cells["other"].Value != null && (!decimal.TryParse(row.Cells["other"].Value?.ToString(), out decimal other) || other < 0))
+            if (!helper.validateOther(row.Cells["other"].Value?.ToString()))
             {
                 MessageBox.Show($"Other should be a non-negative numeric value for Row {row.Index + 1}.");
                 SelectCell(dataGridView1, row.Index, "other");
@@ -416,112 +471,109 @@ namespace SYA
             string huid1 = row.Cells["huid1"].Value?.ToString();
             string huid2 = row.Cells["huid2"].Value?.ToString();
 
-            if (!string.IsNullOrEmpty(huid1) && huid1.Length != 6)
-            {
-                MessageBox.Show($"HUID1 should contain exactly 6 characters for Row {row.Index + 1}.");
-                SelectCell(dataGridView1, row.Index, "huid1");
-                return false;
-            }
-
-            if (!string.IsNullOrEmpty(huid2) && huid2.Length != 6)
-            {
-                MessageBox.Show($"HUID2 should contain exactly 6 characters for Row {row.Index + 1}.");
-                SelectCell(dataGridView1, row.Index, "huid2");
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(huid1) && !string.IsNullOrEmpty(huid2))
-            {
-                MessageBox.Show($"If HUID1 is null, please add HUID in the correct column for Row {row.Index + 1}.");
-                SelectCell(dataGridView1, row.Index, "huid1");
-                return false;
-            }
+            helper.validateHUID(huid1, huid2);
 
 
 
 
             return true; // All data is valid
         }
-        private void UpdateData(DataGridViewRow row, SQLiteConnection con)
+
+        private void UpdateData(DataGridViewRow row)
         {
             if (!ValidateData(row))
             {
                 // Validation failed, return or handle accordingly
                 return;
             }
-            using (SQLiteCommand updateCommand = new SQLiteCommand("UPDATE MAIN_DATA SET ITEM_DESC = @type, ITEM_PURITY = @caret, GW = @gross, NW = @net, LABOUR_AMT = @labour, OTHER_AMT = @other, HUID1 = @huid1, HUID2 = @huid2, SIZE = @size, COMMENT = @comment, ITEM_CODE = @prCode WHERE TAG_NO = @tagNo", con))
-            {
-                // Set parameters for the update query
-                updateCommand.Parameters.AddWithValue("@tagNo", row.Cells["tagno"].Value?.ToString());
-                updateCommand.Parameters.AddWithValue("@type", row.Cells["type"].Value?.ToString());
-                updateCommand.Parameters.AddWithValue("@caret", row.Cells["caret"].Value?.ToString());
-                updateCommand.Parameters.AddWithValue("@gross", Convert.IsDBNull(row.Cells["gross"].Value) ? 0 : Convert.ToDecimal(row.Cells["gross"].Value));
-                updateCommand.Parameters.AddWithValue("@net", Convert.IsDBNull(row.Cells["net"].Value) ? 0 : Convert.ToDecimal(row.Cells["net"].Value));
-                updateCommand.Parameters.AddWithValue("@labour", Convert.IsDBNull(row.Cells["labour"].Value) ? 0 : Convert.ToDecimal(row.Cells["labour"].Value));
-                updateCommand.Parameters.AddWithValue("@other", Convert.IsDBNull(row.Cells["other"].Value) ? 0 : Convert.ToDecimal(row.Cells["other"].Value));
-                updateCommand.Parameters.AddWithValue("@huid1", row.Cells["huid1"].Value?.ToString());
-                updateCommand.Parameters.AddWithValue("@huid2", row.Cells["huid2"].Value?.ToString());
-                updateCommand.Parameters.AddWithValue("@size", row.Cells["size"].Value?.ToString());
-                updateCommand.Parameters.AddWithValue("@comment", row.Cells["comment"].Value?.ToString());
-                updateCommand.Parameters.AddWithValue("@prCode", row.Cells["prcode"].Value?.ToString());
 
-                // Execute the update query
-                updateCommand.ExecuteNonQuery();
-            }
+            string updateQuery = "UPDATE MAIN_DATA SET ITEM_DESC = @type, ITEM_PURITY = @caret, GW = @gross, NW = @net, " +
+                                 "LABOUR_AMT = @labour, WHOLE_LABOUR_AMT = @wholeLabour, OTHER_AMT = @other, HUID1 = @huid1, HUID2 = @huid2, SIZE = @size, " +
+                                 "COMMENT = @comment, ITEM_CODE = @prCode WHERE TAG_NO = @tagNo";
+
+            SQLiteParameter[] parameters = new SQLiteParameter[]
+            {
+        new SQLiteParameter("@tagNo", row.Cells["tagno"].Value?.ToString()),
+        new SQLiteParameter("@type", row.Cells["type"].Value?.ToString()),
+        new SQLiteParameter("@caret", row.Cells["caret"].Value?.ToString()),
+        new SQLiteParameter("@gross", Convert.IsDBNull(row.Cells["gross"].Value) ? 0 : Convert.ToDecimal(row.Cells["gross"].Value)),
+        new SQLiteParameter("@net", Convert.IsDBNull(row.Cells["net"].Value) ? 0 : Convert.ToDecimal(row.Cells["net"].Value)),
+        new SQLiteParameter("@labour", Convert.IsDBNull(row.Cells["labour"].Value) ? 0 : Convert.ToDecimal(row.Cells["labour"].Value)),
+        new SQLiteParameter("@wholeLabour", Convert.IsDBNull(row.Cells["wholeLabour"].Value) ? 0 : Convert.ToDecimal(row.Cells["wholeLabour"].Value)),
+        new SQLiteParameter("@other", Convert.IsDBNull(row.Cells["other"].Value) ? 0 : Convert.ToDecimal(row.Cells["other"].Value)),
+        new SQLiteParameter("@huid1", row.Cells["huid1"].Value?.ToString()),
+        new SQLiteParameter("@huid2", row.Cells["huid2"].Value?.ToString()),
+        new SQLiteParameter("@size", row.Cells["size"].Value?.ToString()),
+        new SQLiteParameter("@comment", row.Cells["comment"].Value?.ToString()),
+        new SQLiteParameter("@prCode", row.Cells["prcode"].Value?.ToString())
+            };
+
+            helper.RunQueryWithParametersSYADataBase(updateQuery, parameters);
+
+            // Continue with your logic after the update
         }
-        private void InsertData(DataGridViewRow row, SQLiteConnection con)
+        private void InsertData(DataGridViewRow row)
         {
-            using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW, LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, COMMENT,IT_TYPE, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net, @labour, @other, @huid1, @huid2, @size, @comment,@ittype, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)", con))
+            try
             {
-                // Call UpdateTagNo for each row
-                UpdateTagNo(row.Index);
-                if (!ValidateData(row))
+                string InsertQuery = "INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW, LABOUR_AMT,WHOLE_LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, COMMENT,IT_TYPE, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net, @labour,@wholeLabour, @other, @huid1, @huid2, @size, @comment,@ittype, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)";
                 {
-                    row.Cells["tagno"].Value = null;
-                    // Validation failed, return or handle accordingly
-                    return;
+                    // Call UpdateTagNo for each row
+                    UpdateTagNo(row.Index);
+
+                    if (!ValidateData(row))
+                    {
+                        row.Cells["tagno"].Value = null;
+                        // Validation failed, return or handle accordingly
+                        return;
+                    }
+
+                    // Add parameters for fixed data
+                    int currentYear = DateTime.Now.Year;
+
+                    // Initialize the array with the fixed parameters
+                    SQLiteParameter[] parameters = new SQLiteParameter[]
+                    {
+                new SQLiteParameter("@tagNo", row.Cells["tagno"].Value?.ToString()),
+                new SQLiteParameter("@type", row.Cells["type"].Value?.ToString()),
+                new SQLiteParameter("@caret", row.Cells["caret"].Value?.ToString()),
+                new SQLiteParameter("@gross", Convert.IsDBNull(row.Cells["gross"].Value) ? 0 : Convert.ToDecimal(row.Cells["gross"].Value)),
+                new SQLiteParameter("@net", Convert.IsDBNull(row.Cells["net"].Value) ? 0 : Convert.ToDecimal(row.Cells["net"].Value)),
+                new SQLiteParameter("@labour", Convert.IsDBNull(row.Cells["labour"].Value) ? 0 : Convert.ToDecimal(row.Cells["labour"].Value)),
+                new SQLiteParameter("@wholeLabour", Convert.IsDBNull(row.Cells["wholeLabour"].Value) ? 0 : Convert.ToDecimal(row.Cells["wholeLabour"].Value)),
+                new SQLiteParameter("@other", Convert.IsDBNull(row.Cells["other"].Value) ? 0 : Convert.ToDecimal(row.Cells["other"].Value)),
+                new SQLiteParameter("@huid1", row.Cells["huid1"].Value?.ToString()),
+                new SQLiteParameter("@huid2", row.Cells["huid2"].Value?.ToString()),
+                new SQLiteParameter("@size", row.Cells["size"].Value?.ToString()),
+                new SQLiteParameter("@comment", row.Cells["comment"].Value?.ToString()),
+                new SQLiteParameter("@prCode", row.Cells["prcode"].Value?.ToString()),
+                new SQLiteParameter("@ittype", "G"),
+                new SQLiteParameter("@coYear", $"{currentYear}-{currentYear + 1}"),
+                new SQLiteParameter("@coBook", "015"),
+                new SQLiteParameter("@vchNo", "SYA01"),
+                new SQLiteParameter("@vchDate", DateTime.Now),
+                new SQLiteParameter("@price", 0),
+                new SQLiteParameter("@status", "INSTOCK"),
+                new SQLiteParameter("@acCode", null),
+                new SQLiteParameter("@acName", null)
+                    };
+
+                    // Execute the insert query with parameters
+                    helper.RunQueryWithParametersSYADataBase(InsertQuery, parameters);
                 }
-                // Set parameters for the insert query
-                insertCommand.Parameters.AddWithValue("@tagNo", row.Cells["tagno"].Value?.ToString());
-                insertCommand.Parameters.AddWithValue("@type", row.Cells["type"].Value?.ToString());
-                insertCommand.Parameters.AddWithValue("@caret", row.Cells["caret"].Value?.ToString());
-                insertCommand.Parameters.AddWithValue("@gross", Convert.IsDBNull(row.Cells["gross"].Value) ? 0 : Convert.ToDecimal(row.Cells["gross"].Value));
-                insertCommand.Parameters.AddWithValue("@net", Convert.IsDBNull(row.Cells["net"].Value) ? 0 : Convert.ToDecimal(row.Cells["net"].Value));
-                insertCommand.Parameters.AddWithValue("@labour", Convert.IsDBNull(row.Cells["labour"].Value) ? 0 : Convert.ToDecimal(row.Cells["labour"].Value));
-                insertCommand.Parameters.AddWithValue("@other", Convert.IsDBNull(row.Cells["other"].Value) ? 0 : Convert.ToDecimal(row.Cells["other"].Value));
-                insertCommand.Parameters.AddWithValue("@huid1", row.Cells["huid1"].Value?.ToString());
-                insertCommand.Parameters.AddWithValue("@huid2", row.Cells["huid2"].Value?.ToString());
-                insertCommand.Parameters.AddWithValue("@size", row.Cells["size"].Value?.ToString());
-                insertCommand.Parameters.AddWithValue("@comment", row.Cells["comment"].Value?.ToString());
-                insertCommand.Parameters.AddWithValue("@prCode", row.Cells["prcode"].Value?.ToString());
-
-                // Add parameters for fixed data
-                // (these might need to be adjusted based on your actual requirements)
-                int currentYear = DateTime.Now.Year;
-                insertCommand.Parameters.AddWithValue("@coYear", $"{currentYear}-{currentYear + 1}");
-
-
-
-                insertCommand.Parameters.AddWithValue("@coBook", "015");
-                insertCommand.Parameters.AddWithValue("@vchNo", "SYA00");
-                insertCommand.Parameters.AddWithValue("@ittype", "G");
-                insertCommand.Parameters.AddWithValue("@vchDate", DateTime.Now);
-                insertCommand.Parameters.AddWithValue("@price", 0);
-                insertCommand.Parameters.AddWithValue("@status", "INSTOCK");
-                insertCommand.Parameters.AddWithValue("@acCode", null);
-                insertCommand.Parameters.AddWithValue("@acName", null);
-
-                // Execute the insert query
-                insertCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Handle or log the exception as needed
+                Console.WriteLine($"Error inserting data: {ex.Message}");
+                MessageBox.Show($"Error inserting data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         // --------------------------------------------------------------------------------------------
         // Printing Tags
         // --------------------------------------------------------------------------------------------
-        private void btnAddGoldPrintTag_Click(object sender, EventArgs e)
-        {
-            PrintData();
-        }
+
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
             // Iterate through all rows except the last one and set the value of the "select" column to true
@@ -530,24 +582,37 @@ namespace SYA
                 dataGridView1.Rows[i].Cells["select"].Value = true;
             }
         }
-        private void PrintData()
-        {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if ((bool)row.Cells["select"].Value)
-                {
-                    // Print the selected row data
-                    string itemCode = row.Cells["ItemCode"].Value.ToString();
-                    string tagNo = row.Cells["tagno"].Value.ToString();
 
-                    // Perform printing logic here
-                    MessageBox.Show($"Printing: Item Code - {itemCode}, Tag No - {tagNo}");
-                }
-            }
-        }
         // --------------------------------------------------------------------------------------------
         // Fetch data from access to sqlite
         // --------------------------------------------------------------------------------------------
+        private int totalRows;
+        private int insertedCount;
+        private int updatedCount;
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            DataTable data = e.Argument as DataTable;
+            if (data != null)
+            {
+                InsertDataIntoSQLite(data);
+            }
+        }
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            // Update progress bar with the percentage
+            progressBar1.Value = e.ProgressPercentage;
+        }
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                MessageBox.Show($"Error inserting/updating data into SQLite: {e.Error.Message}.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show($"Data fetched from Access and inserted/updated in SQLite successfully.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
         private void btnFetch_Click(object sender, EventArgs e)
         {
             FetchDataFromMSAccessAndInsertIntoSQLite();
@@ -557,125 +622,108 @@ namespace SYA
         {
             try
             {
-                // Connection string for MS Access (.mdb)
-                string accessConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23Copy.mdb\"";
-
                 // Query to select data from your Access table
-                string query = "SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '015'";
+                string query = "SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '015' OR CO_BOOK = '15'";
+                DataTable accessData = helper.FetchFromDataCareDataBase(query);
 
-                using (OleDbConnection accessConnection = new OleDbConnection(accessConnectionString))
-                {
-                    accessConnection.Open();
+                // Set totalRows for progress calculation
+                totalRows = accessData.Rows.Count;
 
-                    using (OleDbDataAdapter adapter = new OleDbDataAdapter(query, accessConnection))
-                    {
-                        DataTable accessData = new DataTable();
-                        adapter.Fill(accessData);
-
-                        // Insert data into SQLite
-                        InsertDataIntoSQLite(accessData);
-                    }
-                }
+                // Start background worker to perform insertion in the background
+                backgroundWorker1.RunWorkerAsync(accessData);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error fetching data from Access and inserting into SQLite: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error inserting into SQLite: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void InsertDataIntoSQLite(DataTable data)
         {
-            if (data != null && data.Rows.Count > 0)
+            List<int> errorRows = new List<int>();
+            int insertedCount = 0;
+            int updatedCount = 0;
+
+            try
             {
-                List<int> errorRows = new List<int>();
-                int insertedCount = 0;
-                int updatedCount = 0;
-                try
+                using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionToSYADatabase))
                 {
-                    using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionToSYADatabase))
+                    sqliteConnection.Open();
+
+                    backgroundWorker1.ReportProgress(0); // Initialize progress bar
+
+                    for (int rowIndex = 0; rowIndex < data.Rows.Count; rowIndex++)
                     {
-                        sqliteConnection.Open();
+                        DataRow row = data.Rows[rowIndex];
 
-                        for (int rowIndex = 0; rowIndex < data.Rows.Count; rowIndex++)
+                        try
                         {
-                            DataRow row = data.Rows[rowIndex];
-                            try
+                            using (SQLiteCommand checkCommand = new SQLiteCommand("SELECT COUNT(*) FROM MAIN_DATA WHERE TAG_NO = @TAG_NO", sqliteConnection))
                             {
-                                // Check if a row with the same TAG_NO already exists in MAIN_DATA
-                                using (SQLiteCommand checkCommand = new SQLiteCommand("SELECT COUNT(*) FROM MAIN_DATA WHERE TAG_NO = @TAG_NO", sqliteConnection))
+                                checkCommand.Parameters.AddWithValue("@TAG_NO", row["TAG_NO"]);
+                                int rowCount = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                                if (rowCount > 0)
                                 {
-                                    checkCommand.Parameters.AddWithValue("@TAG_NO", row["TAG_NO"]);
-                                    int rowCount = Convert.ToInt32(checkCommand.ExecuteScalar());
-
-                                    if (rowCount > 0)
+                                    using (SQLiteCommand updateCommand = new SQLiteCommand("UPDATE MAIN_DATA SET CO_YEAR = @CO_YEAR, CO_BOOK = @CO_BOOK, VCH_NO = @VCH_NO, VCH_DATE = @VCH_DATE, GW = @GW, NW = @NW, LABOUR_AMT = @LABOUR_AMT, OTHER_AMT = @OTHER_AMT,IT_TYPE = @IT_TYPE, ITEM_CODE = @ITEM_CODE, ITEM_PURITY = @ITEM_PURITY, ITEM_DESC = @ITEM_DESC, SIZE = @SIZE, PRICE = @PRICE, STATUS = @STATUS, AC_CODE = @AC_CODE, AC_NAME = @AC_NAME, COMMENT = @COMMENT WHERE TAG_NO = @TAG_NO", sqliteConnection))
                                     {
-                                        // Row with the same TAG_NO already exists, perform an update
-                                        using (SQLiteCommand updateCommand = new SQLiteCommand("UPDATE MAIN_DATA SET CO_YEAR = @CO_YEAR, CO_BOOK = @CO_BOOK, VCH_NO = @VCH_NO, VCH_DATE = @VCH_DATE, GW = @GW, NW = @NW, LABOUR_AMT = @LABOUR_AMT, OTHER_AMT = @OTHER_AMT,IT_TYPE = @IT_TYPE, ITEM_CODE = @ITEM_CODE, ITEM_PURITY = @ITEM_PURITY, ITEM_DESC = @ITEM_DESC, HUID1 = @HUID1, HUID2 = @HUID2, SIZE = @SIZE, PRICE = @PRICE, STATUS = @STATUS, AC_CODE = @AC_CODE, AC_NAME = @AC_NAME, COMMENT = @COMMENT WHERE TAG_NO = @TAG_NO", sqliteConnection))
-                                        {
-                                            // Map MS Access column values to SQLite parameters for update
-                                            MapParameters(updateCommand.Parameters, row);
-
-                                            // Execute the update query
-                                            updateCommand.ExecuteNonQuery();
-                                            updatedCount++;
-                                        }
+                                        MapParameters(updateCommand.Parameters, row);
+                                        updateCommand.ExecuteNonQuery();
+                                        updatedCount++;
                                     }
-                                    else
+                                }
+                                else
+                                {
+                                    using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, OTHER_AMT,IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW, @LABOUR_AMT, @OTHER_AMT, @IT_TYPE, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
                                     {
-                                        // Row with the same TAG_NO doesn't exist, perform an insert
-                                        using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, OTHER_AMT,IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW, @LABOUR_AMT, @OTHER_AMT, @IT_TYPE, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @HUID1, @HUID2, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
-                                        {
-                                            // Map MS Access column values to SQLite parameters for insert
-                                            MapParameters(insertCommand.Parameters, row);
-
-                                            // Execute the insert query
-                                            insertCommand.ExecuteNonQuery();
-                                            insertedCount++;
-
-                                        }
+                                        MapParameters(insertCommand.Parameters, row);
+                                        insertCommand.ExecuteNonQuery();
+                                        insertedCount++;
                                     }
                                 }
                             }
-                            catch (Exception ex)
-                            {
-                                // If an error occurs, add the current row index to the list of error rows
-                                errorRows.Add(rowIndex + 1); // Adding 1 to make it 1-based index for display
-                                MessageBox.Show($"Error in row {rowIndex + 1}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
                         }
-                    }
+                        catch (Exception ex)
+                        {
+                            errorRows.Add(rowIndex + 1);
+                            MessageBox.Show($"Error in row {rowIndex + 1}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
 
-                    if (errorRows.Count > 0)
-                    {
-                        // If there are error rows, show them in a DataGridView in a separate dialog box
-                        ShowErrorRowsDialog(errorRows, data);
-                    }
-                    else
-                    {
-                        MessageBox.Show($"Data fetched from Access and inserted/updated in SQLite successfully.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Update progress bar based on the percentage completed
+                        int percentage = (int)(((double)rowIndex / data.Rows.Count) * 100);
+                        backgroundWorker1.ReportProgress(percentage);
                     }
                 }
-                catch (Exception ex)
+
+                if (errorRows.Count > 0)
                 {
-                    MessageBox.Show($"Error inserting/updating data into SQLite: {ex.Message}.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ShowErrorRowsDialog(errorRows, data);
+                }
+                else
+                {
+                    MessageBox.Show($"Data fetched from Access and inserted/updated in SQLite successfully.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No data to insert/update.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Error inserting/updating data into SQLite: {ex.Message}.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void MapParameters(SQLiteParameterCollection parameters, DataRow row)
         {
             // Map MS Access column values to SQLite parameters
             parameters.AddWithValue("@CO_YEAR", row["CO_YEAR"]);
             parameters.AddWithValue("@CO_BOOK", row["CO_BOOK"]);
-            parameters.AddWithValue("@VCH_NO", row["VCH_NO"]);
+            parameters.AddWithValue("@VCH_NO", "SYA00");
             parameters.AddWithValue("@VCH_DATE", row["VCH_DATE"]);
             parameters.AddWithValue("@TAG_NO", row["TAG_NO"]);
             parameters.AddWithValue("@GW", row["ITM_GWT"]);
             parameters.AddWithValue("@NW", row["ITM_NWT"]);
+            // REMOVE BELOW 2 PRATYUSH
+            parameters.AddWithValue("@HUID1", row["KR_NAME"]);
+            parameters.AddWithValue("@HUID2", row["RATE_TYPE"]);
             parameters.AddWithValue("@LABOUR_AMT", row["LBR_RATE"]);
             parameters.AddWithValue("@OTHER_AMT", row["OTH_AMT"]);
             parameters.AddWithValue("@IT_TYPE", row["IT_TYPE"]);
@@ -687,9 +735,9 @@ namespace SYA
             string itemType = row["IT_TYPE"].ToString(); // Assuming this is a constant value
             string itemDesc = GetItemDescFromSQLite(prCode, itemType);
             parameters.AddWithValue("@ITEM_DESC", itemDesc);
-
-            parameters.AddWithValue("@HUID1", DBNull.Value); // Set to DBNull since it's NULL in MS Access
-            parameters.AddWithValue("@HUID2", DBNull.Value); // Set to DBNull since it's NULL in MS Access
+            // UNCOMMENT BELOW
+            // PRATYUSH  parameters.AddWithValue("@HUID1", DBNull.Value); // Set to DBNull since it's NULL in MS Access
+            // PRATYUSH  parameters.AddWithValue("@HUID2", DBNull.Value); // Set to DBNull since it's NULL in MS Access
             parameters.AddWithValue("@SIZE", row["ITM_SIZE"]);
             parameters.AddWithValue("@PRICE", row["MRP"]);
             parameters.AddWithValue("@STATUS", "INSTOCK"); // Assuming this is a constant value
@@ -711,22 +759,18 @@ namespace SYA
             // For example, you might need to query the ITEM_MASTER table
 
             // Sample logic (replace with actual query and logic)
-            using (SQLiteConnection con = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;"))
-            {
-                using (SQLiteCommand command = new SQLiteCommand($"SELECT IT_NAME FROM ITEM_MASTER WHERE PR_CODE = @prCode AND IT_TYPE = @itemType", con))
-                {
-                    command.Parameters.AddWithValue("@prCode", prCode);
-                    command.Parameters.AddWithValue("@itemType", itemType);
 
-                    con.Open();
-                    object result = command.ExecuteScalar();
-                    if (result != null)
-                    {
-                        return result.ToString();
-                    }
-                    return string.Empty;
-                }
+            string query = "SELECT IT_NAME FROM ITEM_MASTER WHERE PR_CODE = " + prCode + " AND IT_TYPE = " + itemType;
+
+
+
+            object result = helper.RunQueryWithoutParametersSYADataBase(query, "ExecuteScalar");
+            if (result != null)
+            {
+                return result.ToString();
             }
+            return string.Empty;
+
         }
 
         private void ShowErrorRowsDialog(List<int> errorRows, DataTable data)
@@ -805,5 +849,319 @@ namespace SYA
         private void panel37_Paint(object sender, PaintEventArgs e)
         {
         }
+        private void btnAddGoldPrintTag_Click(object sender, EventArgs e)
+        {
+            PrintLabels();
+        }
+        private void PrintLabels()
+        {
+            try
+            {
+                PrintDocument pd = new PrintDocument();
+                pd.PrinterSettings.PrinterName = "TSC_TE244";
+
+
+                pd.PrintPage += new PrintPageEventHandler(PrintPageGold);
+
+
+                pd.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error printing labels: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void PrintPageGold(object sender, PrintPageEventArgs e)
+        {
+            DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+            if (selectedRow != null)
+            {
+                string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
+                if (tagNumber.Length > 1)
+                {
+
+                    Font font = new Font("Arial Black", 8, FontStyle.Bold); // Adjust the font size
+                    SolidBrush brush = new SolidBrush(Color.Black);
+
+                    // Set the starting position for printing
+                    float xPos = 0; // Adjust the starting X position
+                    float yPos = 0; // Adjust the starting Y position
+
+                    // Get the printer DPI
+                    float dpiX = e.PageSettings.PrinterResolution.X;
+                    float dpiY = e.PageSettings.PrinterResolution.Y;
+
+                    float rectX = 4; // Adjust the X position of the rectangle
+                    float rectY = 4; // Adjust the Y position of the rectangle
+                    float rectWidth = 211; // Adjust the width of the rectangle
+                    float rectHeight = 45; // Adjust the height of the rectangle
+                                           //gross weight
+                                           //net weight
+                    if ((selectedRow.Cells["gross"].Value ?? "0").ToString() == (selectedRow.Cells["net"].Value ?? "0").ToString())
+                    {
+                        e.Graphics.DrawString((selectedRow.Cells["gross"].Value ?? "0").ToString(), new Font("Arial", (float)12, FontStyle.Bold), brush, new RectangleF(4, 4, 75, (float)45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                    else
+                    {
+                        e.Graphics.DrawString("G: " + (selectedRow.Cells["gross"].Value ?? "0").ToString(), new Font("Arial", (float)9.5, FontStyle.Bold), brush, new RectangleF(4, 4, 75, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                        e.Graphics.DrawString("N: " + (selectedRow.Cells["net"].Value ?? "0").ToString(), new Font("Arial", (float)9.5, FontStyle.Bold), brush, new RectangleF(4, (float)26.5, 75, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                    }
+
+                    //logo
+                    Image logoImage = Image.FromFile("C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYA\\Image\\logo.jpg"); // Replace with the actual path
+                    e.Graphics.DrawImage(logoImage, new RectangleF(83, 4, (float)22.5, (float)22.5));
+
+                    //logo name 
+
+                    if (selectedRow.Cells["type"].Value.ToString() == "BANGAL")
+                    {
+                        e.Graphics.DrawString((selectedRow.Cells[10].Value ?? "0").ToString(), new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF(79, (float)28, (float)30.5, (float)11.25), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                    else
+                    {
+
+                        e.Graphics.DrawString("YAMUNA", new Font("Arial", (float)4.5, FontStyle.Bold), brush, new RectangleF(79, (float)26.5, (float)30.5, (float)11.25), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+
+                    //caret
+                    e.Graphics.DrawString((selectedRow.Cells["caret"].Value ?? "0").ToString().Split('-')[0].Trim() ?? "0", new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF(79, (float)37.75, (float)30.5, (float)11.25), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                    // Draw the QR code rectangle
+                    RectangleF qrCodeRect = new RectangleF(174, 4, 37, 37);
+
+                    using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+                    {
+                        QRCodeData qrCodeData = qrGenerator.CreateQrCode(tagNumber, QRCodeGenerator.ECCLevel.Q);
+                        QRCode qrCode = new QRCode(qrCodeData);
+                        System.Drawing.Bitmap qrCodeBitmap = qrCode.GetGraphic((int)qrCodeRect.Width, System.Drawing.Color.Black, System.Drawing.Color.White, true);
+                        // Draw the QR code onto the printing surface
+                        e.Graphics.DrawImage(qrCodeBitmap, qrCodeRect);
+                    }
+
+                    //labour                
+                    string labour = "0";
+                    if ((selectedRow.Cells["labour"].Value ?? "-").ToString() != "0")
+                    {
+                        labour = (selectedRow.Cells["labour"].Value ?? "-").ToString();
+                        e.Graphics.DrawString("L: " + labour, new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)4, (float)56.5, (float)11), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                    else if ((selectedRow.Cells["wholeLabour"].Value ?? "-").ToString() != "0")
+                    {
+                        labour = (selectedRow.Cells["wholeLabour"].Value ?? "-").ToString();
+                        e.Graphics.DrawString("TL: " + labour, new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)4, (float)56.5, (float)11), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+
+                    //other
+                    if ((selectedRow.Cells["other"].Value ?? "0").ToString() != "0")
+                    {
+
+                        e.Graphics.DrawString("O: " + (selectedRow.Cells["other"].Value ?? "0").ToString(), new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)16, (float)56.5, (float)11), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+
+                    //Tag number
+                    string firstPart = null;
+                    string secondPart = null;
+                    int length = tagNumber.Length;
+                    if (length >= 10)
+                    {
+                        int lastIndex = length - 5;
+                        firstPart = tagNumber.Substring(lastIndex);
+                        secondPart = tagNumber.Substring(0, lastIndex);
+                        e.Graphics.DrawString(secondPart, new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)29, (float)56.5, (float)10), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                        e.Graphics.DrawString(firstPart, new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)38, (float)56.5, (float)12), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                    else
+                    {
+                        e.Graphics.DrawString(tagNumber, new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)30, (float)56.5, (float)11), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+
+                    //huid
+                    string huid1 = (selectedRow.Cells["huid1"].Value ?? "0").ToString();
+                    if (huid1.Length == 6)
+                    {
+                        e.Graphics.DrawString("HUID", new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)174, (float)40, (float)37, (float)9), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                    Log.Information(" TagNo : " + tagNumber);
+                    //outside box
+                    //e.Graphics.DrawRectangle(Pens.Red, 4, 4, 211, 45);
+                    //first part
+                    //e.Graphics.DrawRectangle(Pens.Red, 4, 4, (float)105.5, 45);
+                    //Second Part
+                    //e.Graphics.DrawRectangle(Pens.Red, (float)109.5, 4, (float)105.5, 45);
+                    //gross weight
+                    //e.Graphics.DrawRectangle(Pens.Red, 4, 4, 75, (float)22.5);
+                    //net weight
+                    //e.Graphics.DrawRectangle(Pens.Red, 4, (float)26.5, 75, (float)22.5);
+                    //logo
+                    //e.Graphics.DrawRectangle(Pens.Red, 83, 4, (float)22.5, (float)22.5);
+                    //logo name 
+                    //e.Graphics.DrawRectangle(Pens.Red, 79, (float)26.5, (float)30.5, (float)11.25);
+                    //caret
+                    //e.Graphics.DrawRectangle(Pens.Red, 79, (float)37.75, (float)30.5, (float)11.25);
+                    // Draw the QR code rectangle
+                    //RectangleF qrCodeRect = new RectangleF(174, 4, 37, 37);
+                    //e.Graphics.DrawRectangle(Pens.Red, qrCodeRect.X, qrCodeRect.Y, qrCodeRect.Width, qrCodeRect.Height);
+                    //labour                
+                    //e.Graphics.DrawRectangle(Pens.Red, (float)113.5, (float)4, (float)56.5, (float)11);
+                    //other
+                    //e.Graphics.DrawRectangle(Pens.Red, (float)113.5, (float)15, (float)56.5, (float)11);
+                    //Tag number
+                    //e.Graphics.DrawRectangle(Pens.Red, (float)113.5, (float)26, (float)56.5, (float)11);
+                    //huid
+                    //e.Graphics.DrawRectangle(Pens.Red, (float)174, (float)40, (float)37, (float)9);
+                }
+            }
+        }
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // if (e.KeyCode == Keys.Tab)
+            if (false)
+            {
+
+                string currentColumnName = dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name;
+                int currentRowIndex = dataGridView1.CurrentCell.RowIndex;
+                // MessageBox.Show("pratyush1 : " + currentColumnName);
+                // Assuming "ColumnName" is the name of the last column
+                if (currentColumnName == "comment")
+                {
+                    // MessageBox.Show("in comment");
+                    // You are moving to the next row in the last column
+                    // Call your save and/or print function here
+                    SaveData();
+                    PrintLabels();
+
+                }
+
+            }
+        }
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            e.Control.PreviewKeyDown -= dataGridView_EditingControl_PreviewKeyDown;
+            e.Control.PreviewKeyDown += dataGridView_EditingControl_PreviewKeyDown;
+
+        }
+        private void dataGridView_EditingControl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (checkBoxAddGold1.Checked == true)
+            {
+
+                // Handle the Tab key to trigger the KeyDown event for the text box or combo box
+                if (e.KeyCode == Keys.Tab)
+                {
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+                    if (editingControl != null)
+                    {
+                        DataGridView dataGridView = dataGridView1;
+                        string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                        int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                        //  MessageBox.Show("pratyush1: " + currentColumnName);
+
+                        // Assuming "comment" is the name of the last column
+                        if (currentColumnName == "comment")
+                        {
+                            // MessageBox.Show("in comment");
+                            // You are moving to the next row in the last column
+                            // Call your save and/or print function here
+                            if (SaveData())
+                            {
+                                DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                                string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
+                                if (tagNumber.Length > 1)
+                                {
+                                    PrintLabels();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void panel31_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel30_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void panel29_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void panel17_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void panel8_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void panel28_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void panel32_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void panel33_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void panel21_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void panel20_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void panel12_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void panel23_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Check if the current cell is a header cell
+            if (e.RowIndex == -1 && e.ColumnIndex == 0)
+            {
+                //  MessageBox.Show("pratyush");
+                // Set the background color for the top-left cell
+                e.CellStyle.BackColor = Color.FromArgb(233, 245, 219);
+                // You can customize other properties as needed
+                e.CellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
+                e.CellStyle.ForeColor = Color.Black;
+            }
+        }
+
+        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            // Check if it is the top-left cell (1, 1)
+            if (e.RowIndex == -1 && e.ColumnIndex == -1)
+            {
+                // Set the background color for the top-left cell
+                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(114, 131, 89)), e.CellBounds);
+
+
+
+                // Prevent default painting
+                e.Handled = true;
+            }
+        }
+
+
     }
 }

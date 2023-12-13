@@ -51,6 +51,53 @@ namespace SYA
             // Show the new form
             form.Show();
         }
+       private void LoadForms(Form form)
+{
+    // Close and dispose the currently displayed form (if any)
+    if (panelChild.Controls.Count > 0)
+    {
+        Form currentForm = panelChild.Controls[0] as Form;
+        if (currentForm != null)
+        {
+            // Clear the DataGridView if the current form has one
+            if (currentForm.Controls.Count > 0 && currentForm.Controls[0] is DataGridView dataGridView)
+            {
+                // Set the DataSource to null or an empty data source
+                dataGridView.DataSource = null;
+                // Optionally clear any existing rows
+                dataGridView.Rows.Clear();
+                // Optionally clear any existing columns
+                dataGridView.Columns.Clear();
+            }
+
+            // Close and dispose the current form
+            currentForm.Close();
+            currentForm.Dispose();
+            
+            // Nullify references to aid garbage collection
+            currentForm = null;
+
+            // Force garbage collection and finalization
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
+    }
+
+    // Set the properties of the new form
+    form.TopLevel = false;
+    form.FormBorderStyle = FormBorderStyle.None;
+    form.Dock = DockStyle.Fill;
+
+    // Add the new form to the panel
+    panelChild.Controls.Add(form);
+
+    // Show the Panel Child
+    panelChild.Visible = true;
+    // Show the new form
+    form.Show();
+}
+
+
 
         // main left panel buttons
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -76,7 +123,8 @@ namespace SYA
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            panelsecond.Visible = false;
+            LoadForm(new Search());
         }
         private void btnSales_Click(object sender, EventArgs e)
         {

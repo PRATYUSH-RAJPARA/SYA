@@ -50,7 +50,7 @@ namespace SYA
             UpdateRowNumbers();
         }
 
-
+        private int pratyushcount = 0;
         private SQLiteConnection connectionToSYADatabase;
         private SQLiteConnection connectionToDatacare;
         private const int ItemNameColumnIndex = 2;
@@ -124,10 +124,347 @@ namespace SYA
                     // Update the item count and gross weight sum
                     UpdateItemCountAndGrossWeight();
                 }
+                if (addSilverDataGridView.Columns[e.ColumnIndex].Name == "caret")
+                {
+                    caretValueChanged(e);
+                }
+                else if (addSilverDataGridView.Columns[e.ColumnIndex].Name == "gross")
+                {
+                    grossValueChanged(e);
+                }
+                else if (addSilverDataGridView.Columns[e.ColumnIndex].Name == "net")
+                {
+                    netValueChanged(e);
+                }
+                else if (addSilverDataGridView.Columns[e.ColumnIndex].Name == "labour")
+                {
+                    pglValueChanged(e);
+                }
+                else if (addSilverDataGridView.Columns[e.ColumnIndex].Name == "wholeLabour")
+                {
+                    wlValueChanged(e);
+                }
+                else if (addSilverDataGridView.Columns[e.ColumnIndex].Name == "other")
+                {
+                    otherValueChanged(e);
+                }
+
             }
         }
+        private void caretValueChanged(DataGridViewCellEventArgs e)
+        {
+            grossValueChanged(e);
+        }
+        private void grossValueChanged(DataGridViewCellEventArgs e)
+        {
+            string caret = addSilverDataGridView.Rows[e.RowIndex].Cells["caret"].Value?.ToString();
+            decimal? gross = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value?.ToString());
+            decimal? net = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value?.ToString());
+            decimal? pgl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value?.ToString());
+            decimal? wl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value?.ToString());
+            decimal? other = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value?.ToString());
+
+
+            if (net == null || net == 0)
+            {
+                net = gross;
+            }
+            if (gross != null || gross != 0)
+            {
+                addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value = net;
+            }
+        }
+        private void netValueChanged(DataGridViewCellEventArgs e)
+        {
+            string caret = addSilverDataGridView.Rows[e.RowIndex].Cells["caret"].Value?.ToString();
+            decimal? gross = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value?.ToString());
+            decimal? net = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value?.ToString());
+            decimal? pgl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value?.ToString());
+            decimal? wl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value?.ToString());
+            decimal? other = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value?.ToString());
+
+            if (caret == "SLO")
+            {
+                if (net < 10)
+                {
+                    if (pgl == null || pgl == 0)
+                    {
+                        pgl = 0;
+                        if (wl == null || wl == 0)
+                        {
+                            wl = 200;
+
+                        }
+                    }
+                    else if (pgl != null)
+                    {
+                        if (pgl * net < 200)
+                        {
+                            pgl = 0;
+                            if (wl == null || wl == 0)
+                            {
+                                wl = 200;
+
+                            }
+                        }
+                    }
+                }
+                else if (net > 10)
+                {
+                    if (pgl == null || pgl == 0)
+                    {
+                        pgl = 20;
+                        wl = 0;
+                    }
+                    else if (pgl != null)
+                    {
+                        if (pgl * net < 200)
+                        {
+                            pgl = 20;
+                            wl = 0;
+                        }
+                    }
+                }
+            }
+            else if (caret == "925")
+            {
+
+                pgl = 300;
+
+                if (wl == null)
+                {
+                    wl = 0;
+                }
+            }
+            addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = pgl;
+            addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = wl;
+        }
+        private void pglValueChanged(DataGridViewCellEventArgs e)
+        {
+
+            calculatePrice(e);
+        }
+        private void wlValueChanged(DataGridViewCellEventArgs e) { calculatePrice(e); }
+        private void otherValueChanged(DataGridViewCellEventArgs e) { calculatePrice(e); }
+        private void calculatePrice(DataGridViewCellEventArgs e)
+        {
+
+            string caret = addSilverDataGridView.Rows[e.RowIndex].Cells["caret"].Value?.ToString();
+
+            decimal gross = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value?.ToString() ?? "0");
+            decimal net = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value?.ToString() ?? "0");
+            decimal pgl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value?.ToString() ?? "0");
+            decimal wl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value?.ToString() ?? "0");
+            decimal other = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value?.ToString() ?? "0");
+
+            decimal price = 0;
+            if (caret == "SLO")
+            {
+                // pratyush check if current price is null
+                if (gross - net < 5)
+                {
+                    price = (gross * (Convert.ToDecimal(txtCurrentPrice.Text) + pgl) + wl + other);
+
+                }
+                else { price = (net * (Convert.ToDecimal(txtCurrentPrice.Text) + pgl) + wl + other); }
+            }
+            else if (caret == "925")
+            {
+                if (gross - net < 5)
+                {
+                    price = ((gross * pgl) + wl + other);
+
+                }
+                else { price = ((net * pgl) + wl + other); }
+            }
+            // Round to the nearest upper bound based on your custom ranges (e.g., 50)
+            decimal step = 50;
+            decimal roundedPrice = CustomRound(price, step);
+            addSilverDataGridView.Rows[e.RowIndex].Cells["price"].Value = roundedPrice;
+        }
+
+        private void updatelabourandprice(DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex == 0)
+                {
+                    // Calculate values for the first row
+                    var caretValue = addSilverDataGridView.Rows[e.RowIndex].Cells["caret"].Value?.ToString();
+                    if (addSilverDataGridView.Columns[e.ColumnIndex].Name == "gross" || addSilverDataGridView.Columns[e.ColumnIndex].Name == "net")
+
+                    {
+                        if ("SLO".Equals(caretValue, StringComparison.OrdinalIgnoreCase))
+                        {
+                            decimal gross = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value);
+                            decimal net = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value);
+
+                            if ((gross - net) < 5)
+                            {
+                                if (gross < 10)
+                                {
+                                    addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = 200;
+                                    addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = 0;
+                                }
+                                else
+                                {
+                                    addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = 0;
+                                    addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = 20;
+                                }
+                            }
+                            else
+                            {
+                                if (net < 10)
+                                {
+                                    addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = 200;
+                                    addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = 0;
+                                }
+                                else
+                                {
+                                    addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = 0;
+                                    addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = 20;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = 300;
+                            addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = 0;
+                            CalculatePrice(e.RowIndex);
+                        }
+                    }
+
+                }
+                else
+                {
+                    // For subsequent rows
+                    var currentRow = addSilverDataGridView.Rows[e.RowIndex];
+                    var previousRow = addSilverDataGridView.Rows[e.RowIndex - 1];
+
+                    // Check if type and caret values are the same as the previous row
+                    if (currentRow.Cells["type"].Value == previousRow.Cells["type"].Value &&
+                        currentRow.Cells["caret"].Value == previousRow.Cells["caret"].Value)
+                    {
+                        // Copy values from the previous row
+                        currentRow.Cells["wholeLabour"].Value = previousRow.Cells["wholeLabour"].Value;
+                        currentRow.Cells["labour"].Value = previousRow.Cells["labour"].Value;
+                    }
+                    else
+                    {
+                        // Calculate values for the current row if type and caret are different
+                        var caretValue = currentRow.Cells["caret"].Value?.ToString();
+
+                        if ("SLO".Equals(caretValue, StringComparison.OrdinalIgnoreCase))
+                        {
+                            decimal gross = Convert.ToDecimal(currentRow.Cells["gross"].Value);
+                            decimal net = Convert.ToDecimal(currentRow.Cells["net"].Value);
+
+                            if ((gross - net) < 5)
+                            {
+                                if (gross < 10)
+                                {
+                                    currentRow.Cells["wholeLabour"].Value = 200;
+                                    currentRow.Cells["labour"].Value = 0;
+                                }
+                                else
+                                {
+                                    currentRow.Cells["wholeLabour"].Value = 0;
+                                    currentRow.Cells["labour"].Value = 20;
+                                }
+                            }
+                            else
+                            {
+                                if (net < 10)
+                                {
+                                    currentRow.Cells["wholeLabour"].Value = 200;
+                                    currentRow.Cells["labour"].Value = 0;
+                                }
+                                else
+                                {
+                                    currentRow.Cells["wholeLabour"].Value = 0;
+                                    currentRow.Cells["labour"].Value = 20;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            currentRow.Cells["wholeLabour"].Value = 300;
+                            currentRow.Cells["labour"].Value = 0;
+                        }
+                    }
+
+                    CalculatePrice(e.RowIndex);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+        private void CalculatePrice(int rowIndex)
+        {
+            try
+            {
+                decimal wholeLabour = Convert.ToDecimal(addSilverDataGridView.Rows[rowIndex].Cells["wholeLabour"].Value);
+                decimal gross = Convert.ToDecimal(addSilverDataGridView.Rows[rowIndex].Cells["gross"].Value);
+                decimal net = Convert.ToDecimal(addSilverDataGridView.Rows[rowIndex].Cells["net"].Value);
+                decimal other = Convert.ToDecimal(addSilverDataGridView.Rows[rowIndex].Cells["other"].Value ?? 0);
+
+                if ((gross - net) < 5)
+                {
+                    // Calculate the price
+                    decimal rawPrice = (gross * wholeLabour) + other;
+
+                    // Round to the nearest upper bound based on your custom ranges (e.g., 50)
+                    decimal step = 50;
+                    decimal roundedPrice = CustomRound(rawPrice, step);
+
+                    // Set the rounded price to the DataGridView
+                    addSilverDataGridView.Rows[rowIndex].Cells["price"].Value = roundedPrice;
+                }
+                else
+                {
+                    // Calculate the price
+                    decimal rawPrice = (net * wholeLabour) + other;
+
+                    // Round to the nearest upper bound based on your custom ranges (e.g., 50)
+                    decimal step = 50;
+                    decimal roundedPrice = CustomRound(rawPrice, step);
+
+                    // Set the rounded price to the DataGridView
+                    addSilverDataGridView.Rows[rowIndex].Cells["price"].Value = roundedPrice;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while calculating price: {ex.Message}");
+            }
+        }
+
+        private decimal CustomRound(decimal value, decimal step)
+        {
+            decimal remainder = value % step;
+            if (remainder == 0)
+            {
+                // No rounding needed
+                return value;
+            }
+            else
+            {
+                // Round up to the nearest multiple of step
+                return value + (step - remainder);
+            }
+        }
+
+
+
+
         private void addSilverDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                //updatelabourandprice(e);
+            }
             // Update item count and gross weight sum when cell values change
             // UpdateItemCountAndGrossWeight();
         }
@@ -165,7 +502,7 @@ namespace SYA
                 column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 // Set font size for column headers
-                column.HeaderCell.Style.Font = new Font("Arial", 12, FontStyle.Bold); // Adjust the font and size as needed
+                column.HeaderCell.Style.Font = new Font("Arial", 10, FontStyle.Bold); // Adjust the font and size as needed
 
             }
         }
@@ -400,7 +737,7 @@ namespace SYA
                 SelectCell(addSilverDataGridView, row.Index, "wholeLabour");
                 return false;
             }
-            if (!decimal.TryParse(row.Cells["price"].Value?.ToString(), out decimal price) || price < 0)
+            if (row.Cells["price"].Value != null && (!decimal.TryParse(row.Cells["price"].Value?.ToString(), out decimal price) || price < 0))
             {
                 MessageBox.Show($"Price should be a non-negative numeric value for Row {row.Index + 1}.");
                 SelectCell(addSilverDataGridView, row.Index, "price");
@@ -432,7 +769,7 @@ namespace SYA
                 updateCommand.Parameters.AddWithValue("@caret", row.Cells["caret"].Value?.ToString());
                 updateCommand.Parameters.AddWithValue("@gross", Convert.IsDBNull(row.Cells["gross"].Value) ? 0 : Convert.ToDecimal(row.Cells["gross"].Value));
                 updateCommand.Parameters.AddWithValue("@net", Convert.IsDBNull(row.Cells["net"].Value) ? 0 : Convert.ToDecimal(row.Cells["net"].Value));
-                updateCommand.Parameters.AddWithValue("@wholelable", Convert.IsDBNull(row.Cells["wholelabour"].Value) ? 0 : Convert.ToDecimal(row.Cells["wholelabour"].Value));
+                updateCommand.Parameters.AddWithValue("@wholelable", Convert.IsDBNull(row.Cells["wholeLabour"].Value) ? 0 : Convert.ToDecimal(row.Cells["wholeLabour"].Value));
                 updateCommand.Parameters.AddWithValue("@labour", Convert.IsDBNull(row.Cells["labour"].Value) ? 0 : Convert.ToDecimal(row.Cells["labour"].Value));
                 updateCommand.Parameters.AddWithValue("@other", Convert.IsDBNull(row.Cells["other"].Value) ? 0 : Convert.ToDecimal(row.Cells["other"].Value));
                 updateCommand.Parameters.AddWithValue("@huid1", null);
@@ -464,7 +801,7 @@ namespace SYA
                 insertCommand.Parameters.AddWithValue("@caret", row.Cells["caret"].Value?.ToString());
                 insertCommand.Parameters.AddWithValue("@gross", Convert.IsDBNull(row.Cells["gross"].Value) ? 0 : Convert.ToDecimal(row.Cells["gross"].Value));
                 insertCommand.Parameters.AddWithValue("@net", Convert.IsDBNull(row.Cells["net"].Value) ? 0 : Convert.ToDecimal(row.Cells["net"].Value));
-                insertCommand.Parameters.AddWithValue("@wholelabouramt", Convert.IsDBNull(row.Cells["wholelabour"].Value) ? 0 : Convert.ToDecimal(row.Cells["wholelabour"].Value));
+                insertCommand.Parameters.AddWithValue("@wholelabouramt", Convert.IsDBNull(row.Cells["wholeLabour"].Value) ? 0 : Convert.ToDecimal(row.Cells["wholeLabour"].Value));
                 insertCommand.Parameters.AddWithValue("@labour", Convert.IsDBNull(row.Cells["labour"].Value) ? 0 : Convert.ToDecimal(row.Cells["labour"].Value));
                 insertCommand.Parameters.AddWithValue("@other", Convert.IsDBNull(row.Cells["other"].Value) ? 0 : Convert.ToDecimal(row.Cells["other"].Value));
                 insertCommand.Parameters.AddWithValue("@huid1", null);

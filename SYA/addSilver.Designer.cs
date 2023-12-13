@@ -30,6 +30,8 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
@@ -77,6 +79,10 @@
             panel20 = new Panel();
             panel9 = new Panel();
             panel3 = new Panel();
+            txtCurrentPrice = new TextBox();
+            panel39 = new Panel();
+            button1 = new Button();
+            panel38 = new Panel();
             panel30 = new Panel();
             panel25 = new Panel();
             panel18 = new Panel();
@@ -113,7 +119,7 @@
             panel5.Dock = DockStyle.Top;
             panel5.Location = new Point(0, 687);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1732, 65);
+            panel5.Size = new Size(1604, 65);
             panel5.TabIndex = 4;
             // 
             // panel34
@@ -122,7 +128,7 @@
             panel34.Dock = DockStyle.Fill;
             panel34.Location = new Point(36, 5);
             panel34.Name = "panel34";
-            panel34.Size = new Size(1660, 55);
+            panel34.Size = new Size(1532, 55);
             panel34.TabIndex = 13;
             // 
             // itemcountandgrossweight
@@ -131,7 +137,7 @@
             itemcountandgrossweight.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             itemcountandgrossweight.Location = new Point(0, 0);
             itemcountandgrossweight.Name = "itemcountandgrossweight";
-            itemcountandgrossweight.Size = new Size(1660, 47);
+            itemcountandgrossweight.Size = new Size(1532, 47);
             itemcountandgrossweight.TabIndex = 0;
             itemcountandgrossweight.Text = "Item : 10      Gross Weight : 30.789";
             itemcountandgrossweight.TextAlign = HorizontalAlignment.Center;
@@ -149,7 +155,7 @@
             // 
             panel23.BackColor = Color.Black;
             panel23.Dock = DockStyle.Right;
-            panel23.Location = new Point(1696, 5);
+            panel23.Location = new Point(1568, 5);
             panel23.Name = "panel23";
             panel23.Size = new Size(36, 55);
             panel23.TabIndex = 10;
@@ -160,7 +166,7 @@
             panel21.Dock = DockStyle.Bottom;
             panel21.Location = new Point(0, 60);
             panel21.Name = "panel21";
-            panel21.Size = new Size(1732, 5);
+            panel21.Size = new Size(1604, 5);
             panel21.TabIndex = 3;
             // 
             // panel10
@@ -169,7 +175,7 @@
             panel10.Dock = DockStyle.Top;
             panel10.Location = new Point(0, 0);
             panel10.Name = "panel10";
-            panel10.Size = new Size(1732, 5);
+            panel10.Size = new Size(1604, 5);
             panel10.TabIndex = 1;
             // 
             // panelBackground
@@ -184,7 +190,7 @@
             panelBackground.Dock = DockStyle.Fill;
             panelBackground.Location = new Point(0, 0);
             panelBackground.Name = "panelBackground";
-            panelBackground.Size = new Size(1732, 818);
+            panelBackground.Size = new Size(1604, 818);
             panelBackground.TabIndex = 1;
             // 
             // panel6
@@ -209,7 +215,7 @@
             panel6.Dock = DockStyle.Top;
             panel6.Location = new Point(0, 752);
             panel6.Name = "panel6";
-            panel6.Size = new Size(1732, 65);
+            panel6.Size = new Size(1604, 65);
             panel6.TabIndex = 5;
             // 
             // btnAddGoldQuickSaveAndPrint
@@ -272,7 +278,7 @@
             // 
             btnAddSilverSave.Dock = DockStyle.Right;
             btnAddSilverSave.Font = new Font("Segoe UI", 17.5F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddSilverSave.Location = new Point(828, 5);
+            btnAddSilverSave.Location = new Point(700, 5);
             btnAddSilverSave.Name = "btnAddSilverSave";
             btnAddSilverSave.Size = new Size(190, 55);
             btnAddSilverSave.TabIndex = 16;
@@ -283,7 +289,7 @@
             // panel16
             // 
             panel16.Dock = DockStyle.Right;
-            panel16.Location = new Point(1018, 5);
+            panel16.Location = new Point(890, 5);
             panel16.Name = "panel16";
             panel16.Size = new Size(36, 55);
             panel16.TabIndex = 15;
@@ -292,7 +298,7 @@
             // 
             btnAddGoldCancel.Dock = DockStyle.Right;
             btnAddGoldCancel.Font = new Font("Segoe UI", 17.5F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddGoldCancel.Location = new Point(1054, 5);
+            btnAddGoldCancel.Location = new Point(926, 5);
             btnAddGoldCancel.Name = "btnAddGoldCancel";
             btnAddGoldCancel.Size = new Size(190, 55);
             btnAddGoldCancel.TabIndex = 14;
@@ -302,7 +308,7 @@
             // panel15
             // 
             panel15.Dock = DockStyle.Right;
-            panel15.Location = new Point(1244, 5);
+            panel15.Location = new Point(1116, 5);
             panel15.Name = "panel15";
             panel15.Size = new Size(36, 55);
             panel15.TabIndex = 13;
@@ -311,7 +317,7 @@
             // 
             btnAddSilverPrintTag.Dock = DockStyle.Right;
             btnAddSilverPrintTag.Font = new Font("Segoe UI", 17.5F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddSilverPrintTag.Location = new Point(1280, 5);
+            btnAddSilverPrintTag.Location = new Point(1152, 5);
             btnAddSilverPrintTag.Name = "btnAddSilverPrintTag";
             btnAddSilverPrintTag.Size = new Size(190, 55);
             btnAddSilverPrintTag.TabIndex = 12;
@@ -322,7 +328,7 @@
             // panel13
             // 
             panel13.Dock = DockStyle.Right;
-            panel13.Location = new Point(1470, 5);
+            panel13.Location = new Point(1342, 5);
             panel13.Name = "panel13";
             panel13.Size = new Size(36, 55);
             panel13.TabIndex = 11;
@@ -331,7 +337,7 @@
             // 
             btnAddGoldPrintPdf.Dock = DockStyle.Right;
             btnAddGoldPrintPdf.Font = new Font("Segoe UI", 17.5F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddGoldPrintPdf.Location = new Point(1506, 5);
+            btnAddGoldPrintPdf.Location = new Point(1378, 5);
             btnAddGoldPrintPdf.Name = "btnAddGoldPrintPdf";
             btnAddGoldPrintPdf.Size = new Size(190, 55);
             btnAddGoldPrintPdf.TabIndex = 10;
@@ -342,7 +348,7 @@
             // 
             panel12.BackColor = Color.Black;
             panel12.Dock = DockStyle.Right;
-            panel12.Location = new Point(1696, 5);
+            panel12.Location = new Point(1568, 5);
             panel12.Name = "panel12";
             panel12.Size = new Size(36, 55);
             panel12.TabIndex = 9;
@@ -353,7 +359,7 @@
             panel14.Dock = DockStyle.Bottom;
             panel14.Location = new Point(0, 60);
             panel14.Name = "panel14";
-            panel14.Size = new Size(1732, 5);
+            panel14.Size = new Size(1604, 5);
             panel14.TabIndex = 8;
             // 
             // panel11
@@ -362,7 +368,7 @@
             panel11.Dock = DockStyle.Top;
             panel11.Location = new Point(0, 0);
             panel11.Name = "panel11";
-            panel11.Size = new Size(1732, 5);
+            panel11.Size = new Size(1604, 5);
             panel11.TabIndex = 1;
             // 
             // panel4
@@ -376,7 +382,7 @@
             panel4.Dock = DockStyle.Top;
             panel4.Location = new Point(0, 195);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1732, 492);
+            panel4.Size = new Size(1604, 492);
             panel4.TabIndex = 3;
             // 
             // addSilverDataGridView
@@ -393,13 +399,29 @@
             addSilverDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             addSilverDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             addSilverDataGridView.Columns.AddRange(new DataGridViewColumn[] { select, tagno, type, caret, gross, net, labour, wholeLabour, other, price, size, comment });
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            addSilverDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
             addSilverDataGridView.Dock = DockStyle.Fill;
             addSilverDataGridView.EditMode = DataGridViewEditMode.EditOnEnter;
             addSilverDataGridView.Location = new Point(36, 5);
             addSilverDataGridView.Name = "addSilverDataGridView";
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            addSilverDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             addSilverDataGridView.RowHeadersWidth = 51;
             addSilverDataGridView.RowTemplate.Height = 29;
-            addSilverDataGridView.Size = new Size(1660, 482);
+            addSilverDataGridView.Size = new Size(1532, 482);
             addSilverDataGridView.TabIndex = 13;
             addSilverDataGridView.CellEndEdit += addSilverDataGridView_CellEndEdit;
             addSilverDataGridView.CellEnter += addSilverDataGridView_CellEnter;
@@ -420,7 +442,7 @@
             tagno.MinimumWidth = 6;
             tagno.Name = "tagno";
             tagno.ReadOnly = true;
-            tagno.Width = 200;
+            tagno.Width = 150;
             // 
             // type
             // 
@@ -429,7 +451,7 @@
             type.HeaderText = "ITEM";
             type.MinimumWidth = 6;
             type.Name = "type";
-            type.Width = 250;
+            type.Width = 225;
             // 
             // caret
             // 
@@ -459,21 +481,21 @@
             labour.HeaderText = "PER GRAM LABOUR";
             labour.MinimumWidth = 6;
             labour.Name = "labour";
-            labour.Width = 80;
+            labour.Width = 125;
             // 
             // wholeLabour
             // 
             wholeLabour.HeaderText = "WHOLE LABOUR";
             wholeLabour.MinimumWidth = 6;
             wholeLabour.Name = "wholeLabour";
-            wholeLabour.Width = 80;
+            wholeLabour.Width = 125;
             // 
             // other
             // 
             other.HeaderText = "OTHER";
             other.MinimumWidth = 6;
             other.Name = "other";
-            other.Width = 80;
+            other.Width = 125;
             // 
             // price
             // 
@@ -509,7 +531,7 @@
             // 
             panel24.BackColor = Color.Black;
             panel24.Dock = DockStyle.Right;
-            panel24.Location = new Point(1696, 5);
+            panel24.Location = new Point(1568, 5);
             panel24.Name = "panel24";
             panel24.Size = new Size(36, 482);
             panel24.TabIndex = 10;
@@ -520,7 +542,7 @@
             panel20.Dock = DockStyle.Bottom;
             panel20.Location = new Point(0, 487);
             panel20.Name = "panel20";
-            panel20.Size = new Size(1732, 5);
+            panel20.Size = new Size(1604, 5);
             panel20.TabIndex = 3;
             // 
             // panel9
@@ -529,12 +551,16 @@
             panel9.Dock = DockStyle.Top;
             panel9.Location = new Point(0, 0);
             panel9.Name = "panel9";
-            panel9.Size = new Size(1732, 5);
+            panel9.Size = new Size(1604, 5);
             panel9.TabIndex = 1;
             // 
             // panel3
             // 
             panel3.BackColor = SystemColors.ActiveCaption;
+            panel3.Controls.Add(txtCurrentPrice);
+            panel3.Controls.Add(panel39);
+            panel3.Controls.Add(button1);
+            panel3.Controls.Add(panel38);
             panel3.Controls.Add(panel30);
             panel3.Controls.Add(panel25);
             panel3.Controls.Add(panel18);
@@ -542,8 +568,46 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 130);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1732, 65);
+            panel3.Size = new Size(1604, 65);
             panel3.TabIndex = 2;
+            // 
+            // txtCurrentPrice
+            // 
+            txtCurrentPrice.Dock = DockStyle.Left;
+            txtCurrentPrice.Font = new Font("Segoe UI", 21.5F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCurrentPrice.Location = new Point(483, 5);
+            txtCurrentPrice.Name = "txtCurrentPrice";
+            txtCurrentPrice.Size = new Size(89, 55);
+            txtCurrentPrice.TabIndex = 24;
+            txtCurrentPrice.Text = "76";
+            // 
+            // panel39
+            // 
+            panel39.Dock = DockStyle.Left;
+            panel39.Location = new Point(447, 5);
+            panel39.Name = "panel39";
+            panel39.Size = new Size(36, 55);
+            panel39.TabIndex = 23;
+            // 
+            // button1
+            // 
+            button1.Dock = DockStyle.Left;
+            button1.Enabled = false;
+            button1.Font = new Font("Segoe UI", 17.5F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(72, 5);
+            button1.Name = "button1";
+            button1.Size = new Size(375, 55);
+            button1.TabIndex = 21;
+            button1.Text = "SILVER RATE PER GRAM : ";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // panel38
+            // 
+            panel38.Dock = DockStyle.Left;
+            panel38.Location = new Point(36, 5);
+            panel38.Name = "panel38";
+            panel38.Size = new Size(36, 55);
+            panel38.TabIndex = 20;
             // 
             // panel30
             // 
@@ -558,7 +622,7 @@
             // 
             panel25.BackColor = Color.Black;
             panel25.Dock = DockStyle.Right;
-            panel25.Location = new Point(1696, 5);
+            panel25.Location = new Point(1568, 5);
             panel25.Name = "panel25";
             panel25.Size = new Size(36, 55);
             panel25.TabIndex = 10;
@@ -569,7 +633,7 @@
             panel18.Dock = DockStyle.Bottom;
             panel18.Location = new Point(0, 60);
             panel18.Name = "panel18";
-            panel18.Size = new Size(1732, 5);
+            panel18.Size = new Size(1604, 5);
             panel18.TabIndex = 3;
             // 
             // panel7
@@ -578,7 +642,7 @@
             panel7.Dock = DockStyle.Top;
             panel7.Location = new Point(0, 0);
             panel7.Name = "panel7";
-            panel7.Size = new Size(1732, 5);
+            panel7.Size = new Size(1604, 5);
             panel7.TabIndex = 0;
             // 
             // panel2
@@ -591,7 +655,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 65);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1732, 65);
+            panel2.Size = new Size(1604, 65);
             panel2.TabIndex = 1;
             // 
             // panel29
@@ -607,7 +671,7 @@
             // 
             panel26.BackColor = Color.Black;
             panel26.Dock = DockStyle.Right;
-            panel26.Location = new Point(1696, 5);
+            panel26.Location = new Point(1568, 5);
             panel26.Name = "panel26";
             panel26.Size = new Size(36, 55);
             panel26.TabIndex = 10;
@@ -618,7 +682,7 @@
             panel17.Dock = DockStyle.Bottom;
             panel17.Location = new Point(0, 60);
             panel17.Name = "panel17";
-            panel17.Size = new Size(1732, 5);
+            panel17.Size = new Size(1604, 5);
             panel17.TabIndex = 2;
             // 
             // panel8
@@ -627,7 +691,7 @@
             panel8.Dock = DockStyle.Top;
             panel8.Location = new Point(0, 0);
             panel8.Name = "panel8";
-            panel8.Size = new Size(1732, 5);
+            panel8.Size = new Size(1604, 5);
             panel8.TabIndex = 1;
             // 
             // panel1
@@ -640,7 +704,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1732, 65);
+            panel1.Size = new Size(1604, 65);
             panel1.TabIndex = 0;
             // 
             // panel28
@@ -656,7 +720,7 @@
             // 
             panel27.BackColor = Color.Black;
             panel27.Dock = DockStyle.Right;
-            panel27.Location = new Point(1696, 5);
+            panel27.Location = new Point(1568, 5);
             panel27.Name = "panel27";
             panel27.Size = new Size(36, 55);
             panel27.TabIndex = 10;
@@ -667,7 +731,7 @@
             panel22.Dock = DockStyle.Top;
             panel22.Location = new Point(0, 0);
             panel22.Name = "panel22";
-            panel22.Size = new Size(1732, 5);
+            panel22.Size = new Size(1604, 5);
             panel22.TabIndex = 4;
             // 
             // panel19
@@ -676,14 +740,14 @@
             panel19.Dock = DockStyle.Bottom;
             panel19.Location = new Point(0, 60);
             panel19.Name = "panel19";
-            panel19.Size = new Size(1732, 5);
+            panel19.Size = new Size(1604, 5);
             panel19.TabIndex = 3;
             // 
             // addSilver
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1732, 818);
+            ClientSize = new Size(1604, 818);
             Controls.Add(panelBackground);
             Name = "addSilver";
             Text = "addSilver";
@@ -697,6 +761,7 @@
             panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)addSilverDataGridView).EndInit();
             panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ResumeLayout(false);
@@ -762,5 +827,9 @@
         private DataGridViewTextBoxColumn price;
         private DataGridViewTextBoxColumn size;
         private DataGridViewTextBoxColumn comment;
+        private TextBox txtCurrentPrice;
+        private Panel panel39;
+        private Button button1;
+        private Panel panel38;
     }
 }
