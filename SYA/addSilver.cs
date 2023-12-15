@@ -62,8 +62,8 @@ namespace SYA
 
         private void InitializeDatabaseConnection()
         {
-            connectionToSYADatabase = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;");
-            connectionToDatacare = new SQLiteConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23 - Copy.mdb\";");
+            connectionToSYADatabase = new SQLiteConnection(helper.SYAConnectionString);
+            connectionToDatacare = new SQLiteConnection(helper.accessConnectionString);
 
         }
         private void InitializeComboBoxColumns()
@@ -475,7 +475,7 @@ namespace SYA
         {
             Log.Logger = new LoggerConfiguration()
 
-                .WriteTo.File("C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\LOG\\logs.txt", rollingInterval: RollingInterval.Day) // Log to a file with daily rolling
+                .WriteTo.File(helper.LogsFolder + "\\logs.txt", rollingInterval: RollingInterval.Day) // Log to a file with daily rolling
                 .CreateLogger();
         }
         // --------------------------------------------------------------------------------------------

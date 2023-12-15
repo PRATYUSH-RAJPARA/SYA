@@ -20,15 +20,16 @@ namespace SYA
                 if (_configuration == null)
                 {
                     _configuration = new ConfigurationBuilder()
-                        .SetBasePath(@"C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\config")
+                        .SetBasePath(@"C:\SYA\config")
                          .AddJsonFile("appsettings.json")
                         .Build();
                 }
+              
                 return _configuration;
             }
         }
 
-        public static string ConnectionString
+        public static string SYAConnectionString
         {
             get { return Configuration["ConnectionStrings:SYADatabase"]; }
         }
@@ -37,7 +38,14 @@ namespace SYA
         {
             get { return Configuration["ConnectionStrings:DataCareDatabase"]; }
         }
-
+        public static string ImageFolder
+        {
+            get { return Configuration["FolderLocations:Images"]; }
+        }
+        public static string LogsFolder
+        {
+            get { return Configuration["FolderLocations:Logs"]; }
+        }
       //   private static readonly string ConnectionString = "Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;";
       //  private static readonly string accessConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23.mdb\"";
      //   private static readonly string ConnectionString = "Data Source=C:\\Users\\91760\\Desktop\\SYA\\SYADataBase.db;Version=3;";
@@ -49,7 +57,7 @@ namespace SYA
            object result = null;
             try
             {
-                using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
+                using (SQLiteConnection connection = new SQLiteConnection(SYAConnectionString))
                 {
                     connection.Open();
 
@@ -74,11 +82,11 @@ namespace SYA
             return result;
            // return rowsAffected;
         }
-        public static void RunQueryWithParametersSYADataBase(string query, SQLiteParameter[] parameters = null)
+        public static bool RunQueryWithParametersSYADataBase(string query, SQLiteParameter[] parameters = null)
         {
             try
             {
-                using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
+                using (SQLiteConnection connection = new SQLiteConnection(SYAConnectionString))
                 {
                     connection.Open();
 
@@ -90,6 +98,7 @@ namespace SYA
                         }
 
                         command.ExecuteNonQuery();
+                        return true;
                     }
                 }
             }
@@ -97,6 +106,7 @@ namespace SYA
             {
                 // Handle or log the exception as needed
                 Console.WriteLine($"Error executing query: {ex.Message}");
+                return false;
             }
         }
         public static SQLiteDataReader FetchDFromSYADataBase(string query)
@@ -105,7 +115,7 @@ namespace SYA
 
             try
             {
-                SQLiteConnection connection = new SQLiteConnection(ConnectionString);
+                SQLiteConnection connection = new SQLiteConnection(SYAConnectionString);
                 connection.Open();
 
                 SQLiteCommand command = new SQLiteCommand(query, connection);
@@ -201,6 +211,18 @@ namespace SYA
                 return false;
             }
             return true;
+        }
+        public static string correctWeight(object cellValue)
+        {
+           
+
+            // Check if the entered value is not null and can be converted to a decimal
+            if (cellValue != null && decimal.TryParse(cellValue.ToString(), out decimal weight))
+            {
+                // Format the entered value to have three decimal places
+                return weight.ToString("0.000");
+            }
+            return (cellValue ?? "").ToString(); ;
         }
     }
 }

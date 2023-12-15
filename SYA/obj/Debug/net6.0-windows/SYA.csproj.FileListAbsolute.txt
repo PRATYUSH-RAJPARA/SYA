@@ -56,3 +56,4 @@ C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Debug\net6.0-windows\Microsoft.Exten
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Debug\net6.0-windows\System.Text.Json.dll
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Debug\net6.0-windows\SYA.ProgressDialog.resources

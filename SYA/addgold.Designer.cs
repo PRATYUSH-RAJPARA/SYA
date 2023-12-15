@@ -30,6 +30,7 @@ namespace SYA
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
@@ -47,13 +48,11 @@ namespace SYA
             DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
             panel1 = new Panel();
-            progressBar1 = new ProgressBar();
             textBox1 = new TextBox();
             panel28 = new Panel();
             panel27 = new Panel();
             panel22 = new Panel();
             panel19 = new Panel();
-            checkBoxAddGold1 = new CheckBox();
             panel4 = new Panel();
             dataGridView1 = new DataGridView();
             select = new DataGridViewCheckBoxColumn();
@@ -74,40 +73,52 @@ namespace SYA
             panel20 = new Panel();
             panel5 = new Panel();
             panel34 = new Panel();
-            panel16 = new Panel();
+            panel13 = new Panel();
+            btnAddGoldSave = new Button();
+            panel15 = new Panel();
+            panel2 = new Panel();
+            btnFetch = new Button();
             btnSelectAll = new Button();
             panel35 = new Panel();
-            itemcountandgrossweight = new TextBox();
             panel32 = new Panel();
             panel23 = new Panel();
             panel21 = new Panel();
             panelBackground = new Panel();
             panel6 = new Panel();
-            panel37 = new Panel();
-            btnFetch = new Button();
+            panel3 = new Panel();
+            panel9 = new Panel();
+            panel7 = new Panel();
+            txtMessageBox = new TextBox();
+            panel16 = new Panel();
+            panel17 = new Panel();
+            panel8 = new Panel();
+            buttonquicksave = new Button();
+            panel10 = new Panel();
+            btnQuickSaveAndPrint = new Button();
+            panel18 = new Panel();
             panel36 = new Panel();
             panel33 = new Panel();
-            btnAddGoldSave = new Button();
-            panel15 = new Panel();
-            btnAddGoldPrintTag = new Button();
-            panel13 = new Panel();
             panel12 = new Panel();
             panel14 = new Panel();
             panel11 = new Panel();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            messageBoxTimer = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel5.SuspendLayout();
             panel34.SuspendLayout();
+            panel13.SuspendLayout();
             panelBackground.SuspendLayout();
             panel6.SuspendLayout();
+            panel3.SuspendLayout();
+            panel9.SuspendLayout();
+            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(255, 192, 255);
-            panel1.Controls.Add(progressBar1);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(panel28);
             panel1.Controls.Add(panel27);
@@ -118,13 +129,6 @@ namespace SYA
             panel1.Name = "panel1";
             panel1.Size = new Size(1604, 65);
             panel1.TabIndex = 0;
-            // 
-            // progressBar1
-            // 
-            progressBar1.Location = new Point(1061, 12);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(319, 42);
-            progressBar1.TabIndex = 13;
             // 
             // textBox1
             // 
@@ -139,7 +143,6 @@ namespace SYA
             textBox1.TabStop = false;
             textBox1.Text = "ADD GOLD ITEMS";
             textBox1.TextAlign = HorizontalAlignment.Center;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // panel28
             // 
@@ -149,7 +152,6 @@ namespace SYA
             panel28.Name = "panel28";
             panel28.Size = new Size(10, 55);
             panel28.TabIndex = 11;
-            panel28.Paint += panel28_Paint;
             // 
             // panel27
             // 
@@ -177,23 +179,6 @@ namespace SYA
             panel19.Name = "panel19";
             panel19.Size = new Size(1604, 5);
             panel19.TabIndex = 3;
-            // 
-            // checkBoxAddGold1
-            // 
-            checkBoxAddGold1.AutoSize = true;
-            checkBoxAddGold1.BackColor = Color.FromArgb(96, 111, 73);
-            checkBoxAddGold1.Dock = DockStyle.Right;
-            checkBoxAddGold1.FlatAppearance.BorderColor = Color.FromArgb(3, 102, 102);
-            checkBoxAddGold1.FlatAppearance.BorderSize = 5;
-            checkBoxAddGold1.FlatStyle = FlatStyle.Popup;
-            checkBoxAddGold1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBoxAddGold1.ForeColor = Color.White;
-            checkBoxAddGold1.Location = new Point(1274, 0);
-            checkBoxAddGold1.Name = "checkBoxAddGold1";
-            checkBoxAddGold1.Size = new Size(310, 60);
-            checkBoxAddGold1.TabIndex = 13;
-            checkBoxAddGold1.Text = "Quick Save && Print          ";
-            checkBoxAddGold1.UseVisualStyleBackColor = false;
             // 
             // panel4
             // 
@@ -387,7 +372,6 @@ namespace SYA
             panel31.Name = "panel31";
             panel31.Size = new Size(10, 748);
             panel31.TabIndex = 12;
-            panel31.Paint += panel31_Paint;
             // 
             // panel24
             // 
@@ -406,7 +390,6 @@ namespace SYA
             panel20.Name = "panel20";
             panel20.Size = new Size(1604, 5);
             panel20.TabIndex = 3;
-            panel20.Paint += panel20_Paint;
             // 
             // panel5
             // 
@@ -424,26 +407,79 @@ namespace SYA
             // panel34
             // 
             panel34.BackColor = Color.FromArgb(233, 245, 219);
-            panel34.Controls.Add(panel16);
+            panel34.Controls.Add(panel13);
+            panel34.Controls.Add(panel2);
+            panel34.Controls.Add(btnFetch);
             panel34.Controls.Add(btnSelectAll);
             panel34.Controls.Add(panel35);
-            panel34.Controls.Add(checkBoxAddGold1);
-            panel34.Controls.Add(itemcountandgrossweight);
             panel34.Dock = DockStyle.Fill;
             panel34.Location = new Point(10, 0);
             panel34.Name = "panel34";
             panel34.Size = new Size(1584, 60);
             panel34.TabIndex = 13;
             // 
-            // panel16
+            // panel13
             // 
-            panel16.BackColor = Color.FromArgb(96, 111, 73);
-            panel16.Dock = DockStyle.Right;
-            panel16.ForeColor = Color.White;
-            panel16.Location = new Point(1198, 0);
-            panel16.Name = "panel16";
-            panel16.Size = new Size(76, 60);
-            panel16.TabIndex = 20;
+            panel13.Controls.Add(btnAddGoldSave);
+            panel13.Controls.Add(panel15);
+            panel13.Dock = DockStyle.Fill;
+            panel13.Location = new Point(506, 0);
+            panel13.Name = "panel13";
+            panel13.Size = new Size(1078, 60);
+            panel13.TabIndex = 101;
+            // 
+            // btnAddGoldSave
+            // 
+            btnAddGoldSave.BackColor = Color.FromArgb(96, 111, 73);
+            btnAddGoldSave.Dock = DockStyle.Right;
+            btnAddGoldSave.FlatAppearance.BorderColor = Color.FromArgb(3, 102, 102);
+            btnAddGoldSave.FlatAppearance.BorderSize = 5;
+            btnAddGoldSave.FlatStyle = FlatStyle.Popup;
+            btnAddGoldSave.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAddGoldSave.ForeColor = Color.White;
+            btnAddGoldSave.Location = new Point(884, 0);
+            btnAddGoldSave.Name = "btnAddGoldSave";
+            btnAddGoldSave.Size = new Size(158, 60);
+            btnAddGoldSave.TabIndex = 160;
+            btnAddGoldSave.Text = "SAVE";
+            btnAddGoldSave.UseVisualStyleBackColor = false;
+            btnAddGoldSave.Click += btnAddGoldSave_Click;
+            // 
+            // panel15
+            // 
+            panel15.BackColor = Color.FromArgb(233, 245, 219);
+            panel15.Dock = DockStyle.Right;
+            panel15.Location = new Point(1042, 0);
+            panel15.Name = "panel15";
+            panel15.Size = new Size(36, 60);
+            panel15.TabIndex = 21;
+            // 
+            // panel2
+            // 
+            panel2.Dock = DockStyle.Left;
+            panel2.Location = new Point(470, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(36, 60);
+            panel2.TabIndex = 23;
+            // 
+            // btnFetch
+            // 
+            btnFetch.BackColor = Color.FromArgb(96, 111, 73);
+            btnFetch.Dock = DockStyle.Left;
+            btnFetch.FlatAppearance.BorderColor = Color.FromArgb(3, 102, 102);
+            btnFetch.FlatAppearance.BorderSize = 5;
+            btnFetch.FlatAppearance.MouseDownBackColor = Color.FromArgb(3, 102, 102);
+            btnFetch.FlatAppearance.MouseOverBackColor = Color.FromArgb(153, 226, 180);
+            btnFetch.FlatStyle = FlatStyle.Popup;
+            btnFetch.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnFetch.ForeColor = Color.White;
+            btnFetch.Location = new Point(297, 0);
+            btnFetch.Name = "btnFetch";
+            btnFetch.Size = new Size(173, 60);
+            btnFetch.TabIndex = 21;
+            btnFetch.Text = "FETCH";
+            btnFetch.UseVisualStyleBackColor = false;
+            btnFetch.Click += btnFetch_Click;
             // 
             // btnSelectAll
             // 
@@ -453,11 +489,11 @@ namespace SYA
             btnSelectAll.FlatAppearance.MouseDownBackColor = Color.FromArgb(153, 226, 180);
             btnSelectAll.FlatAppearance.MouseOverBackColor = Color.FromArgb(3, 102, 102);
             btnSelectAll.FlatStyle = FlatStyle.Popup;
-            btnSelectAll.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSelectAll.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnSelectAll.ForeColor = Color.White;
             btnSelectAll.Location = new Point(36, 0);
             btnSelectAll.Name = "btnSelectAll";
-            btnSelectAll.Size = new Size(173, 60);
+            btnSelectAll.Size = new Size(261, 60);
             btnSelectAll.TabIndex = 19;
             btnSelectAll.Text = "SELECT ALL";
             btnSelectAll.UseVisualStyleBackColor = false;
@@ -471,20 +507,6 @@ namespace SYA
             panel35.Size = new Size(36, 60);
             panel35.TabIndex = 19;
             // 
-            // itemcountandgrossweight
-            // 
-            itemcountandgrossweight.BackColor = Color.FromArgb(233, 245, 219);
-            itemcountandgrossweight.BorderStyle = BorderStyle.None;
-            itemcountandgrossweight.Dock = DockStyle.Fill;
-            itemcountandgrossweight.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            itemcountandgrossweight.Location = new Point(0, 0);
-            itemcountandgrossweight.Name = "itemcountandgrossweight";
-            itemcountandgrossweight.ReadOnly = true;
-            itemcountandgrossweight.Size = new Size(1584, 40);
-            itemcountandgrossweight.TabIndex = 0;
-            itemcountandgrossweight.Text = "Item : 10      Gross Weight : 30.789";
-            itemcountandgrossweight.TextAlign = HorizontalAlignment.Center;
-            // 
             // panel32
             // 
             panel32.BackColor = Color.FromArgb(65, 72, 51);
@@ -493,7 +515,6 @@ namespace SYA
             panel32.Name = "panel32";
             panel32.Size = new Size(10, 60);
             panel32.TabIndex = 12;
-            panel32.Paint += panel32_Paint;
             // 
             // panel23
             // 
@@ -503,7 +524,6 @@ namespace SYA
             panel23.Name = "panel23";
             panel23.Size = new Size(10, 60);
             panel23.TabIndex = 10;
-            panel23.Paint += panel23_Paint;
             // 
             // panel21
             // 
@@ -513,7 +533,6 @@ namespace SYA
             panel21.Name = "panel21";
             panel21.Size = new Size(1604, 5);
             panel21.TabIndex = 3;
-            panel21.Paint += panel21_Paint;
             // 
             // panelBackground
             // 
@@ -531,14 +550,8 @@ namespace SYA
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(233, 245, 219);
-            panel6.Controls.Add(panel37);
-            panel6.Controls.Add(btnFetch);
-            panel6.Controls.Add(panel36);
+            panel6.Controls.Add(panel3);
             panel6.Controls.Add(panel33);
-            panel6.Controls.Add(btnAddGoldSave);
-            panel6.Controls.Add(panel15);
-            panel6.Controls.Add(btnAddGoldPrintTag);
-            panel6.Controls.Add(panel13);
             panel6.Controls.Add(panel12);
             panel6.Controls.Add(panel14);
             panel6.Controls.Add(panel11);
@@ -548,40 +561,139 @@ namespace SYA
             panel6.Size = new Size(1604, 65);
             panel6.TabIndex = 5;
             // 
-            // panel37
+            // panel3
             // 
-            panel37.Dock = DockStyle.Left;
-            panel37.Location = new Point(219, 5);
-            panel37.Name = "panel37";
-            panel37.Size = new Size(36, 55);
-            panel37.TabIndex = 22;
-            panel37.Paint += panel37_Paint;
+            panel3.BackColor = Color.FromArgb(255, 214, 255);
+            panel3.Controls.Add(panel9);
+            panel3.Controls.Add(panel18);
+            panel3.Controls.Add(panel36);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(10, 10);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1584, 50);
+            panel3.TabIndex = 18;
             // 
-            // btnFetch
+            // panel9
             // 
-            btnFetch.BackColor = Color.FromArgb(96, 111, 73);
-            btnFetch.Dock = DockStyle.Left;
-            btnFetch.FlatAppearance.BorderColor = Color.FromArgb(3, 102, 102);
-            btnFetch.FlatAppearance.BorderSize = 5;
-            btnFetch.FlatAppearance.MouseDownBackColor = Color.FromArgb(3, 102, 102);
-            btnFetch.FlatAppearance.MouseOverBackColor = Color.FromArgb(153, 226, 180);
-            btnFetch.FlatStyle = FlatStyle.Popup;
-            btnFetch.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            btnFetch.ForeColor = Color.White;
-            btnFetch.Location = new Point(46, 5);
-            btnFetch.Name = "btnFetch";
-            btnFetch.Size = new Size(173, 55);
-            btnFetch.TabIndex = 21;
-            btnFetch.Text = "FETCH";
-            btnFetch.UseVisualStyleBackColor = false;
-            btnFetch.Click += btnFetch_Click;
+            panel9.BackColor = Color.FromArgb(233, 245, 219);
+            panel9.Controls.Add(panel7);
+            panel9.Controls.Add(panel16);
+            panel9.Controls.Add(panel17);
+            panel9.Controls.Add(panel8);
+            panel9.Controls.Add(buttonquicksave);
+            panel9.Controls.Add(panel10);
+            panel9.Controls.Add(btnQuickSaveAndPrint);
+            panel9.Dock = DockStyle.Fill;
+            panel9.Location = new Point(36, 0);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(1512, 50);
+            panel9.TabIndex = 44;
+            // 
+            // panel7
+            // 
+            panel7.Controls.Add(txtMessageBox);
+            panel7.Dock = DockStyle.Fill;
+            panel7.Location = new Point(546, 8);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(966, 34);
+            panel7.TabIndex = 16;
+            // 
+            // txtMessageBox
+            // 
+            txtMessageBox.BackColor = Color.FromArgb(233, 245, 219);
+            txtMessageBox.BorderStyle = BorderStyle.None;
+            txtMessageBox.Dock = DockStyle.Left;
+            txtMessageBox.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            txtMessageBox.Location = new Point(0, 0);
+            txtMessageBox.Name = "txtMessageBox";
+            txtMessageBox.ReadOnly = true;
+            txtMessageBox.Size = new Size(654, 29);
+            txtMessageBox.TabIndex = 100;
+            txtMessageBox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // panel16
+            // 
+            panel16.Dock = DockStyle.Top;
+            panel16.Location = new Point(546, 0);
+            panel16.Name = "panel16";
+            panel16.Size = new Size(966, 8);
+            panel16.TabIndex = 15;
+            // 
+            // panel17
+            // 
+            panel17.Dock = DockStyle.Bottom;
+            panel17.Location = new Point(546, 42);
+            panel17.Name = "panel17";
+            panel17.Size = new Size(966, 8);
+            panel17.TabIndex = 15;
+            // 
+            // panel8
+            // 
+            panel8.Dock = DockStyle.Left;
+            panel8.Location = new Point(510, 0);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(36, 50);
+            panel8.TabIndex = 46;
+            // 
+            // buttonquicksave
+            // 
+            buttonquicksave.BackColor = Color.FromArgb(96, 111, 73);
+            buttonquicksave.Dock = DockStyle.Left;
+            buttonquicksave.FlatAppearance.BorderColor = Color.FromArgb(165, 100, 211);
+            buttonquicksave.FlatAppearance.BorderSize = 5;
+            buttonquicksave.FlatStyle = FlatStyle.Popup;
+            buttonquicksave.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonquicksave.ForeColor = Color.White;
+            buttonquicksave.Location = new Point(297, 0);
+            buttonquicksave.Name = "buttonquicksave";
+            buttonquicksave.Size = new Size(213, 50);
+            buttonquicksave.TabIndex = 45;
+            buttonquicksave.Text = "Enable Quick Save";
+            buttonquicksave.UseVisualStyleBackColor = false;
+            buttonquicksave.Click += buttonquicksave_Click;
+            // 
+            // panel10
+            // 
+            panel10.Dock = DockStyle.Left;
+            panel10.Location = new Point(261, 0);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(36, 50);
+            panel10.TabIndex = 44;
+            // 
+            // btnQuickSaveAndPrint
+            // 
+            btnQuickSaveAndPrint.BackColor = Color.FromArgb(96, 111, 73);
+            btnQuickSaveAndPrint.Dock = DockStyle.Left;
+            btnQuickSaveAndPrint.FlatAppearance.BorderColor = Color.FromArgb(165, 100, 211);
+            btnQuickSaveAndPrint.FlatAppearance.BorderSize = 5;
+            btnQuickSaveAndPrint.FlatStyle = FlatStyle.Popup;
+            btnQuickSaveAndPrint.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnQuickSaveAndPrint.ForeColor = Color.White;
+            btnQuickSaveAndPrint.Location = new Point(0, 0);
+            btnQuickSaveAndPrint.Name = "btnQuickSaveAndPrint";
+            btnQuickSaveAndPrint.Size = new Size(261, 50);
+            btnQuickSaveAndPrint.TabIndex = 43;
+            btnQuickSaveAndPrint.Text = "Enable Quick Save & Print";
+            btnQuickSaveAndPrint.UseMnemonic = false;
+            btnQuickSaveAndPrint.UseVisualStyleBackColor = false;
+            btnQuickSaveAndPrint.Click += btnQuickSaveAndPrint_Click;
+            // 
+            // panel18
+            // 
+            panel18.BackColor = Color.FromArgb(233, 245, 219);
+            panel18.Dock = DockStyle.Left;
+            panel18.Location = new Point(0, 0);
+            panel18.Name = "panel18";
+            panel18.Size = new Size(36, 50);
+            panel18.TabIndex = 43;
             // 
             // panel36
             // 
-            panel36.Dock = DockStyle.Left;
-            panel36.Location = new Point(10, 5);
+            panel36.BackColor = Color.FromArgb(233, 245, 219);
+            panel36.Dock = DockStyle.Right;
+            panel36.Location = new Point(1548, 0);
             panel36.Name = "panel36";
-            panel36.Size = new Size(36, 55);
+            panel36.Size = new Size(36, 50);
             panel36.TabIndex = 20;
             // 
             // panel33
@@ -592,57 +704,6 @@ namespace SYA
             panel33.Name = "panel33";
             panel33.Size = new Size(10, 55);
             panel33.TabIndex = 17;
-            panel33.Paint += panel33_Paint;
-            // 
-            // btnAddGoldSave
-            // 
-            btnAddGoldSave.BackColor = Color.FromArgb(96, 111, 73);
-            btnAddGoldSave.Dock = DockStyle.Right;
-            btnAddGoldSave.FlatAppearance.BorderColor = Color.FromArgb(3, 102, 102);
-            btnAddGoldSave.FlatAppearance.BorderSize = 5;
-            btnAddGoldSave.FlatStyle = FlatStyle.Popup;
-            btnAddGoldSave.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddGoldSave.ForeColor = Color.White;
-            btnAddGoldSave.Location = new Point(982, 5);
-            btnAddGoldSave.Name = "btnAddGoldSave";
-            btnAddGoldSave.Size = new Size(190, 55);
-            btnAddGoldSave.TabIndex = 16;
-            btnAddGoldSave.Text = "SAVE";
-            btnAddGoldSave.UseVisualStyleBackColor = false;
-            btnAddGoldSave.Click += btnAddGoldSave_Click;
-            // 
-            // panel15
-            // 
-            panel15.Dock = DockStyle.Right;
-            panel15.Location = new Point(1172, 5);
-            panel15.Name = "panel15";
-            panel15.Size = new Size(36, 55);
-            panel15.TabIndex = 13;
-            // 
-            // btnAddGoldPrintTag
-            // 
-            btnAddGoldPrintTag.BackColor = Color.FromArgb(96, 111, 73);
-            btnAddGoldPrintTag.Dock = DockStyle.Right;
-            btnAddGoldPrintTag.FlatAppearance.BorderColor = Color.FromArgb(3, 102, 102);
-            btnAddGoldPrintTag.FlatAppearance.BorderSize = 5;
-            btnAddGoldPrintTag.FlatStyle = FlatStyle.Popup;
-            btnAddGoldPrintTag.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddGoldPrintTag.ForeColor = Color.White;
-            btnAddGoldPrintTag.Location = new Point(1208, 5);
-            btnAddGoldPrintTag.Name = "btnAddGoldPrintTag";
-            btnAddGoldPrintTag.Size = new Size(376, 55);
-            btnAddGoldPrintTag.TabIndex = 12;
-            btnAddGoldPrintTag.Text = "SAVE && PRINT SELECTED TAG";
-            btnAddGoldPrintTag.UseVisualStyleBackColor = false;
-            btnAddGoldPrintTag.Click += btnAddGoldPrintTag_Click;
-            // 
-            // panel13
-            // 
-            panel13.Dock = DockStyle.Right;
-            panel13.Location = new Point(1584, 5);
-            panel13.Name = "panel13";
-            panel13.Size = new Size(10, 55);
-            panel13.TabIndex = 11;
             // 
             // panel12
             // 
@@ -652,7 +713,6 @@ namespace SYA
             panel12.Name = "panel12";
             panel12.Size = new Size(10, 55);
             panel12.TabIndex = 9;
-            panel12.Paint += panel12_Paint;
             // 
             // panel14
             // 
@@ -680,6 +740,11 @@ namespace SYA
             backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
             backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
             // 
+            // messageBoxTimer
+            // 
+            messageBoxTimer.Interval = 3000;
+            messageBoxTimer.Tick += messageBoxTimer_Tick;
+            // 
             // addgold
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -696,9 +761,13 @@ namespace SYA
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel5.ResumeLayout(false);
             panel34.ResumeLayout(false);
-            panel34.PerformLayout();
+            panel13.ResumeLayout(false);
             panelBackground.ResumeLayout(false);
             panel6.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            panel9.ResumeLayout(false);
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -710,10 +779,6 @@ namespace SYA
         private Panel panelBackground;
         private Panel panel6;
         private Panel panel11;
-        private Button btnAddGoldSave;
-        private Panel panel15;
-        private Button btnAddGoldPrintTag;
-        private Panel panel13;
         private Button btnAddGoldPrintPdf;
         private Panel panel12;
         private Panel panel28;
@@ -727,15 +792,10 @@ namespace SYA
         private Panel panel21;
         private Panel panel33;
         private Panel panel34;
-        private TextBox itemcountandgrossweight;
         private DataGridView dataGridView1;
         private Button btnSelectAll;
         private Button btnFetch;
-        private Panel panel36;
-        private Panel panel37;
-        private CheckBox checkBoxAddGold1;
         private Panel panel35;
-        private Panel panel16;
         private DataGridViewCheckBoxColumn select;
         private DataGridViewTextBoxColumn tagno;
         private DataGridViewComboBoxColumn type;
@@ -754,5 +814,22 @@ namespace SYA
         private Panel panel14;
         private ProgressBar progressBar1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Panel panel2;
+        private Panel panel3;
+        private Panel panel9;
+        private Panel panel7;
+        private TextBox txtMessageBox;
+        private Panel panel16;
+        private Panel panel17;
+        private Panel panel8;
+        private Button buttonquicksave;
+        private Panel panel10;
+        private Button btnQuickSaveAndPrint;
+        private Panel panel18;
+        private Panel panel36;
+        private System.Windows.Forms.Timer messageBoxTimer;
+        private Panel panel13;
+        private Panel panel15;
+        private Button btnAddGoldSave;
     }
 }

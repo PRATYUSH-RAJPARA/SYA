@@ -26,7 +26,7 @@ namespace SYA
         }
         private void InitializeDatabaseConnection()
         {
-            connectionToSYADatabase = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;");
+            connectionToSYADatabase = new SQLiteConnection(helper.SYAConnectionString);
             // connectionToDatacare = new SQLiteConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23 - Copy.mdb\";");
 
         }

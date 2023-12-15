@@ -12,6 +12,7 @@ using TextBox = System.Windows.Forms.TextBox;
 using QRCoder;
 using System.Drawing.Printing;
 using System.Runtime.InteropServices;
+using System.Diagnostics.Eventing.Reader;
 
 namespace SYA
 {
@@ -24,6 +25,8 @@ namespace SYA
         private string previousCaretValue = string.Empty;
         private int itemCount = 0;
         private decimal grossWeightSum = 0;
+        bool quickSave = false;
+        bool quickSaveAndPrint = false;
         public addgold()
         {
             InitializeComponent();
@@ -45,7 +48,8 @@ namespace SYA
             // Enable row headers for DataGridView to display row numbers
             dataGridView1.RowHeadersVisible = true;
 
-
+            btnFetch.Visible = false;
+            btnSelectAll.Visible = false;
 
             // Add an event handler to update row numbers when rows are added or removed
             dataGridView1.RowsAdded += (s, args) => UpdateRowNumbers();
@@ -69,8 +73,8 @@ namespace SYA
 
         private void InitializeDatabaseConnection()
         {
-            connectionToSYADatabase = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;");
-            connectionToDatacare = new SQLiteConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23 - Copy.mdb\";");
+            connectionToSYADatabase = new SQLiteConnection(helper.SYAConnectionString);
+            connectionToDatacare = new SQLiteConnection(helper.accessConnectionString);
 
         }
         private void InitializeComboBoxColumns()
@@ -81,6 +85,15 @@ namespace SYA
             // Load CARET values
             LoadComboBoxValues("GQ", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["caret"]);
         }
+        private void messageBoxTimer_Tick(object sender, EventArgs e)
+        {
+            // Clear the TextBox after the timer interval
+            txtMessageBox.Text = string.Empty;
+
+            // Stop the timer
+            messageBoxTimer.Stop();
+        }
+
         // --------------------------------------------------------------------------------------------
         // Events
         // --------------------------------------------------------------------------------------------
@@ -99,7 +112,6 @@ namespace SYA
             // Check if entering the first column of a new row
             if (e.ColumnIndex == 0 && e.RowIndex == dataGridView1.Rows.Count - 1)
             {
-                UpdateItemCountAndGrossWeight();
                 dataGridView1.Rows[e.RowIndex].Cells["labour"].Value = "650";
                 dataGridView1.Rows[e.RowIndex].Cells["wholeLabour"].Value = "0";
                 dataGridView1.Rows[e.RowIndex].Cells["other"].Value = "0";
@@ -132,10 +144,14 @@ namespace SYA
                 {
                     // Copy the value from the "gross" column to the corresponding "net" column
                     dataGridView1.Rows[e.RowIndex].Cells["net"].Value = dataGridView1.Rows[e.RowIndex].Cells["gross"].Value;
-
-
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = helper.correctWeight(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
                     // Update the item count and gross weight sum
-                    UpdateItemCountAndGrossWeight();
+                }
+                else if (dataGridView1.Columns[e.ColumnIndex].Name == "net")
+                {
+
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = helper.correctWeight(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                    // Update the item count and gross weight sum
                 }
 
             }
@@ -145,6 +161,254 @@ namespace SYA
             // Update item count and gross weight sum when cell values change
             // UpdateItemCountAndGrossWeight();
         }
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            DataGridView dataGridView10 = dataGridView1;
+            string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
+            if (currentColumnName1 == "net")
+            {
+                DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                selectedRow.Cells["net"].Value = helper.correctWeight(selectedRow.Cells["net"].Value);
+            }
+            if (quickSaveAndPrint)
+            {
+
+                // Handle the Tab key to trigger the KeyDown event for the text box or combo box
+                if (e.KeyCode == Keys.Tab)
+                {
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+
+                    DataGridView dataGridView = dataGridView1;
+                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                    //  MessageBox.Show("pratyush1: " + currentColumnName);
+
+                    // Assuming "comment" is the name of the last column
+                    if (currentColumnName == "comment")
+                    {
+                        // MessageBox.Show("pratyush  :  " + currentColumnName);
+                        // MessageBox.Show("in comment");
+                        // You are moving to the next row in the last column
+                        // Call your save and/or print function here
+                        DataGridViewRow empty = new DataGridViewRow();
+                        DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+
+                        if (SaveData(selectedRow, 1))
+                        {
+                            string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
+                            if (tagNumber.Length > 1)
+                            {
+                                PrintLabels();
+                            }
+                        }
+                    }
+
+                }
+            }
+            //quick print
+            else if (false)
+            {
+
+                // Handle the Tab key to trigger the KeyDown event for the text box or combo box
+                if (e.KeyCode == Keys.Tab)
+                {
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+
+                    DataGridView dataGridView = dataGridView1;
+                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                    //  MessageBox.Show("pratyush1: " + currentColumnName);
+
+                    // Assuming "comment" is the name of the last column
+                    if (currentColumnName == "comment")
+                    {
+                        // MessageBox.Show("in comment");
+                        // You are moving to the next row in the last column
+                        // Call your save and/or print function here
+
+                        DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                        string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
+                        if (tagNumber.Length > 1)
+                        {
+                            PrintLabels();
+                        }
+
+                    }
+
+                }
+            }
+            else if (quickSave)
+            {
+
+                // Handle the Tab key to trigger the KeyDown event for the text box or combo box
+                if (e.KeyCode == Keys.Tab)
+                {
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+
+                    DataGridView dataGridView = dataGridView1;
+                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                    //  MessageBox.Show("pratyush1: " + currentColumnName);
+
+                    // Assuming "comment" is the name of the last column
+                    if (currentColumnName == "comment")
+                    {
+                        // MessageBox.Show("pratyush  :  " + currentColumnName);
+                        // MessageBox.Show("in comment");
+                        // You are moving to the next row in the last column
+                        // Call your save and/or print function here
+                        //    DataGridViewRow empty = new DataGridViewRow();
+                        DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                        SaveData(selectedRow, 1);
+
+                    }
+
+                }
+            }
+        }
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            e.Control.PreviewKeyDown -= dataGridView_EditingControl_PreviewKeyDown;
+            e.Control.PreviewKeyDown += dataGridView_EditingControl_PreviewKeyDown;
+
+        }
+        private void dataGridView_EditingControl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            DataGridView dataGridView10 = dataGridView1;
+            string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
+            if (currentColumnName1 == "net")
+            {
+                DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                selectedRow.Cells["net"].Value = helper.correctWeight(selectedRow.Cells["net"].Value);
+            }
+            if (quickSaveAndPrint)
+            {
+
+                // Handle the Tab key to trigger the KeyDown event for the text box or combo box
+                if (e.KeyCode == Keys.Tab)
+                {
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+
+                    DataGridView dataGridView = dataGridView1;
+                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                    //  MessageBox.Show("pratyush1: " + currentColumnName);
+
+                    // Assuming "comment" is the name of the last column
+                    if (currentColumnName == "comment")
+                    {
+                        // MessageBox.Show("pratyush  :  " + currentColumnName);
+                        // MessageBox.Show("in comment");
+                        // You are moving to the next row in the last column
+                        // Call your save and/or print function here
+                        DataGridViewRow empty = new DataGridViewRow();
+                        DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+
+                        if (SaveData(selectedRow, 1))
+                        {
+                            string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
+                            if (tagNumber.Length > 1)
+                            {
+                                PrintLabels();
+                            }
+                        }
+                    }
+
+                }
+            }
+            //quick print
+            else if (false)
+            {
+
+                // Handle the Tab key to trigger the KeyDown event for the text box or combo box
+                if (e.KeyCode == Keys.Tab)
+                {
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+
+                    DataGridView dataGridView = dataGridView1;
+                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                    //  MessageBox.Show("pratyush1: " + currentColumnName);
+
+                    // Assuming "comment" is the name of the last column
+                    if (currentColumnName == "comment")
+                    {
+                        // MessageBox.Show("in comment");
+                        // You are moving to the next row in the last column
+                        // Call your save and/or print function here
+
+                        DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                        string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
+                        if (tagNumber.Length > 1)
+                        {
+                            PrintLabels();
+                        }
+
+                    }
+
+                }
+            }
+            else if (quickSave)
+            {
+
+                // Handle the Tab key to trigger the KeyDown event for the text box or combo box
+                if (e.KeyCode == Keys.Tab)
+                {
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+
+                    DataGridView dataGridView = dataGridView1;
+                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                    //  MessageBox.Show("pratyush1: " + currentColumnName);
+
+                    // Assuming "comment" is the name of the last column
+                    if (currentColumnName == "comment")
+                    {
+                        // MessageBox.Show("pratyush  :  " + currentColumnName);
+                        // MessageBox.Show("in comment");
+                        // You are moving to the next row in the last column
+                        // Call your save and/or print function here
+                        //    DataGridViewRow empty = new DataGridViewRow();
+                        DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                        SaveData(selectedRow, 1);
+
+                    }
+
+                }
+            }
+        }
+
+
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Check if the current cell is a header cell
+            if (e.RowIndex == -1 && e.ColumnIndex == 0)
+            {
+                //  MessageBox.Show("pratyush");
+                // Set the background color for the top-left cell
+                e.CellStyle.BackColor = Color.FromArgb(233, 245, 219);
+                // You can customize other properties as needed
+                e.CellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
+                e.CellStyle.ForeColor = Color.Black;
+            }
+        }
+
+        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            // Check if it is the top-left cell (1, 1)
+            if (e.RowIndex == -1 && e.ColumnIndex == -1)
+            {
+                // Set the background color for the top-left cell
+                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(114, 131, 89)), e.CellBounds);
+
+
+
+                // Prevent default painting
+                e.Handled = true;
+            }
+        }
         // --------------------------------------------------------------------------------------------
         // Logging
         // --------------------------------------------------------------------------------------------
@@ -152,7 +416,7 @@ namespace SYA
         {
             Log.Logger = new LoggerConfiguration()
 
-                .WriteTo.File("C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\LOG\\logs_tagno.txt", rollingInterval: RollingInterval.Day) // Log to a file with daily rolling
+                .WriteTo.File(helper.LogsFolder + "\\logs_tagno.txt", rollingInterval: RollingInterval.Day) // Log to a file with daily rolling
                 .CreateLogger();
         }
         // --------------------------------------------------------------------------------------------
@@ -230,36 +494,8 @@ namespace SYA
 
             }
         }
-        private void UpdateItemCountAndGrossWeight()
-        {
-            // Reset counts
-            itemCount = 0;
-            grossWeightSum = 0;
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                // Check if the row is not empty and not in edit mode
-                //if (!row.IsNewRow && !row.DataGridView.IsCurrentRowDirty)
-                if (!row.IsNewRow)
-                {
-                    itemCount++;
 
-                    // Check if the "gross" cell is not null or empty
-                    if (row.Cells["gross"].Value != null && decimal.TryParse(row.Cells["gross"].Value.ToString(), out decimal gross))
-                    {
-                        grossWeightSum += gross;
-                    }
-                }
-            }
-
-            // Update the TextBox with the latest counts
-            UpdateItemCountAndGrossWeightTextBox();
-        }
-        private void UpdateItemCountAndGrossWeightTextBox()
-        {
-            // Assuming you have a TextBox named textBoxItemCountGrossWeight on your form
-            itemcountandgrossweight.Text = $"Total Item Count: {itemCount}, Total Gross Weight: {grossWeightSum}";
-        }
         private void UpdateRowNumbers()
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -306,50 +542,103 @@ namespace SYA
         // --------------------------------------------------------------------------------------------
         private void btnAddGoldSave_Click(object sender, EventArgs e)
         {
-            UpdateItemCountAndGrossWeight();
-            SaveData();
+            DataGridViewRow empty = new DataGridViewRow();
+            SaveData(empty, 0);
         }
-        private bool SaveData()
+        private bool SaveData(DataGridViewRow selectedRow, int check)
         {
-            try
+            if (check == 0)
             {
-                // Check if there are rows in the DataGridView
-                if (dataGridView1.Rows.Count == 0)
+                try
                 {
-                    MessageBox.Show("DataGridView is empty. Check your data population logic.");
+                    // Check if there are rows in the DataGridView
+                    if (dataGridView1.Rows.Count == 0)
+                    {
+                        MessageBox.Show("DataGridView is empty. Check your data population logic.");
+                        return false;
+                    }
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        // Check if the row is not empty
+                        if (!row.IsNewRow)
+                        {
+
+                            MessageBox.Show("pratyush1");
+                            // Check if the "tagno" cell is not null or empty
+                            if (row.Cells["tagno"].Value != null && !string.IsNullOrEmpty(row.Cells["tagno"].Value.ToString()) && row.Cells["tagno"].Value.ToString() != "0")
+                            {
+                                MessageBox.Show("pratyush10");
+
+                                // If tagno is generated, update the existing entry in the database
+                                if (UpdateData(row))
+                                {
+                                    txtMessageBox.Text = "Data Updated Successfully for " + row.Cells["tagno"].Value.ToString() + ".";
+                                    messageBoxTimer.Start();
+                                }
+                            }
+                            else
+                            {
+                                // If tagno is not generated, insert a new entry in the database
+                                if (InsertData(row))
+                                {
+                                    txtMessageBox.Text = "Data Added Successfully for " + row.Cells["tagno"].Value.ToString() + ".";
+                                    messageBoxTimer.Start();
+                                }
+                            }
+                        }
+
+                    }
+
+                    // If execution reaches here, the save was successful
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // If there's an exception, return false
+                    return false;
+                }
+            }
+            else if (check == 1)
+            {
+                try
+                {
+
+
+
+                    // Check if the "tagno" cell is not null or empty
+                    if (selectedRow.Cells["tagno"].Value != null && !string.IsNullOrEmpty(selectedRow.Cells["tagno"].Value.ToString()) && selectedRow.Cells["tagno"].Value.ToString() != "0")
+                    {
+                        // If tagno is generated, update the existing entry in the database
+                        if (UpdateData(selectedRow))
+                        {
+                            txtMessageBox.Text = "Data Updated Successfully for " + selectedRow.Cells["tagno"].Value.ToString() + ".";
+                            messageBoxTimer.Start();
+                        }
+                    }
+                    else
+                    {
+                        // If tagno is not generated, insert a new entry in the database
+                        if (InsertData(selectedRow))
+                        {
+                            txtMessageBox.Text = "Data Added Successfully for " + selectedRow.Cells["tagno"].Value.ToString() + ".";
+                            messageBoxTimer.Start();
+                        }
+                    }
+
+                    // If execution reaches here, the save was successful
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // If there's an exception, return false
                     return false;
                 }
 
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    // Check if the row is not empty
-                    if (!row.IsNewRow)
-                    {
-
-
-                        // Check if the "tagno" cell is not null or empty
-                        if (row.Cells["tagno"].Value != null && !string.IsNullOrEmpty(row.Cells["tagno"].Value.ToString()) && row.Cells["tagno"].Value.ToString() != "0")
-                        {
-                            // If tagno is generated, update the existing entry in the database
-                            UpdateData(row);
-                        }
-                        else
-                        {
-                            // If tagno is not generated, insert a new entry in the database
-                            InsertData(row);
-                        }
-                    }
-                }
-
-                // If execution reaches here, the save was successful
-                return true;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // If there's an exception, return false
-                return false;
-            }
+            return false;
         }
         private void UpdateTagNo(int rowIndex)
         {
@@ -384,6 +673,9 @@ namespace SYA
         }
         private int GetNextSequenceNumber(string prefix, string prCode, string caret)
         {
+            prefix ??= "";
+            prCode ??= "";
+            caret ??= "";
             int prefixLength = prefix.Length + prCode.Length + caret.Length;
 
             using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
@@ -471,20 +763,23 @@ namespace SYA
             string huid1 = row.Cells["huid1"].Value?.ToString();
             string huid2 = row.Cells["huid2"].Value?.ToString();
 
-            helper.validateHUID(huid1, huid2);
-
+            if (!helper.validateHUID(huid1, huid2))
+            {
+                SelectCell(dataGridView1, row.Index, "huid1");
+                return false;
+            }
 
 
 
             return true; // All data is valid
         }
 
-        private void UpdateData(DataGridViewRow row)
+        private bool UpdateData(DataGridViewRow row)
         {
             if (!ValidateData(row))
             {
                 // Validation failed, return or handle accordingly
-                return;
+                return false;
             }
 
             string updateQuery = "UPDATE MAIN_DATA SET ITEM_DESC = @type, ITEM_PURITY = @caret, GW = @gross, NW = @net, " +
@@ -508,11 +803,14 @@ namespace SYA
         new SQLiteParameter("@prCode", row.Cells["prcode"].Value?.ToString())
             };
 
-            helper.RunQueryWithParametersSYADataBase(updateQuery, parameters);
-
+            if (helper.RunQueryWithParametersSYADataBase(updateQuery, parameters))
+            {
+                return true;
+            }
+            return false;
             // Continue with your logic after the update
         }
-        private void InsertData(DataGridViewRow row)
+        private bool InsertData(DataGridViewRow row)
         {
             try
             {
@@ -525,7 +823,7 @@ namespace SYA
                     {
                         row.Cells["tagno"].Value = null;
                         // Validation failed, return or handle accordingly
-                        return;
+                        return false;
                     }
 
                     // Add parameters for fixed data
@@ -559,7 +857,11 @@ namespace SYA
                     };
 
                     // Execute the insert query with parameters
-                    helper.RunQueryWithParametersSYADataBase(InsertQuery, parameters);
+                    if (helper.RunQueryWithParametersSYADataBase(InsertQuery, parameters))
+                    {
+                        return true;
+                    }
+                    return false;
                 }
             }
             catch (Exception ex)
@@ -567,6 +869,7 @@ namespace SYA
                 // Handle or log the exception as needed
                 Console.WriteLine($"Error inserting data: {ex.Message}");
                 MessageBox.Show($"Error inserting data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
@@ -910,7 +1213,7 @@ namespace SYA
                     }
 
                     //logo
-                    Image logoImage = Image.FromFile("C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYA\\Image\\logo.jpg"); // Replace with the actual path
+                    Image logoImage = Image.FromFile(helper.ImageFolder + "\\logo.jpg"); // Replace with the actual path
                     e.Graphics.DrawImage(logoImage, new RectangleF(83, 4, (float)22.5, (float)22.5));
 
                     //logo name 
@@ -930,7 +1233,7 @@ namespace SYA
 
                     // Draw the QR code rectangle
                     RectangleF qrCodeRect = new RectangleF(174, 4, 37, 37);
-
+                    e.Graphics.DrawRectangle(Pens.Red, qrCodeRect.X, qrCodeRect.Y, qrCodeRect.Width, qrCodeRect.Height);
                     using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
                     {
                         QRCodeData qrCodeData = qrGenerator.CreateQrCode(tagNumber, QRCodeGenerator.ECCLevel.Q);
@@ -978,12 +1281,16 @@ namespace SYA
                     }
 
                     //huid
+                    e.Graphics.DrawRectangle(Pens.Red, (float)174, (float)40, (float)37, (float)9);
                     string huid1 = (selectedRow.Cells["huid1"].Value ?? "0").ToString();
                     if (huid1.Length == 6)
                     {
                         e.Graphics.DrawString("HUID", new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)174, (float)40, (float)37, (float)9), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
                     }
                     Log.Information(" TagNo : " + tagNumber);
+                    string updateQuery = $"UPDATE MAIN_DATA SET PRINT = '1'   WHERE TAG_NO = '{tagNumber}'";
+
+                    helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
                     //outside box
                     //e.Graphics.DrawRectangle(Pens.Red, 4, 4, 211, 45);
                     //first part
@@ -1014,151 +1321,42 @@ namespace SYA
                 }
             }
         }
-        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+
+        private void btnQuickSaveAndPrint_Click(object sender, EventArgs e)
         {
-            // if (e.KeyCode == Keys.Tab)
-            if (false)
+            if (btnQuickSaveAndPrint.Text == "Enable Quick Save & Print")
             {
-
-                string currentColumnName = dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name;
-                int currentRowIndex = dataGridView1.CurrentCell.RowIndex;
-                // MessageBox.Show("pratyush1 : " + currentColumnName);
-                // Assuming "ColumnName" is the name of the last column
-                if (currentColumnName == "comment")
-                {
-                    // MessageBox.Show("in comment");
-                    // You are moving to the next row in the last column
-                    // Call your save and/or print function here
-                    SaveData();
-                    PrintLabels();
-
-                }
-
+                btnQuickSaveAndPrint.Text = "Disable Quick Save & Print";
+                txtMessageBox.Text = "Quick Save & Print Enabled.";
+                messageBoxTimer.Start();
+                quickSaveAndPrint = true;
+            }
+            else if (btnQuickSaveAndPrint.Text == "Disable Quick Save & Print")
+            {
+                btnQuickSaveAndPrint.Text = "Enable Quick Save & Print";
+                txtMessageBox.Text = "Quick Save & Print Disabled.";
+                messageBoxTimer.Start();
+                quickSaveAndPrint = false;
             }
         }
 
-        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            e.Control.PreviewKeyDown -= dataGridView_EditingControl_PreviewKeyDown;
-            e.Control.PreviewKeyDown += dataGridView_EditingControl_PreviewKeyDown;
 
-        }
-        private void dataGridView_EditingControl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+
+        private void buttonquicksave_Click(object sender, EventArgs e)
         {
-            if (checkBoxAddGold1.Checked == true)
+            if (buttonquicksave.Text == "Enable Quick Save")
             {
-
-                // Handle the Tab key to trigger the KeyDown event for the text box or combo box
-                if (e.KeyCode == Keys.Tab)
-                {
-                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-                    if (editingControl != null)
-                    {
-                        DataGridView dataGridView = dataGridView1;
-                        string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-                        int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-                        //  MessageBox.Show("pratyush1: " + currentColumnName);
-
-                        // Assuming "comment" is the name of the last column
-                        if (currentColumnName == "comment")
-                        {
-                            // MessageBox.Show("in comment");
-                            // You are moving to the next row in the last column
-                            // Call your save and/or print function here
-                            if (SaveData())
-                            {
-                                DataGridViewRow selectedRow = dataGridView1.CurrentRow;
-                                string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
-                                if (tagNumber.Length > 1)
-                                {
-                                    PrintLabels();
-                                }
-                            }
-                        }
-                    }
-                }
+                buttonquicksave.Text = "Disable Quick Save";
+                txtMessageBox.Text = "Quick Save Enabled.";
+                messageBoxTimer.Start();
+                quickSave = true;
             }
-        }
-
-        private void panel31_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel30_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void panel29_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void panel17_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void panel8_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void panel28_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void panel32_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void panel33_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void panel21_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void panel20_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void panel12_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void panel23_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            // Check if the current cell is a header cell
-            if (e.RowIndex == -1 && e.ColumnIndex == 0)
+            else if (buttonquicksave.Text == "Disable Quick Save")
             {
-                //  MessageBox.Show("pratyush");
-                // Set the background color for the top-left cell
-                e.CellStyle.BackColor = Color.FromArgb(233, 245, 219);
-                // You can customize other properties as needed
-                e.CellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
-                e.CellStyle.ForeColor = Color.Black;
-            }
-        }
-
-        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            // Check if it is the top-left cell (1, 1)
-            if (e.RowIndex == -1 && e.ColumnIndex == -1)
-            {
-                // Set the background color for the top-left cell
-                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(114, 131, 89)), e.CellBounds);
-
-
-
-                // Prevent default painting
-                e.Handled = true;
+                buttonquicksave.Text = "Enable Quick Save";
+                txtMessageBox.Text = "Quick Save Disabled.";
+                messageBoxTimer.Start();
+                quickSave = false;
             }
         }
 

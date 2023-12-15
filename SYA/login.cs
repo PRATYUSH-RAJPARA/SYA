@@ -11,7 +11,7 @@ namespace SYA
         public login()
         {
             InitializeComponent();
-              connection = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;");
+              connection = new SQLiteConnection(helper.SYAConnectionString);
         //    connection = new SQLiteConnection("Data Source=C:\\Users\\91760\\Desktop\\SYA\\SYADataBase.db;Version=3;");
 
         }
