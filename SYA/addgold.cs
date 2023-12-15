@@ -153,6 +153,16 @@ namespace SYA
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = helper.correctWeight(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
                     // Update the item count and gross weight sum
                 }
+                else if (dataGridView1.Columns[e.ColumnIndex].Name == "huid1")
+                {
+                    DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value ?? "").ToString().ToUpper();
+                }
+                else if (dataGridView1.Columns[e.ColumnIndex].Name == "huid2")
+                {
+                    DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value ?? "").ToString().ToUpper();
+                }
 
             }
         }
@@ -277,10 +287,22 @@ namespace SYA
         {
             DataGridView dataGridView10 = dataGridView1;
             string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
+            DataGridViewRow selectedRow = dataGridView1.CurrentRow;
             if (currentColumnName1 == "net")
             {
-                DataGridViewRow selectedRow = dataGridView1.CurrentRow;
                 selectedRow.Cells["net"].Value = helper.correctWeight(selectedRow.Cells["net"].Value);
+            }
+            if (currentColumnName1 == "gross")
+            {
+                selectedRow.Cells["gross"].Value = helper.correctWeight(selectedRow.Cells["gross"].Value);
+            }
+            if (currentColumnName1 == "huid1")
+            {
+                selectedRow.Cells["huid1"].Value = (selectedRow.Cells["huid1"].Value ?? "").ToString().ToUpper();
+            }
+            if (currentColumnName1 == "huid2")
+            {
+                selectedRow.Cells["huid2"].Value = (selectedRow.Cells["huid2"].Value ?? "").ToString().ToUpper();
             }
             if (quickSaveAndPrint)
             {
@@ -303,7 +325,7 @@ namespace SYA
                         // You are moving to the next row in the last column
                         // Call your save and/or print function here
                         DataGridViewRow empty = new DataGridViewRow();
-                        DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                        //   DataGridViewRow selectedRow = dataGridView1.CurrentRow;
 
                         if (SaveData(selectedRow, 1))
                         {
@@ -338,7 +360,7 @@ namespace SYA
                         // You are moving to the next row in the last column
                         // Call your save and/or print function here
 
-                        DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                        //   DataGridViewRow selectedRow = dataGridView1.CurrentRow;
                         string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
                         if (tagNumber.Length > 1)
                         {
@@ -370,7 +392,7 @@ namespace SYA
                         // You are moving to the next row in the last column
                         // Call your save and/or print function here
                         //    DataGridViewRow empty = new DataGridViewRow();
-                        DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                        //   DataGridViewRow selectedRow = dataGridView1.CurrentRow;
                         SaveData(selectedRow, 1);
 
                     }
@@ -977,7 +999,7 @@ namespace SYA
                                 }
                                 else
                                 {
-                                    using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, OTHER_AMT,IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW, @LABOUR_AMT, @OTHER_AMT, @IT_TYPE, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
+                                    using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW,HUID1,HUID2, LABOUR_AMT, OTHER_AMT,IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW,@HUID1.@HUID2, @LABOUR_AMT, @OTHER_AMT, @IT_TYPE, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
                                     {
                                         MapParameters(insertCommand.Parameters, row);
                                         insertCommand.ExecuteNonQuery();
@@ -1202,7 +1224,7 @@ namespace SYA
                                            //net weight
                     if ((selectedRow.Cells["gross"].Value ?? "0").ToString() == (selectedRow.Cells["net"].Value ?? "0").ToString())
                     {
-                        e.Graphics.DrawString((selectedRow.Cells["gross"].Value ?? "0").ToString(), new Font("Arial", (float)12, FontStyle.Bold), brush, new RectangleF(4, 4, 75, (float)45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                        e.Graphics.DrawString("G: " + (selectedRow.Cells["gross"].Value ?? "0").ToString(), new Font("Arial", (float)12, FontStyle.Bold), brush, new RectangleF(4, 4, (float)75, (float)45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
                     }
                     else
                     {
@@ -1232,8 +1254,8 @@ namespace SYA
                     e.Graphics.DrawString((selectedRow.Cells["caret"].Value ?? "0").ToString().Split('-')[0].Trim() ?? "0", new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF(79, (float)37.75, (float)30.5, (float)11.25), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
 
                     // Draw the QR code rectangle
-                    RectangleF qrCodeRect = new RectangleF(174, 4, 37, 37);
-                    e.Graphics.DrawRectangle(Pens.Red, qrCodeRect.X, qrCodeRect.Y, qrCodeRect.Width, qrCodeRect.Height);
+                    RectangleF qrCodeRect = new RectangleF(174, 2, 37, 37);
+                    //  e.Graphics.DrawRectangle(Pens.Red, qrCodeRect.X, qrCodeRect.Y, qrCodeRect.Width, qrCodeRect.Height);
                     using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
                     {
                         QRCodeData qrCodeData = qrGenerator.CreateQrCode(tagNumber, QRCodeGenerator.ECCLevel.Q);
@@ -1281,11 +1303,18 @@ namespace SYA
                     }
 
                     //huid
-                    e.Graphics.DrawRectangle(Pens.Red, (float)174, (float)40, (float)37, (float)9);
+                    //   e.Graphics.DrawRectangle(Pens.Red, (float)174, (float)37, (float)37, (float)5);
+                    //  e.Graphics.DrawRectangle(Pens.Red, (float)174, (float)43, (float)37, (float)5);
+
                     string huid1 = (selectedRow.Cells["huid1"].Value ?? "0").ToString();
+                    string huid2 = (selectedRow.Cells["huid2"].Value ?? "0").ToString();
                     if (huid1.Length == 6)
                     {
-                        e.Graphics.DrawString("HUID", new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)174, (float)40, (float)37, (float)9), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                        e.Graphics.DrawString(huid1, new Font("Arial", (float)5, FontStyle.Bold), brush, new RectangleF((float)174, (float)38, (float)37, (float)7), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                    if (huid2.Length == 6)
+                    {
+                        e.Graphics.DrawString(huid2, new Font("Arial", (float)5, FontStyle.Bold), brush, new RectangleF((float)174, (float)44, (float)37, (float)7), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
                     }
                     Log.Information(" TagNo : " + tagNumber);
                     string updateQuery = $"UPDATE MAIN_DATA SET PRINT = '1'   WHERE TAG_NO = '{tagNumber}'";

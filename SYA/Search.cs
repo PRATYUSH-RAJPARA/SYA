@@ -495,7 +495,7 @@ namespace SYA
                     e.Graphics.DrawString((selectedRow.Cells["itemdesc"].Value ?? "0").ToString().Split('-')[0].Trim() ?? "0", new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF(79, (float)37.75, (float)30.5, (float)11.25), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
 
                     // Draw the QR code rectangle
-                    RectangleF qrCodeRect = new RectangleF(174, 4, 37, 37);
+                    RectangleF qrCodeRect = new RectangleF(174, 2, 37, 37);
 
                     using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
                     {
@@ -543,18 +543,21 @@ namespace SYA
                         e.Graphics.DrawString(tagNumber, new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)29, (float)56.5, (float)11), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
                     }
 
-                    //tempppp
-                    string huidd1 = (selectedRow.Cells["huid1"].Value ?? "0").ToString();
-                    e.Graphics.DrawString(huidd1, new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)39, (float)56.5, (float)12), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
 
 
                     //huid
-                    e.Graphics.DrawRectangle(Pens.Red, (float)174, (float)30, (float)37, (float)9);
+                    //   e.Graphics.DrawRectangle(Pens.Red, (float)174, (float)37, (float)37, (float)5);
+                    //  e.Graphics.DrawRectangle(Pens.Red, (float)174, (float)43, (float)37, (float)5);
 
                     string huid1 = (selectedRow.Cells["huid1"].Value ?? "0").ToString();
+                    string huid2 = (selectedRow.Cells["huid2"].Value ?? "0").ToString();
                     if (huid1.Length == 6)
                     {
-                        e.Graphics.DrawString("HUID", new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)174, (float)30, (float)37, (float)9), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                        e.Graphics.DrawString(huid1, new Font("Arial", (float)5, FontStyle.Bold), brush, new RectangleF((float)174, (float)38, (float)37, (float)7), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                    if (huid2.Length == 6)
+                    {
+                        e.Graphics.DrawString(huid2, new Font("Arial", (float)5, FontStyle.Bold), brush, new RectangleF((float)174, (float)44, (float)37, (float)7), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
                     }
                     Log.Information(" TagNo : " + tagNumber);
                     string updateQuery = $"UPDATE MAIN_DATA SET PRINT = '1'   WHERE TAG_NO = '{tagNumber}'";
@@ -813,10 +816,22 @@ namespace SYA
         {
             DataGridView dataGridView1 = dataGridViewSearch;
             string currentColumnName1 = dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name;
+            DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
             if (currentColumnName1 == "net")
             {
-                DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
                 selectedRow.Cells["net"].Value = helper.correctWeight(selectedRow.Cells["net"].Value);
+            }
+            if (currentColumnName1 == "gross")
+            {
+                selectedRow.Cells["gross"].Value = helper.correctWeight(selectedRow.Cells["gross"].Value);
+            }
+            if (currentColumnName1 == "huid1")
+            {
+                selectedRow.Cells["huid1"].Value = (selectedRow.Cells["huid1"].Value ?? "").ToString().ToUpper();
+            }
+            if (currentColumnName1 == "huid2")
+            {
+                selectedRow.Cells["huid2"].Value = (selectedRow.Cells["huid2"].Value ?? "").ToString().ToUpper();
             }
             if (quickSaveAndPrint)
             {
@@ -839,7 +854,7 @@ namespace SYA
                         // You are moving to the next row in the last column
                         // Call your save and/or print function here
                         DataGridViewRow empty = new DataGridViewRow();
-                        DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
+                        //DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
 
                         if (SaveDataToSQLite(selectedRow, 1))
                         {
@@ -874,7 +889,7 @@ namespace SYA
                         // You are moving to the next row in the last column
                         // Call your save and/or print function here
 
-                        DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
+                        // DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
                         string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
                         if (tagNumber.Length > 1)
                         {
@@ -906,7 +921,7 @@ namespace SYA
                         // You are moving to the next row in the last column
                         // Call your save and/or print function here
                         //    DataGridViewRow empty = new DataGridViewRow();
-                        DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
+                        //    DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
                         SaveDataToSQLite(selectedRow, 1);
 
                     }
@@ -1075,6 +1090,17 @@ namespace SYA
                     dataGridViewSearch.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = helper.correctWeight(dataGridViewSearch.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
                     // Update the item count and gross weight sum
                 }
+                else if (dataGridViewSearch.Columns[e.ColumnIndex].Name == "huid1")
+                {
+                    DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
+                    dataGridViewSearch.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = (dataGridViewSearch.Rows[e.RowIndex].Cells[e.ColumnIndex].Value ?? "").ToString().ToUpper();
+                }
+                else if (dataGridViewSearch.Columns[e.ColumnIndex].Name == "huid2")
+                {
+                    DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
+                    dataGridViewSearch.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = (dataGridViewSearch.Rows[e.RowIndex].Cells[e.ColumnIndex].Value ?? "").ToString().ToUpper();
+                }
+
 
             }
         }
@@ -1110,15 +1136,15 @@ namespace SYA
             // Hide the progress bar after completion
             progressBar1.Visible = false;
 
-            if (e.Error != null)
-            {
-                MessageBox.Show($"Error inserting/updating data into SQLite: {e.Error.Message}.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                MessageBox.Show($"Data fetched from Access and inserted/updated in SQLite successfully.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
+            //   //if (e.Error != null)
+            ////   {
+            //     MessageBox.Show($"Error inserting/updating data into SQLite: {e.Error.Message}.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //   }
+            //   else
+            //   {
+            //        MessageBox.Show($"Data fetched from Access and inserted/updated in SQLite successfully.\nInserted Rows: {insertedCount}\nUpdated Rows: //{updatedCount}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //     }
+            //
             // Reset progress bar to 0% after completion
             progressBar1.Value = 0;
         }
@@ -1189,7 +1215,7 @@ namespace SYA
                                 }
                                 else
                                 {
-                                    using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, OTHER_AMT,IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW, @LABOUR_AMT, @OTHER_AMT, @IT_TYPE, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
+                                    using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW,HUID1,HUID2, LABOUR_AMT, OTHER_AMT,IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW, @LABOUR_AMT, @OTHER_AMT, @IT_TYPE, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
                                     {
                                         MapParameters(insertCommand.Parameters, row);
                                         insertCommand.ExecuteNonQuery();
@@ -1255,9 +1281,7 @@ namespace SYA
 
             parameters.AddWithValue("@GW", row["ITM_GWT"]);
             parameters.AddWithValue("@NW", row["ITM_NWT"]);
-            // REMOVE BELOW 2 PRATYUSH
-            parameters.AddWithValue("@HUID1", row["KR_NAME"]);
-            parameters.AddWithValue("@HUID2", row["RATE_TYPE"]);
+
             parameters.AddWithValue("@LABOUR_AMT", row["LBR_RATE"]);
             parameters.AddWithValue("@OTHER_AMT", row["OTH_AMT"]);
             parameters.AddWithValue("@IT_TYPE", row["IT_TYPE"]);
@@ -1270,8 +1294,8 @@ namespace SYA
             string itemDesc = GetItemDescFromSQLite(prCode, itemType);
             parameters.AddWithValue("@ITEM_DESC", itemDesc);
             // UNCOMMENT BELOW
-            // PRATYUSH  parameters.AddWithValue("@HUID1", DBNull.Value); // Set to DBNull since it's NULL in MS Access
-            // PRATYUSH  parameters.AddWithValue("@HUID2", DBNull.Value); // Set to DBNull since it's NULL in MS Access
+            parameters.AddWithValue("@HUID1", DBNull.Value); // Set to DBNull since it's NULL in MS Access
+            parameters.AddWithValue("@HUID2", DBNull.Value); // Set to DBNull since it's NULL in MS Access
             parameters.AddWithValue("@SIZE", row["ITM_SIZE"]);
             parameters.AddWithValue("@PRICE", row["MRP"]);
             parameters.AddWithValue("@STATUS", "INSTOCK"); // Assuming this is a constant value
