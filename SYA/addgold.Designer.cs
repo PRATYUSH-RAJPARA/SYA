@@ -231,7 +231,6 @@ namespace SYA
             dataGridView1.TabIndex = 1;
             dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
             dataGridView1.CellEnter += dataGridView1_CellEnter;
-            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             dataGridView1.CellPainting += dataGridView1_CellPainting;
             dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
             dataGridView1.EditingControlShowing += dataGridView1_EditingControlShowing;

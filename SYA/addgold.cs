@@ -339,38 +339,7 @@ namespace SYA
 
                 }
             }
-            //quick print
-            else if (false)
-            {
 
-                // Handle the Tab key to trigger the KeyDown event for the text box or combo box
-                if (e.KeyCode == Keys.Tab)
-                {
-                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-
-                    DataGridView dataGridView = dataGridView1;
-                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-                    //  MessageBox.Show("pratyush1: " + currentColumnName);
-
-                    // Assuming "comment" is the name of the last column
-                    if (currentColumnName == "comment")
-                    {
-                        // MessageBox.Show("in comment");
-                        // You are moving to the next row in the last column
-                        // Call your save and/or print function here
-
-                        //   DataGridViewRow selectedRow = dataGridView1.CurrentRow;
-                        string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
-                        if (tagNumber.Length > 1)
-                        {
-                            PrintLabels();
-                        }
-
-                    }
-
-                }
-            }
             else if (quickSave)
             {
 
@@ -405,16 +374,7 @@ namespace SYA
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Check if the current cell is a header cell
-            if (e.RowIndex == -1 && e.ColumnIndex == 0)
-            {
-                //  MessageBox.Show("pratyush");
-                // Set the background color for the top-left cell
-                e.CellStyle.BackColor = Color.FromArgb(233, 245, 219);
-                // You can customize other properties as needed
-                e.CellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
-                e.CellStyle.ForeColor = Color.Black;
-            }
+
         }
 
         private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -586,11 +546,11 @@ namespace SYA
                         if (!row.IsNewRow)
                         {
 
-                            MessageBox.Show("pratyush1");
+                            //  MessageBox.Show("pratyush1");
                             // Check if the "tagno" cell is not null or empty
                             if (row.Cells["tagno"].Value != null && !string.IsNullOrEmpty(row.Cells["tagno"].Value.ToString()) && row.Cells["tagno"].Value.ToString() != "0")
                             {
-                                MessageBox.Show("pratyush10");
+                                //  MessageBox.Show("pratyush10");
 
                                 // If tagno is generated, update the existing entry in the database
                                 if (UpdateData(row))
