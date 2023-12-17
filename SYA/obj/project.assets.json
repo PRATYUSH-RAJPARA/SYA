@@ -2065,7 +2065,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pvraj\\.nuget\\packages\\": {}
+    "C:\\Users\\pvraj\\.nuget\\packages\\": {},
+    "C:\\Software\\VisualStudio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
@@ -2076,8 +2077,12 @@
       "packagesPath": "C:\\Users\\pvraj\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYA\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Software\\VisualStudio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\pvraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2085,6 +2090,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

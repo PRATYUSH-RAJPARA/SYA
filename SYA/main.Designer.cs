@@ -62,6 +62,7 @@
             button1 = new Button();
             panel1 = new Panel();
             panelChild = new Panel();
+            btnCustomer = new Button();
             panelfirst.SuspendLayout();
             panelsecond.SuspendLayout();
             SuspendLayout();
@@ -69,6 +70,7 @@
             // panelfirst
             // 
             panelfirst.BackColor = SystemColors.ButtonShadow;
+            panelfirst.Controls.Add(btnCustomer);
             panelfirst.Controls.Add(btnImportData);
             panelfirst.Controls.Add(btnRtgs);
             panelfirst.Controls.Add(btnPrintTags);
@@ -379,6 +381,7 @@
             button10.TabIndex = 9;
             button10.Text = "SALE REPORT";
             button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
             // 
             // button9
             // 
@@ -509,6 +512,19 @@
             panelChild.Size = new Size(1604, 895);
             panelChild.TabIndex = 1;
             // 
+            // btnCustomer
+            // 
+            btnCustomer.BackColor = Color.FromArgb(255, 255, 128);
+            btnCustomer.Dock = DockStyle.Top;
+            btnCustomer.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCustomer.Location = new Point(0, 560);
+            btnCustomer.Margin = new Padding(0);
+            btnCustomer.Name = "btnCustomer";
+            btnCustomer.Size = new Size(160, 50);
+            btnCustomer.TabIndex = 15;
+            btnCustomer.Text = "Customer";
+            btnCustomer.UseVisualStyleBackColor = false;
+            // 
             // main
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -562,5 +578,6 @@
         private Button button2;
         private Button button1;
         private Button button21;
+        private Button btnCustomer;
     }
 }

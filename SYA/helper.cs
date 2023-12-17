@@ -147,6 +147,35 @@ namespace SYA
             catch (Exception ex) { MessageBox.Show("Failed to get or create table from datacare data : "+ex.Message); }
             return dataCareDataTable;
         }
+        public static DataTable FetchFromDataCareDataBaseWithParameters(string query, params OleDbParameter[] parameters)
+        {
+            DataTable dataCareDataTable = new DataTable();
+            try
+            {
+                using (OleDbConnection accessConnection = new OleDbConnection(accessConnectionString))
+                {
+                    accessConnection.Open();
+                    using (OleDbCommand command = new OleDbCommand(query, accessConnection))
+                    {
+                        // Add parameters to the command
+                        if (parameters != null && parameters.Length > 0)
+                        {
+                            command.Parameters.AddRange(parameters);
+                        }
+
+                        using (OleDbDataAdapter adapter = new OleDbDataAdapter(command))
+                        {
+                            adapter.Fill(dataCareDataTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to get or create table from datacare data : " + ex.Message);
+            }
+            return dataCareDataTable;
+        }
         //validations
         public static bool validateHUID(string huid1,string huid2)
         {
