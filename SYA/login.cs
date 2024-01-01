@@ -7,11 +7,12 @@ namespace SYA
     public partial class login : Form
     {
         private SQLiteConnection connection;
-
+        
         public login()
         {
             InitializeComponent();
               connection = new SQLiteConnection(helper.SYAConnectionString);
+            MessageBox.Show(helper.SYAConnectionString);
         //    connection = new SQLiteConnection("Data Source=C:\\Users\\91760\\Desktop\\SYA\\SYADataBase.db;Version=3;");
 
         }

@@ -179,51 +179,48 @@ namespace SYA
         }
         private void grossValueChanged(DataGridViewCellEventArgs e)
         {
-            string caret = addSilverDataGridView.Rows[e.RowIndex].Cells["caret"].Value?.ToString();
-            //pratyush check
-            decimal? gross = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value?.ToString() ?? "0");
-            decimal? net = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value?.ToString() ?? "0");
-            decimal? pgl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value?.ToString() ?? "0");
-            decimal? wl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value?.ToString() ?? "0");
-            decimal? other = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value?.ToString() ?? "0");
-
-
-
-            if (net == null || net == 0)
+            try
             {
-                net = gross;
+                string caret = addSilverDataGridView.Rows[e.RowIndex].Cells["caret"].Value?.ToString();
+                //pratyush check
+                decimal? gross = Convert.ToDecimal((addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value ?? "0")?.ToString() ?? "0");
+                decimal? net = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value?.ToString() ?? "0");
+                decimal? pgl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value?.ToString() ?? "0");
+                decimal? wl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value?.ToString() ?? "0");
+                decimal? other = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value?.ToString() ?? "0");
+                if (net == null || net == 0)
+                {
+                    net = gross;
+                }
+                if (gross != null || gross != 0)
+                {
+                    addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value = net;
+                }
             }
-            if (gross != null || gross != 0)
+            catch
             {
-                addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value = net;
+                MessageBox.Show("error is gross please check again");
             }
+
+
         }
         private void netValueChanged(DataGridViewCellEventArgs e)
         {
-            string caret = addSilverDataGridView.Rows[e.RowIndex].Cells["caret"].Value?.ToString();
-            decimal? gross = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value?.ToString() ?? "0");
-            decimal? net = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value?.ToString() ?? "0");
-            decimal? pgl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value?.ToString() ?? "0");
-            decimal? wl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value?.ToString() ?? "0");
-            decimal? other = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value?.ToString() ?? "0");
-
-
-            if (caret == "SLO")
+            try
             {
-                if (net < 10)
-                {
-                    if (pgl == null || pgl == 0)
-                    {
-                        pgl = 0;
-                        if (wl == null || wl == 0)
-                        {
-                            wl = 200;
+                string caret = addSilverDataGridView.Rows[e.RowIndex].Cells["caret"].Value?.ToString();
+                decimal? gross = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value?.ToString() ?? "0");
+                decimal? net = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value?.ToString() ?? "0");
+                decimal? pgl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value?.ToString() ?? "0");
+                decimal? wl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value?.ToString() ?? "0");
+                decimal? other = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value?.ToString() ?? "0");
 
-                        }
-                    }
-                    else if (pgl != null)
+
+                if (caret == "SLO")
+                {
+                    if (net < 10)
                     {
-                        if (pgl * net < 200)
+                        if (pgl == null || pgl == 0)
                         {
                             pgl = 0;
                             if (wl == null || wl == 0)
@@ -232,37 +229,50 @@ namespace SYA
 
                             }
                         }
+                        else if (pgl != null)
+                        {
+                            if (pgl * net < 200)
+                            {
+                                pgl = 0;
+                                if (wl == null || wl == 0)
+                                {
+                                    wl = 200;
+
+                                }
+                            }
+                        }
                     }
-                }
-                else if (net > 10)
-                {
-                    if (pgl == null || pgl == 0)
+                    else if (net > 10)
                     {
-                        pgl = 20;
-                        wl = 0;
-                    }
-                    else if (pgl != null)
-                    {
-                        if (pgl * net < 200)
+                        if (pgl == null || pgl == 0)
                         {
                             pgl = 20;
                             wl = 0;
                         }
+                        else if (pgl != null)
+                        {
+                            if (pgl * net < 200)
+                            {
+                                pgl = 20;
+                                wl = 0;
+                            }
+                        }
                     }
                 }
-            }
-            else if (caret == "925")
-            {
-
-                pgl = 300;
-
-                if (wl == null)
+                else if (caret == "925")
                 {
-                    wl = 0;
+
+                    pgl = 300;
+
+                    if (wl == null)
+                    {
+                        wl = 0;
+                    }
                 }
+                addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = pgl;
+                addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = wl;
             }
-            addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = pgl;
-            addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = wl;
+            catch { MessageBox.Show("Please check net weight"); }
         }
         private void pglValueChanged(DataGridViewCellEventArgs e)
         {
@@ -273,40 +283,46 @@ namespace SYA
         private void otherValueChanged(DataGridViewCellEventArgs e) { calculatePrice(e); }
         private void calculatePrice(DataGridViewCellEventArgs e)
         {
-
-            string caret = addSilverDataGridView.Rows[e.RowIndex].Cells["caret"].Value?.ToString();
-
-            decimal gross = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value?.ToString() ?? "0");
-            decimal net = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value?.ToString() ?? "0");
-            decimal pgl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value?.ToString() ?? "0");
-            decimal wl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value?.ToString() ?? "0");
-            decimal other = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value?.ToString() ?? "0");
-
-            decimal price = 0;
-            if (caret == "SLO")
+            try
             {
-                // pratyush check if current price is null
-                if (gross - net < 5)
-                {
-                    price = (gross * (Convert.ToDecimal(txtCurrentPrice.Text) + pgl) + wl + other);
+                string caret = addSilverDataGridView.Rows[e.RowIndex].Cells["caret"].Value?.ToString();
 
+                decimal gross = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value?.ToString() ?? "0");
+                decimal net = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value?.ToString() ?? "0");
+                decimal pgl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value?.ToString() ?? "0");
+                decimal wl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value?.ToString() ?? "0");
+                decimal other = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value?.ToString() ?? "0");
+
+                decimal price = 0;
+                if (caret == "SLO")
+                {
+                    // pratyush check if current price is null
+                    if (gross - net < 5)
+                    {
+                        price = (gross * (Convert.ToDecimal(txtCurrentPrice.Text) + pgl) + wl + other);
+
+                    }
+                    else { price = (net * (Convert.ToDecimal(txtCurrentPrice.Text) + pgl) + wl + other); }
                 }
-                else { price = (net * (Convert.ToDecimal(txtCurrentPrice.Text) + pgl) + wl + other); }
+                else if (caret == "925")
+                {
+                    if (gross - net < 5)
+                    {
+                        price = ((gross * pgl) + wl + other);
+
+                    }
+                    else { price = ((net * pgl) + wl + other); }
+                }
+                // Round to the nearest upper bound based on your custom ranges (e.g., 50)
+                decimal step = 50;
+                decimal roundedPrice = CustomRound(price, step);
+                decimal roundedFinalPrice = Math.Truncate(roundedPrice);
+                addSilverDataGridView.Rows[e.RowIndex].Cells["price"].Value = roundedFinalPrice;
             }
-            else if (caret == "925")
+            catch
             {
-                if (gross - net < 5)
-                {
-                    price = ((gross * pgl) + wl + other);
-
-                }
-                else { price = ((net * pgl) + wl + other); }
+                MessageBox.Show("error in caret");
             }
-            // Round to the nearest upper bound based on your custom ranges (e.g., 50)
-            decimal step = 50;
-            decimal roundedPrice = CustomRound(price, step);
-            decimal roundedFinalPrice = Math.Truncate(roundedPrice);
-            addSilverDataGridView.Rows[e.RowIndex].Cells["price"].Value = roundedFinalPrice;
         }
 
 
@@ -759,7 +775,7 @@ namespace SYA
         // --------------------------------------------------------------------------------------------
         private void btnAddSilverPrintTag_Click(object sender, EventArgs e)
         {
-            PrintData();
+            PrintData(true);
         }
         private void btnAddSiilverSelectAll_Click(object sender, EventArgs e)
         {
@@ -769,7 +785,7 @@ namespace SYA
                 addSilverDataGridView.Rows[i].Cells["select"].Value = true;
             }
         }
-        private void PrintData()
+        private void PrintData(bool single)
         {
             try
             {
@@ -778,9 +794,24 @@ namespace SYA
 
 
                 pd.PrintPage += new PrintPageEventHandler(PrintPageSilver925);
+                if (!single)
+                {
 
 
-                pd.Print();
+                    for (int rowIndex = 0; rowIndex < addSilverDataGridView.Rows.Count; rowIndex++)
+                    {
+                        // Set the current row using the index
+                        DataGridViewRow row = addSilverDataGridView.Rows[rowIndex];
+                        addSilverDataGridView.CurrentCell = row.Cells[0]; // Set the current cell in the first column
+
+                        // Print the current row
+                        pd.Print();
+                    }
+                }
+                else
+                {
+                    pd.Print();
+                }
             }
             catch (Exception ex)
             {
@@ -796,8 +827,8 @@ namespace SYA
                 string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
                 string caret = (selectedRow.Cells["caret"].Value ?? "").ToString() ?? "0";
 
-                // if (tagNumber.Length > 1 && caret == "925" && tagtype == "price")
-                if (tagNumber.Length > 1 && caret == "925")
+                if (tagNumber.Length > 1 && caret == "925" && tagtype == "price")
+                //if (tagNumber.Length > 1 && caret == "925")
                 {
                     Font font = new Font("Arial Black", 8, FontStyle.Bold); // Adjust the font size
                     SolidBrush brush = new SolidBrush(Color.Black);
@@ -860,11 +891,124 @@ namespace SYA
                     }
 
                     //huid
-                    string huid1 = selectedRow.Cells[7].Value.ToString();
-                    if (huid1.Length == 6)
+                    string huid1 = (selectedRow.Cells[10].Value ?? "").ToString();
+                    if (huid1.Length > 0)
                     {
-                        e.Graphics.DrawString("HUID", new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)174, (float)40, (float)37, (float)9), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                        e.Graphics.DrawString(huid1, new Font("Arial", (float)7.5, FontStyle.Bold), brush, new RectangleF((float)174, (float)40, (float)37, (float)9), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
                     }
+                }
+                else if (tagNumber.Length > 1 && caret == "925" && tagtype == "weight")
+                //if (tagNumber.Length > 1 && caret == "925")
+                {
+                    Font font = new Font("Arial Black", 8, FontStyle.Bold); // Adjust the font size
+                    SolidBrush brush = new SolidBrush(Color.Black);
+
+                    // Set the starting position for printing
+                    float xPos = 0; // Adjust the starting X position
+                    float yPos = 0; // Adjust the starting Y position
+
+                    // Get the printer DPI
+                    float dpiX = e.PageSettings.PrinterResolution.X;
+                    float dpiY = e.PageSettings.PrinterResolution.Y;
+
+                    float rectX = 4; // Adjust the X position of the rectangle
+                    float rectY = 4; // Adjust the Y position of the rectangle
+                    float rectWidth = 211; // Adjust the width of the rectangle
+                    float rectHeight = 45; // Adjust the height of the rectangle
+
+
+                    //gross weight
+                    //net weight
+                    if ((selectedRow.Cells["type"].Value ?? "0").ToString() == "KADALI" || (selectedRow.Cells["size"].Value ?? "0").ToString() != null)
+                    {
+                        if ((selectedRow.Cells["gross"].Value ?? "0").ToString() == (selectedRow.Cells["net"].Value ?? "0").ToString())
+                        {
+                            e.Graphics.DrawString((selectedRow.Cells["net"].Value ?? "0").ToString(), new Font("Arial", (float)12, FontStyle.Bold), brush, new RectangleF(4, (float)4, (float)75, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                            e.Graphics.DrawString((selectedRow.Cells["size"].Value ?? "0").ToString(), new Font("Arial", (float)9.5, FontStyle.Bold), brush, new RectangleF(4, (float)26.5, 75, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString("G: " + (selectedRow.Cells["gross"].Value ?? "0").ToString(), new Font("Arial", (float)9.5, FontStyle.Bold), brush, new RectangleF(4, 4, 75, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                            e.Graphics.DrawString("N: " + (selectedRow.Cells["net"].Value ?? "0").ToString(), new Font("Arial", (float)9.5, FontStyle.Bold), brush, new RectangleF(4, (float)26.5, 75, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                        }
+                        string huid1 = (selectedRow.Cells["size"].Value ?? "").ToString();
+                        if (huid1.Length > 0)
+                        {
+                            e.Graphics.DrawString(huid1, new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF((float)174, (float)40, (float)37, (float)9), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                        }
+                    }
+                    else
+                    {
+                        if ((selectedRow.Cells["gross"].Value ?? "0").ToString() == (selectedRow.Cells["net"].Value ?? "0").ToString())
+                        {
+                            e.Graphics.DrawString("G: " + (selectedRow.Cells["gross"].Value ?? "0").ToString(), new Font("Arial", (float)12, FontStyle.Bold), brush, new RectangleF(4, 4, (float)75, (float)45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                        }
+                        else
+                        {
+                            e.Graphics.DrawString("G: " + (selectedRow.Cells["gross"].Value ?? "0").ToString(), new Font("Arial", (float)9.5, FontStyle.Bold), brush, new RectangleF(4, 4, 75, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                            e.Graphics.DrawString("N: " + (selectedRow.Cells["net"].Value ?? "0").ToString(), new Font("Arial", (float)9.5, FontStyle.Bold), brush, new RectangleF(4, (float)26.5, 75, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                        }
+                        //huid
+
+                        string huid1 = (selectedRow.Cells["size"].Value ?? "").ToString();
+                        if (huid1.Length > 0)
+                        {
+                            e.Graphics.DrawString(huid1, new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF((float)174, (float)40, (float)37, (float)9), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                        }
+                    }
+                    //logo
+                    Image logoImage = Image.FromFile(helper.ImageFolder + "\\logo.jpg"); // Replace with the actual path
+                    e.Graphics.DrawImage(logoImage, new RectangleF(83, 4, (float)22.5, (float)22.5));
+
+                    //logo name 
+                    e.Graphics.DrawString("YAMUNA", new Font("Arial", (float)4.5, FontStyle.Bold), brush, new RectangleF(79, (float)26.5, (float)30.5, (float)11.25), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                    //caret
+                    e.Graphics.DrawString(selectedRow.Cells["caret"].Value.ToString().Split('-')[0].Trim(), new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF(79, (float)37.75, (float)30.5, (float)11.25), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                    // Draw the QR code rectangle
+                    RectangleF qrCodeRect = new RectangleF(174, 4, 37, 37);
+                    using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+                    {
+                        QRCodeData qrCodeData = qrGenerator.CreateQrCode(tagNumber, QRCodeGenerator.ECCLevel.Q);
+                        QRCode qrCode = new QRCode(qrCodeData);
+                        System.Drawing.Bitmap qrCodeBitmap = qrCode.GetGraphic((int)qrCodeRect.Width, System.Drawing.Color.Black, System.Drawing.Color.White, true);
+                        // Draw the QR code onto the printing surface
+                        e.Graphics.DrawImage(qrCodeBitmap, qrCodeRect);
+                    }
+
+                    //net
+                    e.Graphics.DrawString(selectedRow.Cells["net"].Value.ToString(), new Font("Arial", (float)10, FontStyle.Bold), brush, new RectangleF((float)115.5, (float)4, (float)56.5, (float)17), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                    //test
+                    //tagno
+                    e.Graphics.DrawString(tagNumber, new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)115.5, (float)38, (float)105.5, (float)12), new StringFormat() { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center });
+                    //labour                
+                    string labour = "0";
+                    if ((selectedRow.Cells["labour"].Value ?? "-").ToString() != "0")
+                    {
+                        labour = (selectedRow.Cells["labour"].Value ?? "-").ToString();
+                        e.Graphics.DrawString("L: " + labour, new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)119.5, (float)21, (float)56.5, (float)11), new StringFormat() { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center });
+                    }
+                    else if ((selectedRow.Cells["wholeLabour"].Value ?? "-").ToString() != "0")
+                    {
+                        labour = (selectedRow.Cells["wholeLabour"].Value ?? "-").ToString();
+                        e.Graphics.DrawString("TL: " + labour, new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)119.5, (float)19, (float)56.5, (float)11), new StringFormat() { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center });
+                    }
+
+                    //other
+                    if ((selectedRow.Cells["other"].Value ?? "0").ToString() != "0")
+                    {
+
+                        e.Graphics.DrawString("O: " + (selectedRow.Cells["other"].Value ?? "0").ToString(), new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)119.5, (float)28.5, (float)56.5, (float)11), new StringFormat() { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center });
+                    }
+
                 }
                 else if (tagNumber.Length > 1 && caret == "SLO" && tagtype == "weight")
                 {
@@ -920,7 +1064,7 @@ namespace SYA
                         e.Graphics.DrawImage(qrCodeBitmap, qrCodeRect);
                     }
 
-                    //price2
+                    //net
                     e.Graphics.DrawString(selectedRow.Cells["net"].Value.ToString(), new Font("Arial", (float)10, FontStyle.Bold), brush, new RectangleF((float)115.5, (float)4, (float)56.5, (float)17), new StringFormat() { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center });
 
                     //test
@@ -1042,7 +1186,7 @@ namespace SYA
                             string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
                             if (tagNumber.Length > 1)
                             {
-                                PrintData();
+                                PrintData(true);
                             }
                         }
                     }
@@ -1119,7 +1263,7 @@ namespace SYA
                             string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
                             if (tagNumber.Length > 1)
                             {
-                                PrintData();
+                                PrintData(true);
                             }
                         }
                     }
@@ -1196,7 +1340,7 @@ namespace SYA
                             string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
                             if (tagNumber.Length > 1)
                             {
-                                PrintData();
+                                PrintData(true);
                             }
                         }
                     }
@@ -1246,6 +1390,11 @@ namespace SYA
                 BTNTAGTYPE.Text = "Weight Tag";
                 tagtype = "weight";
             }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            PrintData(false);
         }
     }
 }

@@ -1,0 +1,9 @@
+D:\nnneeewww\SYA.pdb
+D:\nnneeewww\D3DCompiler_47_cor3.dll
+D:\nnneeewww\PenImc_cor3.dll
+D:\nnneeewww\PresentationNative_cor3.dll
+D:\nnneeewww\vcruntime140_cor3.dll
+D:\nnneeewww\wpfgfx_cor3.dll
+D:\nnneeewww\sni.dll
+D:\nnneeewww\SQLite.Interop.dll
+D:\nnneeewww\SYA.exe

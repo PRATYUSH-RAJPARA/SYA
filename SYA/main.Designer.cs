@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelfirst = new Panel();
+            btnCustomer = new Button();
             btnImportData = new Button();
             btnRtgs = new Button();
             btnPrintTags = new Button();
@@ -62,9 +63,10 @@
             button1 = new Button();
             panel1 = new Panel();
             panelChild = new Panel();
-            btnCustomer = new Button();
+            button22 = new Button();
             panelfirst.SuspendLayout();
             panelsecond.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panelfirst
@@ -86,6 +88,19 @@
             panelfirst.Name = "panelfirst";
             panelfirst.Size = new Size(160, 1055);
             panelfirst.TabIndex = 5;
+            // 
+            // btnCustomer
+            // 
+            btnCustomer.BackColor = Color.FromArgb(255, 255, 128);
+            btnCustomer.Dock = DockStyle.Top;
+            btnCustomer.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCustomer.Location = new Point(0, 560);
+            btnCustomer.Margin = new Padding(0);
+            btnCustomer.Name = "btnCustomer";
+            btnCustomer.Size = new Size(160, 50);
+            btnCustomer.TabIndex = 15;
+            btnCustomer.Text = "Customer";
+            btnCustomer.UseVisualStyleBackColor = false;
             // 
             // btnImportData
             // 
@@ -497,6 +512,7 @@
             // panel1
             // 
             panel1.BackColor = Color.RosyBrown;
+            panel1.Controls.Add(button22);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(160, 0);
             panel1.Name = "panel1";
@@ -512,18 +528,15 @@
             panelChild.Size = new Size(1604, 895);
             panelChild.TabIndex = 1;
             // 
-            // btnCustomer
+            // button22
             // 
-            btnCustomer.BackColor = Color.FromArgb(255, 255, 128);
-            btnCustomer.Dock = DockStyle.Top;
-            btnCustomer.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCustomer.Location = new Point(0, 560);
-            btnCustomer.Margin = new Padding(0);
-            btnCustomer.Name = "btnCustomer";
-            btnCustomer.Size = new Size(160, 50);
-            btnCustomer.TabIndex = 15;
-            btnCustomer.Text = "Customer";
-            btnCustomer.UseVisualStyleBackColor = false;
+            button22.Location = new Point(206, 50);
+            button22.Name = "button22";
+            button22.Size = new Size(94, 29);
+            button22.TabIndex = 0;
+            button22.Text = "button22";
+            button22.UseVisualStyleBackColor = true;
+            button22.Click += button22_Click;
             // 
             // main
             // 
@@ -540,6 +553,7 @@
             Load += main_Load;
             panelfirst.ResumeLayout(false);
             panelsecond.ResumeLayout(false);
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -579,5 +593,6 @@
         private Button button1;
         private Button button21;
         private Button btnCustomer;
+        private Button button22;
     }
 }

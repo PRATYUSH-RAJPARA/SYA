@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SQLite;
 using System.Drawing.Printing;
+using System.Text;
 using System.Windows.Forms;
 using QRCoder;
 using Serilog;
@@ -593,6 +594,172 @@ namespace SYA
                 }
             }
         }
+        private void PrintPageGoldWorkingAndUsed(object sender, PrintPageEventArgs e)
+        {
+            DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
+
+            if (selectedRow != null)
+            {
+                string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
+                if (tagNumber.Length > 1)
+                {
+                    Font font = new Font("Arial Black", 8, FontStyle.Bold);
+                    SolidBrush brush = new SolidBrush(Color.Black);
+
+                    // Set the starting position for printing
+                    float xPos = 0;
+                    float yPos = 0;
+
+                    // Get the printer DPI
+                    float dpiX = e.PageSettings.PrinterResolution.X;
+                    float dpiY = e.PageSettings.PrinterResolution.Y;
+
+                    // Define sizes and positions using arrays
+                    float[] rectParams = new float[] { 4, 4, 211, 45 }; // x, y, width, height
+                    float[] grossRectParams = new float[] { 4, 4, 75, 22.5f }; // x, y, width, height
+                    float[] netRectParams = new float[] { 4, 26.5f, 75, 22.5f }; // x, y, width, height
+                    float[] logoRectParams = new float[] { 83, 4, 22.5f, 22.5f }; // x, y, width, height
+                    float[] qrCodeRectParams = new float[] { 174, 2, 37, 37 }; // x, y, width, height
+                    float[] netValueRectParams = new float[] { 115.5f, 4, 56.5f, 17 }; // x, y, width, height
+                    float[] labourRectParams = new float[] { 117.5f, 27.5f, 32.25f, 12 }; // x, y, width, height
+                    float[] otherRectParams = new float[] { 149.75f, 27.5f, 32.25f, 12 }; // x, y, width, height
+                    float[] tagNumberRectParams = new float[] { 113.5f, 38, 56.5f, 12 }; // x, y, width, height
+                    float[] huid1RectParams = new float[] { 174, 38, 37, 7 }; // x, y, width, height
+                    float[] huid2RectParams = new float[] { 174, 44, 37, 7 }; // x, y, width, height
+                    float[] logoNameRectParams = new float[] { 79, 26.5f, 30.5f, 11.25f }; // x, y, width, height
+                    float[] caretRectParams = new float[] { 79, 37.75f, 30.5f, 11.25f }; // x, y, width, height
+
+                    // Use the array values in the drawing
+                    e.Graphics.DrawString("G: " + (selectedRow.Cells["gross"].Value ?? "0").ToString(),
+                        new Font("Arial", (float)12, FontStyle.Bold), brush,
+                        new RectangleF(grossRectParams[0], grossRectParams[1], grossRectParams[2], grossRectParams[3]),
+                        new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    // Draw caret
+                    e.Graphics.DrawString((selectedRow.Cells["itemdesc"].Value ?? "0").ToString().Split('-')[0].Trim() ?? "0",
+                        new Font("Arial", (float)6, FontStyle.Bold), brush,
+                        new RectangleF(caretRectParams[0], caretRectParams[1], caretRectParams[2], caretRectParams[3]),
+                        new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    // Draw logo name
+                    int hyphenIndex = selectedRow.Cells["itemdesc"].Value.ToString().IndexOf("-");
+                    string result = null;
+                    if (hyphenIndex != -1 && hyphenIndex < selectedRow.Cells[4].Value.ToString().Length - 1)
+                    {
+                        result = selectedRow.Cells[4].Value.ToString().Substring(hyphenIndex + 3);
+                    }
+                    if (result == "BANGAL")
+                    {
+                        e.Graphics.DrawString((selectedRow.Cells[12].Value ?? "0").ToString(),
+                            new Font("Arial", (float)6, FontStyle.Bold), brush,
+                            new RectangleF(logoNameRectParams[0], logoNameRectParams[1], logoNameRectParams[2], logoNameRectParams[3]),
+                            new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                    else
+                    {
+                        e.Graphics.DrawString("YAMUNA",
+                            new Font("Arial", (float)4.5, FontStyle.Bold), brush,
+                            new RectangleF(logoNameRectParams[0], logoNameRectParams[1], logoNameRectParams[2], logoNameRectParams[3]),
+                            new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                    e.Graphics.DrawString("N: " + (selectedRow.Cells["net"].Value ?? "0").ToString(),
+                        new Font("Arial", (float)12, FontStyle.Bold), brush,
+                        new RectangleF(netRectParams[0], netRectParams[1], netRectParams[2], netRectParams[3]),
+                        new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+                    // Draw logo
+                    Image logoImage = Image.FromFile(helper.ImageFolder + "\\logo.jpg");
+                    e.Graphics.DrawImage(logoImage, new RectangleF(logoRectParams[0], logoRectParams[1], logoRectParams[2], logoRectParams[3]));
+
+                    // Draw QR code
+                    using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+                    {
+                        QRCodeData qrCodeData = qrGenerator.CreateQrCode(tagNumber, QRCodeGenerator.ECCLevel.Q);
+                        QRCode qrCode = new QRCode(qrCodeData);
+                        System.Drawing.Bitmap qrCodeBitmap = qrCode.GetGraphic((int)qrCodeRectParams[2], System.Drawing.Color.Black, System.Drawing.Color.White, true);
+                        e.Graphics.DrawImage(qrCodeBitmap, new RectangleF(qrCodeRectParams[0], qrCodeRectParams[1], qrCodeRectParams[2], qrCodeRectParams[3]));
+                    }
+
+                    // Draw net value
+                    e.Graphics.DrawString(selectedRow.Cells["net"].Value.ToString(),
+                        new Font("Arial", (float)11, FontStyle.Bold), brush,
+                        new RectangleF(netValueRectParams[0], netValueRectParams[1], netValueRectParams[2], netValueRectParams[3]),
+                        new StringFormat() { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center });
+
+                    // Draw labour
+                    string labour = "0";
+                    if (selectedRow.Cells["labour"].Value.ToString() != "0")
+                    {
+                        labour = (selectedRow.Cells["labour"].Value ?? "-").ToString();
+                        e.Graphics.DrawString("L:" + labour,
+                            new Font("Arial", (float)7, FontStyle.Bold), brush,
+                            new RectangleF(labourRectParams[0], labourRectParams[1], labourRectParams[2], labourRectParams[3]),
+                            new StringFormat() { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center });
+                    }
+                    else if ((selectedRow.Cells["wholeLabour"].Value ?? "-").ToString() != "0")
+                    {
+                        labour = (selectedRow.Cells["wholeLabour"].Value ?? "-").ToString();
+                        e.Graphics.DrawString("TL:" + labour,
+                            new Font("Arial", (float)7, FontStyle.Bold), brush,
+                            new RectangleF(labourRectParams[0], labourRectParams[1], labourRectParams[2], labourRectParams[3]),
+                            new StringFormat() { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center });
+                    }
+
+                    // Draw other
+                    if ((selectedRow.Cells["other"].Value ?? "0").ToString() != "0")
+                    {
+                        e.Graphics.DrawString("O:" + (selectedRow.Cells["other"].Value ?? "0").ToString(),
+                            new Font("Arial", (float)7, FontStyle.Bold), brush,
+                            new RectangleF(otherRectParams[0], otherRectParams[1], otherRectParams[2], otherRectParams[3]),
+                            new StringFormat() { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center });
+                    }
+
+                    // Draw Tag number
+                    string firstPart = null;
+                    string secondPart = null;
+                    int length = tagNumber.Length;
+                    if (length >= 10)
+                    {
+                        int lastIndex = length - 5;
+                        firstPart = tagNumber.Substring(lastIndex);
+                        secondPart = tagNumber.Substring(0, lastIndex);
+                        e.Graphics.DrawString(secondPart,
+                            new Font("Arial", (float)6, FontStyle.Bold), brush,
+                            new RectangleF(tagNumberRectParams[0], tagNumberRectParams[1], tagNumberRectParams[2], tagNumberRectParams[3]),
+                            new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                    else
+                    {
+                        e.Graphics.DrawString(tagNumber,
+                            new Font("Arial", (float)6, FontStyle.Bold), brush,
+                            new RectangleF(tagNumberRectParams[0], tagNumberRectParams[1], tagNumberRectParams[2], tagNumberRectParams[3]),
+                            new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+
+                    // Draw HUID
+                    string huid1 = (selectedRow.Cells["huid1"].Value ?? "0").ToString();
+                    string huid2 = (selectedRow.Cells["huid2"].Value ?? "0").ToString();
+                    if (huid1.Length == 6)
+                    {
+                        e.Graphics.DrawString(huid1,
+                            new Font("Arial", (float)5, FontStyle.Bold), brush,
+                            new RectangleF(huid1RectParams[0], huid1RectParams[1], huid1RectParams[2], huid1RectParams[3]),
+                            new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                    if (huid2.Length == 6)
+                    {
+                        e.Graphics.DrawString(huid2,
+                            new Font("Arial", (float)5, FontStyle.Bold), brush,
+                            new RectangleF(huid2RectParams[0], huid2RectParams[1], huid2RectParams[2], huid2RectParams[3]),
+                            new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+
+                    Log.Information(" TagNo : " + tagNumber);
+                    string updateQuery = $"UPDATE MAIN_DATA SET PRINT = '1' WHERE TAG_NO = '{tagNumber}'";
+
+                    helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
+                }
+            }
+        }
+
         private void PrintPageSilver925(object sender, PrintPageEventArgs e)
         {
             DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
@@ -1215,7 +1382,7 @@ namespace SYA
                                 }
                                 else
                                 {
-                                    using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW,HUID1,HUID2, LABOUR_AMT, OTHER_AMT,IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW, @LABOUR_AMT, @OTHER_AMT, @IT_TYPE, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
+                                    using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW,HUID1,HUID2, LABOUR_AMT, OTHER_AMT,IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW,@HUID1,@HUID2, @LABOUR_AMT, @OTHER_AMT, @IT_TYPE, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
                                     {
                                         MapParameters(insertCommand.Parameters, row);
                                         insertCommand.ExecuteNonQuery();
@@ -1225,10 +1392,42 @@ namespace SYA
 
                             }
                         }
+                        //  catch (Exception ex)
+                        //  {
+                        //      errorRows.Add(rowIndex + 1);
+                        //       MessageBox.Show($"Error in row {rowIndex + 1}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //   }
                         catch (Exception ex)
                         {
                             errorRows.Add(rowIndex + 1);
                             MessageBox.Show($"Error in row {rowIndex + 1}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            // Retrieve and display the data from the database for the row that caused the error
+                            try
+                            {
+                                using (SQLiteCommand retrieveCommand = new SQLiteCommand("SELECT * FROM MAIN_DATA WHERE TAG_NO = @TAG_NO", sqliteConnection))
+                                {
+                                    retrieveCommand.Parameters.AddWithValue("@TAG_NO", row["TAG_NO"]);
+
+                                    using (SQLiteDataReader reader = retrieveCommand.ExecuteReader())
+                                    {
+                                        if (reader.Read())
+                                        {
+                                            StringBuilder rowData = new StringBuilder();
+                                            for (int i = 0; i < reader.FieldCount; i++)
+                                            {
+                                                rowData.AppendLine($"{reader.GetName(i)}: {reader.GetValue(i)}");
+                                            }
+
+                                            MessageBox.Show($"Data in the database for TAG_NO = {row["TAG_NO"]}:\n{rowData.ToString()}", "Database Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
+                                    }
+                                }
+                            }
+                            catch (Exception retrievalEx)
+                            {
+                                MessageBox.Show($"Error retrieving data from the database for TAG_NO = {row["TAG_NO"]}: {retrievalEx.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
 
                         // Update progress bar based on the percentage completed

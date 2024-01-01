@@ -36,6 +36,25 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panelBackground = new Panel();
             panel2 = new Panel();
+            panel45 = new Panel();
+            panel9 = new Panel();
+            addSilverDataGridView = new DataGridView();
+            select = new DataGridViewCheckBoxColumn();
+            tagno = new DataGridViewTextBoxColumn();
+            type = new DataGridViewComboBoxColumn();
+            caret = new DataGridViewComboBoxColumn();
+            gross = new DataGridViewTextBoxColumn();
+            net = new DataGridViewTextBoxColumn();
+            labour = new DataGridViewTextBoxColumn();
+            wholeLabour = new DataGridViewTextBoxColumn();
+            other = new DataGridViewTextBoxColumn();
+            price = new DataGridViewTextBoxColumn();
+            size = new DataGridViewTextBoxColumn();
+            comment = new DataGridViewTextBoxColumn();
+            panel12 = new Panel();
+            panel46 = new Panel();
+            panel47 = new Panel();
+            panel48 = new Panel();
             panel4 = new Panel();
             panel5 = new Panel();
             panel8 = new Panel();
@@ -56,6 +75,8 @@
             panel40 = new Panel();
             panel41 = new Panel();
             panel42 = new Panel();
+            btnPrint = new Button();
+            panel11 = new Panel();
             btnAddSilverSave = new Button();
             panel43 = new Panel();
             panel44 = new Panel();
@@ -64,23 +85,6 @@
             panel32 = new Panel();
             panel23 = new Panel();
             panel21 = new Panel();
-            panel45 = new Panel();
-            panel46 = new Panel();
-            panel47 = new Panel();
-            addSilverDataGridView = new DataGridView();
-            select = new DataGridViewCheckBoxColumn();
-            tagno = new DataGridViewTextBoxColumn();
-            type = new DataGridViewComboBoxColumn();
-            caret = new DataGridViewComboBoxColumn();
-            gross = new DataGridViewTextBoxColumn();
-            net = new DataGridViewTextBoxColumn();
-            labour = new DataGridViewTextBoxColumn();
-            wholeLabour = new DataGridViewTextBoxColumn();
-            other = new DataGridViewTextBoxColumn();
-            price = new DataGridViewTextBoxColumn();
-            size = new DataGridViewTextBoxColumn();
-            comment = new DataGridViewTextBoxColumn();
-            panel48 = new Panel();
             panel49 = new Panel();
             textBox1 = new TextBox();
             panel50 = new Panel();
@@ -101,6 +105,9 @@
             timer1 = new System.Windows.Forms.Timer(components);
             panelBackground.SuspendLayout();
             panel2.SuspendLayout();
+            panel45.SuspendLayout();
+            panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)addSilverDataGridView).BeginInit();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel8.SuspendLayout();
@@ -108,8 +115,6 @@
             panel40.SuspendLayout();
             panel41.SuspendLayout();
             panel42.SuspendLayout();
-            panel45.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)addSilverDataGridView).BeginInit();
             panel49.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
@@ -127,15 +132,187 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(255, 255, 192);
+            panel2.Controls.Add(panel45);
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel40);
-            panel2.Controls.Add(panel45);
             panel2.Controls.Add(panel49);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(1604, 818);
             panel2.TabIndex = 4;
+            // 
+            // panel45
+            // 
+            panel45.BackColor = Color.FromArgb(255, 192, 128);
+            panel45.Controls.Add(panel9);
+            panel45.Controls.Add(panel12);
+            panel45.Controls.Add(panel46);
+            panel45.Controls.Add(panel47);
+            panel45.Controls.Add(panel48);
+            panel45.Dock = DockStyle.Fill;
+            panel45.Location = new Point(0, 127);
+            panel45.Name = "panel45";
+            panel45.Size = new Size(1604, 561);
+            panel45.TabIndex = 3;
+            // 
+            // panel9
+            // 
+            panel9.Controls.Add(addSilverDataGridView);
+            panel9.Dock = DockStyle.Fill;
+            panel9.Location = new Point(10, 0);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(1584, 556);
+            panel9.TabIndex = 102;
+            // 
+            // addSilverDataGridView
+            // 
+            addSilverDataGridView.BackgroundColor = Color.FromArgb(233, 245, 219);
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            addSilverDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            addSilverDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            addSilverDataGridView.Columns.AddRange(new DataGridViewColumn[] { select, tagno, type, caret, gross, net, labour, wholeLabour, other, price, size, comment });
+            addSilverDataGridView.Dock = DockStyle.Fill;
+            addSilverDataGridView.EnableHeadersVisualStyles = false;
+            addSilverDataGridView.Location = new Point(0, 0);
+            addSilverDataGridView.Name = "addSilverDataGridView";
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            addSilverDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            addSilverDataGridView.RowHeadersWidth = 51;
+            addSilverDataGridView.RowTemplate.Height = 29;
+            addSilverDataGridView.Size = new Size(1584, 556);
+            addSilverDataGridView.TabIndex = 13;
+            addSilverDataGridView.CellEndEdit += addSilverDataGridView_CellEndEdit;
+            addSilverDataGridView.CellEnter += addSilverDataGridView_CellEnter;
+            addSilverDataGridView.CellValueChanged += addSilverDataGridView_CellValueChanged;
+            addSilverDataGridView.EditingControlShowing += addSilverDataGridView_EditingControlShowing;
+            addSilverDataGridView.KeyDown += addSilverDataGridView_KeyDown;
+            // 
+            // select
+            // 
+            select.HeaderText = "";
+            select.MinimumWidth = 6;
+            select.Name = "select";
+            select.Width = 40;
+            // 
+            // tagno
+            // 
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            tagno.DefaultCellStyle = dataGridViewCellStyle2;
+            tagno.HeaderText = "TAG NO";
+            tagno.MinimumWidth = 6;
+            tagno.Name = "tagno";
+            tagno.ReadOnly = true;
+            tagno.Width = 150;
+            // 
+            // type
+            // 
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            type.DefaultCellStyle = dataGridViewCellStyle3;
+            type.HeaderText = "ITEM";
+            type.MinimumWidth = 6;
+            type.Name = "type";
+            type.Width = 225;
+            // 
+            // caret
+            // 
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            caret.DefaultCellStyle = dataGridViewCellStyle4;
+            caret.HeaderText = "CARET";
+            caret.MinimumWidth = 6;
+            caret.Name = "caret";
+            caret.Width = 125;
+            // 
+            // gross
+            // 
+            gross.HeaderText = "GROSS WEIGHT";
+            gross.MinimumWidth = 6;
+            gross.Name = "gross";
+            gross.Width = 125;
+            // 
+            // net
+            // 
+            net.HeaderText = "NET WEIGHT";
+            net.MinimumWidth = 6;
+            net.Name = "net";
+            net.Width = 125;
+            // 
+            // labour
+            // 
+            labour.HeaderText = "PER GRAM LABOUR";
+            labour.MinimumWidth = 6;
+            labour.Name = "labour";
+            labour.Width = 125;
+            // 
+            // wholeLabour
+            // 
+            wholeLabour.HeaderText = "WHOLE LABOUR";
+            wholeLabour.MinimumWidth = 6;
+            wholeLabour.Name = "wholeLabour";
+            wholeLabour.Width = 125;
+            // 
+            // other
+            // 
+            other.HeaderText = "OTHER";
+            other.MinimumWidth = 6;
+            other.Name = "other";
+            other.Width = 125;
+            // 
+            // price
+            // 
+            price.HeaderText = "PRICE";
+            price.MinimumWidth = 6;
+            price.Name = "price";
+            price.Width = 125;
+            // 
+            // size
+            // 
+            size.HeaderText = "SIZE";
+            size.MinimumWidth = 6;
+            size.Name = "size";
+            size.Width = 75;
+            // 
+            // comment
+            // 
+            comment.HeaderText = "COMMENT";
+            comment.MinimumWidth = 6;
+            comment.Name = "comment";
+            comment.Width = 250;
+            // 
+            // panel12
+            // 
+            panel12.BackColor = Color.Red;
+            panel12.Location = new Point(413, 132);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(250, 125);
+            panel12.TabIndex = 13;
+            // 
+            // panel46
+            // 
+            panel46.BackColor = Color.FromArgb(65, 72, 51);
+            panel46.Dock = DockStyle.Left;
+            panel46.Location = new Point(0, 0);
+            panel46.Name = "panel46";
+            panel46.Size = new Size(10, 556);
+            panel46.TabIndex = 12;
+            // 
+            // panel47
+            // 
+            panel47.BackColor = Color.FromArgb(65, 72, 51);
+            panel47.Dock = DockStyle.Right;
+            panel47.Location = new Point(1594, 0);
+            panel47.Name = "panel47";
+            panel47.Size = new Size(10, 556);
+            panel47.TabIndex = 10;
+            // 
+            // panel48
+            // 
+            panel48.BackColor = Color.FromArgb(65, 72, 51);
+            panel48.Dock = DockStyle.Bottom;
+            panel48.Location = new Point(0, 556);
+            panel48.Name = "panel48";
+            panel48.Size = new Size(1604, 5);
+            panel48.TabIndex = 3;
             // 
             // panel4
             // 
@@ -350,6 +527,8 @@
             // 
             // panel42
             // 
+            panel42.Controls.Add(btnPrint);
+            panel42.Controls.Add(panel11);
             panel42.Controls.Add(btnAddSilverSave);
             panel42.Controls.Add(panel43);
             panel42.Dock = DockStyle.Fill;
@@ -357,6 +536,32 @@
             panel42.Name = "panel42";
             panel42.Size = new Size(1251, 60);
             panel42.TabIndex = 101;
+            // 
+            // btnPrint
+            // 
+            btnPrint.BackColor = Color.FromArgb(96, 111, 73);
+            btnPrint.Dock = DockStyle.Right;
+            btnPrint.FlatAppearance.BorderColor = Color.FromArgb(3, 102, 102);
+            btnPrint.FlatAppearance.BorderSize = 5;
+            btnPrint.FlatStyle = FlatStyle.Popup;
+            btnPrint.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnPrint.ForeColor = Color.White;
+            btnPrint.Location = new Point(863, 0);
+            btnPrint.Name = "btnPrint";
+            btnPrint.Size = new Size(158, 60);
+            btnPrint.TabIndex = 162;
+            btnPrint.Text = "Print ALL";
+            btnPrint.UseVisualStyleBackColor = false;
+            btnPrint.Click += btnPrint_Click;
+            // 
+            // panel11
+            // 
+            panel11.BackColor = Color.FromArgb(233, 245, 219);
+            panel11.Dock = DockStyle.Right;
+            panel11.Location = new Point(1021, 0);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(36, 60);
+            panel11.TabIndex = 161;
             // 
             // btnAddSilverSave
             // 
@@ -444,160 +649,6 @@
             panel21.Name = "panel21";
             panel21.Size = new Size(1604, 5);
             panel21.TabIndex = 3;
-            // 
-            // panel45
-            // 
-            panel45.BackColor = Color.FromArgb(255, 192, 128);
-            panel45.Controls.Add(panel46);
-            panel45.Controls.Add(panel47);
-            panel45.Controls.Add(addSilverDataGridView);
-            panel45.Controls.Add(panel48);
-            panel45.Dock = DockStyle.Fill;
-            panel45.Location = new Point(0, 127);
-            panel45.Name = "panel45";
-            panel45.Size = new Size(1604, 691);
-            panel45.TabIndex = 3;
-            // 
-            // panel46
-            // 
-            panel46.BackColor = Color.FromArgb(65, 72, 51);
-            panel46.Dock = DockStyle.Left;
-            panel46.Location = new Point(0, 0);
-            panel46.Name = "panel46";
-            panel46.Size = new Size(10, 686);
-            panel46.TabIndex = 12;
-            // 
-            // panel47
-            // 
-            panel47.BackColor = Color.FromArgb(65, 72, 51);
-            panel47.Dock = DockStyle.Right;
-            panel47.Location = new Point(1594, 0);
-            panel47.Name = "panel47";
-            panel47.Size = new Size(10, 686);
-            panel47.TabIndex = 10;
-            // 
-            // addSilverDataGridView
-            // 
-            addSilverDataGridView.BackgroundColor = Color.FromArgb(233, 245, 219);
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            addSilverDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            addSilverDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            addSilverDataGridView.Columns.AddRange(new DataGridViewColumn[] { select, tagno, type, caret, gross, net, labour, wholeLabour, other, price, size, comment });
-            addSilverDataGridView.Dock = DockStyle.Fill;
-            addSilverDataGridView.EnableHeadersVisualStyles = false;
-            addSilverDataGridView.Location = new Point(0, 0);
-            addSilverDataGridView.Name = "addSilverDataGridView";
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            addSilverDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            addSilverDataGridView.RowHeadersWidth = 51;
-            addSilverDataGridView.RowTemplate.Height = 29;
-            addSilverDataGridView.Size = new Size(1604, 686);
-            addSilverDataGridView.TabIndex = 13;
-            addSilverDataGridView.CellEndEdit += addSilverDataGridView_CellEndEdit;
-            addSilverDataGridView.CellEnter += addSilverDataGridView_CellEnter;
-            addSilverDataGridView.CellValueChanged += addSilverDataGridView_CellValueChanged;
-            addSilverDataGridView.EditingControlShowing += addSilverDataGridView_EditingControlShowing;
-            addSilverDataGridView.KeyDown += addSilverDataGridView_KeyDown;
-            // 
-            // select
-            // 
-            select.HeaderText = "";
-            select.MinimumWidth = 6;
-            select.Name = "select";
-            select.Width = 40;
-            // 
-            // tagno
-            // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            tagno.DefaultCellStyle = dataGridViewCellStyle2;
-            tagno.HeaderText = "TAG NO";
-            tagno.MinimumWidth = 6;
-            tagno.Name = "tagno";
-            tagno.ReadOnly = true;
-            tagno.Width = 150;
-            // 
-            // type
-            // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            type.DefaultCellStyle = dataGridViewCellStyle3;
-            type.HeaderText = "ITEM";
-            type.MinimumWidth = 6;
-            type.Name = "type";
-            type.Width = 225;
-            // 
-            // caret
-            // 
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            caret.DefaultCellStyle = dataGridViewCellStyle4;
-            caret.HeaderText = "CARET";
-            caret.MinimumWidth = 6;
-            caret.Name = "caret";
-            caret.Width = 125;
-            // 
-            // gross
-            // 
-            gross.HeaderText = "GROSS WEIGHT";
-            gross.MinimumWidth = 6;
-            gross.Name = "gross";
-            gross.Width = 125;
-            // 
-            // net
-            // 
-            net.HeaderText = "NET WEIGHT";
-            net.MinimumWidth = 6;
-            net.Name = "net";
-            net.Width = 125;
-            // 
-            // labour
-            // 
-            labour.HeaderText = "PER GRAM LABOUR";
-            labour.MinimumWidth = 6;
-            labour.Name = "labour";
-            labour.Width = 125;
-            // 
-            // wholeLabour
-            // 
-            wholeLabour.HeaderText = "WHOLE LABOUR";
-            wholeLabour.MinimumWidth = 6;
-            wholeLabour.Name = "wholeLabour";
-            wholeLabour.Width = 125;
-            // 
-            // other
-            // 
-            other.HeaderText = "OTHER";
-            other.MinimumWidth = 6;
-            other.Name = "other";
-            other.Width = 125;
-            // 
-            // price
-            // 
-            price.HeaderText = "PRICE";
-            price.MinimumWidth = 6;
-            price.Name = "price";
-            price.Width = 125;
-            // 
-            // size
-            // 
-            size.HeaderText = "SIZE";
-            size.MinimumWidth = 6;
-            size.Name = "size";
-            size.Width = 75;
-            // 
-            // comment
-            // 
-            comment.HeaderText = "COMMENT";
-            comment.MinimumWidth = 6;
-            comment.Name = "comment";
-            comment.Width = 250;
-            // 
-            // panel48
-            // 
-            panel48.BackColor = Color.FromArgb(65, 72, 51);
-            panel48.Dock = DockStyle.Bottom;
-            panel48.Location = new Point(0, 686);
-            panel48.Name = "panel48";
-            panel48.Size = new Size(1604, 5);
-            panel48.TabIndex = 3;
             // 
             // panel49
             // 
@@ -789,6 +840,9 @@
             PreviewKeyDown += addSilver_PreviewKeyDown;
             panelBackground.ResumeLayout(false);
             panel2.ResumeLayout(false);
+            panel45.ResumeLayout(false);
+            panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)addSilverDataGridView).EndInit();
             panel4.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel8.ResumeLayout(false);
@@ -797,8 +851,6 @@
             panel40.ResumeLayout(false);
             panel41.ResumeLayout(false);
             panel42.ResumeLayout(false);
-            panel45.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)addSilverDataGridView).EndInit();
             panel49.ResumeLayout(false);
             panel49.PerformLayout();
             panel3.ResumeLayout(false);
@@ -877,5 +929,8 @@
         private Panel panel30;
         private Button BTNTAGTYPE;
         private Panel panel6;
+        private Button btnPrint;
+        private Panel panel11;
+        private Panel panel12;
     }
 }

@@ -13,7 +13,8 @@
     ],
     "additionalProbingPaths": [
       "C:\\Users\\pvraj\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\pvraj\\.nuget\\packages"
+      "C:\\Users\\pvraj\\.nuget\\packages",
+      "C:\\Software\\VisualStudio\\Shared\\NuGetPackages"
     ],
     "configProperties": {
       "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,

@@ -1146,7 +1146,7 @@ namespace SYA
                 pd.PrinterSettings.PrinterName = "TSC_TE244";
 
 
-                pd.PrintPage += new PrintPageEventHandler(PrintPageGold);
+                pd.PrintPage += new PrintPageEventHandler(Print);
 
 
                 pd.Print();
@@ -1156,6 +1156,11 @@ namespace SYA
                 MessageBox.Show($"Error printing labels: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void Print(object sender, PrintPageEventArgs e)
+        {
+            print.Print(sender, e, dataGridView1.CurrentRow);
+        }
+
         private void PrintPageGold(object sender, PrintPageEventArgs e)
         {
             DataGridViewRow selectedRow = dataGridView1.CurrentRow;

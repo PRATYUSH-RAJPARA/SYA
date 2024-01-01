@@ -57,3 +57,9 @@ C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.pdb
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.genruntimeconfig.cache
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\ref\SYA.dll
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.ProgressDialog.resources
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\Interop.Microsoft.Office.Interop.Access.dll
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.csproj.ResolveComReference.cache
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.customer.resources
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.saleReport.resources
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.statement.resources

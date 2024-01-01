@@ -12,7 +12,7 @@ namespace SYA
     public static class helper
     {
         private static IConfigurationRoot _configuration;
-
+ 
         private static IConfigurationRoot Configuration
         {
             get
@@ -23,6 +23,7 @@ namespace SYA
                         .SetBasePath(@"C:\SYA\config")
                          .AddJsonFile("appsettings.json")
                         .Build();
+                    
                 }
               
                 return _configuration;
@@ -31,8 +32,10 @@ namespace SYA
 
         public static string SYAConnectionString
         {
+
             get { return Configuration["ConnectionStrings:SYADatabase"]; }
         }
+        public static string SYAConnectionStrings  = @"Data Source=\\\\Desktop-rpisecu\\sya\\SYADataBase.db;Version=3;";
 
         public static string accessConnectionString
         {
