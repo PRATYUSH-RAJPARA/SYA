@@ -41,6 +41,8 @@
             label2 = new Label();
             panel3 = new Panel();
             label1 = new Label();
+            printbtn = new Button();
+            panel7 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -92,6 +94,8 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(printbtn);
+            panel4.Controls.Add(panel7);
             panel4.Controls.Add(btnShowData);
             panel4.Controls.Add(panel6);
             panel4.Controls.Add(endDatePicker);
@@ -185,6 +189,27 @@
             label1.Text = "SALE REPORT";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // printbtn
+            // 
+            printbtn.Dock = DockStyle.Left;
+            printbtn.FlatStyle = FlatStyle.Popup;
+            printbtn.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            printbtn.Location = new Point(716, 0);
+            printbtn.Name = "printbtn";
+            printbtn.Size = new Size(165, 41);
+            printbtn.TabIndex = 7;
+            printbtn.Text = "Print Data";
+            printbtn.UseVisualStyleBackColor = true;
+            printbtn.Click += printbtn_Click;
+            // 
+            // panel7
+            // 
+            panel7.Dock = DockStyle.Left;
+            panel7.Location = new Point(695, 0);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(21, 41);
+            panel7.TabIndex = 6;
+            // 
             // saleReport
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -217,5 +242,7 @@
         private Label label2;
         private Button btnShowData;
         private Panel panel6;
+        private Button printbtn;
+        private Panel panel7;
     }
 }

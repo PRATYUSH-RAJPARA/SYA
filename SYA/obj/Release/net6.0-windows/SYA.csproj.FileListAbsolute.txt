@@ -63,3 +63,4 @@ C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.csproj.Re
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.customer.resources
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.saleReport.resources
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.statement.resources
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.tempVerifyData.resources

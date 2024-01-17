@@ -219,7 +219,13 @@ namespace SYA
         private void button22_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
-            LoadForm(new statement());
+            LoadForm(new tempVerifyData());
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            panelsecond.Visible=false;
+            LoadForm(new SaleItem());
         }
     }
 }

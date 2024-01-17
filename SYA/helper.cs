@@ -12,7 +12,7 @@ namespace SYA
     public static class helper
     {
         private static IConfigurationRoot _configuration;
- 
+        
         private static IConfigurationRoot Configuration
         {
             get
@@ -35,7 +35,7 @@ namespace SYA
 
             get { return Configuration["ConnectionStrings:SYADatabase"]; }
         }
-        public static string SYAConnectionStrings  = @"Data Source=\\\\Desktop-rpisecu\\sya\\SYADataBase.db;Version=3;";
+      
 
         public static string accessConnectionString
         {
@@ -49,12 +49,66 @@ namespace SYA
         {
             get { return Configuration["FolderLocations:Logs"]; }
         }
-      //   private static readonly string ConnectionString = "Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;";
-      //  private static readonly string accessConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23.mdb\"";
-     //   private static readonly string ConnectionString = "Data Source=C:\\Users\\91760\\Desktop\\SYA\\SYADataBase.db;Version=3;";
-     //   private static readonly string accessConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\91760\\Desktop\\SYA\\DataCare23.mdb\"";
+        //   private static readonly string ConnectionString = "Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;";
+        //  private static readonly string accessConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23.mdb\"";
+        //   private static readonly string ConnectionString = "Data Source=C:\\Users\\91760\\Desktop\\SYA\\SYADataBase.db;Version=3;";
+        //   private static readonly string accessConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\91760\\Desktop\\SYA\\DataCare23.mdb\"";
         //SYA Database Query
-        public static object RunQueryWithoutParametersSYADataBase(string query,string commandType)
+        public static object RunQueryWithoutParametersSYADataBase(string query, string commandType)
+        {
+            object result = null;
+
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(SYAConnectionString))
+                {
+                    connection.Open();
+
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    {
+                        if (commandType == "ExecuteNonQuery")
+                        {
+                            result = command.ExecuteNonQuery();
+                        }
+                        else if (commandType == "ExecuteScalar")
+                        {
+                            result = command.ExecuteScalar();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display the error message in a custom form
+                ShowErrorDialog($"Error executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
+
+                // Re-throw the exception for higher-level handling, if needed
+                throw;
+            }
+
+            return result;
+        }
+
+        private static void ShowErrorDialog(string errorMessage)
+        {
+            using (Form errorForm = new Form())
+            using (RichTextBox richTextBox = new RichTextBox())
+            {
+                errorForm.Text = "Error";
+                richTextBox.Text = errorMessage;
+
+                richTextBox.Dock = DockStyle.Fill;
+                richTextBox.ReadOnly = true;
+                richTextBox.WordWrap = false;
+
+                errorForm.Controls.Add(richTextBox);
+
+                errorForm.Size = new Size(500, 300);
+                errorForm.ShowDialog();
+            }
+        }
+
+        public static object RunQueryWithoutParametersSYADataBasemain(string query,string commandType)
         {
            // int rowsAffected = 0;
            object result = null;
@@ -112,26 +166,51 @@ namespace SYA
                 return false;
             }
         }
-        public static SQLiteDataReader FetchDFromSYADataBase(string query)
+        public static DataTable FetchDataTableFromSYADataBase(string query)
         {
-            SQLiteDataReader reader = null;
+            DataTable dataTable = new DataTable();
 
             try
             {
-                SQLiteConnection connection = new SQLiteConnection(SYAConnectionString);
-                connection.Open();
+                using (SQLiteConnection connection = new SQLiteConnection(SYAConnectionString))
+                {
+                    connection.Open();
 
-                SQLiteCommand command = new SQLiteCommand(query, connection);
-                reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        dataTable.Load(reader);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 // Handle or log the exception as needed
-                Console.WriteLine($"Error executing reader: {ex.Message}");
+                Console.WriteLine($"Error executing query and filling DataTable: {ex.Message}");
             }
 
-            return reader;
+            return dataTable;
         }
+            public static SQLiteDataReader FetchDataFromSYADataBase(string query)
+            {
+                SQLiteDataReader reader = null;
+
+                try
+                {
+                    SQLiteConnection connection = new SQLiteConnection(SYAConnectionString);
+                    connection.Open();
+
+                    SQLiteCommand command = new SQLiteCommand(query, connection);
+                    reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+                }
+                catch (Exception ex)
+                {
+                    // Handle or log the exception as needed
+                    Console.WriteLine($"Error executing reader: {ex.Message}");
+                }
+
+                return reader;
+            }
         //Datacare Database Query
         public static DataTable FetchFromDataCareDataBase(string query)
         {

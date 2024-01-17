@@ -147,7 +147,7 @@ namespace SYA
             try
             {
 
-                using (SQLiteDataReader reader = helper.FetchDFromSYADataBase(query))
+                using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase(query))
                 {
                     if (reader != null)
                     {
@@ -1515,16 +1515,19 @@ namespace SYA
             // For example, you might need to query the ITEM_MASTER table
 
             // Sample logic (replace with actual query and logic)
+            
 
-            string query = "SELECT IT_NAME FROM ITEM_MASTER WHERE PR_CODE = " + prCode + " AND IT_TYPE = " + itemType;
+                string query = "SELECT IT_NAME FROM ITEM_MASTER WHERE PR_CODE = '" + prCode + "' AND IT_TYPE = '" + itemType + "'";
 
-
-
-            object result = helper.RunQueryWithoutParametersSYADataBase(query, "ExecuteScalar");
+                object result = helper.RunQueryWithoutParametersSYADataBase(query, "ExecuteScalar");
             if (result != null)
             {
                 return result.ToString();
             }
+            
+            
+
+
             return string.Empty;
 
         }

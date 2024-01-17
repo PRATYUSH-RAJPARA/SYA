@@ -62,8 +62,8 @@
             button2 = new Button();
             button1 = new Button();
             panel1 = new Panel();
-            panelChild = new Panel();
             button22 = new Button();
+            panelChild = new Panel();
             panelfirst.SuspendLayout();
             panelsecond.SuspendLayout();
             panel1.SuspendLayout();
@@ -445,6 +445,7 @@
             button6.TabIndex = 5;
             button6.Text = "SELL ITEM";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // button5
             // 
@@ -519,15 +520,6 @@
             panel1.Size = new Size(1764, 160);
             panel1.TabIndex = 1;
             // 
-            // panelChild
-            // 
-            panelChild.BackColor = SystemColors.ActiveCaption;
-            panelChild.Dock = DockStyle.Fill;
-            panelChild.Location = new Point(320, 160);
-            panelChild.Name = "panelChild";
-            panelChild.Size = new Size(1604, 895);
-            panelChild.TabIndex = 1;
-            // 
             // button22
             // 
             button22.Location = new Point(206, 50);
@@ -537,6 +529,15 @@
             button22.Text = "button22";
             button22.UseVisualStyleBackColor = true;
             button22.Click += button22_Click;
+            // 
+            // panelChild
+            // 
+            panelChild.BackColor = SystemColors.ActiveCaption;
+            panelChild.Dock = DockStyle.Fill;
+            panelChild.Location = new Point(320, 160);
+            panelChild.Name = "panelChild";
+            panelChild.Size = new Size(1604, 895);
+            panelChild.TabIndex = 1;
             // 
             // main
             // 
