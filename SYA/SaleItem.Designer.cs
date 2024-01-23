@@ -33,7 +33,8 @@
             dataGridView1 = new DataGridView();
             panel7 = new Panel();
             panel6 = new Panel();
-            button1 = new Button();
+            panel10 = new Panel();
+            btnSell = new Button();
             panel8 = new Panel();
             textBox1 = new TextBox();
             label1 = new Label();
@@ -92,7 +93,8 @@
             // 
             // panel6
             // 
-            panel6.Controls.Add(button1);
+            panel6.Controls.Add(panel10);
+            panel6.Controls.Add(btnSell);
             panel6.Controls.Add(panel8);
             panel6.Controls.Add(textBox1);
             panel6.Controls.Add(label1);
@@ -102,17 +104,25 @@
             panel6.Size = new Size(250, 798);
             panel6.TabIndex = 6;
             // 
-            // button1
+            // panel10
             // 
-            button1.Dock = DockStyle.Top;
-            button1.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(0, 184);
-            button1.Name = "button1";
-            button1.Size = new Size(250, 50);
-            button1.TabIndex = 3;
-            button1.Text = "SELL";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            panel10.Dock = DockStyle.Top;
+            panel10.Location = new Point(0, 234);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(250, 34);
+            panel10.TabIndex = 5;
+            // 
+            // btnSell
+            // 
+            btnSell.Dock = DockStyle.Top;
+            btnSell.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSell.Location = new Point(0, 184);
+            btnSell.Name = "btnSell";
+            btnSell.Size = new Size(250, 50);
+            btnSell.TabIndex = 3;
+            btnSell.Text = "SELL";
+            btnSell.UseVisualStyleBackColor = true;
+            btnSell.Click += btnSell_Click;
             // 
             // panel8
             // 
@@ -207,6 +217,7 @@
         private TextBox textBox1;
         private Panel panel9;
         private Panel panel7;
-        private Button button1;
+        private Button btnSell;
+        private Panel panel10;
     }
 }

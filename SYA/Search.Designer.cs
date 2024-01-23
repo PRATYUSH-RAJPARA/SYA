@@ -50,6 +50,7 @@
             DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
             panel5 = new Panel();
             panel34 = new Panel();
+            btnFetchSaleData = new Button();
             progressBar1 = new ProgressBar();
             btnFetch = new Button();
             panel7 = new Panel();
@@ -163,6 +164,7 @@
             // panel34
             // 
             panel34.BackColor = Color.FromArgb(255, 214, 255);
+            panel34.Controls.Add(btnFetchSaleData);
             panel34.Controls.Add(progressBar1);
             panel34.Controls.Add(btnFetch);
             panel34.Controls.Add(panel7);
@@ -178,6 +180,22 @@
             panel34.Name = "panel34";
             panel34.Size = new Size(1584, 45);
             panel34.TabIndex = 13;
+            // 
+            // btnFetchSaleData
+            // 
+            btnFetchSaleData.BackColor = Color.FromArgb(214, 137, 255);
+            btnFetchSaleData.Dock = DockStyle.Left;
+            btnFetchSaleData.FlatAppearance.BorderColor = Color.FromArgb(165, 100, 211);
+            btnFetchSaleData.FlatAppearance.BorderSize = 5;
+            btnFetchSaleData.FlatStyle = FlatStyle.Popup;
+            btnFetchSaleData.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnFetchSaleData.Location = new Point(671, 0);
+            btnFetchSaleData.Name = "btnFetchSaleData";
+            btnFetchSaleData.Size = new Size(213, 45);
+            btnFetchSaleData.TabIndex = 48;
+            btnFetchSaleData.Text = "FETCH SALE DATA";
+            btnFetchSaleData.UseVisualStyleBackColor = false;
+            btnFetchSaleData.Click += btnFetchSaleData_Click;
             // 
             // progressBar1
             // 
@@ -1095,9 +1113,6 @@
             // 
             backgroundWorker1.WorkerReportsProgress = true;
             backgroundWorker1.WorkerSupportsCancellation = true;
-            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
-            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
-            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
             // 
             // messageBoxTimer
             // 
@@ -1127,6 +1142,8 @@
             panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
+
+
 
         #endregion
         private Panel panel5;
@@ -1221,5 +1238,6 @@
         private TextBox txtMessageBox;
         private Panel panel16;
         private Panel panel17;
+        private Button btnFetchSaleData;
     }
 }
