@@ -4,7 +4,7 @@
     <_LastSelectedProfileId>C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\Properties\PublishProfiles\FolderProfile19.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="addgold.cs">
+    <Compile Update="AddGold\addgold.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="addSilver.cs">
