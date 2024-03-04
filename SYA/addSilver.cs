@@ -826,7 +826,7 @@ namespace SYA
             {
                 string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
                 string caret = (selectedRow.Cells["caret"].Value ?? "").ToString() ?? "0";
-                if (tagNumber.Length > 1  && tagtype == "price")
+                if (tagNumber.Length > 1 && tagtype == "price")
 
                 // if (tagNumber.Length > 1 && caret == "925" && tagtype == "price")
                 //if (tagNumber.Length > 1 && caret == "925")

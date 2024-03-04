@@ -31,22 +31,22 @@ namespace SYA
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle31 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle32 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle29 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle30 = new DataGridViewCellStyle();
             panel1 = new Panel();
             textBox1 = new TextBox();
             panel28 = new Panel();
@@ -74,11 +74,8 @@ namespace SYA
             panel5 = new Panel();
             panel34 = new Panel();
             panel13 = new Panel();
-            btnAddGoldSave = new Button();
             panel15 = new Panel();
             panel2 = new Panel();
-            btnFetch = new Button();
-            btnSelectAll = new Button();
             panel35 = new Panel();
             panel32 = new Panel();
             panel23 = new Panel();
@@ -126,9 +123,8 @@ namespace SYA
             panel1.Controls.Add(panel19);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(2016, 49);
+            panel1.Size = new Size(1924, 65);
             panel1.TabIndex = 0;
             // 
             // textBox1
@@ -136,11 +132,10 @@ namespace SYA
             textBox1.BackColor = Color.FromArgb(233, 245, 219);
             textBox1.Dock = DockStyle.Bottom;
             textBox1.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(9, 2);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
+            textBox1.Location = new Point(10, 8);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(1998, 43);
+            textBox1.Size = new Size(1904, 52);
             textBox1.TabIndex = 12;
             textBox1.TabStop = false;
             textBox1.Text = "ADD GOLD ITEMS";
@@ -150,20 +145,18 @@ namespace SYA
             // 
             panel28.BackColor = Color.FromArgb(65, 72, 51);
             panel28.Dock = DockStyle.Left;
-            panel28.Location = new Point(0, 4);
-            panel28.Margin = new Padding(3, 2, 3, 2);
+            panel28.Location = new Point(0, 5);
             panel28.Name = "panel28";
-            panel28.Size = new Size(9, 41);
+            panel28.Size = new Size(10, 55);
             panel28.TabIndex = 11;
             // 
             // panel27
             // 
             panel27.BackColor = Color.Black;
             panel27.Dock = DockStyle.Right;
-            panel27.Location = new Point(2007, 4);
-            panel27.Margin = new Padding(3, 2, 3, 2);
+            panel27.Location = new Point(1914, 5);
             panel27.Name = "panel27";
-            panel27.Size = new Size(9, 41);
+            panel27.Size = new Size(10, 55);
             panel27.TabIndex = 10;
             // 
             // panel22
@@ -171,19 +164,17 @@ namespace SYA
             panel22.BackColor = SystemColors.ActiveCaptionText;
             panel22.Dock = DockStyle.Top;
             panel22.Location = new Point(0, 0);
-            panel22.Margin = new Padding(3, 2, 3, 2);
             panel22.Name = "panel22";
-            panel22.Size = new Size(2016, 4);
+            panel22.Size = new Size(1924, 5);
             panel22.TabIndex = 4;
             // 
             // panel19
             // 
             panel19.BackColor = SystemColors.ActiveCaptionText;
             panel19.Dock = DockStyle.Bottom;
-            panel19.Location = new Point(0, 45);
-            panel19.Margin = new Padding(3, 2, 3, 2);
+            panel19.Location = new Point(0, 60);
             panel19.Name = "panel19";
-            panel19.Size = new Size(2016, 4);
+            panel19.Size = new Size(1924, 5);
             panel19.TabIndex = 3;
             // 
             // panel4
@@ -194,10 +185,9 @@ namespace SYA
             panel4.Controls.Add(panel24);
             panel4.Controls.Add(panel20);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(0, 49);
-            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Location = new Point(0, 65);
             panel4.Name = "panel4";
-            panel4.Size = new Size(2016, 957);
+            panel4.Size = new Size(1924, 990);
             panel4.TabIndex = 3;
             // 
             // dataGridView1
@@ -206,35 +196,35 @@ namespace SYA
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { select, tagno, type, caret, gross, net, labour, wholeLabour, other, huid1, huid2, size, comment });
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = SystemColors.Window;
-            dataGridViewCellStyle15.Font = new Font("Segoe UI", 12.5F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle15.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(227, 180, 124);
-            dataGridViewCellStyle15.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle31.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle31.BackColor = SystemColors.Window;
+            dataGridViewCellStyle31.Font = new Font("Segoe UI", 12.5F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle31.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle31.SelectionBackColor = Color.FromArgb(227, 180, 124);
+            dataGridViewCellStyle31.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle31.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle31;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(9, 0);
+            dataGridView1.Location = new Point(10, 0);
             dataGridView1.Margin = new Padding(0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = SystemColors.Control;
-            dataGridViewCellStyle16.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle16.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle32.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = SystemColors.Control;
+            dataGridViewCellStyle32.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle32.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle32.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle32.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle32.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle32;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1998, 953);
+            dataGridView1.Size = new Size(1904, 985);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
             dataGridView1.CellEnter += dataGridView1_CellEnter;
@@ -246,10 +236,10 @@ namespace SYA
             // 
             // select
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(151, 169, 124);
-            dataGridViewCellStyle2.NullValue = false;
-            select.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = Color.FromArgb(151, 169, 124);
+            dataGridViewCellStyle18.NullValue = false;
+            select.DefaultCellStyle = dataGridViewCellStyle18;
             select.HeaderText = "";
             select.MinimumWidth = 6;
             select.Name = "select";
@@ -257,9 +247,9 @@ namespace SYA
             // 
             // tagno
             // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(166, 185, 139);
-            tagno.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = Color.FromArgb(166, 185, 139);
+            tagno.DefaultCellStyle = dataGridViewCellStyle19;
             tagno.HeaderText = "TAG NO";
             tagno.MinimumWidth = 125;
             tagno.Name = "tagno";
@@ -268,9 +258,9 @@ namespace SYA
             // 
             // type
             // 
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(181, 201, 154);
-            type.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = Color.FromArgb(181, 201, 154);
+            type.DefaultCellStyle = dataGridViewCellStyle20;
             type.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
             type.HeaderText = "ITEM";
             type.MinimumWidth = 6;
@@ -279,9 +269,9 @@ namespace SYA
             // 
             // caret
             // 
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(194, 213, 170);
-            caret.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.BackColor = Color.FromArgb(194, 213, 170);
+            caret.DefaultCellStyle = dataGridViewCellStyle21;
             caret.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
             caret.HeaderText = "CARET";
             caret.MinimumWidth = 6;
@@ -290,8 +280,8 @@ namespace SYA
             // 
             // gross
             // 
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(207, 225, 185);
-            gross.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle22.BackColor = Color.FromArgb(207, 225, 185);
+            gross.DefaultCellStyle = dataGridViewCellStyle22;
             gross.HeaderText = "GROSS WEIGHT";
             gross.MinimumWidth = 6;
             gross.Name = "gross";
@@ -299,8 +289,8 @@ namespace SYA
             // 
             // net
             // 
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(220, 235, 202);
-            net.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle23.BackColor = Color.FromArgb(220, 235, 202);
+            net.DefaultCellStyle = dataGridViewCellStyle23;
             net.HeaderText = "NET WEIGHT";
             net.MinimumWidth = 6;
             net.Name = "net";
@@ -308,8 +298,8 @@ namespace SYA
             // 
             // labour
             // 
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(233, 245, 219);
-            labour.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle24.BackColor = Color.FromArgb(233, 245, 219);
+            labour.DefaultCellStyle = dataGridViewCellStyle24;
             labour.HeaderText = "PER GRAM LABOUR";
             labour.MinimumWidth = 6;
             labour.Name = "labour";
@@ -317,8 +307,8 @@ namespace SYA
             // 
             // wholeLabour
             // 
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(220, 235, 202);
-            wholeLabour.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle25.BackColor = Color.FromArgb(220, 235, 202);
+            wholeLabour.DefaultCellStyle = dataGridViewCellStyle25;
             wholeLabour.HeaderText = "WHOLE LABOUR";
             wholeLabour.MinimumWidth = 6;
             wholeLabour.Name = "wholeLabour";
@@ -326,8 +316,8 @@ namespace SYA
             // 
             // other
             // 
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(207, 225, 185);
-            other.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle26.BackColor = Color.FromArgb(207, 225, 185);
+            other.DefaultCellStyle = dataGridViewCellStyle26;
             other.HeaderText = "OTHER";
             other.MinimumWidth = 6;
             other.Name = "other";
@@ -335,8 +325,8 @@ namespace SYA
             // 
             // huid1
             // 
-            dataGridViewCellStyle11.BackColor = Color.FromArgb(194, 213, 170);
-            huid1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle27.BackColor = Color.FromArgb(194, 213, 170);
+            huid1.DefaultCellStyle = dataGridViewCellStyle27;
             huid1.HeaderText = "HUID1";
             huid1.MaxInputLength = 6;
             huid1.MinimumWidth = 6;
@@ -345,8 +335,8 @@ namespace SYA
             // 
             // huid2
             // 
-            dataGridViewCellStyle12.BackColor = Color.FromArgb(181, 201, 154);
-            huid2.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle28.BackColor = Color.FromArgb(181, 201, 154);
+            huid2.DefaultCellStyle = dataGridViewCellStyle28;
             huid2.HeaderText = "HUID2";
             huid2.MaxInputLength = 6;
             huid2.MinimumWidth = 6;
@@ -355,8 +345,8 @@ namespace SYA
             // 
             // size
             // 
-            dataGridViewCellStyle13.BackColor = Color.FromArgb(166, 185, 139);
-            size.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle29.BackColor = Color.FromArgb(166, 185, 139);
+            size.DefaultCellStyle = dataGridViewCellStyle29;
             size.HeaderText = "SIZE";
             size.MinimumWidth = 6;
             size.Name = "size";
@@ -365,8 +355,8 @@ namespace SYA
             // comment
             // 
             comment.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle14.BackColor = Color.FromArgb(151, 169, 124);
-            comment.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle30.BackColor = Color.FromArgb(151, 169, 124);
+            comment.DefaultCellStyle = dataGridViewCellStyle30;
             comment.HeaderText = "COMMENT";
             comment.MinimumWidth = 6;
             comment.Name = "comment";
@@ -376,29 +366,26 @@ namespace SYA
             panel31.BackColor = Color.FromArgb(65, 72, 51);
             panel31.Dock = DockStyle.Left;
             panel31.Location = new Point(0, 0);
-            panel31.Margin = new Padding(3, 2, 3, 2);
             panel31.Name = "panel31";
-            panel31.Size = new Size(9, 953);
+            panel31.Size = new Size(10, 985);
             panel31.TabIndex = 12;
             // 
             // panel24
             // 
             panel24.BackColor = Color.FromArgb(65, 72, 51);
             panel24.Dock = DockStyle.Right;
-            panel24.Location = new Point(2007, 0);
-            panel24.Margin = new Padding(3, 2, 3, 2);
+            panel24.Location = new Point(1914, 0);
             panel24.Name = "panel24";
-            panel24.Size = new Size(9, 953);
+            panel24.Size = new Size(10, 985);
             panel24.TabIndex = 10;
             // 
             // panel20
             // 
             panel20.BackColor = Color.FromArgb(65, 72, 51);
             panel20.Dock = DockStyle.Bottom;
-            panel20.Location = new Point(0, 953);
-            panel20.Margin = new Padding(3, 2, 3, 2);
+            panel20.Location = new Point(0, 985);
             panel20.Name = "panel20";
-            panel20.Size = new Size(2016, 4);
+            panel20.Size = new Size(1924, 5);
             panel20.TabIndex = 3;
             // 
             // panel5
@@ -409,10 +396,9 @@ namespace SYA
             panel5.Controls.Add(panel23);
             panel5.Controls.Add(panel21);
             panel5.Dock = DockStyle.Bottom;
-            panel5.Location = new Point(0, 957);
-            panel5.Margin = new Padding(3, 2, 3, 2);
+            panel5.Location = new Point(0, 990);
             panel5.Name = "panel5";
-            panel5.Size = new Size(2016, 49);
+            panel5.Size = new Size(1924, 65);
             panel5.TabIndex = 4;
             // 
             // panel34
@@ -420,110 +406,45 @@ namespace SYA
             panel34.BackColor = Color.FromArgb(233, 245, 219);
             panel34.Controls.Add(panel13);
             panel34.Controls.Add(panel2);
-            panel34.Controls.Add(btnFetch);
-            panel34.Controls.Add(btnSelectAll);
             panel34.Controls.Add(panel35);
             panel34.Dock = DockStyle.Fill;
-            panel34.Location = new Point(9, 0);
-            panel34.Margin = new Padding(3, 2, 3, 2);
+            panel34.Location = new Point(10, 0);
             panel34.Name = "panel34";
-            panel34.Size = new Size(1998, 45);
+            panel34.Size = new Size(1904, 60);
             panel34.TabIndex = 13;
             // 
             // panel13
             // 
-            panel13.Controls.Add(btnAddGoldSave);
             panel13.Controls.Add(panel15);
             panel13.Dock = DockStyle.Fill;
-            panel13.Location = new Point(443, 0);
-            panel13.Margin = new Padding(3, 2, 3, 2);
+            panel13.Location = new Point(74, 0);
             panel13.Name = "panel13";
-            panel13.Size = new Size(1555, 45);
+            panel13.Size = new Size(1830, 60);
             panel13.TabIndex = 101;
-            // 
-            // btnAddGoldSave
-            // 
-            btnAddGoldSave.BackColor = Color.FromArgb(96, 111, 73);
-            btnAddGoldSave.Dock = DockStyle.Right;
-            btnAddGoldSave.FlatAppearance.BorderColor = Color.FromArgb(3, 102, 102);
-            btnAddGoldSave.FlatAppearance.BorderSize = 5;
-            btnAddGoldSave.FlatStyle = FlatStyle.Popup;
-            btnAddGoldSave.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddGoldSave.ForeColor = Color.White;
-            btnAddGoldSave.Location = new Point(1385, 0);
-            btnAddGoldSave.Margin = new Padding(3, 2, 3, 2);
-            btnAddGoldSave.Name = "btnAddGoldSave";
-            btnAddGoldSave.Size = new Size(138, 45);
-            btnAddGoldSave.TabIndex = 160;
-            btnAddGoldSave.Text = "SAVE";
-            btnAddGoldSave.UseVisualStyleBackColor = false;
-            btnAddGoldSave.Click += btnAddGoldSave_Click;
             // 
             // panel15
             // 
             panel15.BackColor = Color.FromArgb(233, 245, 219);
             panel15.Dock = DockStyle.Right;
-            panel15.Location = new Point(1523, 0);
-            panel15.Margin = new Padding(3, 2, 3, 2);
+            panel15.Location = new Point(1793, 0);
             panel15.Name = "panel15";
-            panel15.Size = new Size(32, 45);
+            panel15.Size = new Size(37, 60);
             panel15.TabIndex = 21;
             // 
             // panel2
             // 
             panel2.Dock = DockStyle.Left;
-            panel2.Location = new Point(411, 0);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(37, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(32, 45);
+            panel2.Size = new Size(37, 60);
             panel2.TabIndex = 23;
-            // 
-            // btnFetch
-            // 
-            btnFetch.BackColor = Color.FromArgb(96, 111, 73);
-            btnFetch.Dock = DockStyle.Left;
-            btnFetch.FlatAppearance.BorderColor = Color.FromArgb(3, 102, 102);
-            btnFetch.FlatAppearance.BorderSize = 5;
-            btnFetch.FlatAppearance.MouseDownBackColor = Color.FromArgb(3, 102, 102);
-            btnFetch.FlatAppearance.MouseOverBackColor = Color.FromArgb(153, 226, 180);
-            btnFetch.FlatStyle = FlatStyle.Popup;
-            btnFetch.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnFetch.ForeColor = Color.White;
-            btnFetch.Location = new Point(260, 0);
-            btnFetch.Margin = new Padding(3, 2, 3, 2);
-            btnFetch.Name = "btnFetch";
-            btnFetch.Size = new Size(151, 45);
-            btnFetch.TabIndex = 21;
-            btnFetch.Text = "FETCH";
-            btnFetch.UseVisualStyleBackColor = false;
-            btnFetch.Click += btnFetch_Click;
-            // 
-            // btnSelectAll
-            // 
-            btnSelectAll.BackColor = Color.FromArgb(96, 111, 73);
-            btnSelectAll.Dock = DockStyle.Left;
-            btnSelectAll.FlatAppearance.BorderColor = Color.FromArgb(3, 102, 102);
-            btnSelectAll.FlatAppearance.MouseDownBackColor = Color.FromArgb(153, 226, 180);
-            btnSelectAll.FlatAppearance.MouseOverBackColor = Color.FromArgb(3, 102, 102);
-            btnSelectAll.FlatStyle = FlatStyle.Popup;
-            btnSelectAll.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSelectAll.ForeColor = Color.White;
-            btnSelectAll.Location = new Point(32, 0);
-            btnSelectAll.Margin = new Padding(3, 2, 3, 2);
-            btnSelectAll.Name = "btnSelectAll";
-            btnSelectAll.Size = new Size(228, 45);
-            btnSelectAll.TabIndex = 19;
-            btnSelectAll.Text = "SELECT ALL";
-            btnSelectAll.UseVisualStyleBackColor = false;
-            btnSelectAll.Click += btnSelectAll_Click;
             // 
             // panel35
             // 
             panel35.Dock = DockStyle.Left;
             panel35.Location = new Point(0, 0);
-            panel35.Margin = new Padding(3, 2, 3, 2);
             panel35.Name = "panel35";
-            panel35.Size = new Size(32, 45);
+            panel35.Size = new Size(37, 60);
             panel35.TabIndex = 19;
             // 
             // panel32
@@ -531,29 +452,26 @@ namespace SYA
             panel32.BackColor = Color.FromArgb(65, 72, 51);
             panel32.Dock = DockStyle.Left;
             panel32.Location = new Point(0, 0);
-            panel32.Margin = new Padding(3, 2, 3, 2);
             panel32.Name = "panel32";
-            panel32.Size = new Size(9, 45);
+            panel32.Size = new Size(10, 60);
             panel32.TabIndex = 12;
             // 
             // panel23
             // 
             panel23.BackColor = Color.FromArgb(65, 72, 51);
             panel23.Dock = DockStyle.Right;
-            panel23.Location = new Point(2007, 0);
-            panel23.Margin = new Padding(3, 2, 3, 2);
+            panel23.Location = new Point(1914, 0);
             panel23.Name = "panel23";
-            panel23.Size = new Size(9, 45);
+            panel23.Size = new Size(10, 60);
             panel23.TabIndex = 10;
             // 
             // panel21
             // 
             panel21.BackColor = Color.FromArgb(65, 72, 51);
             panel21.Dock = DockStyle.Bottom;
-            panel21.Location = new Point(0, 45);
-            panel21.Margin = new Padding(3, 2, 3, 2);
+            panel21.Location = new Point(0, 60);
             panel21.Name = "panel21";
-            panel21.Size = new Size(2016, 4);
+            panel21.Size = new Size(1924, 5);
             panel21.TabIndex = 3;
             // 
             // panelBackground
@@ -565,9 +483,8 @@ namespace SYA
             panelBackground.Controls.Add(panel1);
             panelBackground.Dock = DockStyle.Fill;
             panelBackground.Location = new Point(0, 0);
-            panelBackground.Margin = new Padding(3, 2, 3, 2);
             panelBackground.Name = "panelBackground";
-            panelBackground.Size = new Size(2016, 1006);
+            panelBackground.Size = new Size(1924, 1055);
             panelBackground.TabIndex = 0;
             // 
             // panel6
@@ -579,10 +496,9 @@ namespace SYA
             panel6.Controls.Add(panel14);
             panel6.Controls.Add(panel11);
             panel6.Dock = DockStyle.Bottom;
-            panel6.Location = new Point(0, 908);
-            panel6.Margin = new Padding(3, 2, 3, 2);
+            panel6.Location = new Point(0, 925);
             panel6.Name = "panel6";
-            panel6.Size = new Size(2016, 49);
+            panel6.Size = new Size(1924, 65);
             panel6.TabIndex = 5;
             // 
             // panel3
@@ -592,10 +508,9 @@ namespace SYA
             panel3.Controls.Add(panel18);
             panel3.Controls.Add(panel36);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(9, 7);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(10, 9);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1998, 38);
+            panel3.Size = new Size(1904, 51);
             panel3.TabIndex = 18;
             // 
             // panel9
@@ -609,20 +524,18 @@ namespace SYA
             panel9.Controls.Add(panel10);
             panel9.Controls.Add(btnQuickSaveAndPrint);
             panel9.Dock = DockStyle.Fill;
-            panel9.Location = new Point(32, 0);
-            panel9.Margin = new Padding(3, 2, 3, 2);
+            panel9.Location = new Point(37, 0);
             panel9.Name = "panel9";
-            panel9.Size = new Size(1934, 38);
+            panel9.Size = new Size(1830, 51);
             panel9.TabIndex = 44;
             // 
             // panel7
             // 
             panel7.Controls.Add(txtMessageBox);
             panel7.Dock = DockStyle.Fill;
-            panel7.Location = new Point(478, 6);
-            panel7.Margin = new Padding(3, 2, 3, 2);
+            panel7.Location = new Point(548, 8);
             panel7.Name = "panel7";
-            panel7.Size = new Size(1456, 26);
+            panel7.Size = new Size(1282, 35);
             panel7.TabIndex = 16;
             // 
             // txtMessageBox
@@ -632,38 +545,34 @@ namespace SYA
             txtMessageBox.Dock = DockStyle.Left;
             txtMessageBox.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
             txtMessageBox.Location = new Point(0, 0);
-            txtMessageBox.Margin = new Padding(3, 2, 3, 2);
             txtMessageBox.Name = "txtMessageBox";
             txtMessageBox.ReadOnly = true;
-            txtMessageBox.Size = new Size(572, 23);
+            txtMessageBox.Size = new Size(654, 29);
             txtMessageBox.TabIndex = 100;
             txtMessageBox.TextAlign = HorizontalAlignment.Center;
             // 
             // panel16
             // 
             panel16.Dock = DockStyle.Top;
-            panel16.Location = new Point(478, 0);
-            panel16.Margin = new Padding(3, 2, 3, 2);
+            panel16.Location = new Point(548, 0);
             panel16.Name = "panel16";
-            panel16.Size = new Size(1456, 6);
+            panel16.Size = new Size(1282, 8);
             panel16.TabIndex = 15;
             // 
             // panel17
             // 
             panel17.Dock = DockStyle.Bottom;
-            panel17.Location = new Point(478, 32);
-            panel17.Margin = new Padding(3, 2, 3, 2);
+            panel17.Location = new Point(548, 43);
             panel17.Name = "panel17";
-            panel17.Size = new Size(1456, 6);
+            panel17.Size = new Size(1282, 8);
             panel17.TabIndex = 15;
             // 
             // panel8
             // 
             panel8.Dock = DockStyle.Left;
-            panel8.Location = new Point(446, 0);
-            panel8.Margin = new Padding(3, 2, 3, 2);
+            panel8.Location = new Point(511, 0);
             panel8.Name = "panel8";
-            panel8.Size = new Size(32, 38);
+            panel8.Size = new Size(37, 51);
             panel8.TabIndex = 46;
             // 
             // buttonquicksave
@@ -675,10 +584,9 @@ namespace SYA
             buttonquicksave.FlatStyle = FlatStyle.Popup;
             buttonquicksave.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             buttonquicksave.ForeColor = Color.White;
-            buttonquicksave.Location = new Point(260, 0);
-            buttonquicksave.Margin = new Padding(3, 2, 3, 2);
+            buttonquicksave.Location = new Point(298, 0);
             buttonquicksave.Name = "buttonquicksave";
-            buttonquicksave.Size = new Size(186, 38);
+            buttonquicksave.Size = new Size(213, 51);
             buttonquicksave.TabIndex = 45;
             buttonquicksave.Text = "Enable Quick Save";
             buttonquicksave.UseVisualStyleBackColor = false;
@@ -687,10 +595,9 @@ namespace SYA
             // panel10
             // 
             panel10.Dock = DockStyle.Left;
-            panel10.Location = new Point(228, 0);
-            panel10.Margin = new Padding(3, 2, 3, 2);
+            panel10.Location = new Point(261, 0);
             panel10.Name = "panel10";
-            panel10.Size = new Size(32, 38);
+            panel10.Size = new Size(37, 51);
             panel10.TabIndex = 44;
             // 
             // btnQuickSaveAndPrint
@@ -703,11 +610,10 @@ namespace SYA
             btnQuickSaveAndPrint.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnQuickSaveAndPrint.ForeColor = Color.White;
             btnQuickSaveAndPrint.Location = new Point(0, 0);
-            btnQuickSaveAndPrint.Margin = new Padding(3, 2, 3, 2);
             btnQuickSaveAndPrint.Name = "btnQuickSaveAndPrint";
-            btnQuickSaveAndPrint.Size = new Size(228, 38);
+            btnQuickSaveAndPrint.Size = new Size(261, 51);
             btnQuickSaveAndPrint.TabIndex = 43;
-            btnQuickSaveAndPrint.Text = "Enable Quick Save & Print";
+            btnQuickSaveAndPrint.Text = "Disable Quick Save & Print";
             btnQuickSaveAndPrint.UseMnemonic = false;
             btnQuickSaveAndPrint.UseVisualStyleBackColor = false;
             btnQuickSaveAndPrint.Click += btnQuickSaveAndPrint_Click;
@@ -717,49 +623,44 @@ namespace SYA
             panel18.BackColor = Color.FromArgb(233, 245, 219);
             panel18.Dock = DockStyle.Left;
             panel18.Location = new Point(0, 0);
-            panel18.Margin = new Padding(3, 2, 3, 2);
             panel18.Name = "panel18";
-            panel18.Size = new Size(32, 38);
+            panel18.Size = new Size(37, 51);
             panel18.TabIndex = 43;
             // 
             // panel36
             // 
             panel36.BackColor = Color.FromArgb(233, 245, 219);
             panel36.Dock = DockStyle.Right;
-            panel36.Location = new Point(1966, 0);
-            panel36.Margin = new Padding(3, 2, 3, 2);
+            panel36.Location = new Point(1867, 0);
             panel36.Name = "panel36";
-            panel36.Size = new Size(32, 38);
+            panel36.Size = new Size(37, 51);
             panel36.TabIndex = 20;
             // 
             // panel33
             // 
             panel33.BackColor = Color.FromArgb(65, 72, 51);
             panel33.Dock = DockStyle.Left;
-            panel33.Location = new Point(0, 4);
-            panel33.Margin = new Padding(3, 2, 3, 2);
+            panel33.Location = new Point(0, 5);
             panel33.Name = "panel33";
-            panel33.Size = new Size(9, 41);
+            panel33.Size = new Size(10, 55);
             panel33.TabIndex = 17;
             // 
             // panel12
             // 
             panel12.BackColor = Color.FromArgb(65, 72, 51);
             panel12.Dock = DockStyle.Right;
-            panel12.Location = new Point(2007, 4);
-            panel12.Margin = new Padding(3, 2, 3, 2);
+            panel12.Location = new Point(1914, 5);
             panel12.Name = "panel12";
-            panel12.Size = new Size(9, 41);
+            panel12.Size = new Size(10, 55);
             panel12.TabIndex = 9;
             // 
             // panel14
             // 
             panel14.BackColor = SystemColors.ActiveCaptionText;
             panel14.Dock = DockStyle.Bottom;
-            panel14.Location = new Point(0, 45);
-            panel14.Margin = new Padding(3, 2, 3, 2);
+            panel14.Location = new Point(0, 60);
             panel14.Name = "panel14";
-            panel14.Size = new Size(2016, 4);
+            panel14.Size = new Size(1924, 5);
             panel14.TabIndex = 8;
             // 
             // panel11
@@ -767,18 +668,14 @@ namespace SYA
             panel11.BackColor = SystemColors.ActiveCaptionText;
             panel11.Dock = DockStyle.Top;
             panel11.Location = new Point(0, 0);
-            panel11.Margin = new Padding(3, 2, 3, 2);
             panel11.Name = "panel11";
-            panel11.Size = new Size(2016, 4);
+            panel11.Size = new Size(1924, 5);
             panel11.TabIndex = 1;
             // 
             // backgroundWorker1
             // 
             backgroundWorker1.WorkerReportsProgress = true;
             backgroundWorker1.WorkerSupportsCancellation = true;
-            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
-            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
-            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
             // 
             // messageBoxTimer
             // 
@@ -787,11 +684,10 @@ namespace SYA
             // 
             // addgold
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2016, 1006);
+            ClientSize = new Size(1924, 1055);
             Controls.Add(panelBackground);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "addgold";
             Text = "addgold";
             WindowState = FormWindowState.Maximized;
@@ -835,8 +731,6 @@ namespace SYA
         private Panel panel33;
         private Panel panel34;
         private DataGridView dataGridView1;
-        private Button btnSelectAll;
-        private Button btnFetch;
         private Panel panel35;
         private DataGridViewCheckBoxColumn select;
         private DataGridViewTextBoxColumn tagno;
@@ -872,6 +766,5 @@ namespace SYA
         private System.Windows.Forms.Timer messageBoxTimer;
         private Panel panel13;
         private Panel panel15;
-        private Button btnAddGoldSave;
     }
 }
