@@ -31,22 +31,22 @@ namespace SYA
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle31 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle32 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle29 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle30 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
             panel1 = new Panel();
             textBox1 = new TextBox();
             panel28 = new Panel();
@@ -196,32 +196,32 @@ namespace SYA
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { select, tagno, type, caret, gross, net, labour, wholeLabour, other, huid1, huid2, size, comment });
-            dataGridViewCellStyle31.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle31.BackColor = SystemColors.Window;
-            dataGridViewCellStyle31.Font = new Font("Segoe UI", 12.5F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle31.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle31.SelectionBackColor = Color.FromArgb(227, 180, 124);
-            dataGridViewCellStyle31.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle31.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = SystemColors.Window;
+            dataGridViewCellStyle15.Font = new Font("Segoe UI", 12.5F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle15.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(227, 180, 124);
+            dataGridViewCellStyle15.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle15;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Location = new Point(10, 0);
             dataGridView1.Margin = new Padding(0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle32.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle32.BackColor = SystemColors.Control;
-            dataGridViewCellStyle32.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle32.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle32.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle32.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle32.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = SystemColors.Control;
+            dataGridViewCellStyle16.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle16.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1904, 985);
@@ -236,10 +236,10 @@ namespace SYA
             // 
             // select
             // 
-            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = Color.FromArgb(151, 169, 124);
-            dataGridViewCellStyle18.NullValue = false;
-            select.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(151, 169, 124);
+            dataGridViewCellStyle2.NullValue = false;
+            select.DefaultCellStyle = dataGridViewCellStyle2;
             select.HeaderText = "";
             select.MinimumWidth = 6;
             select.Name = "select";
@@ -247,9 +247,9 @@ namespace SYA
             // 
             // tagno
             // 
-            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = Color.FromArgb(166, 185, 139);
-            tagno.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(166, 185, 139);
+            tagno.DefaultCellStyle = dataGridViewCellStyle3;
             tagno.HeaderText = "TAG NO";
             tagno.MinimumWidth = 125;
             tagno.Name = "tagno";
@@ -258,9 +258,9 @@ namespace SYA
             // 
             // type
             // 
-            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = Color.FromArgb(181, 201, 154);
-            type.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(181, 201, 154);
+            type.DefaultCellStyle = dataGridViewCellStyle4;
             type.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
             type.HeaderText = "ITEM";
             type.MinimumWidth = 6;
@@ -269,9 +269,9 @@ namespace SYA
             // 
             // caret
             // 
-            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.BackColor = Color.FromArgb(194, 213, 170);
-            caret.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(194, 213, 170);
+            caret.DefaultCellStyle = dataGridViewCellStyle5;
             caret.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
             caret.HeaderText = "CARET";
             caret.MinimumWidth = 6;
@@ -280,8 +280,8 @@ namespace SYA
             // 
             // gross
             // 
-            dataGridViewCellStyle22.BackColor = Color.FromArgb(207, 225, 185);
-            gross.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(207, 225, 185);
+            gross.DefaultCellStyle = dataGridViewCellStyle6;
             gross.HeaderText = "GROSS WEIGHT";
             gross.MinimumWidth = 6;
             gross.Name = "gross";
@@ -289,8 +289,8 @@ namespace SYA
             // 
             // net
             // 
-            dataGridViewCellStyle23.BackColor = Color.FromArgb(220, 235, 202);
-            net.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(220, 235, 202);
+            net.DefaultCellStyle = dataGridViewCellStyle7;
             net.HeaderText = "NET WEIGHT";
             net.MinimumWidth = 6;
             net.Name = "net";
@@ -298,8 +298,8 @@ namespace SYA
             // 
             // labour
             // 
-            dataGridViewCellStyle24.BackColor = Color.FromArgb(233, 245, 219);
-            labour.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(233, 245, 219);
+            labour.DefaultCellStyle = dataGridViewCellStyle8;
             labour.HeaderText = "PER GRAM LABOUR";
             labour.MinimumWidth = 6;
             labour.Name = "labour";
@@ -307,8 +307,8 @@ namespace SYA
             // 
             // wholeLabour
             // 
-            dataGridViewCellStyle25.BackColor = Color.FromArgb(220, 235, 202);
-            wholeLabour.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(220, 235, 202);
+            wholeLabour.DefaultCellStyle = dataGridViewCellStyle9;
             wholeLabour.HeaderText = "WHOLE LABOUR";
             wholeLabour.MinimumWidth = 6;
             wholeLabour.Name = "wholeLabour";
@@ -316,8 +316,8 @@ namespace SYA
             // 
             // other
             // 
-            dataGridViewCellStyle26.BackColor = Color.FromArgb(207, 225, 185);
-            other.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(207, 225, 185);
+            other.DefaultCellStyle = dataGridViewCellStyle10;
             other.HeaderText = "OTHER";
             other.MinimumWidth = 6;
             other.Name = "other";
@@ -325,8 +325,8 @@ namespace SYA
             // 
             // huid1
             // 
-            dataGridViewCellStyle27.BackColor = Color.FromArgb(194, 213, 170);
-            huid1.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(194, 213, 170);
+            huid1.DefaultCellStyle = dataGridViewCellStyle11;
             huid1.HeaderText = "HUID1";
             huid1.MaxInputLength = 6;
             huid1.MinimumWidth = 6;
@@ -335,8 +335,8 @@ namespace SYA
             // 
             // huid2
             // 
-            dataGridViewCellStyle28.BackColor = Color.FromArgb(181, 201, 154);
-            huid2.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(181, 201, 154);
+            huid2.DefaultCellStyle = dataGridViewCellStyle12;
             huid2.HeaderText = "HUID2";
             huid2.MaxInputLength = 6;
             huid2.MinimumWidth = 6;
@@ -345,8 +345,8 @@ namespace SYA
             // 
             // size
             // 
-            dataGridViewCellStyle29.BackColor = Color.FromArgb(166, 185, 139);
-            size.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle13.BackColor = Color.FromArgb(166, 185, 139);
+            size.DefaultCellStyle = dataGridViewCellStyle13;
             size.HeaderText = "SIZE";
             size.MinimumWidth = 6;
             size.Name = "size";
@@ -355,8 +355,8 @@ namespace SYA
             // comment
             // 
             comment.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle30.BackColor = Color.FromArgb(151, 169, 124);
-            comment.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(151, 169, 124);
+            comment.DefaultCellStyle = dataGridViewCellStyle14;
             comment.HeaderText = "COMMENT";
             comment.MinimumWidth = 6;
             comment.Name = "comment";

@@ -23,7 +23,7 @@ namespace SYA
         private SQLiteConnection connectionToDatacare;
         private const int ItemNameColumnIndex = 2;
         bool quickSave = false;
-        bool quickSaveAndPrint = false;
+        bool quickSaveAndPrint = true;
         public addgold()
         {
             InitializeComponent();
