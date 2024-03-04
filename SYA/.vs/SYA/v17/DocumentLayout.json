@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "F:\\SYA\\SYA\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\addgold\\addgold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:addgold\\addgold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\addgold\\addgoldhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:addgold\\addgoldhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\addgold\\addgold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:addgold\\addgold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\addgold\\addgold.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:addgold\\addgold.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\addgold\\addgold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:addgold\\addgold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\print.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\textfile1 - copy.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:textfile1 - copy.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\addgold\\addgold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:addgold\\addgold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\helperfetchdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -69,12 +73,16 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 171,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 156,
+          "SelectedChildIndex": 9,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AddGoldHelper.cs",
               "DocumentMoniker": "F:\\SYA\\SYA\\AddGold\\AddGoldHelper.cs",
               "RelativeDocumentMoniker": "AddGold\\AddGoldHelper.cs",
@@ -86,60 +94,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TextFile1 - Copy.txt",
-              "DocumentMoniker": "F:\\SYA\\SYA\\TextFile1 - Copy.txt",
-              "RelativeDocumentMoniker": "TextFile1 - Copy.txt",
-              "ToolTip": "F:\\SYA\\SYA\\TextFile1 - Copy.txt",
-              "RelativeToolTip": "TextFile1 - Copy.txt",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-03-03T17:42:51.329Z"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "addgold.cs [Design]",
-              "DocumentMoniker": "F:\\SYA\\SYA\\AddGold\\addgold.cs",
-              "RelativeDocumentMoniker": "AddGold\\addgold.cs",
-              "ToolTip": "F:\\SYA\\SYA\\AddGold\\addgold.cs [Design]",
-              "RelativeToolTip": "AddGold\\addgold.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-03T13:31:52.807Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "HelperFetchData.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\HelperFetchData.cs",
-              "RelativeDocumentMoniker": "HelperFetchData.cs",
-              "ToolTip": "F:\\SYA\\SYA\\HelperFetchData.cs",
-              "RelativeToolTip": "HelperFetchData.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-02T15:14:18.123Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "tempVerifyData.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\tempVerifyData.cs",
-              "RelativeDocumentMoniker": "tempVerifyData.cs",
-              "ToolTip": "F:\\SYA\\SYA\\tempVerifyData.cs",
-              "RelativeToolTip": "tempVerifyData.cs",
-              "ViewState": "AQIAAIgAAAAAAAAAAAAuwJUAAABWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-02T15:14:18.224Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "helper.cs",
               "DocumentMoniker": "F:\\SYA\\SYA\\helper.cs",
               "RelativeDocumentMoniker": "helper.cs",
@@ -151,7 +107,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "tempVerifyData.cs",
               "DocumentMoniker": "F:\\SYA\\SYA\\tempVerifyData.cs",
               "RelativeDocumentMoniker": "tempVerifyData.cs",
@@ -162,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "main.cs",
               "DocumentMoniker": "F:\\SYA\\SYA\\main.cs",
               "RelativeDocumentMoniker": "main.cs",
@@ -174,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "main.cs",
               "DocumentMoniker": "F:\\SYA\\SYA\\main.cs",
               "RelativeDocumentMoniker": "main.cs",
@@ -185,7 +141,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "SaleItem.Designer.cs",
               "DocumentMoniker": "F:\\SYA\\SYA\\SaleItem.Designer.cs",
               "RelativeDocumentMoniker": "SaleItem.Designer.cs",
@@ -197,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "SaleItem.cs",
               "DocumentMoniker": "F:\\SYA\\SYA\\SaleItem.cs",
               "RelativeDocumentMoniker": "SaleItem.cs",
@@ -208,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "SaleItem.cs",
               "DocumentMoniker": "F:\\SYA\\SYA\\SaleItem.cs",
               "RelativeDocumentMoniker": "SaleItem.cs",
@@ -220,7 +176,69 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 0,
+              "Title": "addgold.cs",
+              "DocumentMoniker": "F:\\SYA\\SYA\\AddGold\\addgold.cs",
+              "RelativeDocumentMoniker": "AddGold\\addgold.cs",
+              "ToolTip": "F:\\SYA\\SYA\\AddGold\\addgold.cs",
+              "RelativeToolTip": "AddGold\\addgold.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAANAAAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-03T13:38:34.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "addgold.Designer.cs",
+              "DocumentMoniker": "F:\\SYA\\SYA\\AddGold\\addgold.Designer.cs",
+              "RelativeDocumentMoniker": "AddGold\\addgold.Designer.cs",
+              "ToolTip": "F:\\SYA\\SYA\\AddGold\\addgold.Designer.cs",
+              "RelativeToolTip": "AddGold\\addgold.Designer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAPcCAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-04T10:34:30.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "tempVerifyData.cs",
+              "DocumentMoniker": "F:\\SYA\\SYA\\tempVerifyData.cs",
+              "RelativeDocumentMoniker": "tempVerifyData.cs",
+              "ToolTip": "F:\\SYA\\SYA\\tempVerifyData.cs",
+              "RelativeToolTip": "tempVerifyData.cs",
+              "ViewState": "AQIAAIgAAAAAAAAAAAAuwJUAAABWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-02T15:14:18.224Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "HelperFetchData.cs",
+              "DocumentMoniker": "F:\\SYA\\SYA\\HelperFetchData.cs",
+              "RelativeDocumentMoniker": "HelperFetchData.cs",
+              "ToolTip": "F:\\SYA\\SYA\\HelperFetchData.cs",
+              "RelativeToolTip": "HelperFetchData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-02T15:14:18.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TextFile1 - Copy.txt",
+              "DocumentMoniker": "F:\\SYA\\SYA\\TextFile1 - Copy.txt",
+              "RelativeDocumentMoniker": "TextFile1 - Copy.txt",
+              "ToolTip": "F:\\SYA\\SYA\\TextFile1 - Copy.txt",
+              "RelativeToolTip": "TextFile1 - Copy.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-03-03T17:42:51.329Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "Search.cs",
               "DocumentMoniker": "F:\\SYA\\SYA\\Search.cs",
               "RelativeDocumentMoniker": "Search.cs",
@@ -233,12 +251,12 @@
           ]
         },
         {
-          "DockedWidth": 229,
+          "DockedWidth": 244,
           "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "print.cs",
               "DocumentMoniker": "F:\\SYA\\SYA\\print.cs",
               "RelativeDocumentMoniker": "print.cs",
@@ -250,16 +268,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "addgold.cs",
+              "DocumentIndex": 3,
+              "Title": "addgold.cs [Design]",
               "DocumentMoniker": "F:\\SYA\\SYA\\AddGold\\addgold.cs",
               "RelativeDocumentMoniker": "AddGold\\addgold.cs",
-              "ToolTip": "F:\\SYA\\SYA\\AddGold\\addgold.cs",
-              "RelativeToolTip": "AddGold\\addgold.cs",
-              "ViewState": "AQIAAOQBAAAAAAAAAAAAAGACAAA0AAAA",
+              "ToolTip": "F:\\SYA\\SYA\\AddGold\\addgold.cs [Design]",
+              "RelativeToolTip": "AddGold\\addgold.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-03T13:38:34.648Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-03T13:31:52.807Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
