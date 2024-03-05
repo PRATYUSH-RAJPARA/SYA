@@ -19,7 +19,6 @@ namespace SYA
 
         private void main_Load(object sender, EventArgs e)
         {
-            button22.Visible = true;
             panelsecond.Visible = false;
             panelChild.Visible = false;
             btnHideAllSecondPanelButtons();
@@ -219,14 +218,19 @@ namespace SYA
 
         private void button22_Click(object sender, EventArgs e)
         {
-            panelsecond.Visible = false;
-            LoadForm(new tempVerifyData());
+
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            panelsecond.Visible=false;
+            panelsecond.Visible = false;
             LoadForm(new SaleItem());
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            panelsecond.Visible = false;
+            LoadForm(new tempVerifyData());
         }
     }
 }

@@ -62,11 +62,9 @@
             button2 = new Button();
             button1 = new Button();
             panel1 = new Panel();
-            button22 = new Button();
             panelChild = new Panel();
             panelfirst.SuspendLayout();
             panelsecond.SuspendLayout();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panelfirst
@@ -426,6 +424,7 @@
             button13.TabIndex = 12;
             button13.Text = "VERIFY STOCK";
             button13.UseVisualStyleBackColor = false;
+            button13.Click += button13_Click;
             // 
             // button12
             // 
@@ -627,24 +626,12 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(3, 63, 99);
-            panel1.Controls.Add(button22);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(200, 0);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(2206, 200);
             panel1.TabIndex = 1;
-            // 
-            // button22
-            // 
-            button22.Location = new Point(257, 63);
-            button22.Margin = new Padding(4, 3, 4, 3);
-            button22.Name = "button22";
-            button22.Size = new Size(117, 37);
-            button22.TabIndex = 0;
-            button22.Text = "button22";
-            button22.UseVisualStyleBackColor = true;
-            button22.Click += button22_Click;
             // 
             // panelChild
             // 
@@ -672,7 +659,6 @@
             Load += main_Load;
             panelfirst.ResumeLayout(false);
             panelsecond.ResumeLayout(false);
-            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -712,6 +698,5 @@
         private Button button1;
         private Button button21;
         private Button btnCustomer;
-        private Button button22;
     }
 }

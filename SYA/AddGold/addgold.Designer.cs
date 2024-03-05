@@ -73,10 +73,6 @@ namespace SYA
             panel20 = new Panel();
             panel5 = new Panel();
             panel34 = new Panel();
-            panel13 = new Panel();
-            panel15 = new Panel();
-            panel2 = new Panel();
-            panel35 = new Panel();
             panel32 = new Panel();
             panel23 = new Panel();
             panel21 = new Panel();
@@ -104,8 +100,6 @@ namespace SYA
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel5.SuspendLayout();
-            panel34.SuspendLayout();
-            panel13.SuspendLayout();
             panelBackground.SuspendLayout();
             panel6.SuspendLayout();
             panel3.SuspendLayout();
@@ -415,53 +409,12 @@ namespace SYA
             // panel34
             // 
             panel34.BackColor = Color.FromArgb(233, 245, 219);
-            panel34.Controls.Add(panel13);
-            panel34.Controls.Add(panel2);
-            panel34.Controls.Add(panel35);
             panel34.Dock = DockStyle.Fill;
             panel34.Location = new Point(13, 0);
             panel34.Margin = new Padding(4, 3, 4, 3);
             panel34.Name = "panel34";
             panel34.Size = new Size(2380, 75);
             panel34.TabIndex = 13;
-            // 
-            // panel13
-            // 
-            panel13.Controls.Add(panel15);
-            panel13.Dock = DockStyle.Fill;
-            panel13.Location = new Point(92, 0);
-            panel13.Margin = new Padding(4, 3, 4, 3);
-            panel13.Name = "panel13";
-            panel13.Size = new Size(2288, 75);
-            panel13.TabIndex = 101;
-            // 
-            // panel15
-            // 
-            panel15.BackColor = Color.FromArgb(233, 245, 219);
-            panel15.Dock = DockStyle.Right;
-            panel15.Location = new Point(2242, 0);
-            panel15.Margin = new Padding(4, 3, 4, 3);
-            panel15.Name = "panel15";
-            panel15.Size = new Size(46, 75);
-            panel15.TabIndex = 21;
-            // 
-            // panel2
-            // 
-            panel2.Dock = DockStyle.Left;
-            panel2.Location = new Point(46, 0);
-            panel2.Margin = new Padding(4, 3, 4, 3);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(46, 75);
-            panel2.TabIndex = 23;
-            // 
-            // panel35
-            // 
-            panel35.Dock = DockStyle.Left;
-            panel35.Location = new Point(0, 0);
-            panel35.Margin = new Padding(4, 3, 4, 3);
-            panel35.Name = "panel35";
-            panel35.Size = new Size(46, 75);
-            panel35.TabIndex = 19;
             // 
             // panel32
             // 
@@ -556,10 +509,10 @@ namespace SYA
             // 
             panel7.Controls.Add(txtMessageBox);
             panel7.Dock = DockStyle.Fill;
-            panel7.Location = new Point(684, 10);
+            panel7.Location = new Point(776, 10);
             panel7.Margin = new Padding(4, 3, 4, 3);
             panel7.Name = "panel7";
-            panel7.Size = new Size(1604, 43);
+            panel7.Size = new Size(1512, 43);
             panel7.TabIndex = 16;
             // 
             // txtMessageBox
@@ -579,25 +532,25 @@ namespace SYA
             // panel16
             // 
             panel16.Dock = DockStyle.Top;
-            panel16.Location = new Point(684, 0);
+            panel16.Location = new Point(776, 0);
             panel16.Margin = new Padding(4, 3, 4, 3);
             panel16.Name = "panel16";
-            panel16.Size = new Size(1604, 10);
+            panel16.Size = new Size(1512, 10);
             panel16.TabIndex = 15;
             // 
             // panel17
             // 
             panel17.Dock = DockStyle.Bottom;
-            panel17.Location = new Point(684, 53);
+            panel17.Location = new Point(776, 53);
             panel17.Margin = new Padding(4, 3, 4, 3);
             panel17.Name = "panel17";
-            panel17.Size = new Size(1604, 10);
+            panel17.Size = new Size(1512, 10);
             panel17.TabIndex = 15;
             // 
             // panel8
             // 
             panel8.Dock = DockStyle.Left;
-            panel8.Location = new Point(638, 0);
+            panel8.Location = new Point(730, 0);
             panel8.Margin = new Padding(4, 3, 4, 3);
             panel8.Name = "panel8";
             panel8.Size = new Size(46, 63);
@@ -610,12 +563,12 @@ namespace SYA
             buttonquicksave.FlatAppearance.BorderColor = Color.FromArgb(165, 100, 211);
             buttonquicksave.FlatAppearance.BorderSize = 5;
             buttonquicksave.FlatStyle = FlatStyle.Popup;
-            buttonquicksave.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonquicksave.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
             buttonquicksave.ForeColor = Color.White;
-            buttonquicksave.Location = new Point(372, 0);
+            buttonquicksave.Location = new Point(418, 0);
             buttonquicksave.Margin = new Padding(4, 3, 4, 3);
             buttonquicksave.Name = "buttonquicksave";
-            buttonquicksave.Size = new Size(266, 63);
+            buttonquicksave.Size = new Size(312, 63);
             buttonquicksave.TabIndex = 45;
             buttonquicksave.Text = "Enable Quick Save";
             buttonquicksave.UseVisualStyleBackColor = false;
@@ -624,7 +577,7 @@ namespace SYA
             // panel10
             // 
             panel10.Dock = DockStyle.Left;
-            panel10.Location = new Point(326, 0);
+            panel10.Location = new Point(372, 0);
             panel10.Margin = new Padding(4, 3, 4, 3);
             panel10.Name = "panel10";
             panel10.Size = new Size(46, 63);
@@ -637,12 +590,12 @@ namespace SYA
             btnQuickSaveAndPrint.FlatAppearance.BorderColor = Color.FromArgb(165, 100, 211);
             btnQuickSaveAndPrint.FlatAppearance.BorderSize = 5;
             btnQuickSaveAndPrint.FlatStyle = FlatStyle.Popup;
-            btnQuickSaveAndPrint.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnQuickSaveAndPrint.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
             btnQuickSaveAndPrint.ForeColor = Color.White;
             btnQuickSaveAndPrint.Location = new Point(0, 0);
             btnQuickSaveAndPrint.Margin = new Padding(4, 3, 4, 3);
             btnQuickSaveAndPrint.Name = "btnQuickSaveAndPrint";
-            btnQuickSaveAndPrint.Size = new Size(326, 63);
+            btnQuickSaveAndPrint.Size = new Size(372, 63);
             btnQuickSaveAndPrint.TabIndex = 43;
             btnQuickSaveAndPrint.Text = "Disable Quick Save & Print";
             btnQuickSaveAndPrint.UseMnemonic = false;
@@ -736,8 +689,6 @@ namespace SYA
             panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel5.ResumeLayout(false);
-            panel34.ResumeLayout(false);
-            panel13.ResumeLayout(false);
             panelBackground.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel3.ResumeLayout(false);
@@ -769,7 +720,6 @@ namespace SYA
         private Panel panel33;
         private Panel panel34;
         private DataGridView dataGridView1;
-        private Panel panel35;
         private DataGridViewCheckBoxColumn select;
         private DataGridViewTextBoxColumn tagno;
         private DataGridViewComboBoxColumn type;
@@ -788,7 +738,6 @@ namespace SYA
         private Panel panel14;
         private ProgressBar progressBar1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Panel panel2;
         private Panel panel3;
         private Panel panel9;
         private Panel panel7;
@@ -802,7 +751,5 @@ namespace SYA
         private Panel panel18;
         private Panel panel36;
         private System.Windows.Forms.Timer messageBoxTimer;
-        private Panel panel13;
-        private Panel panel15;
     }
 }

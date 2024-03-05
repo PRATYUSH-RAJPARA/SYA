@@ -289,6 +289,8 @@ namespace SYA
         }
         private void gridviewstyle()
         {
+
+            dataGridView1.Columns["select"].Visible = false;
             dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(114, 131, 89); dataGridView1.Columns["select"].HeaderCell.Style.BackColor = Color.FromArgb(151, 169, 124);
             dataGridView1.Columns["tagno"].HeaderCell.Style.BackColor = Color.FromArgb(166, 185, 139);
             dataGridView1.Columns["type"].HeaderCell.Style.BackColor = Color.FromArgb(181, 201, 154);
