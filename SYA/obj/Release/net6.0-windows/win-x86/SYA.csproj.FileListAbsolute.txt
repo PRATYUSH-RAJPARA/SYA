@@ -548,3 +548,5 @@ C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\SYA.c
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\SYA.ProgressDialog.resources
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\SYA.saleReport.resources
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\SYA.statement.resources
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\SYA.SaleItem.resources
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\win-x86\SYA.tempVerifyData.resources

@@ -2739,10 +2739,6 @@
             "version": "[6.0.20, 6.0.20]"
           },
           {
-            "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
-            "version": "[6.0.20, 6.0.20]"
-          },
-          {
             "name": "Microsoft.NETCore.App.Runtime.win-x86",
             "version": "[6.0.20, 6.0.20]"
           },

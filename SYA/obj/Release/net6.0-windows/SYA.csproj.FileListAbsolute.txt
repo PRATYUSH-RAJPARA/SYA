@@ -132,3 +132,4 @@ F:\SYA\SYA\obj\Release\net6.0-windows\refint\SYA.dll
 F:\SYA\SYA\obj\Release\net6.0-windows\SYA.pdb
 F:\SYA\SYA\obj\Release\net6.0-windows\SYA.genruntimeconfig.cache
 F:\SYA\SYA\obj\Release\net6.0-windows\ref\SYA.dll
+C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Release\net6.0-windows\SYA.SaleItem.resources
