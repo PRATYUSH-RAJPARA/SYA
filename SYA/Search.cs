@@ -45,6 +45,7 @@ namespace SYA
             txtMessageBox.Text = string.Empty;
             messageBoxTimer.Stop();
         }
+        //ok
         private void gridviewstyle()
         {
             int formWidth = this.ClientSize.Width;
