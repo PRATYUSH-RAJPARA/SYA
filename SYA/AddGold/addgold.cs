@@ -662,7 +662,7 @@ namespace SYA
         }
         private void Print(object sender, PrintPageEventArgs e)
         {
-            AddGoldHelper.PrintPage(sender, e, dataGridView1.CurrentRow);
+            print.PrintPageAddGold(sender, e, dataGridView1.CurrentRow);
         }
         private void btnQuickSaveAndPrint_Click(object sender, EventArgs e)
         {
