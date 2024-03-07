@@ -17,10 +17,22 @@ namespace SYA
 {
     public partial class addSilver : Form
     {
+        private SQLiteConnection connectionToSYADatabase;
+        private const int ItemNameColumnIndex = 2;
+        bool quickSave = false;
+        bool quickSaveAndPrint = false;
+        string tagtype = "weight";
         public addSilver()
         {
             InitializeComponent();
             InitializeDatabaseConnection();
+            
+            addSilverDataGridView.RowsAdded += (s, args) => UpdateRowNumbers();
+            addSilverDataGridView.RowsRemoved += (s, args) => UpdateRowNumbers();
+        }
+        private void addSilver_Load(object sender, EventArgs e)
+        {
+            InitializeLogging();
             addSilverDataGridView.AutoGenerateColumns = false;
             gridviewstyle();
             DataGridViewTextBoxColumn textBoxColumn = new DataGridViewTextBoxColumn();
@@ -31,29 +43,12 @@ namespace SYA
             InitializeComboBoxColumns();
             addSilverDataGridView.DataSource = GetEmptyDataTable();
             addSilverDataGridView.RowHeadersVisible = true;
-            addSilverDataGridView.RowsAdded += (s, args) => UpdateRowNumbers();
-            addSilverDataGridView.RowsRemoved += (s, args) => UpdateRowNumbers();
-        }
-        private void addSilver_Load(object sender, EventArgs e)
-        {
-            InitializeLogging();
             UpdateRowNumbers();
+
         }
-        private int pratyushcount = 0;
-        private SQLiteConnection connectionToSYADatabase;
-        private SQLiteConnection connectionToDatacare;
-        private const int ItemNameColumnIndex = 2;
-        private string previousTypeValue = string.Empty;
-        private string previousCaretValue = string.Empty;
-        private int itemCount = 0;
-        private decimal grossWeightSum = 0;
-        bool quickSave = false;
-        bool quickSaveAndPrint = false;
-        string tagtype = "weight";
         private void InitializeDatabaseConnection()
         {
             connectionToSYADatabase = new SQLiteConnection(helper.SYAConnectionString);
-            connectionToDatacare = new SQLiteConnection(helper.accessConnectionString);
         }
         private void InitializeComboBoxColumns()
         {
@@ -72,7 +67,7 @@ namespace SYA
             }
             if (e.ColumnIndex == 0 && e.RowIndex == addSilverDataGridView.Rows.Count - 1)
             {
-                addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = "650";
+                addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = "20";
                 addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = "0";
                 addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value = "0";
                 if (addSilverDataGridView.Rows.Count > 1)
@@ -85,8 +80,7 @@ namespace SYA
                     addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = (previousRow.Cells["labour"].Value ?? "0").ToString();
                     addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = (previousRow.Cells["wholeLabour"].Value ?? "0").ToString();
                     addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value = (previousRow.Cells["other"].Value ?? "0").ToString();
-                    previousTypeValue = previousRow.Cells["type"].Value?.ToString();
-                    previousCaretValue = previousRow.Cells["caret"].Value?.ToString();
+                    addSilverDataGridView.Rows[e.RowIndex].Cells["size"].Value = (previousRow.Cells["size"].Value ?? "0").ToString();
                 }
             }
         }
@@ -144,12 +138,8 @@ namespace SYA
         {
             try
             {
-                string caret = addSilverDataGridView.Rows[e.RowIndex].Cells["caret"].Value?.ToString();
                 decimal? gross = Convert.ToDecimal((addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value ?? "0")?.ToString() ?? "0");
                 decimal? net = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value?.ToString() ?? "0");
-                decimal? pgl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value?.ToString() ?? "0");
-                decimal? wl = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value?.ToString() ?? "0");
-                decimal? other = Convert.ToDecimal(addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value?.ToString() ?? "0");
                 if (net == null || net == 0)
                 {
                     net = gross;
@@ -161,7 +151,7 @@ namespace SYA
             }
             catch
             {
-                MessageBox.Show("error is gross please check again");
+              //  MessageBox.Show("error is gross please check again");
             }
         }
         private void netValueChanged(DataGridViewCellEventArgs e)
@@ -356,11 +346,6 @@ namespace SYA
             dataTable.Columns.Add("comment", typeof(string));
             dataTable.Columns.Add("prcode", typeof(string));
             return dataTable;
-        }
-        private void btnAddSilverSave_Click(object sender, EventArgs e)
-        {
-            DataGridViewRow empty = new DataGridViewRow();
-            SaveData(empty, 0);
         }
         private bool SaveData(DataGridViewRow selectedRow, int check)
         {
@@ -630,17 +615,7 @@ namespace SYA
                 return false;
             }
         }
-        private void btnAddSilverPrintTag_Click(object sender, EventArgs e)
-        {
-            PrintData(true);
-        }
-        private void btnAddSiilverSelectAll_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < addSilverDataGridView.Rows.Count - 1; i++)
-            {
-                addSilverDataGridView.Rows[i].Cells["select"].Value = true;
-            }
-        }
+    
         private void PrintData(bool single)
         {
             try
@@ -866,10 +841,6 @@ namespace SYA
                 BTNTAGTYPE.Text = "Weight Tag";
                 tagtype = "weight";
             }
-        }
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            PrintData(false);
         }
     }
 }
