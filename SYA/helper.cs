@@ -18,7 +18,7 @@ namespace SYA
                 if (_configuration == null)
                 {
                     _configuration = new ConfigurationBuilder()
-                        .SetBasePath(@"D:\SYA\config")
+                        .SetBasePath(@"C:\SYA_SOFT_TEST\config")
                         .AddJsonFile("appsettings.json")
                         .Build();
                 }
@@ -35,6 +35,10 @@ namespace SYA
         public static string accessConnectionString
         {
             get { return Configuration["ConnectionStrings:DataCareDatabase"]; }
+        }
+        public static string excelFile
+        {
+            get { return Configuration["FolderLocations:ExcelFile"]; }
         }
         public static string ImageFolder
         {

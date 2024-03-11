@@ -450,7 +450,9 @@ namespace SYA
         private void printbtn_Click(object sender, EventArgs e)
         {
             // Export the new DataTable to Excel
-            ExportToExcel(dataGridView1, "C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\ExportedData.xlsx");
+            //ExportToExcel(dataGridView1, "C:\\SYA_SOFT\\config\\ExportedData.xlsx");
+            ExportToExcel(dataGridView1, helper.excelFile);
+
         }
     }
 }
