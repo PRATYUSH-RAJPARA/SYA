@@ -19,6 +19,11 @@ namespace SYA
 
         private void main_Load(object sender, EventArgs e)
         {
+            btnStocks.Visible = false;
+            btnRtgs.Visible = false;
+            btnImportData.Visible = false;
+            btnPrintTags.Visible = false;
+            btnCustomer.Visible = false;
             panelsecond.Visible = false;
             panelChild.Visible = false;
             btnHideAllSecondPanelButtons();
@@ -27,6 +32,7 @@ namespace SYA
         // Loads form by name in panelchild
         private void LoadForm(Form form)
         {
+           
             // Close the currently displayed form (if any)
             if (panelChild.Controls.Count > 0)
             {

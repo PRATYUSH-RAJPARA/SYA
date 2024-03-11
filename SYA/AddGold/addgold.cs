@@ -42,9 +42,7 @@ namespace SYA
         }
         private void addgold_Load(object sender, EventArgs e)
         {
-            int formWidth = this.ClientSize.Width;
-            int formHeight = this.ClientSize.Height;
-            MessageBox.Show(formWidth + " :: " + formHeight);
+            
             InitializeLogging();
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             UpdateRowNumbers();
@@ -95,7 +93,7 @@ namespace SYA
                     textBox.SelectAll();
                 }
             }
-            if (e.ColumnIndex == 0 && e.RowIndex == dataGridView1.Rows.Count - 1)
+            if (e.ColumnIndex == 1 && e.RowIndex == dataGridView1.Rows.Count - 1)
             {
                 dataGridView1.Rows[e.RowIndex].Cells["labour"].Value = "650";
                 dataGridView1.Rows[e.RowIndex].Cells["wholeLabour"].Value = "0";

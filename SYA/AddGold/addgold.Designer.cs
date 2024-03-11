@@ -119,7 +119,7 @@ namespace SYA
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1539, 66);
+            panel1.Size = new Size(1347, 50);
             panel1.TabIndex = 0;
             // 
             // textBox1
@@ -127,11 +127,11 @@ namespace SYA
             textBox1.BackColor = Color.FromArgb(233, 245, 219);
             textBox1.Dock = DockStyle.Bottom;
             textBox1.Font = new Font("Arial", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            textBox1.Location = new Point(10, 14);
+            textBox1.Location = new Point(9, 8);
             textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(1519, 46);
+            textBox1.Size = new Size(1329, 38);
             textBox1.TabIndex = 12;
             textBox1.TabStop = false;
             textBox1.Text = "ADD GOLD ITEMS";
@@ -141,20 +141,20 @@ namespace SYA
             // 
             panel28.BackColor = Color.FromArgb(65, 72, 51);
             panel28.Dock = DockStyle.Left;
-            panel28.Location = new Point(0, 6);
+            panel28.Location = new Point(0, 4);
             panel28.Margin = new Padding(3, 2, 3, 2);
             panel28.Name = "panel28";
-            panel28.Size = new Size(10, 54);
+            panel28.Size = new Size(9, 42);
             panel28.TabIndex = 11;
             // 
             // panel27
             // 
             panel27.BackColor = Color.Black;
             panel27.Dock = DockStyle.Right;
-            panel27.Location = new Point(1529, 6);
+            panel27.Location = new Point(1338, 4);
             panel27.Margin = new Padding(3, 2, 3, 2);
             panel27.Name = "panel27";
-            panel27.Size = new Size(10, 54);
+            panel27.Size = new Size(9, 42);
             panel27.TabIndex = 10;
             // 
             // panel22
@@ -164,17 +164,17 @@ namespace SYA
             panel22.Location = new Point(0, 0);
             panel22.Margin = new Padding(3, 2, 3, 2);
             panel22.Name = "panel22";
-            panel22.Size = new Size(1539, 6);
+            panel22.Size = new Size(1347, 4);
             panel22.TabIndex = 4;
             // 
             // panel19
             // 
             panel19.BackColor = SystemColors.ActiveCaptionText;
             panel19.Dock = DockStyle.Bottom;
-            panel19.Location = new Point(0, 60);
+            panel19.Location = new Point(0, 46);
             panel19.Margin = new Padding(3, 2, 3, 2);
             panel19.Name = "panel19";
-            panel19.Size = new Size(1539, 6);
+            panel19.Size = new Size(1347, 4);
             panel19.TabIndex = 3;
             // 
             // panel4
@@ -185,10 +185,10 @@ namespace SYA
             panel4.Controls.Add(panel24);
             panel4.Controls.Add(panel20);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(0, 66);
+            panel4.Location = new Point(0, 50);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1539, 778);
+            panel4.Size = new Size(1347, 583);
             panel4.TabIndex = 3;
             // 
             // dataGridView1
@@ -211,7 +211,7 @@ namespace SYA
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle15;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(10, 0);
+            dataGridView1.Location = new Point(9, 0);
             dataGridView1.Margin = new Padding(0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
@@ -225,7 +225,7 @@ namespace SYA
             dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1519, 772);
+            dataGridView1.Size = new Size(1329, 579);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
             dataGridView1.CellEnter += dataGridView1_CellEnter;
@@ -369,27 +369,27 @@ namespace SYA
             panel31.Location = new Point(0, 0);
             panel31.Margin = new Padding(3, 2, 3, 2);
             panel31.Name = "panel31";
-            panel31.Size = new Size(10, 772);
+            panel31.Size = new Size(9, 579);
             panel31.TabIndex = 12;
             // 
             // panel24
             // 
             panel24.BackColor = Color.FromArgb(65, 72, 51);
             panel24.Dock = DockStyle.Right;
-            panel24.Location = new Point(1529, 0);
+            panel24.Location = new Point(1338, 0);
             panel24.Margin = new Padding(3, 2, 3, 2);
             panel24.Name = "panel24";
-            panel24.Size = new Size(10, 772);
+            panel24.Size = new Size(9, 579);
             panel24.TabIndex = 10;
             // 
             // panel20
             // 
             panel20.BackColor = Color.FromArgb(65, 72, 51);
             panel20.Dock = DockStyle.Bottom;
-            panel20.Location = new Point(0, 772);
+            panel20.Location = new Point(0, 579);
             panel20.Margin = new Padding(3, 2, 3, 2);
             panel20.Name = "panel20";
-            panel20.Size = new Size(1539, 6);
+            panel20.Size = new Size(1347, 4);
             panel20.TabIndex = 3;
             // 
             // panel5
@@ -400,20 +400,20 @@ namespace SYA
             panel5.Controls.Add(panel23);
             panel5.Controls.Add(panel21);
             panel5.Dock = DockStyle.Bottom;
-            panel5.Location = new Point(0, 778);
+            panel5.Location = new Point(0, 583);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1539, 66);
+            panel5.Size = new Size(1347, 50);
             panel5.TabIndex = 4;
             // 
             // panel34
             // 
             panel34.BackColor = Color.FromArgb(233, 245, 219);
             panel34.Dock = DockStyle.Fill;
-            panel34.Location = new Point(10, 0);
+            panel34.Location = new Point(9, 0);
             panel34.Margin = new Padding(3, 2, 3, 2);
             panel34.Name = "panel34";
-            panel34.Size = new Size(1519, 60);
+            panel34.Size = new Size(1329, 46);
             panel34.TabIndex = 13;
             // 
             // panel32
@@ -423,27 +423,27 @@ namespace SYA
             panel32.Location = new Point(0, 0);
             panel32.Margin = new Padding(3, 2, 3, 2);
             panel32.Name = "panel32";
-            panel32.Size = new Size(10, 60);
+            panel32.Size = new Size(9, 46);
             panel32.TabIndex = 12;
             // 
             // panel23
             // 
             panel23.BackColor = Color.FromArgb(65, 72, 51);
             panel23.Dock = DockStyle.Right;
-            panel23.Location = new Point(1529, 0);
+            panel23.Location = new Point(1338, 0);
             panel23.Margin = new Padding(3, 2, 3, 2);
             panel23.Name = "panel23";
-            panel23.Size = new Size(10, 60);
+            panel23.Size = new Size(9, 46);
             panel23.TabIndex = 10;
             // 
             // panel21
             // 
             panel21.BackColor = Color.FromArgb(65, 72, 51);
             panel21.Dock = DockStyle.Bottom;
-            panel21.Location = new Point(0, 60);
+            panel21.Location = new Point(0, 46);
             panel21.Margin = new Padding(3, 2, 3, 2);
             panel21.Name = "panel21";
-            panel21.Size = new Size(1539, 6);
+            panel21.Size = new Size(1347, 4);
             panel21.TabIndex = 3;
             // 
             // panelBackground
@@ -457,7 +457,7 @@ namespace SYA
             panelBackground.Location = new Point(0, 0);
             panelBackground.Margin = new Padding(3, 2, 3, 2);
             panelBackground.Name = "panelBackground";
-            panelBackground.Size = new Size(1539, 844);
+            panelBackground.Size = new Size(1347, 633);
             panelBackground.TabIndex = 0;
             // 
             // panel6
@@ -469,10 +469,10 @@ namespace SYA
             panel6.Controls.Add(panel14);
             panel6.Controls.Add(panel11);
             panel6.Dock = DockStyle.Bottom;
-            panel6.Location = new Point(0, 712);
+            panel6.Location = new Point(0, 533);
             panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(1539, 66);
+            panel6.Size = new Size(1347, 50);
             panel6.TabIndex = 5;
             // 
             // panel3
@@ -482,10 +482,10 @@ namespace SYA
             panel3.Controls.Add(panel18);
             panel3.Controls.Add(panel36);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(10, 10);
+            panel3.Location = new Point(9, 8);
             panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1519, 50);
+            panel3.Size = new Size(1329, 38);
             panel3.TabIndex = 18;
             // 
             // panel9
@@ -499,20 +499,20 @@ namespace SYA
             panel9.Controls.Add(panel10);
             panel9.Controls.Add(btnQuickSaveAndPrint);
             panel9.Dock = DockStyle.Fill;
-            panel9.Location = new Point(37, 0);
+            panel9.Location = new Point(32, 0);
             panel9.Margin = new Padding(3, 2, 3, 2);
             panel9.Name = "panel9";
-            panel9.Size = new Size(1445, 50);
+            panel9.Size = new Size(1265, 38);
             panel9.TabIndex = 44;
             // 
             // panel7
             // 
             panel7.Controls.Add(txtMessageBox);
             panel7.Dock = DockStyle.Fill;
-            panel7.Location = new Point(622, 8);
+            panel7.Location = new Point(544, 6);
             panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
-            panel7.Size = new Size(823, 34);
+            panel7.Size = new Size(721, 26);
             panel7.TabIndex = 16;
             // 
             // txtMessageBox
@@ -525,35 +525,35 @@ namespace SYA
             txtMessageBox.Margin = new Padding(3, 2, 3, 2);
             txtMessageBox.Name = "txtMessageBox";
             txtMessageBox.ReadOnly = true;
-            txtMessageBox.Size = new Size(654, 29);
+            txtMessageBox.Size = new Size(572, 23);
             txtMessageBox.TabIndex = 100;
             txtMessageBox.TextAlign = HorizontalAlignment.Center;
             // 
             // panel16
             // 
             panel16.Dock = DockStyle.Top;
-            panel16.Location = new Point(622, 0);
+            panel16.Location = new Point(544, 0);
             panel16.Margin = new Padding(3, 2, 3, 2);
             panel16.Name = "panel16";
-            panel16.Size = new Size(823, 8);
+            panel16.Size = new Size(721, 6);
             panel16.TabIndex = 15;
             // 
             // panel17
             // 
             panel17.Dock = DockStyle.Bottom;
-            panel17.Location = new Point(622, 42);
+            panel17.Location = new Point(544, 32);
             panel17.Margin = new Padding(3, 2, 3, 2);
             panel17.Name = "panel17";
-            panel17.Size = new Size(823, 8);
+            panel17.Size = new Size(721, 6);
             panel17.TabIndex = 15;
             // 
             // panel8
             // 
             panel8.Dock = DockStyle.Left;
-            panel8.Location = new Point(585, 0);
+            panel8.Location = new Point(512, 0);
             panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(37, 50);
+            panel8.Size = new Size(32, 38);
             panel8.TabIndex = 46;
             // 
             // buttonquicksave
@@ -565,10 +565,10 @@ namespace SYA
             buttonquicksave.FlatStyle = FlatStyle.Popup;
             buttonquicksave.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
             buttonquicksave.ForeColor = Color.White;
-            buttonquicksave.Location = new Point(335, 0);
+            buttonquicksave.Location = new Point(293, 0);
             buttonquicksave.Margin = new Padding(3, 2, 3, 2);
             buttonquicksave.Name = "buttonquicksave";
-            buttonquicksave.Size = new Size(250, 50);
+            buttonquicksave.Size = new Size(219, 38);
             buttonquicksave.TabIndex = 45;
             buttonquicksave.Text = "Enable Quick Save";
             buttonquicksave.UseVisualStyleBackColor = false;
@@ -577,10 +577,10 @@ namespace SYA
             // panel10
             // 
             panel10.Dock = DockStyle.Left;
-            panel10.Location = new Point(298, 0);
+            panel10.Location = new Point(261, 0);
             panel10.Margin = new Padding(3, 2, 3, 2);
             panel10.Name = "panel10";
-            panel10.Size = new Size(37, 50);
+            panel10.Size = new Size(32, 38);
             panel10.TabIndex = 44;
             // 
             // btnQuickSaveAndPrint
@@ -595,7 +595,7 @@ namespace SYA
             btnQuickSaveAndPrint.Location = new Point(0, 0);
             btnQuickSaveAndPrint.Margin = new Padding(3, 2, 3, 2);
             btnQuickSaveAndPrint.Name = "btnQuickSaveAndPrint";
-            btnQuickSaveAndPrint.Size = new Size(298, 50);
+            btnQuickSaveAndPrint.Size = new Size(261, 38);
             btnQuickSaveAndPrint.TabIndex = 43;
             btnQuickSaveAndPrint.Text = "Disable Quick Save & Print";
             btnQuickSaveAndPrint.UseMnemonic = false;
@@ -609,47 +609,47 @@ namespace SYA
             panel18.Location = new Point(0, 0);
             panel18.Margin = new Padding(3, 2, 3, 2);
             panel18.Name = "panel18";
-            panel18.Size = new Size(37, 50);
+            panel18.Size = new Size(32, 38);
             panel18.TabIndex = 43;
             // 
             // panel36
             // 
             panel36.BackColor = Color.FromArgb(233, 245, 219);
             panel36.Dock = DockStyle.Right;
-            panel36.Location = new Point(1482, 0);
+            panel36.Location = new Point(1297, 0);
             panel36.Margin = new Padding(3, 2, 3, 2);
             panel36.Name = "panel36";
-            panel36.Size = new Size(37, 50);
+            panel36.Size = new Size(32, 38);
             panel36.TabIndex = 20;
             // 
             // panel33
             // 
             panel33.BackColor = Color.FromArgb(65, 72, 51);
             panel33.Dock = DockStyle.Left;
-            panel33.Location = new Point(0, 6);
+            panel33.Location = new Point(0, 4);
             panel33.Margin = new Padding(3, 2, 3, 2);
             panel33.Name = "panel33";
-            panel33.Size = new Size(10, 54);
+            panel33.Size = new Size(9, 42);
             panel33.TabIndex = 17;
             // 
             // panel12
             // 
             panel12.BackColor = Color.FromArgb(65, 72, 51);
             panel12.Dock = DockStyle.Right;
-            panel12.Location = new Point(1529, 6);
+            panel12.Location = new Point(1338, 4);
             panel12.Margin = new Padding(3, 2, 3, 2);
             panel12.Name = "panel12";
-            panel12.Size = new Size(10, 54);
+            panel12.Size = new Size(9, 42);
             panel12.TabIndex = 9;
             // 
             // panel14
             // 
             panel14.BackColor = SystemColors.ActiveCaptionText;
             panel14.Dock = DockStyle.Bottom;
-            panel14.Location = new Point(0, 60);
+            panel14.Location = new Point(0, 46);
             panel14.Margin = new Padding(3, 2, 3, 2);
             panel14.Name = "panel14";
-            panel14.Size = new Size(1539, 6);
+            panel14.Size = new Size(1347, 4);
             panel14.TabIndex = 8;
             // 
             // panel11
@@ -659,7 +659,7 @@ namespace SYA
             panel11.Location = new Point(0, 0);
             panel11.Margin = new Padding(3, 2, 3, 2);
             panel11.Name = "panel11";
-            panel11.Size = new Size(1539, 6);
+            panel11.Size = new Size(1347, 4);
             panel11.TabIndex = 1;
             // 
             // backgroundWorker1
@@ -674,9 +674,9 @@ namespace SYA
             // 
             // addgold
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1539, 844);
+            ClientSize = new Size(1347, 633);
             Controls.Add(panelBackground);
             Margin = new Padding(3, 2, 3, 2);
             Name = "addgold";

@@ -20,13 +20,12 @@ namespace SYA
         private SQLiteConnection connectionToSYADatabase;
         private const int ItemNameColumnIndex = 2;
         bool quickSave = false;
-        bool quickSaveAndPrint = false;
+        bool quickSaveAndPrint = true;
         string tagtype = "weight";
         public addSilver()
         {
             InitializeComponent();
             InitializeDatabaseConnection();
-            
             addSilverDataGridView.RowsAdded += (s, args) => UpdateRowNumbers();
             addSilverDataGridView.RowsRemoved += (s, args) => UpdateRowNumbers();
         }
@@ -34,6 +33,7 @@ namespace SYA
         {
             InitializeLogging();
             addSilverDataGridView.AutoGenerateColumns = false;
+            addSilverDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             gridviewstyle();
             DataGridViewTextBoxColumn textBoxColumn = new DataGridViewTextBoxColumn();
             textBoxColumn.HeaderText = "PR_CODE";
@@ -44,7 +44,6 @@ namespace SYA
             addSilverDataGridView.DataSource = GetEmptyDataTable();
             addSilverDataGridView.RowHeadersVisible = true;
             UpdateRowNumbers();
-
         }
         private void InitializeDatabaseConnection()
         {
@@ -65,8 +64,10 @@ namespace SYA
                     textBox.SelectAll();
                 }
             }
-            if (e.ColumnIndex == 0 && e.RowIndex == addSilverDataGridView.Rows.Count - 1)
+
+            if (e.ColumnIndex == 1 && e.RowIndex == addSilverDataGridView.Rows.Count - 1)
             {
+
                 addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = "20";
                 addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = "0";
                 addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value = "0";
@@ -90,7 +91,12 @@ namespace SYA
             {
                 if (addSilverDataGridView.Columns[e.ColumnIndex].Name == "gross")
                 {
-                    addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value = addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value;
+                    if (addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value == null)
+                    {
+                        addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value =
+                            addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value;
+                    }
+
                     addSilverDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = helper.correctWeight(addSilverDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
                 }
                 if (addSilverDataGridView.Columns[e.ColumnIndex].Name == "caret")
@@ -151,7 +157,7 @@ namespace SYA
             }
             catch
             {
-              //  MessageBox.Show("error is gross please check again");
+                //  MessageBox.Show("error is gross please check again");
             }
         }
         private void netValueChanged(DataGridViewCellEventArgs e)
@@ -288,6 +294,35 @@ namespace SYA
         }
         private void gridviewstyle()
         {
+            int formWidth = this.ClientSize.Width;
+            int ww = (int)(formWidth * 0.03125);
+            addSilverDataGridView.Columns["select"].Visible = false;
+            addSilverDataGridView.Columns["select"].Width = 0;
+            addSilverDataGridView.Columns["tagno"].Width = (int)(ww * 5);
+            addSilverDataGridView.Columns["type"].Width = (int)(ww * 5);
+            addSilverDataGridView.Columns["caret"].Width = (int)(ww * 2);
+            addSilverDataGridView.Columns["gross"].Width = (int)(ww * 2);
+            addSilverDataGridView.Columns["net"].Width = (int)(ww * 2);
+            addSilverDataGridView.Columns["labour"].Width = (int)(ww * 2);
+            addSilverDataGridView.Columns["wholeLabour"].Width = (int)(ww * 2);
+            addSilverDataGridView.Columns["other"].Width = (int)(ww * 2);
+            addSilverDataGridView.Columns["price"].Width = (int)(ww * 2);
+            addSilverDataGridView.Columns["size"].Width = (int)(ww * 2);
+            addSilverDataGridView.Columns["comment"].Width = (int)(ww * 4);
+            if ((float)(formWidth * 0.0066) > 12.5)
+            {
+                foreach (DataGridViewColumn column in addSilverDataGridView.Columns)
+                {
+                    column.DefaultCellStyle.Font = new Font("Arial", (float)(formWidth * 0.0066), FontStyle.Regular);
+                }
+            }
+            else
+            {
+                foreach (DataGridViewColumn column in addSilverDataGridView.Columns)
+                {
+                    column.DefaultCellStyle.Font = new Font("Arial", (float)12.5, FontStyle.Regular);
+                }
+            }
             addSilverDataGridView.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(114, 131, 89); addSilverDataGridView.Columns["select"].HeaderCell.Style.BackColor = Color.FromArgb(151, 169, 124);
             addSilverDataGridView.Columns["tagno"].HeaderCell.Style.BackColor = Color.FromArgb(166, 185, 139);
             addSilverDataGridView.Columns["type"].HeaderCell.Style.BackColor = Color.FromArgb(181, 201, 154);
@@ -302,7 +337,7 @@ namespace SYA
             addSilverDataGridView.Columns["comment"].HeaderCell.Style.BackColor = Color.FromArgb(151, 169, 124); foreach (DataGridViewColumn column in addSilverDataGridView.Columns)
             {
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                column.DefaultCellStyle.Font = new Font("Arial", (float)12.5); column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 column.HeaderCell.Style.Font = new Font("Arial", (float)12.5, FontStyle.Bold);
             }
         }
@@ -347,76 +382,36 @@ namespace SYA
             dataTable.Columns.Add("prcode", typeof(string));
             return dataTable;
         }
-        private bool SaveData(DataGridViewRow selectedRow, int check)
+        private bool SaveData(DataGridViewRow selectedRow)
         {
-            if (check == 0)
+
+            try
             {
-                try
+                if (selectedRow.Cells["tagno"].Value != null && !string.IsNullOrEmpty(selectedRow.Cells["tagno"].Value.ToString()))
                 {
-                    if (addSilverDataGridView.Rows.Count == 0)
+                    if (UpdateData(selectedRow))
                     {
-                        MessageBox.Show("DataGridView is empty. Check your data population logic.");
-                        return false;
+                        txtMessageBox.Text = "Data Updated Successfully for " + selectedRow.Cells["tagno"].Value.ToString() + ".";
+                        messageBoxTimer.Start();
                     }
-                    foreach (DataGridViewRow row in addSilverDataGridView.Rows)
-                    {
-                        if (!row.IsNewRow)
-                        {
-                            if (row.Cells["tagno"].Value != null && !string.IsNullOrEmpty(row.Cells["tagno"].Value.ToString()))
-                            {
-                                if (UpdateData(row))
-                                {
-                                    txtMessageBox.Text = "Data Updated Successfully for " + row.Cells["tagno"].Value.ToString() + ".";
-                                    messageBoxTimer.Start();
-                                }
-                            }
-                            else
-                            {
-                                if (InsertData(row))
-                                {
-                                    txtMessageBox.Text = "Data Added Successfully for " + row.Cells["tagno"].Value.ToString() + ".";
-                                    messageBoxTimer.Start();
-                                }
-                            }
-                        }
-                    }
-                    return true;
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show($"Error saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    if (InsertData(selectedRow))
+                    {
+                        txtMessageBox.Text = "Data Added Successfully for " + selectedRow.Cells["tagno"].Value.ToString() + ".";
+                        messageBoxTimer.Start();
+                    }
                 }
+                return true;
             }
-            else if (check == 1)
+            catch (Exception ex)
             {
-                try
-                {
-                    if (selectedRow.Cells["tagno"].Value != null && !string.IsNullOrEmpty(selectedRow.Cells["tagno"].Value.ToString()))
-                    {
-                        if (UpdateData(selectedRow))
-                        {
-                            txtMessageBox.Text = "Data Updated Successfully for " + selectedRow.Cells["tagno"].Value.ToString() + ".";
-                            messageBoxTimer.Start();
-                        }
-                    }
-                    else
-                    {
-                        if (InsertData(selectedRow))
-                        {
-                            txtMessageBox.Text = "Data Added Successfully for " + selectedRow.Cells["tagno"].Value.ToString() + ".";
-                            messageBoxTimer.Start();
-                        }
-                    }
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+                MessageBox.Show($"Error saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            return false;
+
+
         }
         private void UpdateTagNo(int rowIndex)
         {
@@ -615,7 +610,6 @@ namespace SYA
                 return false;
             }
         }
-    
         private void PrintData(bool single)
         {
             try
@@ -686,6 +680,7 @@ namespace SYA
         }
         private void addSilver_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
+            MessageBox.Show("ajhadada");
             DataGridView dataGridView10 = addSilverDataGridView;
             string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
             DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
@@ -708,7 +703,7 @@ namespace SYA
                     if (currentColumnName == "comment")
                     {
                         DataGridViewRow empty = new DataGridViewRow();
-                        if (SaveData(selectedRow, 1))
+                        if (SaveData(selectedRow))
                         {
                             string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
                             if (tagNumber.Length > 1)
@@ -729,7 +724,7 @@ namespace SYA
                     int currentRowIndex = dataGridView.CurrentCell.RowIndex;
                     if (currentColumnName == "comment")
                     {
-                        SaveData(selectedRow, 1);
+                        SaveData(selectedRow);
                     }
                 }
             }
@@ -755,7 +750,7 @@ namespace SYA
                     {
                         DataGridViewRow empty = new DataGridViewRow();
                         DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
-                        if (SaveData(selectedRow, 1))
+                        if (SaveData(selectedRow))
                         {
                             string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
                             if (tagNumber.Length > 1)
@@ -777,7 +772,7 @@ namespace SYA
                     if (currentColumnName == "comment")
                     {
                         DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
-                        SaveData(selectedRow, 1);
+                        SaveData(selectedRow);
                     }
                 }
             }
@@ -803,7 +798,7 @@ namespace SYA
                     if (currentColumnName == "comment")
                     {
                         DataGridViewRow empty = new DataGridViewRow();
-                        if (SaveData(selectedRow, 1))
+                        if (SaveData(selectedRow))
                         {
                             string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
                             if (tagNumber.Length > 1)
@@ -824,7 +819,7 @@ namespace SYA
                     int currentRowIndex = dataGridView.CurrentCell.RowIndex;
                     if (currentColumnName == "comment")
                     {
-                        SaveData(selectedRow, 1);
+                        SaveData(selectedRow);
                     }
                 }
             }
