@@ -66,26 +66,28 @@
             panel1.Controls.Add(panel2);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1604, 818);
+            panel1.Size = new Size(1404, 614);
             panel1.TabIndex = 0;
             // 
             // dataGridView3
             // 
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Location = new Point(857, 144);
+            dataGridView3.Location = new Point(750, 108);
+            dataGridView3.Margin = new Padding(3, 2, 3, 2);
             dataGridView3.Name = "dataGridView3";
             dataGridView3.RowHeadersWidth = 51;
             dataGridView3.RowTemplate.Height = 29;
-            dataGridView3.Size = new Size(695, 658);
+            dataGridView3.Size = new Size(608, 494);
             dataGridView3.TabIndex = 9;
             // 
             // label2
             // 
             label2.Font = new Font("Segoe UI", 19F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(857, 42);
+            label2.Location = new Point(750, 32);
             label2.Name = "label2";
-            label2.Size = new Size(695, 79);
+            label2.Size = new Size(608, 59);
             label2.TabIndex = 8;
             label2.Text = "label2";
             // 
@@ -93,9 +95,10 @@
             // 
             panel9.Controls.Add(dataGridView1);
             panel9.Dock = DockStyle.Left;
-            panel9.Location = new Point(395, 10);
+            panel9.Location = new Point(345, 8);
+            panel9.Margin = new Padding(3, 2, 3, 2);
             panel9.Name = "panel9";
-            panel9.Size = new Size(400, 798);
+            panel9.Size = new Size(350, 598);
             panel9.TabIndex = 0;
             // 
             // dataGridView1
@@ -103,18 +106,20 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(400, 798);
+            dataGridView1.Size = new Size(350, 598);
             dataGridView1.TabIndex = 4;
             // 
             // panel7
             // 
             panel7.Dock = DockStyle.Left;
-            panel7.Location = new Point(367, 10);
+            panel7.Location = new Point(321, 8);
+            panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
-            panel7.Size = new Size(28, 798);
+            panel7.Size = new Size(24, 598);
             panel7.TabIndex = 7;
             // 
             // panel6
@@ -125,26 +130,29 @@
             panel6.Controls.Add(textBox1);
             panel6.Controls.Add(label1);
             panel6.Dock = DockStyle.Left;
-            panel6.Location = new Point(10, 10);
+            panel6.Location = new Point(9, 8);
+            panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(357, 798);
+            panel6.Size = new Size(312, 598);
             panel6.TabIndex = 6;
             // 
             // panel10
             // 
             panel10.Dock = DockStyle.Top;
-            panel10.Location = new Point(0, 234);
+            panel10.Location = new Point(0, 180);
+            panel10.Margin = new Padding(3, 2, 3, 2);
             panel10.Name = "panel10";
-            panel10.Size = new Size(357, 34);
+            panel10.Size = new Size(312, 26);
             panel10.TabIndex = 5;
             // 
             // btnSell
             // 
             btnSell.Dock = DockStyle.Top;
             btnSell.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSell.Location = new Point(0, 184);
+            btnSell.Location = new Point(0, 142);
+            btnSell.Margin = new Padding(3, 2, 3, 2);
             btnSell.Name = "btnSell";
-            btnSell.Size = new Size(357, 50);
+            btnSell.Size = new Size(312, 38);
             btnSell.TabIndex = 3;
             btnSell.Text = "SELL";
             btnSell.UseVisualStyleBackColor = true;
@@ -153,19 +161,22 @@
             // panel8
             // 
             panel8.Dock = DockStyle.Top;
-            panel8.Location = new Point(0, 150);
+            panel8.Location = new Point(0, 116);
+            panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(357, 34);
+            panel8.Size = new Size(312, 26);
             panel8.TabIndex = 2;
             // 
             // textBox1
             // 
             textBox1.Dock = DockStyle.Top;
             textBox1.Font = new Font("Segoe UI", 19F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(0, 100);
+            textBox1.Location = new Point(0, 75);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(357, 50);
+            textBox1.Size = new Size(312, 41);
             textBox1.TabIndex = 1;
+            textBox1.TextChanged += textBox1_TextChanged;
             textBox1.KeyPress += textBox1_KeyPress;
             // 
             // label1
@@ -174,7 +185,7 @@
             label1.Font = new Font("Segoe UI", 25F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(357, 100);
+            label1.Size = new Size(312, 75);
             label1.TabIndex = 0;
             label1.Text = "SELL ITEM";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -182,33 +193,37 @@
             // panel5
             // 
             panel5.Dock = DockStyle.Bottom;
-            panel5.Location = new Point(10, 808);
+            panel5.Location = new Point(9, 606);
+            panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1584, 10);
+            panel5.Size = new Size(1386, 8);
             panel5.TabIndex = 3;
             // 
             // panel4
             // 
             panel4.Dock = DockStyle.Top;
-            panel4.Location = new Point(10, 0);
+            panel4.Location = new Point(9, 0);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1584, 10);
+            panel4.Size = new Size(1386, 8);
             panel4.TabIndex = 2;
             // 
             // panel3
             // 
             panel3.Dock = DockStyle.Right;
-            panel3.Location = new Point(1594, 0);
+            panel3.Location = new Point(1395, 0);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(10, 818);
+            panel3.Size = new Size(9, 614);
             panel3.TabIndex = 1;
             // 
             // panel2
             // 
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(10, 818);
+            panel2.Size = new Size(9, 614);
             panel2.TabIndex = 0;
             // 
             // timer1
@@ -217,10 +232,11 @@
             // 
             // SaleItem
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1604, 818);
+            ClientSize = new Size(1404, 614);
             Controls.Add(panel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "SaleItem";
             Text = "SaleItem";
             WindowState = FormWindowState.Maximized;

@@ -32,7 +32,7 @@ namespace SYA
         // Loads form by name in panelchild
         private void LoadForm(Form form)
         {
-           
+
             // Close the currently displayed form (if any)
             if (panelChild.Controls.Count > 0)
             {

@@ -1,13 +1,10 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿//using Microsoft.Office.Interop.Excel;
 using System;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SQLite;
 using System.Text;
-using System.Windows.Forms;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
 using DataTable = System.Data.DataTable;
-using ScrollBars = System.Windows.Forms.ScrollBars;
 
 namespace SYA
 {
@@ -763,7 +760,7 @@ namespace SYA
 
 
                 // Use the 'id' as needed
-               // MessageBox.Show($"ID for id '{id}': {id}");
+                // MessageBox.Show($"ID for id '{id}': {id}");
                 return it_name;
             }
             else
@@ -817,7 +814,7 @@ namespace SYA
 
                 sya_item_master = sqlite(query);
 
-                
+
                 // Empty the DataGridView
                 dataGridView3.Rows.Clear();
                 dataGridView3.Columns.Clear();
@@ -827,30 +824,30 @@ namespace SYA
                 dataGridView3.Columns.Add("Column2", "Header2");
                 dataGridView3.Columns.Add("Column3", "Header3");
                 dataGridView3.Columns.Add("Column4", "Header4");
-                
+
 
                 // Add Rows from DataTable
 
                 for (int i = 1; i <= 53; i++)
-                    {
-                        string name = getITNameFromID(sya_item_master,i.ToString());
+                {
+                    string name = getITNameFromID(sya_item_master, i.ToString());
                     string type = getITTypeFromID(sya_item_master, i.ToString());
 
 
-                    string firstweight= decrypt(long.Parse(changeorder(sya_sales_dt.Rows[0]["COLUMN" + i].ToString()))).ToString();
-                    
-                    string secondweight= decrypt(long.Parse(changeorder(sya_sales_dt.Rows[1]["COLUMN" + i].ToString()))).ToString();
-                    string count= decrypt(long.Parse(changeorder(sya_sales_dt.Rows[2]["COLUMN" + i].ToString()))).ToString();
-                    object[] rowData = { name,type, firstweight+"."+secondweight, count };
+                    string firstweight = decrypt(long.Parse(changeorder(sya_sales_dt.Rows[0]["COLUMN" + i].ToString()))).ToString();
+
+                    string secondweight = decrypt(long.Parse(changeorder(sya_sales_dt.Rows[1]["COLUMN" + i].ToString()))).ToString();
+                    string count = decrypt(long.Parse(changeorder(sya_sales_dt.Rows[2]["COLUMN" + i].ToString()))).ToString();
+                    object[] rowData = { name, type, firstweight + "." + secondweight, count };
                     if (firstweight != "0")
                     {
                         dataGridView3.Rows.Add(rowData);
                     }
-                    }
-                   
-                
+                }
+
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string errorMessage = ex.Message;
                 string stackTrace = ex.StackTrace;
@@ -867,6 +864,11 @@ namespace SYA
                 // Display the information in a message box
                 MessageBox.Show(exceptionInfo, "Exception Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

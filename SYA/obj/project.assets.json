@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {
+    "net6.0-windows8.0": {
       "EntityFramework/6.4.4": {
         "type": "package",
         "dependencies": {
@@ -2053,7 +2053,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": [
+    "net6.0-windows8.0": [
       "Microsoft.Extensions.Configuration >= 8.0.0",
       "Microsoft.Extensions.Configuration.Json >= 8.0.0",
       "QRCoder >= 1.4.3",
@@ -2065,37 +2065,36 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pvraj\\.nuget\\packages\\": {},
-    "C:\\Software\\VisualStudio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\SYA\\.nuget\\packages\\": {},
+    "C:\\Installed Softwares\\Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYA\\SYA.csproj",
+      "projectUniqueName": "F:\\SYA\\SYA\\SYA.csproj",
       "projectName": "SYA",
-      "projectPath": "C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYA\\SYA.csproj",
-      "packagesPath": "C:\\Users\\pvraj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYA\\obj\\",
+      "projectPath": "F:\\SYA\\SYA\\SYA.csproj",
+      "packagesPath": "C:\\Users\\SYA\\.nuget\\packages\\",
+      "outputPath": "F:\\SYA\\SYA\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Software\\VisualStudio\\Shared\\NuGetPackages"
+        "C:\\Installed Softwares\\Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\pvraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\SYA\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0-windows"
+        "net6.0-windows8.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0-windows7.0": {
-          "targetAlias": "net6.0-windows",
+        "net6.0-windows8.0": {
+          "targetAlias": "net6.0-windows8.0",
           "projectReferences": {}
         }
       },
@@ -2103,11 +2102,16 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
-      "net6.0-windows7.0": {
-        "targetAlias": "net6.0-windows",
+      "net6.0-windows8.0": {
+        "targetAlias": "net6.0-windows8.0",
         "dependencies": {
           "Microsoft.Extensions.Configuration": {
             "target": "Package",
@@ -2161,7 +2165,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

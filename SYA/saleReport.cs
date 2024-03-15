@@ -179,110 +179,110 @@ namespace SYA
         }
         private void ExportToExcel(DataGridView dataGridView, string filePath)
         {
-            try
-            {
-                Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-                Microsoft.Office.Interop.Excel.Workbook excelWorkbook = excelApp.Workbooks.Add();
-                Microsoft.Office.Interop.Excel.Worksheet excelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelWorkbook.Sheets[1];
+            //try
+            //{
+            //    Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            //    Microsoft.Office.Interop.Excel.Workbook excelWorkbook = excelApp.Workbooks.Add();
+            //    Microsoft.Office.Interop.Excel.Worksheet excelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelWorkbook.Sheets[1];
 
-                // Copy the column headers from the DataGridView to Excel
-                for (int i = 0; i < dataGridView.Columns.Count; i++)
-                {
-                    excelWorksheet.Cells[1, i + 1] = dataGridView.Columns[i].HeaderText;
+            //    // Copy the column headers from the DataGridView to Excel
+            //    for (int i = 0; i < dataGridView.Columns.Count; i++)
+            //    {
+            //        excelWorksheet.Cells[1, i + 1] = dataGridView.Columns[i].HeaderText;
 
-                    // Apply formatting to header cells
-                    ApplyHeaderCellFormatting(excelWorksheet.Cells[1, i + 1]);
-                }
+            //        // Apply formatting to header cells
+            //        ApplyHeaderCellFormatting(excelWorksheet.Cells[1, i + 1]);
+            //    }
 
-                // Initialize row index for data
-                int rowIndex = 2;
-                bool goldOccured = false;
-                bool silverOccured = false;
+            //    // Initialize row index for data
+            //    int rowIndex = 2;
+            //    bool goldOccured = false;
+            //    bool silverOccured = false;
 
-                // Export data from DataGridView to Excel
-                foreach (DataGridViewRow row in dataGridView.Rows)
-                {
-                    if (!goldOccured && (row.Cells[0].Value.ToString() == "026" || row.Cells[0].Value.ToString() == "26"))
-                    {
-                        goldOccured = true;
-                        // Add a new row for "Gold Invoice" with merged cells
-                        AddMergedRow(excelWorksheet, rowIndex, "Gold Invoice", dataGridView.Columns.Count);
+            //    // Export data from DataGridView to Excel
+            //    foreach (DataGridViewRow row in dataGridView.Rows)
+            //    {
+            //        if (!goldOccured && (row.Cells[0].Value.ToString() == "026" || row.Cells[0].Value.ToString() == "26"))
+            //        {
+            //            goldOccured = true;
+            //            // Add a new row for "Gold Invoice" with merged cells
+            //            AddMergedRow(excelWorksheet, rowIndex, "Gold Invoice", dataGridView.Columns.Count);
 
-                        // Apply formatting to the merged cell
-                        ApplyMergedCellFormatting(excelWorksheet.Range[excelWorksheet.Cells[rowIndex, 1], excelWorksheet.Cells[rowIndex, dataGridView.Columns.Count]]);
+            //            // Apply formatting to the merged cell
+            //            ApplyMergedCellFormatting(excelWorksheet.Range[excelWorksheet.Cells[rowIndex, 1], excelWorksheet.Cells[rowIndex, dataGridView.Columns.Count]]);
 
-                        rowIndex++;
-                    }
+            //            rowIndex++;
+            //        }
 
-                    if (!silverOccured && (row.Cells[0].Value.ToString() == "027" || row.Cells[0].Value.ToString() == "27"))
-                    {
-                        silverOccured = true;
-                        // Add a new row for "Silver Invoice" with merged cells
-                        AddMergedRow(excelWorksheet, rowIndex, "Silver Invoice", dataGridView.Columns.Count);
+            //        if (!silverOccured && (row.Cells[0].Value.ToString() == "027" || row.Cells[0].Value.ToString() == "27"))
+            //        {
+            //            silverOccured = true;
+            //            // Add a new row for "Silver Invoice" with merged cells
+            //            AddMergedRow(excelWorksheet, rowIndex, "Silver Invoice", dataGridView.Columns.Count);
 
-                        // Apply formatting to the merged cell
-                        ApplyMergedCellFormatting(excelWorksheet.Range[excelWorksheet.Cells[rowIndex, 1], excelWorksheet.Cells[rowIndex, dataGridView.Columns.Count]]);
+            //            // Apply formatting to the merged cell
+            //            ApplyMergedCellFormatting(excelWorksheet.Range[excelWorksheet.Cells[rowIndex, 1], excelWorksheet.Cells[rowIndex, dataGridView.Columns.Count]]);
 
-                        rowIndex++;
-                    }
+            //            rowIndex++;
+            //        }
 
-                    // Export data for each row
-                    for (int j = 0; j < dataGridView.Columns.Count; j++)
-                    {
-                        excelWorksheet.Cells[rowIndex, j + 1] = row.Cells[j].Value;
+            //        // Export data for each row
+            //        for (int j = 0; j < dataGridView.Columns.Count; j++)
+            //        {
+            //            excelWorksheet.Cells[rowIndex, j + 1] = row.Cells[j].Value;
 
-                        // Apply formatting to data cells
-                        ApplyDataCellFormatting(excelWorksheet.Cells[rowIndex, j + 1]);
-                    }
-                    rowIndex++;
-                }
+            //            // Apply formatting to data cells
+            //            ApplyDataCellFormatting(excelWorksheet.Cells[rowIndex, j + 1]);
+            //        }
+            //        rowIndex++;
+            //    }
 
-                // AutoFit column widths
-                excelWorksheet.Columns.AutoFit();
+            //    // AutoFit column widths
+            //    excelWorksheet.Columns.AutoFit();
 
-                // Save the Excel file
-                excelWorkbook.SaveAs(filePath);
-                excelWorkbook.Close();
-                excelApp.Quit();
+            //    // Save the Excel file
+            //    excelWorkbook.SaveAs(filePath);
+            //    excelWorkbook.Close();
+            //    excelApp.Quit();
 
-                MessageBox.Show("Data exported to Excel successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error exporting to Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //    MessageBox.Show("Data exported to Excel successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error exporting to Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
 
-        private void ApplyHeaderCellFormatting(Microsoft.Office.Interop.Excel.Range cell)
-        {
-            cell.Font.Bold = true;
-            cell.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
-            cell.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-            cell.HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
-            cell.VerticalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
-        }
+        //private void ApplyHeaderCellFormatting(Microsoft.Office.Interop.Excel.Range cell)
+        //{
+        //    cell.Font.Bold = true;
+        //    cell.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
+        //    cell.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+        //    cell.HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
+        //    cell.VerticalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
+        //}
 
-        private void ApplyMergedCellFormatting(Microsoft.Office.Interop.Excel.Range cellRange)
-        {
-            cellRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Gold);
-            cellRange.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-            cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
-            cellRange.VerticalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
-        }
+        //private void ApplyMergedCellFormatting(Microsoft.Office.Interop.Excel.Range cellRange)
+        //{
+        //    cellRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Gold);
+        //    cellRange.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+        //    cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
+        //    cellRange.VerticalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
+        //}
 
-        private void ApplyDataCellFormatting(Microsoft.Office.Interop.Excel.Range cell)
-        {
-            cell.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-            cell.HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
-            cell.VerticalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
-        }
+        //private void ApplyDataCellFormatting(Microsoft.Office.Interop.Excel.Range cell)
+        //{
+        //    cell.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+        //    cell.HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
+        //    cell.VerticalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
+        //}
 
-        private void AddMergedRow(Microsoft.Office.Interop.Excel.Worksheet worksheet, int rowIndex, string value, int columnCount)
-        {
-            worksheet.Cells[rowIndex, 1] = value;
-            worksheet.Range[worksheet.Cells[rowIndex, 1], worksheet.Cells[rowIndex, columnCount]].Merge();
-        }
+        //private void AddMergedRow(Microsoft.Office.Interop.Excel.Worksheet worksheet, int rowIndex, string value, int columnCount)
+        //{
+        //    worksheet.Cells[rowIndex, 1] = value;
+        //    worksheet.Range[worksheet.Cells[rowIndex, 1], worksheet.Cells[rowIndex, columnCount]].Merge();
+        //}
 
 
         private void dataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)

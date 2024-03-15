@@ -106,8 +106,6 @@ F:\SYA\SYA\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.S
 F:\SYA\SYA\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
 F:\SYA\SYA\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 F:\SYA\SYA\obj\Debug\net6.0-windows\SYA.csproj.AssemblyReference.cache
-F:\SYA\SYA\obj\Debug\net6.0-windows\Interop.Microsoft.Office.Interop.Access.dll
-F:\SYA\SYA\obj\Debug\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
 F:\SYA\SYA\obj\Debug\net6.0-windows\SYA.csproj.ResolveComReference.cache
 F:\SYA\SYA\obj\Debug\net6.0-windows\SYA.addgold.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows\SYA.addSilver.resources
