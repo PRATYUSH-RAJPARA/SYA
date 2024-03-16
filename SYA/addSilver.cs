@@ -616,17 +616,20 @@ namespace SYA
             {
                 PrintDocument pd = new PrintDocument();
                 pd.PrinterSettings.PrinterName = "TSC_TE244";
-                pd.PrintPage += new PrintPageEventHandler(PrintPageSilver925);
+              
                 if (!single)
                 {
-                    for (int rowIndex = 0; rowIndex < addSilverDataGridView.Rows.Count; rowIndex++)
-                    {
-                        DataGridViewRow row = addSilverDataGridView.Rows[rowIndex];
-                        addSilverDataGridView.CurrentCell = row.Cells[0]; pd.Print();
-                    }
+                    //for (int rowIndex = 0; rowIndex < addSilverDataGridView.Rows.Count; rowIndex++)
+                    //{
+                    //    DataGridViewRow row = addSilverDataGridView.Rows[rowIndex];
+                    //    addSilverDataGridView.CurrentCell = row.Cells[0]; pd.Print();
+                    //}
+                    pd.PrintPage += new PrintPageEventHandler(PrintFrame);
+                    pd.Print();
                 }
                 else
                 {
+                    pd.PrintPage += new PrintPageEventHandler(PrintPageSilver925);
                     pd.Print();
                 }
             }
@@ -836,6 +839,30 @@ namespace SYA
                 BTNTAGTYPE.Text = "Weight Tag";
                 tagtype = "weight";
             }
+        }
+        private void PrintFrame(object sender, PrintPageEventArgs e)
+        {
+            Font font = new Font("Arial Black", 8, FontStyle.Bold); // Adjust the font size
+            SolidBrush brush = new SolidBrush(Color.Black);
+
+            // Set the starting position for printing
+            float xPos = 0; // Adjust the starting X position
+            float yPos = 0; // Adjust the starting Y position
+
+            // Get the printer DPI
+            float dpiX = e.PageSettings.PrinterResolution.X;
+            float dpiY = e.PageSettings.PrinterResolution.Y;
+
+            float rectX = 4; // Adjust the X position of the rectangle
+            float rectY = 4; // Adjust the Y position of the rectangle
+            float rectWidth = 211; // Adjust the width of the rectangle
+            float rectHeight = 45; // Adjust the height of the rectangle
+            float a = float.Parse(textBox3.Text);
+            e.Graphics.DrawString(textBox2.Text, new Font("Arial", (float)a, FontStyle.Bold), brush, new RectangleF(4, (float)4, (float)211, (float)45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PrintData(false);
         }
     }
 }

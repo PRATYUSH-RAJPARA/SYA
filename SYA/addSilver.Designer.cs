@@ -86,6 +86,12 @@
             textBox1 = new TextBox();
             panel50 = new Panel();
             panel3 = new Panel();
+            textBox3 = new TextBox();
+            panel15 = new Panel();
+            button2 = new Button();
+            panel14 = new Panel();
+            textBox2 = new TextBox();
+            panel13 = new Panel();
             BTNTAGTYPE = new Button();
             panel6 = new Panel();
             txtCurrentPrice = new TextBox();
@@ -672,6 +678,12 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(233, 245, 219);
+            panel3.Controls.Add(textBox3);
+            panel3.Controls.Add(panel15);
+            panel3.Controls.Add(button2);
+            panel3.Controls.Add(panel14);
+            panel3.Controls.Add(textBox2);
+            panel3.Controls.Add(panel13);
             panel3.Controls.Add(BTNTAGTYPE);
             panel3.Controls.Add(panel6);
             panel3.Controls.Add(txtCurrentPrice);
@@ -686,6 +698,72 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1338, 49);
             panel3.TabIndex = 2;
+            // 
+            // textBox3
+            // 
+            textBox3.Dock = DockStyle.Left;
+            textBox3.Font = new Font("Segoe UI", 21.5F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox3.Location = new Point(966, 4);
+            textBox3.Margin = new Padding(3, 2, 3, 2);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(78, 46);
+            textBox3.TabIndex = 54;
+            textBox3.Text = "25";
+            // 
+            // panel15
+            // 
+            panel15.Dock = DockStyle.Left;
+            panel15.Location = new Point(934, 4);
+            panel15.Margin = new Padding(3, 2, 3, 2);
+            panel15.Name = "panel15";
+            panel15.Size = new Size(32, 45);
+            panel15.TabIndex = 53;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(96, 111, 73);
+            button2.Dock = DockStyle.Left;
+            button2.FlatAppearance.BorderColor = Color.FromArgb(165, 100, 211);
+            button2.FlatAppearance.BorderSize = 5;
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(748, 4);
+            button2.Margin = new Padding(3, 2, 3, 2);
+            button2.Name = "button2";
+            button2.Size = new Size(186, 45);
+            button2.TabIndex = 52;
+            button2.Text = "Print Tag";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
+            // panel14
+            // 
+            panel14.Dock = DockStyle.Left;
+            panel14.Location = new Point(714, 4);
+            panel14.Margin = new Padding(3, 2, 3, 2);
+            panel14.Name = "panel14";
+            panel14.Size = new Size(34, 45);
+            panel14.TabIndex = 51;
+            // 
+            // textBox2
+            // 
+            textBox2.Dock = DockStyle.Left;
+            textBox2.Font = new Font("Segoe UI", 21.5F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox2.Location = new Point(513, 4);
+            textBox2.Margin = new Padding(3, 2, 3, 2);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(201, 46);
+            textBox2.TabIndex = 50;
+            // 
+            // panel13
+            // 
+            panel13.Dock = DockStyle.Left;
+            panel13.Location = new Point(479, 4);
+            panel13.Margin = new Padding(3, 2, 3, 2);
+            panel13.Name = "panel13";
+            panel13.Size = new Size(34, 45);
+            panel13.TabIndex = 49;
             // 
             // BTNTAGTYPE
             // 
@@ -923,5 +1001,11 @@
         private Panel panel6;
         private Panel panel11;
         private Panel panel12;
+        private Button button2;
+        private Panel panel14;
+        private TextBox textBox2;
+        private Panel panel13;
+        private TextBox textBox3;
+        private Panel panel15;
     }
 }
