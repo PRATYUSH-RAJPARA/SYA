@@ -14,4 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SYA
-build_property.ProjectDir = C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\
+build_property.ProjectDir = F:\SYA\SYA\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

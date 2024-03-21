@@ -616,7 +616,7 @@ namespace SYA
             {
                 PrintDocument pd = new PrintDocument();
                 pd.PrinterSettings.PrinterName = "TSC_TE244";
-              
+
                 if (!single)
                 {
                     //for (int rowIndex = 0; rowIndex < addSilverDataGridView.Rows.Count; rowIndex++)
@@ -863,6 +863,11 @@ namespace SYA
         private void button2_Click(object sender, EventArgs e)
         {
             PrintData(false);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           // Contact.ParentDataCareData();
         }
     }
 }

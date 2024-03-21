@@ -18,7 +18,7 @@ namespace SYA
                 if (_configuration == null)
                 {
                     _configuration = new ConfigurationBuilder()
-                        .SetBasePath(@"C:\SYA_SOFT\config")
+                        .SetBasePath(@"D:\SYA_SOFT_TEST\config")
                         .AddJsonFile("appsettings.json")
                         .Build();
                 }

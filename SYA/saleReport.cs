@@ -169,7 +169,7 @@ namespace SYA
                     exportDataTable.Rows.Add(row.ItemArray);
                 }
 
-               
+
             }
             catch (Exception ex)
             {
@@ -453,6 +453,11 @@ namespace SYA
             //ExportToExcel(dataGridView1, "C:\\SYA_SOFT\\config\\ExportedData.xlsx");
             ExportToExcel(dataGridView1, helper.excelFile);
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Contact.ParentDataCareData( richTextBox1);
         }
     }
 }
