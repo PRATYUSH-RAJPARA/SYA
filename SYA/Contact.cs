@@ -27,7 +27,6 @@ namespace SYA
         static RichTextBox richText = new RichTextBox();
         static void fetchData()
         {
-            AddText(System.Reflection.MethodBase.GetCurrentMethod().Name);
             clearData(RawData);
             RawData = helper.FetchDataTableFromSYADataBase("SELECT * FROM RawData");
             clearData(ExcludedData);
@@ -41,7 +40,6 @@ namespace SYA
         }
         static void setDataTableColumns(DataTable dt)
         {
-            AddText(System.Reflection.MethodBase.GetCurrentMethod().Name);
             clearData(dt);
             dt.Columns.Add("acCode", typeof(string));
             dt.Columns.Add("acName0", typeof(string));
@@ -69,7 +67,6 @@ namespace SYA
         }
         static void printDT(DataTable dt)
         {
-            AddText(System.Reflection.MethodBase.GetCurrentMethod().Name);
             StringBuilder message = new StringBuilder();
 
             foreach (DataRow row in dt.Rows)
@@ -80,17 +77,15 @@ namespace SYA
                 }
                 message.AppendLine();
             }
-            AddText(message.ToString());
         }
         static void clearData(DataTable dt)
         {
-            AddText(System.Reflection.MethodBase.GetCurrentMethod().Name);
             dt.Clear();
             dt.Columns.Clear();
         }
         public static void ParentDataCareData(RichTextBox richTextBox1)
         {
-            AddText(System.Reflection.MethodBase.GetCurrentMethod().Name);
+
             richText = richTextBox1;
             DataTable DataCareData;
             getDataFromDataCare();
@@ -198,11 +193,6 @@ namespace SYA
                 else if (compareInTable(dtRows[rowIndex], UnverifiedData, true, "UnverifiedData")) { }
                 UnverifiedData.ImportRow(dtRows[rowIndex]);
             }
-            //foreach (DataRow row in dtRows)
-            //{
-               
-            //    UnverifiedData.ImportRow(row);
-            //}
             dt.AcceptChanges();
             ExcludedData.AcceptChanges();
             VerifiedCustomerData.AcceptChanges();
