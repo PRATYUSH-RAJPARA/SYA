@@ -19,16 +19,24 @@ namespace SYA
         static DataTable VerifiedCustomerData = new DataTable();
         static DataTable OtherVerifiedData = new DataTable();
         static DataTable UnverifiedData = new DataTable();
-        static DataTable DataCareDataSorted = new DataTable();
+        static DataTable RawDataSorted = new DataTable();
+        static DataTable WrongData = new DataTable();
         static string rawMobile;
         static string rawName;
         static string rawSource;
         static string mobile;
         static RichTextBox richText = new RichTextBox();
-        static void fetchData()
+        static void fetchData(string tableName)
         {
             clearData(RawData);
-            RawData = helper.FetchDataTableFromSYADataBase("SELECT * FROM RawData");
+            if (tableName == "datacare")
+            {
+                RawData = helper.FetchFromDataCareDataBase("SELECT * FROM AC_MAST ");
+            }
+            else
+            {
+                RawData = helper.FetchDataTableFromSYADataBase("SELECT * FROM RawData");
+            }
             clearData(ExcludedData);
             ExcludedData = helper.FetchDataTableFromSYADataBase("SELECT * FROM ExcludedData");
             clearData(VerifiedCustomerData);
@@ -37,6 +45,8 @@ namespace SYA
             OtherVerifiedData = helper.FetchDataTableFromSYADataBase("SELECT * FROM OtherVerifiedData");
             clearData(UnverifiedData);
             UnverifiedData = helper.FetchDataTableFromSYADataBase("SELECT * FROM UnverifiedData");
+            clearData(WrongData);
+            WrongData = helper.FetchDataTableFromSYADataBase("SELECT * FROM wrongData");
         }
         static void setDataTableColumns(DataTable dt)
         {
@@ -83,22 +93,18 @@ namespace SYA
             dt.Clear();
             dt.Columns.Clear();
         }
-        public static void ParentDataCareData(RichTextBox richTextBox1)
+        public static void ParentDataCareData(RichTextBox richTextBox1, string tableName)
         {
 
             richText = richTextBox1;
-            DataTable DataCareData;
-            getDataFromDataCare();
-            setDataTableColumns(DataCareDataSorted);
+            fetchData(tableName);
+            setDataTableColumns(RawDataSorted);
             SortDataCareData();
-            void getDataFromDataCare()
-            {
-                DataCareData = helper.FetchFromDataCareDataBase("SELECT * FROM AC_MAST ");
-            }
+            
             void SortDataCareData()
             {
                 string acCode, acName, acAdd, acCity, acPhone, acMobile, acMobile2, acPanNO, acAdhaRNO;
-                foreach (DataRow row in DataCareData.Rows)
+                foreach (DataRow row in RawData.Rows)
                 {
                     setVariables();
                     if (!string.IsNullOrEmpty(acPhone))
@@ -115,31 +121,46 @@ namespace SYA
                     }
                     void setVariables()
                     {
-                        acCode = row.Field<string>("AC_CODE");
-                        acName = row.Field<string>("AC_NAME");
-                        acAdd = row.Field<string>("AC_ADD1") + "   " + row.Field<string>("AC_ADD2") + "   " + row.Field<string>("AC_ADD3") + "   " + row.Field<string>("AC_PIN");
-                        acCity = row.Field<string>("AC_CITY");
-                        acPhone = row.Field<string>("AC_PHONE");
-                        acMobile = row.Field<string>("AC_MOBILE");
-                        acMobile2 = row.Field<string>("AC_MOBILE2");
-                        acPanNO = row.Field<string>("AC_PANNO");
-                        acAdhaRNO = row.Field<string>("AC_ADHARNO");
+                        acCode = row["AC_CODE"].ToString();
+                        acName = row["AC_NAME"].ToString();
+                        if (tableName == "datacare")
+                        {
+                            acAdd = row["AC_ADD1"].ToString() + "   " + row["AC_ADD2"].ToString() + "   " + row["AC_ADD3"].ToString() + "   " + row["AC_PIN"].ToString();
+                        }
+                        else
+                        {
+                            acAdd = row["AC_ADD1"].ToString();
+                        }
+                        acCity = row["AC_CITY"].ToString();
+                        acPhone = row["AC_PHONE"].ToString();
+                        acMobile = row["AC_MOBILE"].ToString();
+                        acMobile2 = row["AC_MOBILE2"].ToString();
+                        acPanNO = row["AC_PANNO"].ToString();
+                        acAdhaRNO = row["AC_ADHARNO"].ToString();
                     }
+
                     void addRow(string mobileField)
                     {
-                        DataRow newRow = DataCareDataSorted.NewRow();
-                        newRow["acCode"] = row.Field<string>("AC_CODE");
-                        newRow["acName0"] = row.Field<string>("AC_NAME");
-                        newRow["acAdd"] = row.Field<string>("AC_ADD1") + "   " + row.Field<string>("AC_ADD2") + "   " + row.Field<string>("AC_ADD3") + "   " + row.Field<string>("AC_PIN");
-                        newRow["acCity"] = row.Field<string>("AC_CITY");
-                        newRow["acMobile"] = row.Field<string>(mobileField);
-                        newRow["acPan"] = row.Field<string>("AC_PANNO");
-                        newRow["acAdhaar"] = row.Field<string>("AC_ADHARNO");
-                        DataCareDataSorted.Rows.Add(newRow);
+                        DataRow newRow = RawDataSorted.NewRow();
+                        newRow["acCode"] = row["AC_CODE"].ToString();
+                        newRow["acName0"] = row["AC_NAME"].ToString();
+                        if (tableName == "datacare")
+                        {
+                            newRow["acAdd"] = (row["AC_ADD1"].ToString() + "   " + row["AC_ADD2"].ToString() + "   " + row["AC_ADD3"].ToString() + "   " + row["AC_PIN"].ToString());
+                        }
+                        else
+                        {
+                            newRow["acAdd"] = row["AC_ADD1"].ToString();
+                        }
+                        newRow["acCity"] = row["AC_CITY"].ToString();
+                        newRow["acMobile"] = row[mobileField].ToString();
+                        newRow["acPan"] = row["AC_PANNO"].ToString();
+                        newRow["acAdhaar"] = row["AC_ADHARNO"].ToString();
+                        RawDataSorted.Rows.Add(newRow);
                     }
                 }
             }
-            compare(DataCareDataSorted);
+            compare(RawDataSorted);
         }
         static bool compareInTable(DataRow row_RawData, DataTable dt, bool addInUnverifiedData, string namee)
         {
@@ -183,13 +204,14 @@ namespace SYA
 
         private static void compare(DataTable dt)
         {
-            fetchData();
+
             DataRow[] dtRows = dt.Select();
             for (int rowIndex = 0; rowIndex < dtRows.Length; rowIndex++)
             {
                 if (compareInTable(dtRows[rowIndex], ExcludedData, false, "ExcludedData")) { }
                 else if (compareInTable(dtRows[rowIndex], VerifiedCustomerData, false, "VerifiedCustomerData")) { }
                 else if (compareInTable(dtRows[rowIndex], OtherVerifiedData, false, "OtherVerifiedData")) { }
+                else if (compareInTable(dtRows[rowIndex], WrongData, false, "WrongData")) { }
                 else if (compareInTable(dtRows[rowIndex], UnverifiedData, true, "UnverifiedData")) { }
                 UnverifiedData.ImportRow(dtRows[rowIndex]);
             }
@@ -197,9 +219,12 @@ namespace SYA
             ExcludedData.AcceptChanges();
             VerifiedCustomerData.AcceptChanges();
             OtherVerifiedData.AcceptChanges();
+            WrongData.AcceptChanges();
             UnverifiedData.AcceptChanges();
-            addDatatavleToDatabase(OtherVerifiedData, "O" +
-                "therVerifiedData");
+            addDatatavleToDatabase(ExcludedData, "ExcludedData");
+            addDatatavleToDatabase(VerifiedCustomerData, "VerifiedCustomerData");
+            addDatatavleToDatabase(OtherVerifiedData, "OtherVerifiedData");
+            addDatatavleToDatabase(WrongData, "WrongData");
             addDatatavleToDatabase(UnverifiedData, "UnverifiedData");
             printDT(OtherVerifiedData);
         }
@@ -209,7 +234,7 @@ namespace SYA
             string deleteQuery = $"DELETE FROM {tableName}";
             helper.RunQueryWithoutParametersSYADataBase(deleteQuery, "ExecuteNonQuery");
 
-           
+
 
             // Insert all data from the DataTable to the table
             foreach (DataRow row in dt.Rows)
