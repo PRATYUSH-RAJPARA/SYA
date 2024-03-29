@@ -93,7 +93,7 @@ namespace SYA
             dt.Clear();
             dt.Columns.Clear();
         }
-        public static void ParentDataCareData(RichTextBox richTextBox1, string tableName)
+        public static void SortContactData(RichTextBox richTextBox1, string tableName)
         {
 
             richText = richTextBox1;

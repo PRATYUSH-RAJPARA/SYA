@@ -133,3 +133,5 @@ C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Debug\net6.0-windows8.0\refint\SYA.d
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.pdb
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.genruntimeconfig.cache
 C:\Users\pvraj\OneDrive\Desktop\SYA\SYA\obj\Debug\net6.0-windows8.0\ref\SYA.dll
+F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.PrintRTGS.resources
+F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.RTGSList.resources

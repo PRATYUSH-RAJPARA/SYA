@@ -457,7 +457,7 @@ namespace SYA
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Contact.ParentDataCareData( richTextBox1,"datacare");
+            Contact.SortContactData( richTextBox1,"datacare");
         }
     }
 }

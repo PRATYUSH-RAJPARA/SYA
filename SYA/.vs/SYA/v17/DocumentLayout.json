@@ -3,40 +3,32 @@
   "WorkspaceRootPath": "F:\\SYA\\SYA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\rtgs\\rtgslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:rtgs\\rtgslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\rtgs\\rtgslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:rtgs\\rtgslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\salereport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:salereport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\rtgs\\rtgslist.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:rtgs\\rtgslist.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\addsilver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:addsilver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\rtgs\\rtgslist.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:rtgs\\rtgslist.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\salereport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:salereport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\rtgs\\printrtgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:rtgs\\printrtgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\saleitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:saleitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\addsilver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:addsilver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\print.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\print.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:print.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\saleitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:saleitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\rtgs\\printrtgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:rtgs\\printrtgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,112 +42,91 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "saleReport.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\saleReport.cs",
-              "RelativeDocumentMoniker": "saleReport.cs",
-              "ToolTip": "F:\\SYA\\SYA\\saleReport.cs",
-              "RelativeToolTip": "saleReport.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAMsBAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T06:48:12.749Z",
+              "DocumentIndex": 3,
+              "Title": "RTGSList.resx",
+              "DocumentMoniker": "F:\\SYA\\SYA\\RTGS\\RTGSList.resx",
+              "RelativeDocumentMoniker": "RTGS\\RTGSList.resx",
+              "ToolTip": "F:\\SYA\\SYA\\RTGS\\RTGSList.resx",
+              "RelativeToolTip": "RTGS\\RTGSList.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-03-29T17:37:34.296Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "saleReport.cs [Design]",
-              "DocumentMoniker": "F:\\SYA\\SYA\\saleReport.cs",
-              "RelativeDocumentMoniker": "saleReport.cs",
-              "ToolTip": "F:\\SYA\\SYA\\saleReport.cs [Design]",
-              "RelativeToolTip": "saleReport.cs [Design]",
+              "DocumentIndex": 2,
+              "Title": "RTGSList.Designer.cs",
+              "DocumentMoniker": "F:\\SYA\\SYA\\RTGS\\RTGSList.Designer.cs",
+              "RelativeDocumentMoniker": "RTGS\\RTGSList.Designer.cs",
+              "ToolTip": "F:\\SYA\\SYA\\RTGS\\RTGSList.Designer.cs",
+              "RelativeToolTip": "RTGS\\RTGSList.Designer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T06:46:43.363Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-03-29T17:37:24.83Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Contact.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Contact.cs",
-              "RelativeDocumentMoniker": "Contact.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Contact.cs",
-              "RelativeToolTip": "Contact.cs",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAmwBAAAAAIAAAA",
+              "Title": "RTGSList.cs",
+              "DocumentMoniker": "F:\\SYA\\SYA\\RTGS\\RTGSList.cs",
+              "RelativeDocumentMoniker": "RTGS\\RTGSList.cs",
+              "ToolTip": "F:\\SYA\\SYA\\RTGS\\RTGSList.cs",
+              "RelativeToolTip": "RTGS\\RTGSList.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAwwBkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T05:06:12.805Z",
+              "WhenOpened": "2024-03-29T17:37:18.568Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
+              "Title": "RTGSList.cs [Design]",
+              "DocumentMoniker": "F:\\SYA\\SYA\\RTGS\\RTGSList.cs",
+              "RelativeDocumentMoniker": "RTGS\\RTGSList.cs",
+              "ToolTip": "F:\\SYA\\SYA\\RTGS\\RTGSList.cs [Design]",
+              "RelativeToolTip": "RTGS\\RTGSList.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-29T17:37:15.764Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "print.cs",
               "DocumentMoniker": "F:\\SYA\\SYA\\print.cs",
               "RelativeDocumentMoniker": "print.cs",
               "ToolTip": "F:\\SYA\\SYA\\print.cs",
               "RelativeToolTip": "print.cs",
-              "ViewState": "AQIAAEwBAAAAAAAAAAAgwG4BAAAUAAAA",
+              "ViewState": "AQIAAPABAAAAAAAAAAAswCECAABWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-15T17:41:22.997Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "addSilver.cs [Design]",
-              "DocumentMoniker": "F:\\SYA\\SYA\\addSilver.cs",
-              "RelativeDocumentMoniker": "addSilver.cs",
-              "ToolTip": "F:\\SYA\\SYA\\addSilver.cs [Design]",
-              "RelativeToolTip": "addSilver.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-15T17:39:01.983Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "addSilver.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\addSilver.cs",
-              "RelativeDocumentMoniker": "addSilver.cs",
-              "ToolTip": "F:\\SYA\\SYA\\addSilver.cs",
-              "RelativeToolTip": "addSilver.cs",
-              "ViewState": "AQIAADEDAAAAAAAAAAArwGUDAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-15T17:39:06.622Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "helper.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\helper.cs",
-              "RelativeDocumentMoniker": "helper.cs",
-              "ToolTip": "F:\\SYA\\SYA\\helper.cs",
-              "RelativeToolTip": "helper.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAgwEEAAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-15T11:09:49.661Z",
+              "WhenOpened": "2024-03-29T10:50:25.763Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SaleItem.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\SaleItem.cs",
-              "RelativeDocumentMoniker": "SaleItem.cs",
-              "ToolTip": "F:\\SYA\\SYA\\SaleItem.cs",
-              "RelativeToolTip": "SaleItem.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAACAAAAAJAAAA",
+              "DocumentIndex": 6,
+              "Title": "PrintRTGS.cs [Design]",
+              "DocumentMoniker": "F:\\SYA\\SYA\\RTGS\\PrintRTGS.cs",
+              "RelativeDocumentMoniker": "RTGS\\PrintRTGS.cs",
+              "ToolTip": "F:\\SYA\\SYA\\RTGS\\PrintRTGS.cs [Design]",
+              "RelativeToolTip": "RTGS\\PrintRTGS.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T12:46:06.294Z"
+              "WhenOpened": "2024-03-29T08:01:00.391Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SaleItem.cs [Design]",
-              "DocumentMoniker": "F:\\SYA\\SYA\\SaleItem.cs",
-              "RelativeDocumentMoniker": "SaleItem.cs",
-              "ToolTip": "F:\\SYA\\SYA\\SaleItem.cs [Design]",
-              "RelativeToolTip": "SaleItem.cs [Design]",
+              "DocumentIndex": 4,
+              "Title": "PrintRTGS.cs",
+              "DocumentMoniker": "F:\\SYA\\SYA\\RTGS\\PrintRTGS.cs",
+              "RelativeDocumentMoniker": "RTGS\\PrintRTGS.cs",
+              "ToolTip": "F:\\SYA\\SYA\\RTGS\\PrintRTGS.cs",
+              "RelativeToolTip": "RTGS\\PrintRTGS.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAADwvz0AAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T12:44:31.603Z"
+              "WhenOpened": "2024-03-29T07:57:27.458Z",
+              "EditorCaption": ""
             }
           ]
         }

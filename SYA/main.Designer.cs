@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelfirst = new Panel();
+            btnSortContact = new Button();
             btnCustomer = new Button();
             btnImportData = new Button();
             btnRtgs = new Button();
@@ -70,6 +71,7 @@
             // panelfirst
             // 
             panelfirst.BackColor = Color.FromArgb(3, 63, 99);
+            panelfirst.Controls.Add(btnSortContact);
             panelfirst.Controls.Add(btnCustomer);
             panelfirst.Controls.Add(btnImportData);
             panelfirst.Controls.Add(btnRtgs);
@@ -85,8 +87,25 @@
             panelfirst.Margin = new Padding(3, 2, 3, 2);
             panelfirst.MaximumSize = new Size(140, 3000);
             panelfirst.Name = "panelfirst";
-            panelfirst.Size = new Size(140, 637);
+            panelfirst.Size = new Size(140, 861);
             panelfirst.TabIndex = 5;
+            // 
+            // btnSortContact
+            // 
+            btnSortContact.BackColor = Color.FromArgb(3, 63, 99);
+            btnSortContact.Dock = DockStyle.Top;
+            btnSortContact.FlatAppearance.BorderSize = 0;
+            btnSortContact.FlatStyle = FlatStyle.Flat;
+            btnSortContact.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSortContact.ForeColor = Color.White;
+            btnSortContact.Location = new Point(0, 462);
+            btnSortContact.Margin = new Padding(0);
+            btnSortContact.Name = "btnSortContact";
+            btnSortContact.Size = new Size(140, 38);
+            btnSortContact.TabIndex = 16;
+            btnSortContact.Text = "Sort Contact";
+            btnSortContact.UseVisualStyleBackColor = false;
+            btnSortContact.Click += btnSortContact_Click;
             // 
             // btnCustomer
             // 
@@ -278,7 +297,7 @@
             panelsecond.Location = new Point(140, 120);
             panelsecond.Margin = new Padding(3, 2, 3, 2);
             panelsecond.Name = "panelsecond";
-            panelsecond.Size = new Size(140, 517);
+            panelsecond.Size = new Size(140, 741);
             panelsecond.TabIndex = 6;
             // 
             // button21
@@ -360,6 +379,7 @@
             button17.TabIndex = 16;
             button17.Text = "PRINT RTGS";
             button17.UseVisualStyleBackColor = false;
+            button17.Click += button17_Click;
             // 
             // button16
             // 
@@ -640,14 +660,14 @@
             panelChild.Location = new Point(280, 120);
             panelChild.Margin = new Padding(3, 2, 3, 2);
             panelChild.Name = "panelChild";
-            panelChild.Size = new Size(1067, 517);
+            panelChild.Size = new Size(1067, 741);
             panelChild.TabIndex = 1;
             // 
             // main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1347, 637);
+            ClientSize = new Size(1347, 861);
             Controls.Add(panelChild);
             Controls.Add(panelsecond);
             Controls.Add(panel1);
@@ -698,5 +718,6 @@
         private Button button1;
         private Button button21;
         private Button btnCustomer;
+        private Button btnSortContact;
     }
 }

@@ -20,7 +20,7 @@ namespace SYA
         private void main_Load(object sender, EventArgs e)
         {
             btnStocks.Visible = false;
-            btnRtgs.Visible = false;
+            //btnRtgs.Visible = false;
             btnImportData.Visible = false;
             btnPrintTags.Visible = false;
             btnCustomer.Visible = false;
@@ -237,6 +237,19 @@ namespace SYA
         {
             panelsecond.Visible = false;
             LoadForm(new tempVerifyData());
+        }
+
+        private void btnSortContact_Click(object sender, EventArgs e)
+        {
+            RichTextBox r = new RichTextBox();
+            Contact.SortContactData(r, "datacare");
+
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            panelsecond.Visible = false;
+            LoadForm(new PrintRTGS());
         }
     }
 }

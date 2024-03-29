@@ -214,7 +214,7 @@ namespace SYA
             }
         }
 
-        public static void PrintPageAddSilver(object sender, PrintPageEventArgs e, DataGridView addSilverDataGridView,string tagtype)
+        public static void PrintPageAddSilver(object sender, PrintPageEventArgs e, DataGridView addSilverDataGridView, string tagtype)
         {
             DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
 
@@ -493,6 +493,171 @@ namespace SYA
                 }
             }
         }
+        public static void PrintRTGS(object sender, PrintPageEventArgs e)
+        {
+            
+           
+
+            e.Graphics.DrawRectangle(Pens.Red, (float)120, (float)135, (float)582.5, (float)745);
+            RTGSBackGround();
+            branch();
+            date();
+            RTGSorNEFT();
+            PayableAt();
+            BenName();
+            BenAdd();
+            BenAcc();
+            BenAccType();
+            BenBank();
+            BenAddIFSC();
+            Amount();
+            Commission();
+            Total();
+            TotalWords();
+            AccNo();
+            AccName();
+            AccPan();
+            AccPhone();
+            AccSign();
+
+            void RTGSBackGround()
+            {
+                Image logoImage = Image.FromFile(helper.ImageFolder + "\\RTGS.jpg"); // Replace with the actual path
+                e.Graphics.DrawImage(logoImage, new RectangleF(100, 50, (float)625, (float)850));
+            }
+            void branch()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)257.5, (float)187, (float)200, (float)22.5);
+            }
+            void date()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)546, (float)187, (float)26, (float)23);
+                e.Graphics.DrawRectangle(Pens.Red, (float)572, (float)187, (float)26, (float)23);
+                e.Graphics.DrawRectangle(Pens.Red, (float)598, (float)187, (float)26, (float)23);
+                e.Graphics.DrawRectangle(Pens.Red, (float)624, (float)187, (float)26, (float)23);
+                e.Graphics.DrawRectangle(Pens.Red, (float)650, (float)187, (float)26, (float)23);
+                e.Graphics.DrawRectangle(Pens.Red, (float)676, (float)187, (float)26, (float)23);
+            }
+            void RTGSorNEFT()
+            {
+                //RTGS
+                e.Graphics.DrawRectangle(Pens.Red, (float)595, (float)216, (float)13.5, (float)10.75);
+                //NEFT
+                e.Graphics.DrawRectangle(Pens.Red, (float)655, (float)216, (float)13.5, (float)10.75);
+            }
+            void PayableAt()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)315.5, (float)232, (float)387.5, (float)21.5);
+            }
+            void BenName()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)315.5, (float)253.5, (float)387.5, (float)21.5);
+            }
+            void BenAdd()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)405, (float)275, (float)297.5, (float)37);
+            }
+            void BenAcc()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)405, (float)312, (float)22.5, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)427.5, (float)312, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)445.5, (float)312, (float)19, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)464.5, (float)312, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)482.5, (float)312, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)501.5, (float)312, (float)17.5, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)519.5, (float)312, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)538, (float)312, (float)17.75, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)556, (float)312, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)574, (float)312, (float)19, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)593, (float)312, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)611.5, (float)312, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)629.5, (float)312, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)647.75, (float)312, (float)18.25, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)666, (float)312, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)684, (float)312, (float)18, (float)22);
+            }
+            void BenAccType()
+            {
+                //Saving
+                e.Graphics.DrawRectangle(Pens.Red, (float)457, (float)341, (float)13.3, (float)10.75);
+                //Current
+                e.Graphics.DrawRectangle(Pens.Red, (float)532.5, (float)341, (float)13.3, (float)10.75);
+            }
+            void BenBank()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)405, (float)357, (float)297.5, (float)22);
+            }
+            void BenAddIFSC()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)457, (float)379, (float)22, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)479.5, (float)379, (float)22, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)502, (float)379, (float)22, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)524, (float)379, (float)22, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)546, (float)379, (float)23, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)569, (float)379, (float)22, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)591, (float)379, (float)22, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)613, (float)379, (float)22, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)636, (float)379, (float)22, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)658, (float)379, (float)22, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)680, (float)379, (float)22, (float)22);
+
+
+            }
+            void Amount()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)225, (float)401, (float)154, (float)22);
+            }
+            void Commission()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)225, (float)423, (float)154, (float)22);
+            }
+            void Total()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)225, (float)445, (float)154, (float)22);
+            }
+            void TotalWords()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)120, (float)490, (float)326.5, (float)44);
+            }
+            void AccNo()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)140, (float)643.25, (float)20, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)160, (float)643.25, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)179, (float)643.25, (float)19, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)199, (float)643.25, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)218, (float)643.25, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)237, (float)643.25, (float)17.5, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)256, (float)643.25, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)275, (float)643.25, (float)17.75, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)295, (float)643.25, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)314, (float)643.25, (float)19, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)333, (float)643.25, (float)18, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)351, (float)643.25, (float)19, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)370, (float)643.25, (float)19, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)389, (float)643.25, (float)19, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)408, (float)643.25, (float)19, (float)22);
+                e.Graphics.DrawRectangle(Pens.Red, (float)428.25, (float)643.25, (float)18.25, (float)22);
+            }
+            void AccName()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)213, (float)732, (float)203, (float)22);
+            }
+            void AccPan()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)213, (float)754, (float)203, (float)22);
+            }
+            void AccPhone()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)213, (float)776, (float)203, (float)22);
+            }
+            void AccSign()
+            {
+                e.Graphics.DrawRectangle(Pens.Red, (float)120, (float)850, (float)582.5, (float)30);
+            }
+
+        }
+
+
 
 
     }

@@ -25,6 +25,12 @@
     <Compile Update="ProgressDialog .cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="RTGS\PrintRTGS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RTGS\RTGSList.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="SaleItem.cs">
       <SubType>Form</SubType>
     </Compile>
