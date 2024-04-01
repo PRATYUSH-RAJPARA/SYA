@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SYA.AddGold
+namespace SYA
 {
     public class AddGoldHelper
     {

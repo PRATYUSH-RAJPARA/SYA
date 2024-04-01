@@ -575,6 +575,7 @@
             button5.TabIndex = 4;
             button5.Text = "WITHOUT TAG";
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // button4
             // 

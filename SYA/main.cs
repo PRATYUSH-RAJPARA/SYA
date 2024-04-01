@@ -25,7 +25,7 @@ namespace SYA
             btnPrintTags.Visible = false;
             btnCustomer.Visible = false;
             panelsecond.Visible = false;
-            panelChild.Visible = false;
+            //panelchild.visible = false;
             btnHideAllSecondPanelButtons();
         }
 
@@ -250,6 +250,12 @@ namespace SYA
         {
             panelsecond.Visible = false;
             LoadForm(new PrintRTGS());
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            PrintRTGS p = new PrintRTGS();
+            p.ContactAPI("27", "123");
         }
     }
 }

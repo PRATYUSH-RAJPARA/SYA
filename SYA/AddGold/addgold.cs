@@ -13,7 +13,7 @@ using QRCoder;
 using System.Drawing.Printing;
 using System.Runtime.InteropServices;
 using System.Diagnostics.Eventing.Reader;
-using SYA.AddGold;
+
 namespace SYA
 {
     public partial class addgold : Form

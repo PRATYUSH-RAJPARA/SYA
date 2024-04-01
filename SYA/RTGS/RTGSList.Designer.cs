@@ -28,19 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
+            textBoxFilter = new TextBox();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
+            // 
+            // textBoxFilter
+            // 
+            textBoxFilter.Dock = DockStyle.Bottom;
+            textBoxFilter.Location = new Point(0, 238);
+            textBoxFilter.Name = "textBoxFilter";
+            textBoxFilter.Size = new Size(584, 23);
+            textBoxFilter.TabIndex = 2;
+            textBoxFilter.TextChanged += textBoxFilter_TextChanged;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 0);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(584, 238);
+            dataGridView1.TabIndex = 1;
+            dataGridView1.KeyDown += dataGridView1_KeyDown;
+            dataGridView1.KeyPress += dataGridView1_KeyPress;
             // 
             // RTGSList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            AutoSize = true;
+            ClientSize = new Size(584, 261);
+            Controls.Add(dataGridView1);
+            Controls.Add(textBoxFilter);
             Name = "RTGSList";
+            ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "RTGSList";
+            TopMost = true;
             Load += RTGSList_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+        private TextBox textBoxFilter;
+        private DataGridView dataGridView1;
     }
 }
