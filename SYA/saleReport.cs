@@ -134,7 +134,7 @@ namespace SYA
 
 
 
-                slDataTable = helper.FetchFromDataCareDataBase(query);
+                slDataTable = helper.FetchDataTableFromDataCareDataBase(query);
 
                 // Clear existing rows in the DataGridView
                 dataGridView1.Rows.Clear();

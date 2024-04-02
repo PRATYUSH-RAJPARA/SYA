@@ -1,4 +1,6 @@
+using System;
 using System.Net;
+using System.Threading;
 
 namespace SYA
 {
@@ -29,11 +31,20 @@ namespace SYA
             {
                 // Accept an incoming request
                 HttpListenerContext context = listener.GetContext();
-                // Handle the request here by calling Contact.showMsg() or any other function
-                PrintRTGS objPrintRTGS = new PrintRTGS();
-                objPrintRTGS.ContactAPI("27", "123");
 
-                Contact.showMsg(); // Call the function you want to execute
+                // Handle the request based on the URL path
+                string urlPath = context.Request.Url.AbsolutePath;
+                switch (urlPath)
+                {
+                    case "/PRINT_RTGS":
+                        PrintRTGS objPrintRTGS = new PrintRTGS();
+                        objPrintRTGS.PrintRTGS_API("27", "123");
+                        Contact.showMsg();
+                        break;
+                    default:
+                        // Handle other endpoints if needed
+                        break;
+                }
             }
         }
     }

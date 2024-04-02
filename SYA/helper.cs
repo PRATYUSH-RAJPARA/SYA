@@ -257,7 +257,7 @@ namespace SYA
         //}
 
 
-        public static DataTable FetchFromDataCareDataBase(string query)
+        public static DataTable FetchDataTableFromDataCareDataBase(string query)
         {
             DataTable dataCareDataTable = new DataTable();
             try

@@ -116,7 +116,7 @@ namespace SYA
             {
                 // Query to select data from your Access table
                
-                DataTable accessData = helper.FetchFromDataCareDataBase(query);
+                DataTable accessData = helper.FetchDataTableFromDataCareDataBase(query);
                 //InsertInStockDataIntoSQLite(accessData, txtMessageBox);
                 // Perform insertion directly without using background worker or progress bar
                 return accessData;

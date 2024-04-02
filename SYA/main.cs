@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SYA.Sell;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -230,7 +231,7 @@ namespace SYA
         private void button6_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
-            LoadForm(new SaleItem());
+            LoadForm(new sell());
         }
 
         private void button13_Click(object sender, EventArgs e)
@@ -255,7 +256,7 @@ namespace SYA
         private void button5_Click(object sender, EventArgs e)
         {
             PrintRTGS p = new PrintRTGS();
-            p.ContactAPI("27", "123");
+            p.PrintRTGS_API("27", "123");
         }
     }
 }

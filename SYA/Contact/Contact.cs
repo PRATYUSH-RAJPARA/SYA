@@ -31,7 +31,7 @@ namespace SYA
             clearData(RawData);
             if (tableName == "datacare")
             {
-                RawData = helper.FetchFromDataCareDataBase("SELECT * FROM AC_MAST ");
+                RawData = helper.FetchDataTableFromDataCareDataBase("SELECT * FROM AC_MAST ");
             }
             else
             {

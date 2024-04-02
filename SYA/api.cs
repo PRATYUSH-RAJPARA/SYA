@@ -17,7 +17,7 @@ namespace SYA
                 // Call the function you want to execute
                // Contact.showMsg();
                 PrintRTGS objPrintRTGS = new PrintRTGS();
-                objPrintRTGS.ContactAPI("27", "123");
+                objPrintRTGS.PrintRTGS_API("27", "123");
                 return Ok();
             }
             catch (Exception ex)

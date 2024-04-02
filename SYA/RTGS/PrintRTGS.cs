@@ -213,7 +213,7 @@ namespace SYA
                 PrintLabels();
             }
         }
-        public void ContactAPI(string id,string amt)
+        public void PrintRTGS_API(string id,string amt)
         {
             FetchAndLoadData(id);
             SortAndPrintRTGS(amt);
