@@ -38,11 +38,11 @@ namespace SYA.Sell
 
             void sort()
             {
-                if (itemToSell.Rows[0]["IT_TYPE"] == "S")
+                if (itemToSell.Rows[0]["IT_TYPE"].ToString() == "S")
                 {
                     silverItem();
                 }
-                else if (itemToSell.Rows[0]["IT_TYPE"] == "G" && itemToSell.Rows[0]["TAG_NO"].ToString().Contains("SYA"))
+                else if (itemToSell.Rows[0]["IT_TYPE"].ToString() == "G" && itemToSell.Rows[0]["TAG_NO"].ToString().Contains("SYA"))
                 {
                     if (itemToSell.Rows[0]["HUID1"].ToString().Length == 0 && itemToSell.Rows[0]["HUID2"].ToString().Length == 0)
                     {
@@ -151,6 +151,7 @@ namespace SYA.Sell
 
         private void loadDataInLabels(DataTable itemToSell,string origin)
         {
+
             itemDetails();
             if (origin == "datacare")
             {
