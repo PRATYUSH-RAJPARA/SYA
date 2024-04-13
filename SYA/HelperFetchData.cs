@@ -1,19 +1,27 @@
-﻿using System.Data;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
+using System.Data;
 using System.Data.SQLite;
+using System.Diagnostics;
+using System.Drawing;
 using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Application = System.Windows.Forms.Application;
+using DataTable = System.Data.DataTable;
+using TextBox = System.Windows.Forms.TextBox;
 
 namespace SYA
 {
     public class HelperFetchData
     {
-       
 
 
-        public static  string connectionToSYADatabase = helper.SYAConnectionString;
 
-        public static void InsertInStockDataIntoSQLite( TextBox txtMessageBox,string queryToFetchFromMSAccess)
+        public static string connectionToSYADatabase = helper.SYAConnectionString;
+
+        public static void InsertInStockDataIntoSQLite(TextBox txtMessageBox, string queryToFetchFromMSAccess)
         {
-            DataTable data = FetchDataFromMSAccessAndInsertIntoSQLite(queryToFetchFromMSAccess);
+            DataTable data = helper.FetchDataTableFromDataCareDataBase(queryToFetchFromMSAccess);
             List<int> errorRows = new List<int>();
             int insertedCount = 0;
             int updatedCount = 0;
@@ -109,27 +117,235 @@ namespace SYA
                 MessageBox.Show($"InsertInStockDataIntoSQLite 5 : : : Error inserting/updating data into SQLite: {ex.Message}.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public static DataTable FetchDataFromMSAccessAndInsertIntoSQLite(string query)
+        public static void fetchSaleData()
         {
-            DataTable dt = new DataTable();
-            try
+            string CO_CODE = null;
+            string CO_YEAR = null;
+            string CO_BOOK = null;
+            string VCH_NO = null;
+            string SR_NO = null;
+            string VCH_DATE = null;
+            string BOOK_NAME = null;
+            string VCH_TYPE = null;
+            string AC_CODE = null;
+            string CUST_AC = null;
+            string IT_CODE = null;
+            string IT_DESC = null;
+            string PR_CODE = null;
+            string IT_TYPE = null;
+            string TAG_SRNO = null;
+            string TAG_NO = null;
+            string DESIGN = null;
+            string ITM_SIZE = null;
+            string ITM_PCS = null;
+            string ITM_GWT = null;
+            string TAG_NWT = null;
+            string ITM_NWT = null;
+            string ITM_TOUCH = null;
+            string ITM_WEST = null;
+            string ITM_FINE = null;
+            string ITM_RAT = null;
+            string ITM_AMT = null;
+            string LBR_RATE = null;
+            string LBR_AMT = null;
+            string OTH_AMT = null;
+            string NET_AMT = null;
+            string NET_COST = null;
+            string MRP = null;
+            string KR_NAME = null;
+            string RATE_TYPE = null;
+            string TR_TYPE = null;
+            string SIGN = null;
+            string EMP_CODE = null;
+            string KR_OTH_WT = null;
+            string KR_ITM_NWT = null;
+            string KR_ITM_TOUCH = null;
+            string KR_ITM_WEST = null;
+            string KR_ITM_FINE = null;
+            string HD_VCH_NO = null;
+            string VCH_SRNO = null;
+            string AND_TRFR = null;
+            string BAG_WT = null;
+            string BOX_WT = null;
+
+            string SYA_ID = null;
+            string SYA_CO_YEAR = null;
+            string SYA_CO_BOOK = null;
+            string SYA_VCH_NO = null;
+            string SYA_VCH_DATE = null;
+            string SYA_TAG_NO = null;
+            string SYA_GW = null;
+            string SYA_NW = null;
+            string SYA_LABOUR_AMT = null;
+            string SYA_WHOLE_LABOUR_AMT = null;
+            string SYA_OTHER_AMT = null;
+            string SYA_IT_TYPE = null;
+            string SYA_ITEM_CODE = null;
+            string SYA_ITEM_PURITY = null;
+            string SYA_ITEM_DESC = null;
+            string SYA_HUID1 = null;
+            string SYA_HUID2 = null;
+            string SYA_SIZE = null;
+            string SYA_PRICE = null;
+            string SYA_STATUS = null;
+            string SYA_AC_CODE = null;
+            string SYA_AC_NAME = null;
+            string SYA_COMMENT = null;
+            string SYA_PRINT = null;
+
+            DataTable accessData = helper.FetchDataTableFromDataCareDataBase("SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'");
+            if (accessData.Rows.Count > 0)
             {
-                // Query to select data from your Access table
-               
-                DataTable accessData = helper.FetchDataTableFromDataCareDataBase(query);
-                //InsertInStockDataIntoSQLite(accessData, txtMessageBox);
-                // Perform insertion directly without using background worker or progress bar
-                return accessData;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"FetchDataFromMSAccessAndInsertIntoSQLite Error inserting into SQLite: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return dt;
+                foreach (DataRow row in accessData.Rows)
+                {
+                    CO_CODE = row["CO_CODE"] != DBNull.Value ? row["CO_CODE"].ToString() : "";
+                    CO_YEAR = row["CO_YEAR"] != DBNull.Value ? row["CO_YEAR"].ToString() : "";
+                    CO_BOOK = row["CO_BOOK"] != DBNull.Value ? row["CO_BOOK"].ToString() : "";
+                    VCH_NO = row["VCH_NO"] != DBNull.Value ? row["VCH_NO"].ToString() : "";
+                    SR_NO = row["SR_NO"] != DBNull.Value ? row["SR_NO"].ToString() : "";
+                    VCH_DATE = row["VCH_DATE"] != DBNull.Value ? row["VCH_DATE"].ToString() : "";
+                    BOOK_NAME = row["BOOK_NAME"] != DBNull.Value ? row["BOOK_NAME"].ToString() : "";
+                    VCH_TYPE = row["VCH_TYPE"] != DBNull.Value ? row["VCH_TYPE"].ToString() : "";
+                    AC_CODE = row["AC_CODE"] != DBNull.Value ? row["AC_CODE"].ToString() : "";
+                    CUST_AC = row["CUST_AC"] != DBNull.Value ? row["CUST_AC"].ToString() : "";
+                    IT_CODE = row["IT_CODE"] != DBNull.Value ? row["IT_CODE"].ToString() : "";
+                    IT_DESC = row["IT_DESC"] != DBNull.Value ? row["IT_DESC"].ToString() : "";
+                    PR_CODE = row["PR_CODE"] != DBNull.Value ? row["PR_CODE"].ToString() : "";
+                    IT_TYPE = row["IT_TYPE"] != DBNull.Value ? row["IT_TYPE"].ToString() : "";
+                    TAG_SRNO = row["TAG_SRNO"] != DBNull.Value ? row["TAG_SRNO"].ToString() : "";
+                    TAG_NO = row["TAG_NO"] != DBNull.Value ? row["TAG_NO"].ToString() : "";
+                    DESIGN = row["DESIGN"] != DBNull.Value ? row["DESIGN"].ToString() : "";
+                    ITM_SIZE = row["ITM_SIZE"] != DBNull.Value ? row["ITM_SIZE"].ToString() : "";
+                    ITM_PCS = row["ITM_PCS"] != DBNull.Value ? row["ITM_PCS"].ToString() : "";
+                    ITM_GWT = row["ITM_GWT"] != DBNull.Value ? row["ITM_GWT"].ToString() : "";
+                    TAG_NWT = row["TAG_NWT"] != DBNull.Value ? row["TAG_NWT"].ToString() : "";
+                    ITM_NWT = row["ITM_NWT"] != DBNull.Value ? row["ITM_NWT"].ToString() : "";
+                    ITM_TOUCH = row["ITM_TOUCH"] != DBNull.Value ? row["ITM_TOUCH"].ToString() : "";
+                    ITM_WEST = row["ITM_WEST"] != DBNull.Value ? row["ITM_WEST"].ToString() : "";
+                    ITM_FINE = row["ITM_FINE"] != DBNull.Value ? row["ITM_FINE"].ToString() : "";
+                    ITM_RAT = row["ITM_RAT"] != DBNull.Value ? row["ITM_RAT"].ToString() : "";
+                    ITM_AMT = row["ITM_AMT"] != DBNull.Value ? row["ITM_AMT"].ToString() : "";
+                    LBR_RATE = row["LBR_RATE"] != DBNull.Value ? row["LBR_RATE"].ToString() : "";
+                    LBR_AMT = row["LBR_AMT"] != DBNull.Value ? row["LBR_AMT"].ToString() : "";
+                    OTH_AMT = row["OTH_AMT"] != DBNull.Value ? row["OTH_AMT"].ToString() : "";
+                    NET_AMT = row["NET_AMT"] != DBNull.Value ? row["NET_AMT"].ToString() : "";
+                    NET_COST = row["NET_COST"] != DBNull.Value ? row["NET_COST"].ToString() : "";
+                    MRP = row["MRP"] != DBNull.Value ? row["MRP"].ToString() : "";
+                    KR_NAME = row["KR_NAME"] != DBNull.Value ? row["KR_NAME"].ToString() : "";
+                    RATE_TYPE = row["RATE_TYPE"] != DBNull.Value ? row["RATE_TYPE"].ToString() : "";
+                    TR_TYPE = row["TR_TYPE"] != DBNull.Value ? row["TR_TYPE"].ToString() : "";
+                    SIGN = row["SIGN"] != DBNull.Value ? row["SIGN"].ToString() : "";
+                    EMP_CODE = row["EMP_CODE"] != DBNull.Value ? row["EMP_CODE"].ToString() : "";
+                    KR_OTH_WT = row["KR_OTH_WT"] != DBNull.Value ? row["KR_OTH_WT"].ToString() : "";
+                    KR_ITM_NWT = row["KR_ITM_NWT"] != DBNull.Value ? row["KR_ITM_NWT"].ToString() : "";
+                    KR_ITM_TOUCH = row["KR_ITM_TOUCH"] != DBNull.Value ? row["KR_ITM_TOUCH"].ToString() : "";
+                    KR_ITM_WEST = row["KR_ITM_WEST"] != DBNull.Value ? row["KR_ITM_WEST"].ToString() : "";
+                    KR_ITM_FINE = row["KR_ITM_FINE"] != DBNull.Value ? row["KR_ITM_FINE"].ToString() : "";
+                    HD_VCH_NO = row["HD_VCH_NO"] != DBNull.Value ? row["HD_VCH_NO"].ToString() : "";
+                    VCH_SRNO = row["VCH_SRNO"] != DBNull.Value ? row["VCH_SRNO"].ToString() : "";
+                    AND_TRFR = row["AND_TRFR"] != DBNull.Value ? row["AND_TRFR"].ToString() : "";
+                    BAG_WT = row["BAG_WT"] != DBNull.Value ? row["BAG_WT"].ToString() : "";
+                    BOX_WT = row["BOX_WT"] != DBNull.Value ? row["BOX_WT"].ToString() : "";
+
+                    DataTable ac_dt = helper.FetchDataTableFromDataCareDataBase("SELECT AC_NAME FROM AC_MAST WHERE AC_CODE = '" + AC_CODE + "'");
+                    string AC_NAME = string.Empty;
+                    if (ac_dt.Rows.Count > 0)
+                    {
+                        AC_NAME = ac_dt.Rows[0]["AC_NAME"].ToString();
+                    }
+
+                    DataTable sya_dt = helper.FetchDataTableFromSYADataBase("SELECT * FROM MAIN_DATA WHERE TAG_NO = '" + TAG_NO + "'");
+                    if (sya_dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow sya_row in sya_dt.Rows)
+                        {
+                            SYA_ID = sya_row["ID"] != DBNull.Value ? sya_row["ID"].ToString() : "";
+                            SYA_CO_YEAR = sya_row["CO_YEAR"] != DBNull.Value ? sya_row["CO_YEAR"].ToString() : "";
+                            SYA_CO_BOOK = sya_row["CO_BOOK"] != DBNull.Value ? sya_row["CO_BOOK"].ToString() : "";
+                            SYA_VCH_NO = sya_row["VCH_NO"] != DBNull.Value ? sya_row["VCH_NO"].ToString() : "";
+                            SYA_VCH_DATE = sya_row["VCH_DATE"] != DBNull.Value ? sya_row["VCH_DATE"].ToString() : "";
+                            SYA_TAG_NO = sya_row["TAG_NO"] != DBNull.Value ? sya_row["TAG_NO"].ToString() : "";
+                            SYA_GW = sya_row["GW"] != DBNull.Value ? sya_row["GW"].ToString() : "";
+                            SYA_NW = sya_row["NW"] != DBNull.Value ? sya_row["NW"].ToString() : "";
+                            SYA_LABOUR_AMT = sya_row["LABOUR_AMT"] != DBNull.Value ? sya_row["LABOUR_AMT"].ToString() : "";
+                            SYA_WHOLE_LABOUR_AMT = sya_row["WHOLE_LABOUR_AMT"] != DBNull.Value ? sya_row["WHOLE_LABOUR_AMT"].ToString() : "";
+                            SYA_OTHER_AMT = sya_row["OTHER_AMT"] != DBNull.Value ? sya_row["OTHER_AMT"].ToString() : "";
+                            SYA_IT_TYPE = sya_row["IT_TYPE"] != DBNull.Value ? sya_row["IT_TYPE"].ToString() : "";
+                            SYA_ITEM_CODE = sya_row["ITEM_CODE"] != DBNull.Value ? sya_row["ITEM_CODE"].ToString() : "";
+                            SYA_ITEM_PURITY = sya_row["ITEM_PURITY"] != DBNull.Value ? sya_row["ITEM_PURITY"].ToString() : "";
+                            SYA_ITEM_DESC = sya_row["ITEM_DESC"] != DBNull.Value ? sya_row["ITEM_DESC"].ToString() : "";
+                            SYA_HUID1 = sya_row["HUID1"] != DBNull.Value ? sya_row["HUID1"].ToString() : "";
+                            SYA_HUID2 = sya_row["HUID2"] != DBNull.Value ? sya_row["HUID2"].ToString() : "";
+                            SYA_SIZE = sya_row["SIZE"] != DBNull.Value ? sya_row["SIZE"].ToString() : "";
+                            SYA_PRICE = sya_row["PRICE"] != DBNull.Value ? sya_row["PRICE"].ToString() : "";
+                            SYA_STATUS = sya_row["STATUS"] != DBNull.Value ? sya_row["STATUS"].ToString() : "";
+                            SYA_AC_CODE = sya_row["AC_CODE"] != DBNull.Value ? sya_row["AC_CODE"].ToString() : "";
+                            SYA_AC_NAME = sya_row["AC_NAME"] != DBNull.Value ? sya_row["AC_NAME"].ToString() : "";
+                            SYA_COMMENT = sya_row["COMMENT"] != DBNull.Value ? sya_row["COMMENT"].ToString() : "";
+                            SYA_PRINT = sya_row["PRINT"] != DBNull.Value ? sya_row["PRINT"].ToString() : "";
+
+                            
+
+                        }
+
+
+
+                    }
+                    void update()
+                    {
+                        string updateQuery = "UPDATE SYA_SALE_DATA SET " +
+                                             "CO_YEAR = '" + CO_YEAR + "', " +
+                                             "CO_BOOK = '" + CO_BOOK + "', " +
+                                             "VCH_NO = '" + VCH_NO + "', " +
+                                             "VCH_DATE = '" + Convert.ToDateTime(VCH_DATE).ToString("yyyy-MM-dd HH:mm:ss") + "', " +
+                                             "GW = '" + ITM_GWT + "', " +
+                                             "NW = '" + ITM_NWT + "', " +
+                                             "LABOUR_AMT = '" + SYA_LABOUR_AMT + "', " +
+                                             "WHOLE_LABOUR_AMT = '" + SYA_WHOLE_LABOUR_AMT + "', " +
+                                             "OTHER_AMT = '" + SYA_OTHER_AMT + "', " +
+                                             "IT_TYPE = '" + IT_TYPE + "', " +
+                                             "ITEM_CODE = '" + SYA_ITEM_CODE + "', " +
+                                             "ITEM_PURITY = '" + SYA_ITEM_PURITY + "', " +
+                                             "ITEM_DESC = '" + SYA_ITEM_DESC + "', " +
+                                             "HUID1 = '" + SYA_HUID1 + "', " +
+                                             "HUID2 = '" + SYA_HUID2 + "', " +
+                                             "SIZE = '" + SYA_SIZE + "', " +
+                                             "PRICE = '" + SYA_PRICE + "', " +
+                                             "STATUS = '" + SYA_STATUS + "', " +
+                                             "AC_CODE = '" + AC_CODE + "', " +
+                                             "AC_NAME = '" + AC_NAME + "', " +
+                                             "COMMENT = '" + SYA_COMMENT + "', " +
+                                             "PRINT = '" + SYA_PRINT + "' " +
+                                             "WHERE TAG_NO = '" + TAG_NO + "'";
+                        helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
+                    }
+
+
+
+
+
+                    void insert()
+                    {
+                        string insertQuery = "INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT) VALUES ('" + CO_YEAR + "','" + CO_BOOK + "','" + VCH_NO + "','" + Convert.ToDateTime(VCH_DATE).ToString("yyyy-MM-dd HH:mm:ss") + "','" + TAG_NO + "','" + ITM_GWT + "','" + ITM_NWT + "','" + SYA_LABOUR_AMT + "','" + SYA_WHOLE_LABOUR_AMT + "','" + SYA_OTHER_AMT + "','" + IT_TYPE + "','" + SYA_ITEM_CODE + "','" + SYA_ITEM_PURITY + "','" + SYA_ITEM_DESC + "','" + SYA_HUID1 + "','" + SYA_HUID2 + "','" + SYA_SIZE + "','" + SYA_PRICE + "','" + SYA_STATUS + "','" + AC_CODE + "', '" + AC_NAME + "','" + SYA_COMMENT + "','" + SYA_PRINT + "');";
+                        helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
+
+                    }
+                    DataTable update_check = helper.FetchDataTableFromSYADataBase("SELECT TAG_NO FROM SYA_SALE_DATA WHERE TAG_NO ='" + TAG_NO + "'");
+                    if (update_check.Rows.Count > 0)
+                    {
+                        update();
+                    }
+                    else
+                    {
+                        insert();
+                    }
+                    
+                }
             }
         }
-        public static void InsertSaleDataIntoSQLite( string queryToFetchFromMSAccess) 
+        public static void InsertSaleDataIntoSQLite______old(string queryToFetchFromMSAccess)
         {
-            DataTable accessData = FetchDataFromMSAccessAndInsertIntoSQLite(queryToFetchFromMSAccess);
+            DataTable accessData = helper.FetchDataTableFromDataCareDataBase(queryToFetchFromMSAccess);
             if (accessData != null && accessData.Rows.Count > 0)
             {
                 // Loop through each row
@@ -158,7 +374,7 @@ namespace SYA
                     string othAmt = row["OTH_AMT"].ToString();
                     string netAmt = row["NET_AMT"].ToString();
                     DataTable syadt = helper.FetchDataTableFromSYADataBase("SELECT * FROM MAIN_DATA WHERE TAG_NO = '" + tagNo + "'");
-                    foreach(DataRow syaRow in syadt.Rows)
+                    foreach (DataRow syaRow in syadt.Rows)
                     {
                         int syaId = Convert.ToInt32(syaRow["ID"]);
                         string syaCOYear = syaRow["CO_YEAR"].ToString();
@@ -264,16 +480,16 @@ namespace SYA
                             }
                         }
 
-                               
+
                         try
                         {
-                        object res = helper.RunQueryWithoutParametersSYADataBase(insertupdatequery, "ExecuteNonQuery");
-                         int result = Convert.ToInt32(res);
+                            object res = helper.RunQueryWithoutParametersSYADataBase(insertupdatequery, "ExecuteNonQuery");
+                            int result = Convert.ToInt32(res);
 
                         }
-                        catch (Exception ex) { MessageBox.Show("InsertSaleDataIntoSQLite : : "+ex.Message); }
+                        catch (Exception ex) { MessageBox.Show("InsertSaleDataIntoSQLite : : " + ex.Message); }
                     }
-                    
+
                 }
             }
             else
@@ -282,7 +498,119 @@ namespace SYA
                 MessageBox.Show("InsertSaleDataIntoSQLite : : : No rows found.");
             }
             // Store values in string variables
-            
+
+
+        }
+        public static void InsertSaleDataIntoSQLite(string queryToFetchFromMSAccess)
+        {
+            DataTable accessData = helper.FetchDataTableFromDataCareDataBase(queryToFetchFromMSAccess);
+            if (accessData != null && accessData.Rows.Count > 0)
+            {
+                // Loop through each row
+                foreach (DataRow row in accessData.Rows)
+                {
+                    // Store values in variables
+                    string coYear = row["CO_YEAR"].ToString();
+                    string coBook = row["CO_BOOK"].ToString();
+                    string vchNo = row["VCH_NO"].ToString();
+                    string vchDate = row["VCH_DATE"].ToString();
+                    string tagNo = row["TAG_NO"].ToString();
+                    string itmGwt = row["ITM_GWT"].ToString();
+                    string itmNwt = row["ITM_NWT"].ToString();
+                    string labour_amt = "0";
+                    string othAmt = row["OTH_AMT"].ToString();
+                    string itType = row["IT_TYPE"].ToString();
+                    string itemCode = row["PR_CODE"].ToString();
+                    string itemCode_1 = row["IT_CODE"].ToString();
+                    string purity = itemCode_1[2].ToString() + itemCode_1[3].ToString() + itemCode_1[4].ToString();
+                    string itDesc = row["IT_DESC"].ToString();
+
+
+                    string whole_labour_amt = row["LBR_AMT"].ToString();
+                    string prCode = row["PR_CODE"].ToString();
+                    string design = row["DESIGN"].ToString();
+                    string itmPcs = row["ITM_PCS"].ToString();
+                    string itmRat = row["ITM_RAT"].ToString();
+                    string itmAmt = row["ITM_AMT"].ToString();
+                    string lbrRate = row["LBR_RATE"].ToString();
+                    string lbrAmt = row["LBR_AMT"].ToString();
+                    string netAmt = row["NET_AMT"].ToString();
+                    string acCode = row["AC_CODE"].ToString();
+                    DataTable dt = helper.FetchDataTableFromDataCareDataBase("SELECT * FROM AC_MAST WHERE AC_CODE = '" + acCode + "'");
+                    string acName = dt.Rows[0]["AC_NAME"].ToString();
+
+
+
+                    string insertupdatequery = null;
+                    using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionToSYADatabase))
+                    {
+                        sqliteConnection.Open();
+
+                        using (SQLiteCommand checkCommand = new SQLiteCommand("SELECT COUNT(*) FROM SYA_SALE_DATA WHERE TAG_NO = @TAG_NO", sqliteConnection))
+                        {
+                            checkCommand.Parameters.AddWithValue("@TAG_NO", tagNo);
+                            int rowCount = Convert.ToInt32(checkCommand.ExecuteScalar());
+                            if (rowCount > 0)
+                            {
+                                insertupdatequery = $@"UPDATE SYA_SALE_DATA SET
+                                CO_YEAR = '{coYear}',
+                                CO_BOOK = '{coBook}',
+                                VCH_NO = '{vchNo}',
+                              
+                                VCH_DATE = '{vchDate}',
+                                AC_CODE = '{acCode}',
+                                IT_DESC = '{itDesc}',
+                                PR_CODE = '{prCode}',
+                                IT_TYPE = '{itType}',
+                                DESIGN = '{design}',
+                                ITM_PCS = '{itmPcs}',
+                                GW = '{itmGwt}',
+                                NW = '{itmNwt}',
+                                ITM_RAT = '{itmRat}',
+                                ITM_AMT = '{itmAmt}',
+                                LBR_RATE = '{lbrRate}',
+                                LBR_AMT = '{lbrAmt}',
+                                OTH_AMT = '{othAmt}',
+                                NET_AMT = '{netAmt}',
+                               
+                                WHERE TAG_NO = '{tagNo}'";
+                            }
+                            else
+                            {
+                                insertupdatequery = $@"INSERT INTO SYA_SALE_DATA (
+                                CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, AC_CODE, ITEM_CODE, IT_DESC, PR_CODE, IT_TYPE,
+                                TAG_NO, DESIGN, ITM_PCS, GW
+, NW, ITM_RAT, ITM_AMT, LBR_RATE, LBR_AMT, OTH_AMT,
+                                NET_AMT
+                                ) VALUES (
+                                '{coYear}', '{coBook}', '{vchNo}',  '{vchDate}', '{acCode}', '', '{itDesc}', '{prCode}', '{itType}',
+                                '{tagNo}', '{design}', '{itmPcs}', '{itmGwt}', '{itmNwt}', '{itmRat}', '{itmAmt}', '{lbrRate}', '{lbrAmt}', '{othAmt}',
+                                '{netAmt}',
+                                )";
+                            }
+
+                        }
+                    }
+
+
+                    try
+                    {
+                        object res = helper.RunQueryWithoutParametersSYADataBase(insertupdatequery, "ExecuteNonQuery");
+                        int result = Convert.ToInt32(res);
+
+                    }
+                    catch (Exception ex) { MessageBox.Show("InsertSaleDataIntoSQLite : : " + ex.Message); }
+
+
+                }
+            }
+            else
+            {
+
+                MessageBox.Show("InsertSaleDataIntoSQLite : : : No rows found.");
+            }
+            // Store values in string variables
+
 
         }
         private static void MapInStockParameters(SQLiteParameterCollection parameters, DataRow row)
@@ -391,7 +719,7 @@ namespace SYA
             // Show the form
             errorForm.ShowDialog();
         }
-        public static void UpdateMessageBox(string message , TextBox txtMessageBox)
+        public static void UpdateMessageBox(string message, TextBox txtMessageBox)
         {
             if (txtMessageBox.InvokeRequired)
             {
@@ -405,7 +733,7 @@ namespace SYA
                 txtMessageBox.Text = message;
             }
         }
-        
+
         public static string GetItemPurity(string itCode, string prcode)
         {
             // Assuming itCode has a format like "PR_CODEXXX" where XXX is the item purity
@@ -427,6 +755,6 @@ namespace SYA
                 return result.ToString();
             }
             return string.Empty;
-        }       
+        }
     }
 }

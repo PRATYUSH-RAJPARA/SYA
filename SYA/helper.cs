@@ -49,10 +49,57 @@ namespace SYA
             get { return Configuration["FolderLocations:Logs"]; }
         }
 
+        public static object aa(string query, string commandType,TextBox a)
+        {
+            object res = null;
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(SYAConnectionString))
+                {
+                    connection.Open();
+                    try
+                    {
+                        using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                        {
+                            if (commandType == "ExecuteNonQuery")
+                            {
+                                res = command.ExecuteNonQuery();
+                            }
+                            else if (commandType == "ExecuteScalar")
+                            {
+                                res = command.ExecuteScalar();
+                                // result = Convert.ToInt32(res);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle or log the exception as needed
+                        a.Text = $"Errorrr executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message} lll \n\n{ex.StackTrace}\n\n{ex.InnerException}";
+                        MessageBox.Show($"Errorrr executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message} lll \n\n{ex.StackTrace}\n\n{ex.InnerException}");
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display the error message in a custom form
+                MessageBox.Show($"Outer Errorrrrr executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
+
+                // Re-throw the exception for higher-level handling, if needed
+                throw;
+            }
+
+            return res;
+        }
+
+
+
+
+
         //i am chaning int to object so where we are implementing use proper conversion
         public static object RunQueryWithoutParametersSYADataBase(string query, string commandType)
         {
-            int result = 0;
             object res =null;
             try
             {
@@ -77,7 +124,8 @@ namespace SYA
                     catch (Exception ex)
                     {
                         // Handle or log the exception as needed
-                        MessageBox.Show($"Error executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
+                        
+                        MessageBox.Show($"Errorrr executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message} lll \n\n{ex.StackTrace}\n\n{ex.InnerException}");
                     }
                     
                 }
@@ -85,7 +133,7 @@ namespace SYA
             catch (Exception ex)
             {
                 // Display the error message in a custom form
-                MessageBox.Show($"Outer Error executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
+                MessageBox.Show($"Outer Errorrrrr executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
 
                 // Re-throw the exception for higher-level handling, if needed
                 throw;
@@ -255,8 +303,6 @@ namespace SYA
 
         //    return reader;
         //}
-
-
         public static DataTable FetchDataTableFromDataCareDataBase(string query)
         {
             DataTable dataCareDataTable = new DataTable();
@@ -408,5 +454,6 @@ namespace SYA
             }
             return (cellValue ?? "").ToString();
         }
+
     }
 }

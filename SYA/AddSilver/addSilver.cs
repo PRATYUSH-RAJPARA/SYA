@@ -858,7 +858,9 @@ namespace SYA
             float rectWidth = 211; // Adjust the width of the rectangle
             float rectHeight = 45; // Adjust the height of the rectangle
             float a = float.Parse(textBox3.Text);
-            e.Graphics.DrawString(textBox2.Text, new Font("Arial", (float)a, FontStyle.Bold), brush, new RectangleF(4, (float)4, (float)211, (float)45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+              e.Graphics.DrawRectangle(Pens.Red, 0, (float)-4, (float)60.75, (float)100 );
+
+            e.Graphics.DrawString(textBox2.Text, new Font("Arial", (float)a, FontStyle.Bold), brush, new RectangleF((float)56.75, (float)4, (float)56.75, (float)45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
         }
         private void button2_Click(object sender, EventArgs e)
         {

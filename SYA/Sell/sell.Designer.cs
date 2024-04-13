@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             panel6 = new Panel();
             panel11 = new Panel();
@@ -135,6 +136,13 @@
             panel35 = new Panel();
             label22 = new Label();
             panel30 = new Panel();
+            panel79 = new Panel();
+            panel80 = new Panel();
+            button2 = new Button();
+            panel78 = new Panel();
+            panel29 = new Panel();
+            panel44 = new Panel();
+            button1 = new Button();
             panel10 = new Panel();
             label25 = new Label();
             panel40 = new Panel();
@@ -151,6 +159,7 @@
             panel4 = new Panel();
             panel3 = new Panel();
             panel2 = new Panel();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             panel6.SuspendLayout();
             panel11.SuspendLayout();
@@ -210,6 +219,11 @@
             panel12.SuspendLayout();
             panel41.SuspendLayout();
             panel35.SuspendLayout();
+            panel30.SuspendLayout();
+            panel79.SuspendLayout();
+            panel80.SuspendLayout();
+            panel29.SuspendLayout();
+            panel44.SuspendLayout();
             panel10.SuspendLayout();
             panel13.SuspendLayout();
             panel16.SuspendLayout();
@@ -1375,11 +1389,90 @@
             // 
             // panel30
             // 
+            panel30.Controls.Add(panel79);
+            panel30.Controls.Add(panel78);
+            panel30.Controls.Add(panel29);
             panel30.Dock = DockStyle.Top;
             panel30.Location = new Point(0, 0);
             panel30.Name = "panel30";
             panel30.Size = new Size(1093, 60);
             panel30.TabIndex = 3;
+            // 
+            // panel79
+            // 
+            panel79.Controls.Add(panel80);
+            panel79.Dock = DockStyle.Left;
+            panel79.Location = new Point(155, 0);
+            panel79.Name = "panel79";
+            panel79.Size = new Size(145, 60);
+            panel79.TabIndex = 15;
+            // 
+            // panel80
+            // 
+            panel80.Controls.Add(button2);
+            panel80.Dock = DockStyle.Top;
+            panel80.Location = new Point(0, 0);
+            panel80.Name = "panel80";
+            panel80.Size = new Size(145, 40);
+            panel80.TabIndex = 3;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(40, 102, 110);
+            button2.Dock = DockStyle.Fill;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Arial Rounded MT Bold", 12.5F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(0, 0);
+            button2.Name = "button2";
+            button2.Size = new Size(145, 40);
+            button2.TabIndex = 0;
+            button2.Text = "SELL";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
+            // panel78
+            // 
+            panel78.Dock = DockStyle.Left;
+            panel78.Location = new Point(145, 0);
+            panel78.Name = "panel78";
+            panel78.Size = new Size(10, 60);
+            panel78.TabIndex = 14;
+            // 
+            // panel29
+            // 
+            panel29.Controls.Add(panel44);
+            panel29.Dock = DockStyle.Left;
+            panel29.Location = new Point(0, 0);
+            panel29.Name = "panel29";
+            panel29.Size = new Size(145, 60);
+            panel29.TabIndex = 13;
+            // 
+            // panel44
+            // 
+            panel44.Controls.Add(button1);
+            panel44.Dock = DockStyle.Top;
+            panel44.Location = new Point(0, 0);
+            panel44.Name = "panel44";
+            panel44.Size = new Size(145, 40);
+            panel44.TabIndex = 3;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(40, 102, 110);
+            button1.Dock = DockStyle.Fill;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Arial Rounded MT Bold", 12.5F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(0, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(145, 40);
+            button1.TabIndex = 0;
+            button1.Text = "Auto Sell : OFF";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // panel10
             // 
@@ -1395,7 +1488,7 @@
             // label25
             // 
             label25.Dock = DockStyle.Fill;
-            label25.Font = new Font("Arial", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label25.Font = new Font("Arial", 20F, FontStyle.Bold, GraphicsUnit.Point);
             label25.Location = new Point(310, 0);
             label25.Name = "label25";
             label25.Size = new Size(783, 60);
@@ -1525,6 +1618,11 @@
             panel2.Size = new Size(50, 786);
             panel2.TabIndex = 0;
             // 
+            // timer1
+            // 
+            timer1.Interval = 3000;
+            timer1.Tick += timer1_Tick;
+            // 
             // sell
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1594,6 +1692,11 @@
             panel12.ResumeLayout(false);
             panel41.ResumeLayout(false);
             panel35.ResumeLayout(false);
+            panel30.ResumeLayout(false);
+            panel79.ResumeLayout(false);
+            panel80.ResumeLayout(false);
+            panel29.ResumeLayout(false);
+            panel44.ResumeLayout(false);
             panel10.ResumeLayout(false);
             panel13.ResumeLayout(false);
             panel16.ResumeLayout(false);
@@ -1727,5 +1830,13 @@
         private Panel panel77;
         private Label billtax;
         private Panel panel30;
+        private System.Windows.Forms.Timer timer1;
+        private Panel panel29;
+        private Panel panel44;
+        private Button button1;
+        private Panel panel79;
+        private Panel panel80;
+        private Button button2;
+        private Panel panel78;
     }
 }
