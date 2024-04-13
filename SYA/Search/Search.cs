@@ -501,9 +501,14 @@ namespace SYA
         }
         private void btnFetchSaleData_Click(object sender, EventArgs e)
         {
-          //  queryToFetchFromMSAccess = "SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'";
-          //  HelperFetchData.InsertSaleDataIntoSQLite(queryToFetchFromMSAccess);
+            //  queryToFetchFromMSAccess = "SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'";
+            //  HelperFetchData.InsertSaleDataIntoSQLite(queryToFetchFromMSAccess);
             HelperFetchData.fetchSaleData();
+        }
+
+        private void dataGridViewSearch_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

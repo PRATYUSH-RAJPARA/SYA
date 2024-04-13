@@ -14,9 +14,6 @@ namespace SYA
 {
     public class HelperFetchData
     {
-
-
-
         public static string connectionToSYADatabase = helper.SYAConnectionString;
 
         public static void InsertInStockDataIntoSQLite(TextBox txtMessageBox, string queryToFetchFromMSAccess)

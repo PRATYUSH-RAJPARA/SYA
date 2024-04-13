@@ -364,6 +364,7 @@
             dataGridViewSearch.RowTemplate.Height = 29;
             dataGridViewSearch.Size = new Size(1338, 404);
             dataGridViewSearch.TabIndex = 13;
+            dataGridViewSearch.CellContentClick += dataGridViewSearch_CellContentClick;
             dataGridViewSearch.CellEndEdit += dataGridViewSearch_CellEndEdit;
             dataGridViewSearch.EditingControlShowing += dataGridViewSearch_EditingControlShowing;
             dataGridViewSearch.KeyDown += dataGridViewSearch_KeyDown;

@@ -7,17 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
+
 
 namespace SYA.Sell
 {
     public partial class sell : Form
     {
+        private SoundPlayer deleteSound;
         DataTable sellItem = new DataTable();
         bool autoSell = true;
         public sell()
         {
             InitializeComponent();
+            deleteSound = new SoundPlayer(@"F:\SYA_APP\SYA_SOFT_TEST\config\Audio\delete.wav");
+            
         }
+        
 
         private void sell_Load(object sender, EventArgs e)
         {
@@ -137,6 +143,7 @@ namespace SYA.Sell
                     helper.RunQueryWithoutParametersSYADataBase("DELETE FROM MAIN_DATA WHERE TAG_NO ='" + itemToSell.Rows[0]["TAG_NO"].ToString() + "'", "ExecuteNonQuery");
                     if (check("delete"))
                     {
+                         
                         timer1.Start();
                         label25.Text = "Item : " + itemToSell.Rows[0]["TAG_NO"].ToString() + " SOLD and DELETED Successfully.";
                     }
@@ -148,10 +155,10 @@ namespace SYA.Sell
             }
             void dataCareItem()
             {
-                loadDataInLabels(itemToSell, "datacare");
+                 loadDataInLabels(itemToSell, "datacare");
                 if (sell)
                 {
-                    DataTable DT = helper.FetchDataTableFromSYADataBase("SELECT TAG_NO FROM DATACARE_SALE_DATA WHERE TAG_NO = '" + itemToSell.Rows[0]["TAG_NO"].ToString() + "'");
+                    DataTable DT = helper.FetchDataTableFromSYADataBase("SELECT TAG_NO FROM SYA_SALE_DATA WHERE TAG_NO = '" + itemToSell.Rows[0]["TAG_NO"].ToString() + "'");
                     if (DT.Rows.Count != 0)
                     {
 
@@ -159,6 +166,7 @@ namespace SYA.Sell
                         helper.RunQueryWithoutParametersSYADataBase("DELETE FROM MAIN_DATA WHERE TAG_NO ='" + itemToSell.Rows[0]["TAG_NO"].ToString() + "'", "ExecuteNonQuery");
                         if (check("delete"))
                         {
+                             
                             timer1.Start();
                             label25.Text = "Item : " + itemToSell.Rows[0]["TAG_NO"].ToString() + " SOLD and DELETED Successfully.";
                         }
@@ -202,6 +210,7 @@ namespace SYA.Sell
                     helper.RunQueryWithoutParametersSYADataBase("DELETE FROM MAIN_DATA WHERE TAG_NO ='" + itemToSell.Rows[0]["TAG_NO"].ToString() + "'", "ExecuteNonQuery");
                     if (check("delete"))
                     {
+                         
                         timer1.Start();
                         label25.Text = "Item : " + itemToSell.Rows[0]["TAG_NO"].ToString() + " SOLD and DELETED Successfully.";
                     }
@@ -217,7 +226,9 @@ namespace SYA.Sell
                 if (sell)
                 {
                     MessageBox.Show(itemToSell.Rows[0]["HUID1"].ToString());
-                    string insertQuery = @"INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT) 
+                    string insertQuery =  
+                        
+                        @"INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT) 
         VALUES (
             " + (itemToSell.Rows[0]["CO_YEAR"] == DBNull.Value ? "NULL" : itemToSell.Rows[0]["CO_YEAR"].ToString()) + @",
             " + (itemToSell.Rows[0]["CO_BOOK"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["CO_BOOK"].ToString() + "'") + @",
@@ -250,6 +261,7 @@ namespace SYA.Sell
                         helper.RunQueryWithoutParametersSYADataBase("DELETE FROM MAIN_DATA WHERE TAG_NO ='" + itemToSell.Rows[0]["TAG_NO"].ToString() + "'", "ExecuteNonQuery");
                         if (check("delete"))
                         {
+                             
                             timer1.Start();
                             label25.Text = "Item : " + itemToSell.Rows[0]["TAG_NO"].ToString() + " SOLD and SAVED Successfully.";
                         }
@@ -373,8 +385,15 @@ namespace SYA.Sell
                     billtax.Text = (bill.Rows[0]["BIL_TAX"] ?? "-").ToString();
                     accDetails();
                 }
-            }
-            void accDetails()
+                else
+                {
+                    bill = helper.FetchDataTableFromSYADataBase("SELECT * FROM SYA_SALE_DATA WHERE TAG_NO = '" + itemToSell.Rows[0]["TAG_NO"] + "'");
+                    billno.Text = (bill.Rows[0]["VCH_NO"] ?? "-").ToString();
+                    name.Text = (bill.Rows[0]["AC_NAME"] ?? "-").ToString();
+
+                }
+                }
+                void accDetails()
             {
                 DataTable acc = new DataTable();
                 acc = helper.FetchDataTableFromDataCareDataBase("SELECT AC_NAME,AC_PHONE,AC_MOBILE,AC_MOBILE2 FROM AC_MAST WHERE AC_CODE = '" + bill.Rows[0]["AC_CODE"] + "'");
@@ -390,6 +409,7 @@ namespace SYA.Sell
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
             EmptyLabels();
             button2.Visible = false;
             txtTAGNO.Text = string.Empty;
