@@ -221,6 +221,7 @@ namespace SYA
         {
             panelsecond.Visible = false;
             LoadForm(new saleReport());
+          //  LoadForm(new Form1());
         }
 
         private void button22_Click(object sender, EventArgs e)

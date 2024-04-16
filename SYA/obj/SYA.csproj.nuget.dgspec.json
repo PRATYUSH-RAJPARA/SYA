@@ -49,9 +49,33 @@
         "net6.0-windows8.0": {
           "targetAlias": "net6.0-windows8.0",
           "dependencies": {
+            "Guna.Charts.WinForms": {
+              "target": "Package",
+              "version": "[1.0.9, )"
+            },
+            "Guna.UI2.WinForms": {
+              "target": "Package",
+              "version": "[2.0.4.6, )"
+            },
             "Humanizer": {
               "target": "Package",
               "version": "[2.14.1, )"
+            },
+            "LiveCharts.WinForms": {
+              "target": "Package",
+              "version": "[0.9.7.1, )"
+            },
+            "MaterialSkin": {
+              "target": "Package",
+              "version": "[0.2.1, )"
+            },
+            "MaterialSkin.2": {
+              "target": "Package",
+              "version": "[2.3.1, )"
+            },
+            "MetroModernUI": {
+              "target": "Package",
+              "version": "[1.4.0, )"
             },
             "Microsoft.AspNet.WebApi.Core": {
               "target": "Package",

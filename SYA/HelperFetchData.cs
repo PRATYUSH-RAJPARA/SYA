@@ -190,6 +190,83 @@ namespace SYA
             string SYA_COMMENT = null;
             string SYA_PRINT = null;
 
+            void nullit()
+            {
+                 CO_CODE = null;
+                 CO_YEAR = null;
+                 CO_BOOK = null;
+                 VCH_NO = null;
+                 SR_NO = null;
+                 VCH_DATE = null;
+                 BOOK_NAME = null;
+                 VCH_TYPE = null;
+                 AC_CODE = null;
+                 CUST_AC = null;
+                 IT_CODE = null;
+                 IT_DESC = null;
+                 PR_CODE = null;
+                 IT_TYPE = null;
+                 TAG_SRNO = null;
+                 TAG_NO = null;
+                 DESIGN = null;
+                 ITM_SIZE = null;
+                 ITM_PCS = null;
+                 ITM_GWT = null;
+                 TAG_NWT = null;
+                 ITM_NWT = null;
+                 ITM_TOUCH = null;
+                 ITM_WEST = null;
+                 ITM_FINE = null;
+                 ITM_RAT = null;
+                 ITM_AMT = null;
+                 LBR_RATE = null;
+                 LBR_AMT = null;
+                 OTH_AMT = null;
+                 NET_AMT = null;
+                 NET_COST = null;
+                 MRP = null;
+                 KR_NAME = null;
+                 RATE_TYPE = null;
+                 TR_TYPE = null;
+                 SIGN = null;
+                 EMP_CODE = null;
+                 KR_OTH_WT = null;
+                 KR_ITM_NWT = null;
+                 KR_ITM_TOUCH = null;
+                 KR_ITM_WEST = null;
+                 KR_ITM_FINE = null;
+                 HD_VCH_NO = null;
+                 VCH_SRNO = null;
+                 AND_TRFR = null;
+                 BAG_WT = null;
+                 BOX_WT = null;
+
+                 SYA_ID = null;
+                 SYA_CO_YEAR = null;
+                 SYA_CO_BOOK = null;
+                 SYA_VCH_NO = null;
+                 SYA_VCH_DATE = null;
+                 SYA_TAG_NO = null;
+                 SYA_GW = null;
+                 SYA_NW = null;
+                 SYA_LABOUR_AMT = null;
+                 SYA_WHOLE_LABOUR_AMT = null;
+                 SYA_OTHER_AMT = null;
+                 SYA_IT_TYPE = null;
+                 SYA_ITEM_CODE = null;
+                 SYA_ITEM_PURITY = null;
+                 SYA_ITEM_DESC = null;
+                 SYA_HUID1 = null;
+                 SYA_HUID2 = null;
+                 SYA_SIZE = null;
+                 SYA_PRICE = null;
+                 SYA_STATUS = null;
+                 SYA_AC_CODE = null;
+                 SYA_AC_NAME = null;
+                 SYA_COMMENT = null;
+                 SYA_PRINT = null;
+            }
+
             DataTable accessData = helper.FetchDataTableFromDataCareDataBase("SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'");
             if (accessData.Rows.Count > 0)
             {
@@ -286,7 +363,6 @@ namespace SYA
                         }
 
 
-
                     }
                     void update()
                     {
@@ -312,9 +388,17 @@ namespace SYA
                                              "AC_CODE = '" + AC_CODE + "', " +
                                              "AC_NAME = '" + AC_NAME + "', " +
                                              "COMMENT = '" + SYA_COMMENT + "', " +
-                                             "PRINT = '" + SYA_PRINT + "' " +
+                                             "PRINT = '" + SYA_PRINT + "', " +
+                                             "ITM_RAT = '" + ITM_RAT + "', " +
+                                             "ITM_AMT = '" + ITM_AMT + "' ," +
+                                             "LBR_RATE = '" + LBR_RATE + "' ," +
+                                             "LBR_AMT = '" + LBR_AMT + "' ," +
+                                             "OTH_AMT = '" + OTH_AMT + "' ," +
+                                             "NET_AMT = '" + NET_AMT + "' " +
+
                                              "WHERE TAG_NO = '" + TAG_NO + "'";
                         helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
+                        nullit();
                     }
 
 
@@ -323,21 +407,25 @@ namespace SYA
 
                     void insert()
                     {
-                        string insertQuery = "INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT) VALUES ('" + CO_YEAR + "','" + CO_BOOK + "','" + VCH_NO + "','" + Convert.ToDateTime(VCH_DATE).ToString("yyyy-MM-dd HH:mm:ss") + "','" + TAG_NO + "','" + ITM_GWT + "','" + ITM_NWT + "','" + SYA_LABOUR_AMT + "','" + SYA_WHOLE_LABOUR_AMT + "','" + SYA_OTHER_AMT + "','" + IT_TYPE + "','" + SYA_ITEM_CODE + "','" + SYA_ITEM_PURITY + "','" + SYA_ITEM_DESC + "','" + SYA_HUID1 + "','" + SYA_HUID2 + "','" + SYA_SIZE + "','" + SYA_PRICE + "','" + SYA_STATUS + "','" + AC_CODE + "', '" + AC_NAME + "','" + SYA_COMMENT + "','" + SYA_PRINT + "');";
+                        string insertQuery = "INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT,ITM_RAT3" +
+                            " ,ITM_AMT,LBR_RATE,LBR_AMT,OTH_AMT,NET_AMT) VALUES ('" + CO_YEAR + "','" + CO_BOOK + "','" + VCH_NO + "','" + Convert.ToDateTime(VCH_DATE).ToString("yyyy-MM-dd HH:mm:ss") + "','" + TAG_NO + "','" + ITM_GWT + "','" + ITM_NWT + "','" + SYA_LABOUR_AMT + "','" + SYA_WHOLE_LABOUR_AMT + "','" + SYA_OTHER_AMT + "','" + IT_TYPE + "','" + SYA_ITEM_CODE + "','" + SYA_ITEM_PURITY + "','" + SYA_ITEM_DESC + "','" + SYA_HUID1 + "','" + SYA_HUID2 + "','" + SYA_SIZE + "','" + SYA_PRICE + "','" + SYA_STATUS + "','" + AC_CODE + "', '" + AC_NAME + "','" + SYA_COMMENT + "','" + SYA_PRINT + "' ,'" + ITM_RAT + "','" + ITM_AMT + "','" + LBR_RATE + "','" + LBR_AMT + "','" + OTH_AMT + "','" + NET_AMT + "'); ";
+                        nullit();
                         helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
-
                     }
                     DataTable update_check = helper.FetchDataTableFromSYADataBase("SELECT TAG_NO FROM SYA_SALE_DATA WHERE TAG_NO ='" + TAG_NO + "'");
                     if (update_check.Rows.Count > 0)
                     {
                         update();
+                        nullit();
                     }
                     else
                     {
                         insert();
+                        nullit();
                     }
                     
                 }
+                MessageBox.Show("Done");
             }
         }
         public static void InsertSaleDataIntoSQLite______old(string queryToFetchFromMSAccess)

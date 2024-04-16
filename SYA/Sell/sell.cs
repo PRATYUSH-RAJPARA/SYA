@@ -88,18 +88,23 @@ namespace SYA.Sell
 
             void sort()
             {
+                MessageBox.Show("s34");
+                MessageBox.Show("s3111   :   " + itemToSell.Rows[0]["HUID1"].ToString().Length + "  :  " + itemToSell.Rows[0]["HUID2"].ToString().Length);
                 if (itemToSell.Rows[0]["IT_TYPE"].ToString() == "S")
                 {
                     silverItem();
                 }
                 else if (itemToSell.Rows[0]["IT_TYPE"].ToString() == "G" && itemToSell.Rows[0]["TAG_NO"].ToString().Contains("SYA"))
                 {
+                    MessageBox.Show("s3   :   "+ itemToSell.Rows[0]["HUID1"].ToString().Length+"  :  "+ itemToSell.Rows[0]["HUID2"].ToString().Length);
                     if (itemToSell.Rows[0]["HUID1"].ToString().Length == 0 && itemToSell.Rows[0]["HUID2"].ToString().Length == 0)
                     {
+                        MessageBox.Show("s1");
                         syaItem();
                     }
-                    else if (itemToSell.Rows[0]["HUID1"].ToString().Length == 6 && itemToSell.Rows[0]["HUID2"].ToString().Length == 6)
+                    else if (itemToSell.Rows[0]["HUID1"].ToString().Length == 6 || itemToSell.Rows[0]["HUID2"].ToString().Length == 6)
                     {
+                        MessageBox.Show("s2");
                         syaHUIDItem();
                     }
                 }
@@ -204,6 +209,7 @@ namespace SYA.Sell
             }
             void syaItem()
             {
+               
                 loadDataInLabels(itemToSell, "sya");
                 if (sell)
                 {
@@ -222,6 +228,7 @@ namespace SYA.Sell
             }
             void syaHUIDItem()
             {
+                MessageBox.Show("s");
                 loadDataInLabels(itemToSell, "sya");
                 if (sell)
                 {
