@@ -864,7 +864,8 @@ namespace SYA
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            PrintData(false);
+            QUERY.GetSummaryData();
+            //PrintData(false);
         }
 
         private void button3_Click(object sender, EventArgs e)
