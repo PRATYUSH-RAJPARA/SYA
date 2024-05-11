@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\SYA\\SYA\\SYA.csproj": {}
+    "C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYA\\SYA.csproj": {}
   },
   "projects": {
-    "F:\\SYA\\SYA\\SYA.csproj": {
+    "C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYA\\SYA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\SYA\\SYA\\SYA.csproj",
+        "projectUniqueName": "C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYA\\SYA.csproj",
         "projectName": "SYA",
-        "projectPath": "F:\\SYA\\SYA\\SYA.csproj",
-        "packagesPath": "C:\\Users\\SYA\\.nuget\\packages\\",
-        "outputPath": "F:\\SYA\\SYA\\obj\\",
+        "projectPath": "C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYA\\SYA.csproj",
+        "packagesPath": "C:\\Users\\bhavi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYA\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Installed Softwares\\Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Software\\VisualStudio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\SYA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bhavi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,11 +39,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -137,7 +133,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }
