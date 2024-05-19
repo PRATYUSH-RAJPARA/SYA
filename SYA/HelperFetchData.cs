@@ -9,37 +9,31 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Application = System.Windows.Forms.Application;
 using DataTable = System.Data.DataTable;
 using TextBox = System.Windows.Forms.TextBox;
-
 namespace SYA
 {
     public class HelperFetchData
     {
         public static string connectionToSYADatabase = helper.SYAConnectionString;
-
         public static void InsertInStockDataIntoSQLite(TextBox txtMessageBox, string queryToFetchFromMSAccess)
         {
             DataTable data = helper.FetchDataTableFromDataCareDataBase(queryToFetchFromMSAccess);
             List<int> errorRows = new List<int>();
             int insertedCount = 0;
             int updatedCount = 0;
-
             try
             {
                 using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionToSYADatabase))
                 {
                     sqliteConnection.Open();
-
                     for (int rowIndex = 0; rowIndex < data.Rows.Count; rowIndex++)
                     {
                         DataRow row = data.Rows[rowIndex];
-
                         try
                         {
                             using (SQLiteCommand checkCommand = new SQLiteCommand("SELECT COUNT(*) FROM MAIN_DATA WHERE TAG_NO = @TAG_NO", sqliteConnection))
                             {
                                 checkCommand.Parameters.AddWithValue("@TAG_NO", row["TAG_NO"]);
                                 int rowCount = Convert.ToInt32(checkCommand.ExecuteScalar());
-
                                 if (rowCount > 0)
                                 {
                                     using (SQLiteCommand updateCommand = new SQLiteCommand("UPDATE MAIN_DATA SET CO_YEAR = @CO_YEAR, CO_BOOK = @CO_BOOK, VCH_NO = @VCH_NO, VCH_DATE = @VCH_DATE, GW = @GW, NW = @NW,IT_TYPE = @IT_TYPE, ITEM_CODE = @ITEM_CODE, ITEM_PURITY = @ITEM_PURITY, AC_CODE = @AC_CODE, AC_NAME = @AC_NAME, ITEM_DESC = @ITEM_DESC WHERE TAG_NO = @TAG_NO", sqliteConnection))
@@ -64,13 +58,11 @@ namespace SYA
                         {
                             errorRows.Add(rowIndex + 1);
                             MessageBox.Show($"InsertInStockDataIntoSQLite Error in row {rowIndex + 1}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                             try
                             {
                                 using (SQLiteCommand retrieveCommand = new SQLiteCommand("SELECT * FROM MAIN_DATA WHERE TAG_NO = @TAG_NO", sqliteConnection))
                                 {
                                     retrieveCommand.Parameters.AddWithValue("@TAG_NO", row["TAG_NO"]);
-
                                     using (SQLiteDataReader reader = retrieveCommand.ExecuteReader())
                                     {
                                         if (reader.Read())
@@ -80,7 +72,6 @@ namespace SYA
                                             {
                                                 rowData.AppendLine($"{reader.GetName(i)}: {reader.GetValue(i)}");
                                             }
-
                                             MessageBox.Show($"InsertInStockDataIntoSQLite 2 : : : Data in the database for TAG_NO = {row["TAG_NO"]}:\n{rowData.ToString()}", "Database Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         }
                                     }
@@ -91,14 +82,10 @@ namespace SYA
                                 MessageBox.Show($"InsertInStockDataIntoSQLite 3 : : : Error retrieving data from the database for TAG_NO = {row["TAG_NO"]}: {retrievalEx.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
-
-
                         HelperFetchData.UpdateMessageBox("Inserted Rows : " + insertedCount + " Updated Rows : " + updatedCount, txtMessageBox);
                         Application.DoEvents();
-
                     }
                 }
-
                 if (errorRows.Count > 0)
                 {
                     ShowInStockErrorRowsDialog(errorRows, data);
@@ -164,7 +151,6 @@ namespace SYA
             string AND_TRFR = null;
             string BAG_WT = null;
             string BOX_WT = null;
-
             string SYA_ID = null;
             string SYA_CO_YEAR = null;
             string SYA_CO_BOOK = null;
@@ -189,7 +175,6 @@ namespace SYA
             string SYA_AC_NAME = null;
             string SYA_COMMENT = null;
             string SYA_PRINT = null;
-
             void nullit()
             {
                  CO_CODE = null;
@@ -240,7 +225,6 @@ namespace SYA
                  AND_TRFR = null;
                  BAG_WT = null;
                  BOX_WT = null;
-
                  SYA_ID = null;
                  SYA_CO_YEAR = null;
                  SYA_CO_BOOK = null;
@@ -266,7 +250,6 @@ namespace SYA
                  SYA_COMMENT = null;
                  SYA_PRINT = null;
             }
-
             DataTable accessData = helper.FetchDataTableFromDataCareDataBase("SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'");
             if (accessData.Rows.Count > 0)
             {
@@ -320,14 +303,12 @@ namespace SYA
                     AND_TRFR = row["AND_TRFR"] != DBNull.Value ? row["AND_TRFR"].ToString() : "";
                     BAG_WT = row["BAG_WT"] != DBNull.Value ? row["BAG_WT"].ToString() : "";
                     BOX_WT = row["BOX_WT"] != DBNull.Value ? row["BOX_WT"].ToString() : "";
-
                     DataTable ac_dt = helper.FetchDataTableFromDataCareDataBase("SELECT AC_NAME FROM AC_MAST WHERE AC_CODE = '" + AC_CODE + "'");
                     string AC_NAME = string.Empty;
                     if (ac_dt.Rows.Count > 0)
                     {
                         AC_NAME = ac_dt.Rows[0]["AC_NAME"].ToString();
                     }
-
                     DataTable sya_dt = helper.FetchDataTableFromSYADataBase("SELECT * FROM MAIN_DATA WHERE TAG_NO = '" + TAG_NO + "'");
                     if (sya_dt.Rows.Count > 0)
                     {
@@ -357,12 +338,7 @@ namespace SYA
                             SYA_AC_NAME = sya_row["AC_NAME"] != DBNull.Value ? sya_row["AC_NAME"].ToString() : "";
                             SYA_COMMENT = sya_row["COMMENT"] != DBNull.Value ? sya_row["COMMENT"].ToString() : "";
                             SYA_PRINT = sya_row["PRINT"] != DBNull.Value ? sya_row["PRINT"].ToString() : "";
-
-                            
-
                         }
-
-
                     }
                     void update()
                     {
@@ -395,16 +371,10 @@ namespace SYA
                                              "LBR_AMT = '" + LBR_AMT + "' ," +
                                              "OTH_AMT = '" + OTH_AMT + "' ," +
                                              "NET_AMT = '" + NET_AMT + "' " +
-
                                              "WHERE TAG_NO = '" + TAG_NO + "'";
                         helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
                         nullit();
                     }
-
-
-
-
-
                     void insert()
                     {
                         string insertQuery = "INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT,ITM_RAT3" +
@@ -423,7 +393,6 @@ namespace SYA
                         insert();
                         nullit();
                     }
-                    
                 }
                 MessageBox.Show("Done");
             }
@@ -489,7 +458,6 @@ namespace SYA
                         using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionToSYADatabase))
                         {
                             sqliteConnection.Open();
-
                             using (SQLiteCommand checkCommand = new SQLiteCommand("SELECT COUNT(*) FROM SALE_DATA WHERE TAG_NO = @TAG_NO", sqliteConnection))
                             {
                                 checkCommand.Parameters.AddWithValue("@TAG_NO", tagNo);
@@ -561,30 +529,22 @@ namespace SYA
                                 '{syaACCode}', '{syaACName}', '{syaComment}', '{syaPrint}'
                                 )";
                                 }
-
                             }
                         }
-
-
                         try
                         {
                             object res = helper.RunQueryWithoutParametersSYADataBase(insertupdatequery, "ExecuteNonQuery");
                             int result = Convert.ToInt32(res);
-
                         }
                         catch (Exception ex) { MessageBox.Show("InsertSaleDataIntoSQLite : : " + ex.Message); }
                     }
-
                 }
             }
             else
             {
-
                 MessageBox.Show("InsertSaleDataIntoSQLite : : : No rows found.");
             }
             // Store values in string variables
-
-
         }
         public static void InsertSaleDataIntoSQLite(string queryToFetchFromMSAccess)
         {
@@ -609,8 +569,6 @@ namespace SYA
                     string itemCode_1 = row["IT_CODE"].ToString();
                     string purity = itemCode_1[2].ToString() + itemCode_1[3].ToString() + itemCode_1[4].ToString();
                     string itDesc = row["IT_DESC"].ToString();
-
-
                     string whole_labour_amt = row["LBR_AMT"].ToString();
                     string prCode = row["PR_CODE"].ToString();
                     string design = row["DESIGN"].ToString();
@@ -623,14 +581,10 @@ namespace SYA
                     string acCode = row["AC_CODE"].ToString();
                     DataTable dt = helper.FetchDataTableFromDataCareDataBase("SELECT * FROM AC_MAST WHERE AC_CODE = '" + acCode + "'");
                     string acName = dt.Rows[0]["AC_NAME"].ToString();
-
-
-
                     string insertupdatequery = null;
                     using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionToSYADatabase))
                     {
                         sqliteConnection.Open();
-
                         using (SQLiteCommand checkCommand = new SQLiteCommand("SELECT COUNT(*) FROM SYA_SALE_DATA WHERE TAG_NO = @TAG_NO", sqliteConnection))
                         {
                             checkCommand.Parameters.AddWithValue("@TAG_NO", tagNo);
@@ -641,7 +595,6 @@ namespace SYA
                                 CO_YEAR = '{coYear}',
                                 CO_BOOK = '{coBook}',
                                 VCH_NO = '{vchNo}',
-                              
                                 VCH_DATE = '{vchDate}',
                                 AC_CODE = '{acCode}',
                                 IT_DESC = '{itDesc}',
@@ -657,7 +610,6 @@ namespace SYA
                                 LBR_AMT = '{lbrAmt}',
                                 OTH_AMT = '{othAmt}',
                                 NET_AMT = '{netAmt}',
-                               
                                 WHERE TAG_NO = '{tagNo}'";
                             }
                             else
@@ -673,30 +625,21 @@ namespace SYA
                                 '{netAmt}',
                                 )";
                             }
-
                         }
                     }
-
-
                     try
                     {
                         object res = helper.RunQueryWithoutParametersSYADataBase(insertupdatequery, "ExecuteNonQuery");
                         int result = Convert.ToInt32(res);
-
                     }
                     catch (Exception ex) { MessageBox.Show("InsertSaleDataIntoSQLite : : " + ex.Message); }
-
-
                 }
             }
             else
             {
-
                 MessageBox.Show("InsertSaleDataIntoSQLite : : : No rows found.");
             }
             // Store values in string variables
-
-
         }
         private static void MapInStockParameters(SQLiteParameterCollection parameters, DataRow row)
         {
@@ -706,19 +649,14 @@ namespace SYA
             parameters.AddWithValue("@VCH_NO", "SYA00");
             parameters.AddWithValue("@VCH_DATE", row["VCH_DATE"]);
             parameters.AddWithValue("@TAG_NO", row["TAG_NO"]);
-
-
-
             parameters.AddWithValue("@GW", row["ITM_GWT"]);
             parameters.AddWithValue("@NW", row["ITM_NWT"]);
-
             parameters.AddWithValue("@LABOUR_AMT", row["LBR_RATE"]);
             parameters.AddWithValue("@OTHER_AMT", row["OTH_AMT"]);
             parameters.AddWithValue("@IT_TYPE", row["IT_TYPE"]);
             parameters.AddWithValue("@ITEM_CODE", row["PR_CODE"]);
             string PR_CODE = row["PR_CODE"].ToString();
             parameters.AddWithValue("@ITEM_PURITY", HelperFetchData.GetItemPurity(row["IT_CODE"].ToString(), PR_CODE));
-
             // Extract ITEM_DESC based on mappings
             string IT_TYPE = row["IT_TYPE"].ToString(); // Assuming this is a constant value
             string itemDesc = HelperFetchData.GetItemDescFromSQLite(PR_CODE, IT_TYPE);
@@ -738,41 +676,32 @@ namespace SYA
             // Create a new form to display error rows
             Form errorForm = new Form();
             errorForm.Text = "Error Rows";
-
             // Set the height of the form based on the number of rows
             int rowHeight = 22; // Adjust this value based on the actual row height
             int formHeight = Math.Min(errorRows.Count * rowHeight + 100, Screen.PrimaryScreen.WorkingArea.Height);
-
             // Set the width of the form to the full available width
             errorForm.Width = Screen.PrimaryScreen.WorkingArea.Width;
-
             // Center the form on the screen
             errorForm.StartPosition = FormStartPosition.CenterScreen;
-
             // Create a DataGridView to display error rows along with original data
             DataGridView errorGridView = new DataGridView();
             errorGridView.Dock = DockStyle.Fill;
             errorGridView.AllowUserToAddRows = false;
             errorGridView.ReadOnly = true;
-
             // Add columns to display both error information and relevant original data
             errorGridView.Columns.Add("RowNumber", "Row Number");
             errorGridView.Columns.Add("ErrorMessage", "Error Message");
-
             // Add columns relevant to insertion
             foreach (string columnName in new[] { "TAG_NO", "VCH_DATE", "ITM_GWT", "ITM_NWT", "LBR_RATE", "OTH_AMT", "PR_CODE", "IT_CODE", "IT_DESC", "ITM_SIZE", "MRP", "DESIGN" })
             {
                 errorGridView.Columns.Add(columnName, columnName);
             }
-
             // Populate the DataGridView with error row numbers and error messages
             foreach (int rowNum in errorRows)
             {
                 errorGridView.Rows.Add(rowNum, "Error occurred in this row");
-
                 // Add the original data from the row with an error
                 DataRow errorRow = data.Rows[rowNum - 1]; // Adjusting to 0-based index
-
                 // Populate relevant data columns
                 object[] rowData = new object[]
                 {
@@ -790,17 +719,13 @@ namespace SYA
             errorRow["MRP"],
             errorRow["DESIGN"],
                 };
-
                 errorGridView.Rows.Add(rowData);
             }
-
             // Add the DataGridView to the form
             errorForm.Controls.Add(errorGridView);
-
             // Calculate the height of the form title bar and add it to the form height
             int titleBarHeight = errorForm.Height - errorForm.ClientRectangle.Height;
             errorForm.Height = formHeight + titleBarHeight;
-
             // Show the form
             errorForm.ShowDialog();
         }
@@ -818,22 +743,18 @@ namespace SYA
                 txtMessageBox.Text = message;
             }
         }
-
         public static string GetItemPurity(string itCode, string prcode)
         {
             // Assuming itCode has a format like "PR_CODEXXX" where XXX is the item purity
             return itCode.Replace(prcode, "");
         }
-
         public static string GetItemDescFromSQLite(string PR_CODE, string IT_TYPE)
         {
             // Implement logic to fetch ITEM_DESC from SQLite based on PR_CODE and IT_TYPE
             // You can modify this method based on your database schema and logic
             // For example, you might need to query the ITEM_MASTER table
-
             // Sample logic (replace with actual query and logic)
             string query = "SELECT IT_NAME FROM ITEM_MASTER WHERE PR_CODE = '" + PR_CODE + "' AND IT_TYPE = '" + IT_TYPE + "'";
-
             object result = helper.RunQueryWithoutParametersSYADataBase(query, "ExecuteScalar");
             if (result != null)
             {

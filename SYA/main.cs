@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace SYA
 {
     public partial class main : Form
@@ -17,7 +16,6 @@ namespace SYA
         {
             InitializeComponent();
         }
-
         private void main_Load(object sender, EventArgs e)
         {
             btnStocks.Visible = false;
@@ -29,11 +27,9 @@ namespace SYA
             //panelchild.visible = false;
             btnHideAllSecondPanelButtons();
         }
-
         // Loads form by name in panelchild
         private void LoadForm(Form form)
         {
-
             // Close the currently displayed form (if any)
             if (panelChild.Controls.Count > 0)
             {
@@ -44,15 +40,12 @@ namespace SYA
                     currentForm.Dispose();
                 }
             }
-
             // Set the properties of the new form
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-
             // Add the new form to the panel
             panelChild.Controls.Add(form);
-
             // Sho the Panel Child
             panelChild.Visible = true;
             // Show the new form
@@ -76,36 +69,27 @@ namespace SYA
                         // Optionally clear any existing columns
                         dataGridView.Columns.Clear();
                     }
-
                     // Close and dispose the current form
                     currentForm.Close();
                     currentForm.Dispose();
-
                     // Nullify references to aid garbage collection
                     currentForm = null;
-
                     // Force garbage collection and finalization
                     GC.Collect();
                     GC.WaitForPendingFinalizers();
                 }
             }
-
             // Set the properties of the new form
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-
             // Add the new form to the panel
             panelChild.Controls.Add(form);
-
             // Show the Panel Child
             panelChild.Visible = true;
             // Show the new form
             form.Show();
         }
-
-
-
         // main left panel buttons
         private void btnAddItem_Click(object sender, EventArgs e)
         {
@@ -116,7 +100,6 @@ namespace SYA
             button3.Visible = true;
             button4.Visible = true;
             button5.Visible = true;
-
         }
         private void btnSellItem_Click(object sender, EventArgs e)
         {
@@ -126,7 +109,6 @@ namespace SYA
             button7.Visible = true;
             button8.Visible = true;
             button21.Visible = true;
-
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -140,7 +122,6 @@ namespace SYA
             button9.Visible = true;
             button10.Visible = true;
             button11.Visible = true;
-
         }
         private void btnStocks_Click(object sender, EventArgs e)
         {
@@ -170,11 +151,9 @@ namespace SYA
             btnHideAllSecondPanelButtons();
             panelsecond.Visible = true;
             button20.Visible = true;
-
         }
         private void btnHideAllSecondPanelButtons()
         {
-
             button1.Visible = false;
             button2.Visible = false;
             button3.Visible = false;
@@ -197,7 +176,6 @@ namespace SYA
             button20.Visible = false;
             button21.Visible = false;
         }
-
         // button add gold
         private void button1_Click(object sender, EventArgs e)
         {
@@ -210,50 +188,43 @@ namespace SYA
             panelsecond.Visible = false;
             LoadForm(new DataCareData());
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
             LoadForm(new addSilver());
         }
-
         private void button10_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
             LoadForm(new saleReport());
-          //  LoadForm(new Form1());
+            //  LoadForm(new Form1());
         }
-
         private void button22_Click(object sender, EventArgs e)
         {
-
         }
-
         private void button6_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
             LoadForm(new sell());
         }
-
         private void button13_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
             LoadForm(new tempVerifyData());
         }
-
         private void btnSortContact_Click(object sender, EventArgs e)
         {
-            RichTextBox r = new RichTextBox();
-            Contact.SortContactData(r, "datacare");
-
+            //RichTextBox r = new RichTextBox();
+            //Contact.SortContactData(r, "datacare");
         }
-
         private void button17_Click(object sender, EventArgs e)
         {
+            RichTextBox r = new RichTextBox();
+            Contact contact = new Contact();
+            contact.SortContactData(r, "datacare");
             panelsecond.Visible = false;
             LoadForm(new PrintRTGS());
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
             PrintRTGS p = new PrintRTGS();

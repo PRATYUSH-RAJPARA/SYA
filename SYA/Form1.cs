@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace SYA
 {
     public partial class Form1 : Form
@@ -16,10 +15,8 @@ namespace SYA
         {
             InitializeComponent();
         }
-
         private void chart1_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

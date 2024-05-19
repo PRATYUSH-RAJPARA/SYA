@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-
 namespace SYA
 {
     public class QUERY
@@ -37,7 +36,6 @@ namespace SYA
             void DisplayVariablesInMessageBox()
             {
                 StringBuilder SS = new StringBuilder();
-
                 SS.AppendLine($"CO_YEAR: {CO_YEAR}");
                 SS.AppendLine($"YEAR: {YEAR}");
                 SS.AppendLine($"MONTH: {MONTH}");
@@ -60,14 +58,12 @@ namespace SYA
                 SS.AppendLine($"LBR_RATE: {LBR_RATE}");
                 SS.AppendLine($"LBR_AMT: {LBR_AMT}");
                 SS.AppendLine($"OTH_AMT: {OTH_AMT}");
-
                 MessageBox.Show(SS.ToString(), "Variable Values", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             DataTable dt = helper.FetchDataTableFromDataCareDataBase(getMonths);
             foreach (DataRow row in dt.Rows)
             {
                 DataTable check = new DataTable();
-
                 DataTable SL_DATA_GOLD = getSL_DATA(row["unique_months"].ToString(), "026");
                 DataTable SL_DETL_GOLD = getSL_DETL(row["unique_months"].ToString(), "026");
                 setVar(SL_DATA_GOLD, SL_DETL_GOLD, "GOLD", row["unique_months"].ToString());
@@ -80,9 +76,7 @@ namespace SYA
                 {
                     insertSQL(); 
                 }
-
                 DisplayVariablesInMessageBox();
-
                 DataTable SL_DATA_SILVER = getSL_DATA(row["unique_months"].ToString(), "027");
                 DataTable SL_DETL_SILVER = getSL_DETL(row["unique_months"].ToString(), "027");
                 setVar(SL_DATA_SILVER, SL_DETL_SILVER, "SILVER", row["unique_months"].ToString());
@@ -97,9 +91,7 @@ namespace SYA
                     MessageBox.Show("123");
                     insertSQL();
                 }
-
                 DisplayVariablesInMessageBox();
-  
             }
             void insertSQL()
             {
@@ -181,7 +173,6 @@ namespace SYA
         LBR_AMT = " + LBR_AMT + @",
         OTH_AMT = " + OTH_AMT + @"
     WHERE CO_YEAR = '" + CO_YEAR + "' AND MONTH = '" + MONTH + "' AND ITEM='"+ITEM+"'";
-
         }
             void setVar(DataTable data, DataTable detl, string item, string month)
             {
@@ -208,7 +199,6 @@ namespace SYA
                 LBR_AMT = detl.Rows[0]["LBR_AMT"].ToString();
                 OTH_AMT = detl.Rows[0]["OTH_AMT"].ToString();
             }
-           
             DataTable getSL_DATA(string month, string co_book)
             {
                 string sql = @"
@@ -229,7 +219,6 @@ namespace SYA
             FORMAT(VCH_DATE, 'mm') = '" + month + "' AND CO_BOOK = '" + co_book + "'";
                 return helper.FetchDataTableFromDataCareDataBase(sql);
             }
-
             DataTable getSL_DETL(string month, string co_book)
             {
                 string sql = @"
@@ -247,14 +236,10 @@ namespace SYA
             FORMAT(VCH_DATE, 'mm') = '" + month + "' AND CO_BOOK = '" + co_book + "'";
                 return helper.FetchDataTableFromDataCareDataBase(sql);
             }
-
             ShowMsg();
         }
-
         public static void DisplayDataTableInMessageBox(DataTable dataTable)
         {
-
-
             foreach (DataRow row in dataTable.Rows)
             {
                 foreach (var item in row.ItemArray)
@@ -263,7 +248,6 @@ namespace SYA
                 }
                 sb.AppendLine();
             }
-
             // Display in a message box
             string message = sb.ToString();
             // MessageBox.Show(message);

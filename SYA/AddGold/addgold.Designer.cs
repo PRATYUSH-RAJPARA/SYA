@@ -1,5 +1,4 @@
 ﻿using System.Runtime.InteropServices;
-
 namespace SYA
 {
     partial class addgold
@@ -8,7 +7,6 @@ namespace SYA
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -21,9 +19,7 @@ namespace SYA
             }
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -697,9 +693,7 @@ namespace SYA
             panel7.PerformLayout();
             ResumeLayout(false);
         }
-
         #endregion
-
         private Panel panel1;
         private Panel panel4;
         private Panel panel5;

@@ -291,7 +291,6 @@ namespace SYA
                 quickSave = false;
             }
         }
-
         private void dataGridViewSearch_KeyDown(object sender, KeyEventArgs e)
         {
             string currentColumnName1 = dataGridViewSearch.Columns[dataGridViewSearch.CurrentCell.ColumnIndex].Name;
@@ -312,7 +311,6 @@ namespace SYA
             {
                 selectedRow.Cells["huid2"].Value = (selectedRow.Cells["huid2"].Value ?? "").ToString().ToUpper();
             }
-
             if (e.KeyCode == Keys.Tab)
             {
                 DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
@@ -333,8 +331,6 @@ namespace SYA
                     }
                 }
             }
-
-
         }
         private void txtTagno_Leave(object sender, EventArgs e)
         {
@@ -505,10 +501,8 @@ namespace SYA
             //  HelperFetchData.InsertSaleDataIntoSQLite(queryToFetchFromMSAccess);
             HelperFetchData.fetchSaleData();
         }
-
         private void dataGridViewSearch_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
     }
 }

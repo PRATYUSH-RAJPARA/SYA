@@ -14,7 +14,6 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Media;
 using DataTable = System.Data.DataTable;
-
 namespace SYA
 {
     public partial class tempVerifyData : Form
@@ -30,12 +29,9 @@ namespace SYA
             button1.Text = "Normal Insert";
         }
         bool force = false;
-
         private void dataGridViewSearch_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
-
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -43,19 +39,15 @@ namespace SYA
                 panel6.Visible = true;
                 label30.Text = "Loading.............";
                 label30.BackColor = Color.White;
-
                 try
                 {
                     string tagno = textBox1.Text;
-
                     // Check if the input is not null or empty
                     if (!string.IsNullOrEmpty(tagno))
                     {
                         string str = "INSERT INTO TAGNOS (TAG_NO) VALUES ('" + tagno + "'); ";
                         helper.RunQueryWithoutParametersSYADataBase(str, "ExecuteNonQuery");
-
                         string query = $"SELECT * FROM MAIN_DATA WHERE TAG_NO LIKE '%{tagno}%'";
-
                         using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase(query))
                         {
                             if (reader != null && reader.Read())
@@ -86,7 +78,6 @@ namespace SYA
                 }
             }
         }
-
         private void setDataToLables(SQLiteDataReader reader)
         {
             bool allOK = true;
@@ -104,7 +95,6 @@ namespace SYA
             string Price = reader["PRICE"].ToString();
             string Type = reader["IT_TYPE"].ToString();
             Type = (Type == "G") ? "GOLD" : (Type == "S") ? "SILVER" : Type;
-
             string query = $"SELECT * FROM ITEM_MASTER WHERE PR_CODE = '{reader["ITEM_CODE"]}' AND IT_TYPE = '{reader["IT_TYPE"]}'";
             string coYear = reader["CO_YEAR"].ToString();
             string coBook = reader["CO_BOOK"].ToString();
@@ -149,19 +139,12 @@ namespace SYA
             string checkQuery = "SELECT count(TAG_NO) FROM MAIN_DATA_VERIFIED WHERE TAG_NO = '" + tagNo + "'";
             int rowCount = Convert.ToInt32(helper.RunQueryWithoutParametersSYADataBase(checkQuery, "ExecuteScalar"));
             MessageBox.Show(rowCount+"");
-
             if (Type == "GOLD" && rowCount <= 0)
             {
-
-
                 if (!ValidateCaret(Caret)) { label23.BackColor = Color.Crimson; allOK = false; }
-
                 else if (!ValidateGrossAndNet(Gross, Net)) { label22.BackColor = Color.Crimson; label21.BackColor = Color.Crimson; allOK = false; }
-
                 else if (!ValidateLabourAndOther(Labour, WholeLabour, Other)) { label20.BackColor = Color.Crimson; label19.BackColor = Color.Crimson; label18.BackColor = Color.Crimson; allOK = false; }
-
                 else if (!ValidateHUIDs(HUID1, HUID2)) { label16.BackColor = Color.Crimson; label17.BackColor = Color.Crimson; allOK = false; }
-
                 else if (!AdditionalLabourAndWholeLabourValidations(Labour, WholeLabour, Net)) { label20.BackColor = Color.Crimson; label19.BackColor = Color.Crimson; allOK = false; }
                 // Assuming 'reader' is an instance of SQLiteDataReader
             }
@@ -170,7 +153,6 @@ namespace SYA
                 label30.BackColor = Color.Orange;
                 label30.Text = "Data Already there for Tagnumber :::   " + tagNo + "   :::";
             }
-
             label25.Text = TagNo;
             label24.Text = ItemName;
             label23.Text = Caret;
@@ -185,7 +167,6 @@ namespace SYA
             label14.Text = Price;
             label29.Text = Type;
             label28.Text = comment;
-
             if (allOK || force)
             {
                 force = false;
@@ -193,15 +174,12 @@ namespace SYA
                 textBox1.Focus();
                 if (Type == "GOLD")
                 {
-
                     if (rowCount <= 0)
                     {
-
                         InsertDataIntoMainDataVerified(coYear, coBook, vchNo, vchDate, tagNo, gross, net, labour, wholeLabour, other, itType, itemCode, itemPurity, itemDesc, huid1, huid2, size, price, status, acCode, acName, comment, print);
                         label30.BackColor = Color.LightGreen;
                         grosswt += decimal.Parse(gross);
                         netwt += decimal.Parse(net);
-
                         count++;
                         label35.Text = "Count : " + count;
                         label30.Text = "Data Inserted for Tagnumber :::   " + tagNo + "   :::";
@@ -224,10 +202,7 @@ namespace SYA
                     label30.Text = "Silver Data ...";
                 }
             }
-
-
         }
-
         private void InsertDataIntoMainDataVerified(string coYear, string coBook, string vchNo, string vchDate, string tagNo,
     string gross, string net, string labour, string wholeLabour, string other, string itType, string itemCode,
     string itemPurity, string itemDesc, string huid1, string huid2, string size, string price, string status,
@@ -245,7 +220,6 @@ namespace SYA
                 '{wholeLabour}', '{other}', '{itType}', '{itemCode}', '{itemPurity}', '{itemDesc}', '{huid1}', 
                 '{huid2}', '{size}', '{price}', '{status}', '{acCode}', '{acName}', '{comment}', '{print}','{textBox2.Text}'
             );";
-
                 helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
             }
             catch (Exception ex)
@@ -253,29 +227,21 @@ namespace SYA
                 MessageBox.Show($"Error1: {ex.Message}");
             }
         }
-
-
         private void ClearValidationMessage()
         {
             label30.Text = string.Empty;
         }
-
         private void AppendValidationMessage(string message)
         {
             label30.Text += message + Environment.NewLine;
-            
         }
-
         private bool ValidateCaret(string input)
         {
             ClearValidationMessage();
-
             // Convert the input to uppercase for case-insensitive comparison
             string upperInput = input.ToUpper();
-
             // Valid caret values
             string[] validCarets = { "18K", "916", "20K", "KDM", "SLO", "925" };
-
             // Check if the input is in the list of valid carets
             if (validCarets.Contains(upperInput))
             {
@@ -290,10 +256,8 @@ namespace SYA
                 return false;
             }
         }
-
         private bool ValidateGrossAndNet(string grossStr, string netStr)
         {
-
             // Try to parse strings to decimals
             if (decimal.TryParse(grossStr, out decimal gross) && decimal.TryParse(netStr, out decimal net))
             {
@@ -341,10 +305,8 @@ namespace SYA
                 return false;
             }
         }
-
         private bool ValidateLabourAndOther(string labourStr, string wholeLabourStr, string otherStr)
         {
-
             // Try to parse strings to decimals
             if (decimal.TryParse(labourStr, out decimal labour) &&
                 decimal.TryParse(wholeLabourStr, out decimal wholeLabour) &&
@@ -353,7 +315,6 @@ namespace SYA
                 // If null, make it 0
                 labour = labourStr == null ? 0 : labour;
                 wholeLabour = wholeLabourStr == null ? 0 : wholeLabour;
-
                 // Check if all values are greater than or equal to 0
                 if (labour >= 0 && wholeLabour >= 0 && other >= 0)
                 {
@@ -403,7 +364,6 @@ namespace SYA
                     button1.Focus();
                     return false;
                 }
-
                 if (wholeLabour > 0)
                 {
                     if (wholeLabour < net * 650)
@@ -412,7 +372,6 @@ namespace SYA
                         button1.Focus();
                         return false;
                     }
-
                     if (net >= 2 && net <= 3)
                     {
                         if (wholeLabour != 2000)
@@ -450,7 +409,6 @@ namespace SYA
                         }
                     }
                 }
-
                 return true;
             }
             else
@@ -461,7 +419,6 @@ namespace SYA
                 return false;
             }
         }
-
         private bool ValidateHUIDs(string huid1, string huid2)
         {
             // Check HUID1 and HUID2 length conditions
@@ -479,7 +436,6 @@ namespace SYA
                 return false;
             }
         }
-
         // Helper method to check if a decimal has 3 decimal places
         private bool IsValidDecimal(decimal value)
         {
@@ -487,10 +443,8 @@ namespace SYA
             {
                 // Format the decimal part to always have three decimal places
                 string decimalPart = (value - Math.Floor(value)).ToString("F3");
-
                 // Check if the length of the formatted decimal part is 5 (including the dot)
                 return decimalPart.Length == 5;
-
                 //      string decimalPart = (value - Math.Floor(value)).ToString().Substring(2);
                 //  return decimalPart.PadRight(3, '0').Length == 3;
             }
@@ -498,17 +452,11 @@ namespace SYA
             {
                 MessageBox.Show($"Error2: {ex.Message}\nStackTrace: {ex.StackTrace}");
             }
-
             return false;
         }
-
-
-
         private void label13_Click(object sender, EventArgs e)
         {
-
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (force)
@@ -516,33 +464,25 @@ namespace SYA
                 button1.Text = "Normal Insert";
                 force = false;
                 textBox1.Focus();
-
-
             }
             else
             {
                 button1.Text = "Force Insert";
                 force = true;
                 textBox1.Focus();
-
             }
         }
-
         private void tempVerifyData_Load(object sender, EventArgs e)
         {
         }
         private void loaddata()
         {
-
-
             string query = "SELECT item, ROUND(SUM(GW), 3) AS TOTAL_GW, ROUND(SUM(NW), 3) AS TOTAL_NW, COUNT(item) AS ITEM_COUNT FROM MAIN_DATA_VERIFIED GROUP BY item UNION ALL SELECT 'GRAND TOTAL' AS item, ROUND(SUM(GW), 3) AS TOTAL_GW, ROUND(SUM(NW), 3) AS TOTAL_NW, COUNT(item) AS ITEM_COUNT FROM MAIN_DATA_VERIFIED;";
             DataTable datatable = helper.FetchDataTableFromSYADataBase(query);
             dataGridView1.DataSource = datatable;
-
             string query1 = "SELECT TAG_NO, COUNT(TAG_NO) AS Count FROM TAGNOS GROUP BY TAG_NO HAVING COUNT(TAG_NO) > 1";
             DataTable datatable1 = helper.FetchDataTableFromSYADataBase(query1);
             dataGridView2.DataSource = datatable1;
-
         }
     }
 }

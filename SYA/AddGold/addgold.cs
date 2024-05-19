@@ -13,7 +13,6 @@ using QRCoder;
 using System.Drawing.Printing;
 using System.Runtime.InteropServices;
 using System.Diagnostics.Eventing.Reader;
-
 namespace SYA
 {
     public partial class addgold : Form
@@ -42,7 +41,6 @@ namespace SYA
         }
         private void addgold_Load(object sender, EventArgs e)
         {
-            
             InitializeLogging();
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             UpdateRowNumbers();
@@ -287,7 +285,6 @@ namespace SYA
         }
         private void gridviewstyle()
         {
-
             dataGridView1.Columns["select"].Visible = false;
             dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(114, 131, 89); dataGridView1.Columns["select"].HeaderCell.Style.BackColor = Color.FromArgb(151, 169, 124);
             dataGridView1.Columns["tagno"].HeaderCell.Style.BackColor = Color.FromArgb(166, 185, 139);

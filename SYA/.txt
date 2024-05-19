@@ -8,19 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace SYA
 {
     public partial class Search : Form
     {
         private SQLiteConnection connectionToSYADatabase;
-
         public Search()
         {
             InitializeComponent();
             InitializeDatabaseConnection();
         }
-
         private void Search_Load(object sender, EventArgs e)
         {
             string query = "SELECT * FROM MAIN_DATA";
@@ -30,10 +27,7 @@ namespace SYA
         {
             connectionToSYADatabase = new SQLiteConnection("Data Source=C:\\Users\\pvraj\\OneDrive\\Desktop\\SYA\\SYADataBase.db;Version=3;");
             // connectionToDatacare = new SQLiteConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\pvraj\\OneDrive\\Desktop\\DataCare23 - Copy.mdb\";");
-
         }
-
-
         private void LoadDataFromSQLite(String query)
         {
             try
@@ -41,23 +35,18 @@ namespace SYA
                 using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionToSYADatabase))
                 {
                     sqliteConnection.Open();
-
                     // SELECT query to retrieve data from MAIN_DATA
-
-
                     using (SQLiteCommand command = new SQLiteCommand(query, sqliteConnection))
                     {
                         using (SQLiteDataReader reader = command.ExecuteReader())
                         {
                             // Clear existing rows in the DataGridView
                             dataGridViewSearch.Rows.Clear();
-
                             // Iterate through the result set and populate the DataGridView
                             while (reader.Read())
                             {
                                 // Add a new row to the DataGridView
                                 int rowIndex = dataGridViewSearch.Rows.Add();
-
                                 // Set values for each column in the DataGridView
                                 dataGridViewSearch.Rows[rowIndex].Cells["tagno"].Value = reader["TAG_NO"].ToString();
                                 dataGridViewSearch.Rows[rowIndex].Cells["vchno"].Value = reader["VCH_NO"].ToString();
@@ -73,7 +62,6 @@ namespace SYA
                                 dataGridViewSearch.Rows[rowIndex].Cells["size"].Value = reader["size"].ToString();
                                 dataGridViewSearch.Rows[rowIndex].Cells["price"].Value = reader["price"].ToString();
                                 dataGridViewSearch.Rows[rowIndex].Cells["comment"].Value = reader["COMMENT"].ToString();
-
                             }
                         }
                     }
@@ -84,11 +72,9 @@ namespace SYA
                 MessageBox.Show($"Error loading data from SQLite: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnSearchSave_Click(object sender, EventArgs e)
         {
             SaveDataToSQLite();
-
         }
         private void SaveDataToSQLite()
         {
@@ -103,13 +89,11 @@ namespace SYA
             string size = string.Empty;
             string price = string.Empty;
             string comment = string.Empty;
-
             try
             {
                 using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionToSYADatabase))
                 {
                     sqliteConnection.Open();
-
                     foreach (DataGridViewRow row in dataGridViewSearch.Rows)
                     {
                         tagNo = row.Cells["tagno"].Value?.ToString() ?? string.Empty;
@@ -123,30 +107,25 @@ namespace SYA
                         size = row.Cells["size"].Value?.ToString() ?? string.Empty;
                         price = row.Cells["price"].Value?.ToString() ?? "0";  // Default value for numeric types
                         comment = row.Cells["comment"].Value?.ToString() ?? string.Empty;
-
                         // Validate HUID1 and HUID2
                         if ((!string.IsNullOrWhiteSpace(huid1) && huid1.Length != 6) || (!string.IsNullOrWhiteSpace(huid2) && huid2.Length != 6))
                         {
                             MessageBox.Show("HUID length must be 6 characters if not null.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // Exit the method if validation fails
                         }
-
                         // Validate if HUID1 is null and HUID2 is not null
                         if (string.IsNullOrWhiteSpace(huid1) && !string.IsNullOrWhiteSpace(huid2))
                         {
                             MessageBox.Show("Please insert HUID1 at the correct place.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // Exit the method if validation fails
                         }
-
                         // Construct the UPDATE query
                         string updateQuery = $"UPDATE MAIN_DATA SET HUID1 = '{huid1}', HUID2 = '{huid2}', COMMENT = '{comment}',LABOUR_AMT = '{labour}',OTHER_AMT = '{other}',WHOLE_LABOUR_AMT = '{wholeLabour}', GW = '{gross}',NW = '{net}',SIZE = '{size}',PRICE = '{price}'  WHERE TAG_NO = '{tagNo}'";
-
                         using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, sqliteConnection))
                         {
                             updateCommand.ExecuteNonQuery();
                         }
                     }
-
                     MessageBox.Show("Data saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -162,8 +141,6 @@ namespace SYA
                 MessageBox.Show($"Error saving data to SQLite. TagNo: {tagNo}, Gross: {gross}, Net: {net}, Labour: {labour}, WholeLabour: {wholeLabour}, Other: {other}, HUID1: {huid1}, HUID2: {huid2}, Size: {size}, Price: {price}, Comment: {comment}. Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
         private void btnSearchSelectAll_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < dataGridViewSearch.Rows.Count; i++)
@@ -177,25 +154,21 @@ namespace SYA
             string query = $"SELECT * FROM MAIN_DATA WHERE TAG_NO LIKE '%{txtTagno.Text}%'";
             LoadDataFromSQLite(query);
         }
-
         private void txtWeight_TextChanged(object sender, EventArgs e)
         {
             string query = $"SELECT * FROM MAIN_DATA WHERE GW LIKE '%{txtWeight.Text}%' OR NW LIKE '%{txtWeight.Text}%'";
             LoadDataFromSQLite(query);
         }
-
         private void txtBillNo_TextChanged(object sender, EventArgs e)
         {
             string query = $"SELECT * FROM MAIN_DATA WHERE VCH_NO LIKE '%{txtBillNo}%'";
             LoadDataFromSQLite(query);
         }
-
         private void txtHUID_TextChanged(object sender, EventArgs e)
         {
             string query = $"SELECT * FROM MAIN_DATA WHERE HUID1 LIKE '%{txtHUID.Text}%' OR HUID2 LIKE '%{txtHUID.Text}%'";
             LoadDataFromSQLite(query);
         }
-
         private void txtSearchAnything_TextChanged(object sender, EventArgs e)
         {
             string searchValue = txtSearchAnything.Text;

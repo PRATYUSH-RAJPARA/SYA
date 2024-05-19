@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-
 namespace SYA
 {
     public class encrypt
@@ -14,14 +13,11 @@ namespace SYA
                 // Generate random initialization vector (IV)
                 aes.GenerateIV();
                 byte[] iv = aes.IV;
-
                 // Derive encryption key from passphrase
                 byte[] key = DeriveKeyFromPassphrase(passphrase, aes.KeySize / 8);
-
                 aes.Key = key;
                 aes.Mode = CipherMode.CBC;
                 aes.Padding = PaddingMode.PKCS7;
-
                 // Encrypt the data
                 using (ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, iv))
                 {
@@ -33,28 +29,23 @@ namespace SYA
                 }
             }
         }
-
         // Decrypt data using passphrase
         public static string DecryptData(string encryptedData, string passphrase)
         {
             byte[] combinedData = Convert.FromBase64String(encryptedData);
             byte[] iv = new byte[16]; // Initialization vector length
             byte[] encryptedBytes = new byte[combinedData.Length - iv.Length];
-
             // Extract IV and encrypted bytes from combined data
             Array.Copy(combinedData, iv, iv.Length);
             Array.Copy(combinedData, iv.Length, encryptedBytes, 0, encryptedBytes.Length);
-
             // Derive encryption key from passphrase
             byte[] key = DeriveKeyFromPassphrase(passphrase, 256 / 8); // Assuming 256-bit key
-
             using (Aes aes = Aes.Create())
             {
                 aes.Key = key;
                 aes.IV = iv;
                 aes.Mode = CipherMode.CBC;
                 aes.Padding = PaddingMode.PKCS7;
-
                 // Decrypt the data
                 using (ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV))
                 {
@@ -63,7 +54,6 @@ namespace SYA
                 }
             }
         }
-
         // Derive encryption key from passphrase
         private static byte[] DeriveKeyFromPassphrase(string passphrase, int keySize)
         {

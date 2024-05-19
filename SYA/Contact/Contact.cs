@@ -1,32 +1,48 @@
-﻿using System;
-
-
-
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SQLite;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace SYA
 {
-    public static class Contact
+    public  class Contact
     {
-        static DataTable RawData = new DataTable();
-        static DataTable ExcludedData = new DataTable();
-        static DataTable VerifiedCustomerData = new DataTable();
-        static DataTable OtherVerifiedData = new DataTable();
-        static DataTable UnverifiedData = new DataTable();
-        static DataTable RawDataSorted = new DataTable();
-        static DataTable WrongData = new DataTable();
-        static string rawMobile;
-        static string rawName;
-        static string rawSource;
-        static string mobile;
-        static RichTextBox richText = new RichTextBox();
-        static void fetchData(string tableName)
+         DataTable RawData = new DataTable();
+         DataTable ExcludedData = new DataTable();
+         DataTable CustomerData = new DataTable();
+         DataTable OtherData = new DataTable();
+         DataTable RelativeData = new DataTable();
+         DataTable KarigarData = new DataTable();
+         DataTable VepariData = new DataTable();
+         DataTable UnverifiedData = new DataTable();
+         DataTable RawDataSorted = new DataTable();
+         DataTable WrongData = new DataTable();
+         string rawMobile;
+         string rawName;
+         string rawSource;
+         string mobile;
+         RichTextBox richText = new RichTextBox();
+         void checkNumber(DataTable dt)
+        {
+            for (int i = dt.Rows.Count - 1; i >= 0; i--)
+            {
+                DataRow row = dt.Rows[i];
+                string number = row["acMobile"].ToString();
+                number = new string(Array.FindAll(number.ToCharArray(), char.IsDigit));
+                if (number.Length == 12 && number.StartsWith("91"))
+                {
+                    number = number.Substring(2);
+                }
+                if (number.Length != 10)
+                {
+                    row.Delete();
+                }
+                else
+                {
+                    row["acMobile"]=number;
+                }
+            }
+            dt.AcceptChanges();
+        }
+         void fetchData(string tableName)
         {
             clearData(RawData);
             if (tableName == "datacare")
@@ -35,20 +51,26 @@ namespace SYA
             }
             else
             {
-                RawData = helper.FetchDataTableFromSYADataBase("SELECT * FROM RawData");
+                RawData = helper.FetchDataTableFromSYAContactDataBase("SELECT * FROM RawData");
             }
             clearData(ExcludedData);
-            ExcludedData = helper.FetchDataTableFromSYADataBase("SELECT * FROM ExcludedData");
-            clearData(VerifiedCustomerData);
-            VerifiedCustomerData = helper.FetchDataTableFromSYADataBase("SELECT * FROM VerifiedCustomerData");
-            clearData(OtherVerifiedData);
-            OtherVerifiedData = helper.FetchDataTableFromSYADataBase("SELECT * FROM OtherVerifiedData");
+            ExcludedData = helper.FetchDataTableFromSYAContactDataBase("SELECT * FROM ExcludedData");
+            clearData(CustomerData);
+            CustomerData = helper.FetchDataTableFromSYAContactDataBase("SELECT * FROM CustomerData");
+            clearData(OtherData);
+            OtherData = helper.FetchDataTableFromSYAContactDataBase("SELECT * FROM OtherData");
             clearData(UnverifiedData);
-            UnverifiedData = helper.FetchDataTableFromSYADataBase("SELECT * FROM UnverifiedData");
+            UnverifiedData = helper.FetchDataTableFromSYAContactDataBase("SELECT * FROM UnverifiedData");
             clearData(WrongData);
-            WrongData = helper.FetchDataTableFromSYADataBase("SELECT * FROM wrongData");
+            WrongData = helper.FetchDataTableFromSYAContactDataBase("SELECT * FROM WrongData");
+            clearData(RelativeData);
+            RelativeData = helper.FetchDataTableFromSYAContactDataBase("SELECT * FROM RelativeData");
+            clearData(KarigarData);
+            KarigarData = helper.FetchDataTableFromSYAContactDataBase("SELECT * FROM KarigarData");
+            clearData(VepariData);
+            VepariData = helper.FetchDataTableFromSYAContactDataBase("SELECT * FROM VepariData");
         }
-        static void setDataTableColumns(DataTable dt)
+         void setDataTableColumns(DataTable dt)
         {
             clearData(dt);
             dt.Columns.Add("acCode", typeof(string));
@@ -71,14 +93,13 @@ namespace SYA
             dt.Columns.Add("acGroup", typeof(string));
             dt.Columns.Add("acSource", typeof(string));
         }
-        static void AddText(string text)
+         void AddText(string text)
         {
             richText.Text += "\n\n" + text;
         }
-        static void printDT(DataTable dt)
+         void printDT(DataTable dt)
         {
             StringBuilder message = new StringBuilder();
-
             foreach (DataRow row in dt.Rows)
             {
                 foreach (DataColumn column in dt.Columns)
@@ -88,24 +109,24 @@ namespace SYA
                 message.AppendLine();
             }
         }
-        static void clearData(DataTable dt)
+         void clearData(DataTable dt)
         {
             dt.Clear();
             dt.Columns.Clear();
         }
-        public static void SortContactData(RichTextBox richTextBox1, string tableName)
+        public  void SortContactData(RichTextBox richTextBox1, string tableName)
         {
-
             richText = richTextBox1;
             fetchData(tableName);
             setDataTableColumns(RawDataSorted);
             SortDataCareData();
-
             void SortDataCareData()
             {
                 string acCode, acName, acAdd, acCity, acPhone, acMobile, acMobile2, acPanNO, acAdhaRNO;
+                int count = 0;
                 foreach (DataRow row in RawData.Rows)
                 {
+                    count++;
                     setVariables();
                     if (!string.IsNullOrEmpty(acPhone))
                     {
@@ -138,7 +159,6 @@ namespace SYA
                         acPanNO = row["AC_PANNO"].ToString();
                         acAdhaRNO = row["AC_ADHARNO"].ToString();
                     }
-
                     void addRow(string mobileField)
                     {
                         DataRow newRow = RawDataSorted.NewRow();
@@ -160,9 +180,10 @@ namespace SYA
                     }
                 }
             }
+            checkNumber(RawDataSorted);
             compare(RawDataSorted);
         }
-        static bool compareInTable(DataRow row_RawData, DataTable dt, bool addInUnverifiedData, string namee)
+         bool compareInTable(DataRow row_RawData, DataTable dt, bool addInUnverifiedData, string namee)
         {
             rawMobile = row_RawData["acMobile"].ToString();
             rawName = row_RawData["acName0"].ToString();
@@ -201,79 +222,74 @@ namespace SYA
             }
             return r;
         }
-
-        private static void compare(DataTable dt)
+        private  void compare(DataTable dt)
         {
-
             DataRow[] dtRows = dt.Select();
             for (int rowIndex = 0; rowIndex < dtRows.Length; rowIndex++)
             {
                 if (compareInTable(dtRows[rowIndex], ExcludedData, false, "ExcludedData")) { }
-                else if (compareInTable(dtRows[rowIndex], VerifiedCustomerData, false, "VerifiedCustomerData")) { }
-                else if (compareInTable(dtRows[rowIndex], OtherVerifiedData, false, "OtherVerifiedData")) { }
+                else if (compareInTable(dtRows[rowIndex], CustomerData, false, "CustomerData")) { }
+                else if (compareInTable(dtRows[rowIndex], RelativeData, false, "RelativeData")) { }
+                else if (compareInTable(dtRows[rowIndex], KarigarData, false, "KarigarData")) { }
+                else if (compareInTable(dtRows[rowIndex], VepariData, false, "VepariData")) { }
+                else if (compareInTable(dtRows[rowIndex], OtherData, false, "OtherData")) { }
                 else if (compareInTable(dtRows[rowIndex], WrongData, false, "WrongData")) { }
                 else if (compareInTable(dtRows[rowIndex], UnverifiedData, true, "UnverifiedData")) { }
                 UnverifiedData.ImportRow(dtRows[rowIndex]);
             }
             dt.AcceptChanges();
             ExcludedData.AcceptChanges();
-            VerifiedCustomerData.AcceptChanges();
-            OtherVerifiedData.AcceptChanges();
+            CustomerData.AcceptChanges();
+            RelativeData.AcceptChanges();
+            KarigarData.AcceptChanges();
+            VepariData.AcceptChanges();
+            OtherData.AcceptChanges();
             WrongData.AcceptChanges();
             UnverifiedData.AcceptChanges();
-            addDatatavleToDatabase(ExcludedData, "ExcludedData");
-            addDatatavleToDatabase(VerifiedCustomerData, "VerifiedCustomerData");
-            addDatatavleToDatabase(OtherVerifiedData, "OtherVerifiedData");
-            addDatatavleToDatabase(WrongData, "WrongData");
-            addDatatavleToDatabase(UnverifiedData, "UnverifiedData");
-            printDT(OtherVerifiedData);
+            addDatatableToDatabase(ExcludedData, "ExcludedData");
+            addDatatableToDatabase(CustomerData, "CustomerData");
+            addDatatableToDatabase(RelativeData, "RelativeData");
+            addDatatableToDatabase(KarigarData, "KarigarData");
+            addDatatableToDatabase(VepariData, "VepariData");
+            addDatatableToDatabase(OtherData, "OtherData");
+            addDatatableToDatabase(WrongData, "WrongData");
+            addDatatableToDatabase(UnverifiedData, "UnverifiedData");
+            printDT(OtherData);
         }
-        public static void addDatatavleToDatabase(DataTable dt, string tableName)
+        public  void addDatatableToDatabase(DataTable dt, string tableName)
         {
             // Remove all data from the table
             string deleteQuery = $"DELETE FROM {tableName}";
-            helper.RunQueryWithoutParametersSYADataBase(deleteQuery, "ExecuteNonQuery");
-
-
-
+            helper.RunQueryWithoutParametersSYAContactDataBase(deleteQuery, "ExecuteNonQuery");
             // Insert all data from the DataTable to the table
             foreach (DataRow row in dt.Rows)
             {
                 StringBuilder columns = new StringBuilder();
                 StringBuilder values = new StringBuilder();
-
                 foreach (DataColumn column in dt.Columns)
                 {
                     columns.Append($"{column.ColumnName},");
                     values.Append($"@{column.ColumnName},");
                 }
-
                 // Remove the trailing comma
                 columns.Remove(columns.Length - 1, 1);
                 values.Remove(values.Length - 1, 1);
-
                 string insertQuery = $"INSERT INTO {tableName} ({columns}) VALUES ({values})";
-
                 SQLiteParameter[] parameters = new SQLiteParameter[dt.Columns.Count];
-
                 for (int i = 0; i < dt.Columns.Count; i++)
                 {
                     parameters[i] = new SQLiteParameter($"@{dt.Columns[i].ColumnName}", row[i]);
                 }
-
-                bool insertSuccess = helper.RunQueryWithParametersSYADataBase(insertQuery, parameters);
-
+                bool insertSuccess = helper.RunQueryWithParametersSYAContactDataBase(insertQuery, parameters);
                 if (!insertSuccess)
                 {
                     MessageBox.Show($"Failed to insert data into {tableName} table.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
-
             MessageBox.Show($"Data successfully inserted into {tableName} table.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        public static void showMsg()
+        public  void showMsg()
         {
             MessageBox.Show("Hello");
         }

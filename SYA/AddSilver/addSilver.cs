@@ -64,10 +64,8 @@ namespace SYA
                     textBox.SelectAll();
                 }
             }
-
             if (e.ColumnIndex == 1 && e.RowIndex == addSilverDataGridView.Rows.Count - 1)
             {
-
                 addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = "20";
                 addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = "0";
                 addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value = "0";
@@ -96,7 +94,6 @@ namespace SYA
                         addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value =
                             addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value;
                     }
-
                     addSilverDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = helper.correctWeight(addSilverDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
                 }
                 if (addSilverDataGridView.Columns[e.ColumnIndex].Name == "caret")
@@ -384,7 +381,6 @@ namespace SYA
         }
         private bool SaveData(DataGridViewRow selectedRow)
         {
-
             try
             {
                 if (selectedRow.Cells["tagno"].Value != null && !string.IsNullOrEmpty(selectedRow.Cells["tagno"].Value.ToString()))
@@ -410,8 +406,6 @@ namespace SYA
                 MessageBox.Show($"Error saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
-
         }
         private void UpdateTagNo(int rowIndex)
         {
@@ -616,7 +610,6 @@ namespace SYA
             {
                 PrintDocument pd = new PrintDocument();
                 pd.PrinterSettings.PrinterName = "TSC_TE244";
-
                 if (!single)
                 {
                     //for (int rowIndex = 0; rowIndex < addSilverDataGridView.Rows.Count; rowIndex++)
@@ -844,22 +837,18 @@ namespace SYA
         {
             Font font = new Font("Arial Black", 8, FontStyle.Bold); // Adjust the font size
             SolidBrush brush = new SolidBrush(Color.Black);
-
             // Set the starting position for printing
             float xPos = 0; // Adjust the starting X position
             float yPos = 0; // Adjust the starting Y position
-
             // Get the printer DPI
             float dpiX = e.PageSettings.PrinterResolution.X;
             float dpiY = e.PageSettings.PrinterResolution.Y;
-
             float rectX = 4; // Adjust the X position of the rectangle
             float rectY = 4; // Adjust the Y position of the rectangle
             float rectWidth = 211; // Adjust the width of the rectangle
             float rectHeight = 45; // Adjust the height of the rectangle
             float a = float.Parse(textBox3.Text);
               e.Graphics.DrawRectangle(Pens.Red, 0, (float)-4, (float)60.75, (float)100 );
-
             e.Graphics.DrawString(textBox2.Text, new Font("Arial", (float)a, FontStyle.Bold), brush, new RectangleF((float)56.75, (float)4, (float)56.75, (float)45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
         }
         private void button2_Click(object sender, EventArgs e)
@@ -867,7 +856,6 @@ namespace SYA
             QUERY.GetSummaryData();
             //PrintData(false);
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
            // Contact.ParentDataCareData();

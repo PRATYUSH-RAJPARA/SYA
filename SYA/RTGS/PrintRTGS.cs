@@ -35,7 +35,6 @@ namespace SYA
                 //printPreviewDialog.PrintPreviewControl.Zoom = 1.0;
                 //pd.PrintPage += new PrintPageEventHandler(Print);
                 //printPreviewDialog.ShowDialog();
-
                 PrintDocument pd = new PrintDocument();
                 pd.PrinterSettings.PrinterName = "HP LaserJet MFP M129-M134";
                 pd.PrintPage += new PrintPageEventHandler(Print);
@@ -101,7 +100,6 @@ namespace SYA
         private void button2_Click(object sender, EventArgs e)
         {
             SortAndPrintRTGS(textBox3.Text);
-           
         }
         private void SortAndPrintRTGS(string amt)
         {

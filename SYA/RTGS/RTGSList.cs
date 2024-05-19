@@ -2,19 +2,16 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-
 namespace SYA
 {
     public partial class RTGSList : Form
     {
         private DataTable originalRTGSList;
         private string selectedID;
-
         public RTGSList()
         {
             InitializeComponent();
         }
-
         private void RTGSList_Load(object sender, EventArgs e)
         {
             originalRTGSList = helper.FetchDataTableFromSYADataBase("SELECT ID,BName,BAcNo,BAddress FROM RTGSData ORDER BY BName ASC");
@@ -28,12 +25,10 @@ namespace SYA
             dataGridView1.ReadOnly = true;
             dataGridView1.Focus();
         }
-
         private void TextFilter(char keyPressed)
         {
             textBoxFilter.Text += keyPressed;
         }
-
         private void textBoxFilter_TextChanged(object sender, EventArgs e)
         {
             string filterText = textBoxFilter.Text.ToLower();
@@ -48,7 +43,6 @@ namespace SYA
             dataGridView1.DataSource = filteredData;
             dataGridView1.Focus();
         }
-
         private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Back)
@@ -65,10 +59,8 @@ namespace SYA
             }
             else if (e.KeyChar == (char)Keys.Enter)
             {
-               
                     selectedID = dataGridView1.CurrentRow.Cells[0].Value.ToString(); ;
                     this.Close();
-                
             }
             else
             {
@@ -76,7 +68,6 @@ namespace SYA
                 TextFilter(keyPressed);
             }
         }
-
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -101,7 +92,6 @@ namespace SYA
                 }
             }
         }
-
         public string GetSelectedID()
         {
             return selectedID;

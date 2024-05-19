@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows8.0</TargetFramework>
@@ -10,7 +9,6 @@
     <StartupObject>SYA.Program</StartupObject>
     <UseWPF>False</UseWPF>
   </PropertyGroup>
-
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Interop.Access">
       <WrapperTool>tlbimp</WrapperTool>
@@ -31,7 +29,6 @@
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Guna.Charts.WinForms" Version="1.0.9" />
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.4.6" />
@@ -51,7 +48,6 @@
     <PackageReference Include="WinForms.DataVisualization" Version="1.9.2" />
     <PackageReference Include="ZXing.Net" Version="0.16.9" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -59,14 +55,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
-
-
 </Project>
