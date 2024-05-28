@@ -1,4 +1,5 @@
-﻿using QRCoder;
+﻿using Newtonsoft.Json.Linq;
+using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,6 +12,23 @@ namespace SYA
 {
     public static class print
     {
+        public static void PrintReparing(object sender, PrintPageEventArgs e, List<string> ReparingData) {
+            for(int i =0;i<5;i++)
+            {
+                MessageBox.Show(ReparingData[i].ToString());
+            }
+            SolidBrush brush = new SolidBrush(Color.Black);
+            e.Graphics.DrawRectangle(Pens.Red, 4, 4, (float)109.5, (float)22.5);
+            e.Graphics.DrawString(ReparingData[0].ToString(), new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF(4, 4, (float)109.5, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+            e.Graphics.DrawString(ReparingData[0].ToString()+ ReparingData[3].ToString(), new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF(4, (float)26.5, (float)109.5, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+            e.Graphics.DrawRectangle(Pens.Red, (float)170, (float)4, (float)47, (float)47);
+            e.Graphics.DrawString(ReparingData[1].ToString(), new Font("Arial", (float)8, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)4, (float)56.5, (float)27), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+            e.Graphics.DrawRectangle(Pens.Red, (float)113.5, (float)31, (float)56.5, (float)30);
+          e.Graphics.DrawString(ReparingData[2].ToString(), new Font("Arial", (float)8, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)31, (float)56.5, (float)20), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+            e.Graphics.DrawString(ReparingData[4].ToString(), new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)170, (float)4, (float)47, (float)47), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+        }
         public static void PrintRTGS(object sender, PrintPageEventArgs e, List<string> rtgsdata)
         {
             SolidBrush brush = new SolidBrush(Color.Black);
