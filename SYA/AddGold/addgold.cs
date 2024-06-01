@@ -564,9 +564,10 @@ namespace SYA
             {
                 return false;
             }
+            MessageBox.Show(row.Cells["comment"].Value?.ToString());
             string updateQuery = "UPDATE MAIN_DATA SET ITEM_DESC = @type, ITEM_PURITY = @caret, GW = @gross, NW = @net, " +
-                                 "LABOUR_AMT = @labour, WHOLE_LABOUR_AMT = @wholeLabour, OTHER_AMT = @other, HUID1 = @huid1, HUID2 = @huid2, SIZE = @size, " +
-                                 "COMMENT = @comment, ITEM_CODE = @prCode WHERE TAG_NO = @tagNo";
+                     "LABOUR_AMT = @labour, WHOLE_LABOUR_AMT = @wholeLabour, OTHER_AMT = @other, HUID1 = @huid1, HUID2 = @huid2, SIZE = @size, " +
+                     "\"COMMENT\" = @comment, ITEM_CODE = @prCode WHERE TAG_NO = @tagNo";
             SQLiteParameter[] parameters = new SQLiteParameter[]
             {
         new SQLiteParameter("@tagNo", row.Cells["tagno"].Value?.ToString()),
@@ -593,7 +594,8 @@ namespace SYA
         {
             try
             {
-                string InsertQuery = "INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW, LABOUR_AMT,WHOLE_LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, COMMENT,IT_TYPE, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net, @labour,@wholeLabour, @other, @huid1, @huid2, @size, @comment,@ittype, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)";
+                MessageBox.Show(row.Cells["comment"].Value?.ToString());
+                string InsertQuery = "INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW, LABOUR_AMT,WHOLE_LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, \"COMMENT\",IT_TYPE, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net, @labour,@wholeLabour, @other, @huid1, @huid2, @size, @comment,@ittype, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)";
                 {
                     UpdateTagNo(row.Index);
                     if (!ValidateData(row))

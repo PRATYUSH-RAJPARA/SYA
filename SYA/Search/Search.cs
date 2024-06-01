@@ -14,6 +14,7 @@ namespace SYA
     public partial class Search : Form
     {
         bool quickSaveAndPrint = true;
+        string tagtype = "weight";
         private SQLiteConnection connectionToSYADatabase;
         private void InitializeDatabaseConnection()
         {
@@ -65,6 +66,8 @@ namespace SYA
             dataGridViewSearch.Columns["price"].HeaderCell.Style.BackColor = Color.FromArgb(216, 187, 255);
             dataGridViewSearch.Columns["comment"].HeaderCell.Style.BackColor = Color.FromArgb(208, 209, 255);
             dataGridViewSearch.Columns["select"].Visible = false;
+            dataGridViewSearch.Columns.Add("IT_TYPE", "IT_TYPE");
+            dataGridViewSearch.Columns["IT_TYPE"].Visible = false;
             dataGridViewSearch.Columns["tagno"].Width = (int)(formWidth * (8.0 / 68));
             dataGridViewSearch.Columns["vchno"].Width = (int)(formWidth * (4.0 / 68));
             dataGridViewSearch.Columns["vchdate"].Width = (int)(formWidth * (6.0 / 68));
@@ -121,6 +124,7 @@ namespace SYA
                             dataGridViewSearch.Rows[rowIndex].Cells["size"].Value = reader["size"].ToString();
                             dataGridViewSearch.Rows[rowIndex].Cells["price"].Value = reader["price"].ToString();
                             dataGridViewSearch.Rows[rowIndex].Cells["comment"].Value = reader["COMMENT"].ToString();
+
                             if ((dataGridViewSearch.Rows[rowIndex].Cells["vchno"].Value?.ToString() ?? "0") == "SYA00")
                             {
                                 dataGridViewSearch.Rows[rowIndex].Cells["tagno"].ReadOnly = true;
@@ -129,6 +133,7 @@ namespace SYA
                                 dataGridViewSearch.Rows[rowIndex].Cells["gross"].ReadOnly = true;
                                 dataGridViewSearch.Rows[rowIndex].Cells["net"].ReadOnly = true;
                             }
+                            dataGridViewSearch.Rows[rowIndex].Cells["IT_TYPE"].Value = reader["IT_TYPE"].ToString();
                         }
                     }
                 }
@@ -252,7 +257,7 @@ namespace SYA
         //okok
         private void PrintData(object sender, PrintPageEventArgs e)
         {
-            print.PrintPageSearch(sender, e, dataGridViewSearch);
+            print.PrintPageSearch(sender, e, dataGridViewSearch,tagtype);
         }
         private bool leaveEventFlag = false;
         //ok
@@ -503,6 +508,20 @@ namespace SYA
         }
         private void dataGridViewSearch_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+        }
+
+        private void BTNTAGTYPE_Click(object sender, EventArgs e)
+        {
+            if (BTNTAGTYPE.Text == "Weight Tag")
+            {
+                BTNTAGTYPE.Text = "Price Tag";
+                tagtype = "price";
+            }
+            else if (BTNTAGTYPE.Text == "Price Tag")
+            {
+                BTNTAGTYPE.Text = "Weight Tag";
+                tagtype = "weight";
+            }
         }
     }
 }

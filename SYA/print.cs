@@ -12,21 +12,22 @@ namespace SYA
 {
     public static class print
     {
-        public static void PrintReparing(object sender, PrintPageEventArgs e, List<string> ReparingData) {
-            for(int i =0;i<5;i++)
+        public static void PrintReparing(object sender, PrintPageEventArgs e, List<string> ReparingData)
+        {
+            for (int i = 0; i < 5; i++)
             {
                 MessageBox.Show(ReparingData[i].ToString());
             }
             SolidBrush brush = new SolidBrush(Color.Black);
             e.Graphics.DrawRectangle(Pens.Red, 4, 4, (float)109.5, (float)22.5);
             e.Graphics.DrawString(ReparingData[0].ToString(), new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF(4, 4, (float)109.5, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
-            e.Graphics.DrawString(ReparingData[0].ToString()+ ReparingData[3].ToString(), new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF(4, (float)26.5, (float)109.5, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+            e.Graphics.DrawString(ReparingData[0].ToString() + ReparingData[3].ToString(), new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF(4, (float)26.5, (float)109.5, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
 
             e.Graphics.DrawRectangle(Pens.Red, (float)170, (float)4, (float)47, (float)47);
             e.Graphics.DrawString(ReparingData[1].ToString(), new Font("Arial", (float)8, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)4, (float)56.5, (float)27), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
 
             e.Graphics.DrawRectangle(Pens.Red, (float)113.5, (float)31, (float)56.5, (float)30);
-          e.Graphics.DrawString(ReparingData[2].ToString(), new Font("Arial", (float)8, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)31, (float)56.5, (float)20), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+            e.Graphics.DrawString(ReparingData[2].ToString(), new Font("Arial", (float)8, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)31, (float)56.5, (float)20), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
             e.Graphics.DrawString(ReparingData[4].ToString(), new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)170, (float)4, (float)47, (float)47), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
         }
         public static void PrintRTGS(object sender, PrintPageEventArgs e, List<string> rtgsdata)
@@ -211,75 +212,185 @@ namespace SYA
                 e.Graphics.DrawString(rtgsdata[18].ToString() ?? "", new Font("Arial", (float)12.5, FontStyle.Regular), brush, new RectangleF((float)120, (float)850, (float)582.5, (float)30), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
             }
         }
-        public static void PrintPageSearch(object sender, PrintPageEventArgs e, DataGridView dataGridViewSearch)
+        public static void PrintPageSearch(object sender, PrintPageEventArgs e, DataGridView dataGridViewSearch, string tagtype)
         {
+
             DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
+
             if (selectedRow != null)
             {
                 string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
                 if (tagNumber.Length > 1)
                 {
-                    if ((selectedRow.Cells["gross"].Value ?? "0").ToString() == (selectedRow.Cells["net"].Value ?? "0").ToString())
+                    if (selectedRow.Cells["IT_TYPE"].Value.ToString() == "G")
                     {
-                        ph.onlyGross((selectedRow.Cells["gross"].Value ?? "0").ToString(), e);
+                        string caret = (selectedRow.Cells["itemdesc"].Value ?? "0").ToString().Split('-')[0].Trim() ?? "0";
+                        if ((selectedRow.Cells["gross"].Value ?? "0").ToString() == (selectedRow.Cells["net"].Value ?? "0").ToString())
+                        {
+                            ph.onlyGross((selectedRow.Cells["gross"].Value ?? "0").ToString(), e);
+                        }
+                        else
+                        {
+                            ph.gross((selectedRow.Cells["gross"].Value ?? "0").ToString(), e);
+                            ph.net((selectedRow.Cells["net"].Value ?? "0").ToString(), e);
+                        }
+                        ph.image(e);
+                        if ((selectedRow.Cells[12].Value ?? "0").ToString().Length > 0 && (selectedRow.Cells[11].Value ?? "0").ToString() != "0")
+                        {
+                            ph.sizeBelowLogo((selectedRow.Cells[12].Value ?? "0").ToString(), e);
+                        }
+                        else
+                        {
+                            ph.yamuna(e);
+                        }
+                        ph.quality(caret, e);
+                        ph.QR(tagNumber, e);
+                        string labour = "0";
+                        if ((selectedRow.Cells["labour"].Value ?? "-").ToString() != "0")
+                        {
+                            labour = (selectedRow.Cells["labour"].Value ?? "-").ToString();
+                            ph.labour(labour, e);
+                        }
+                        else if ((selectedRow.Cells["wholeLabour"].Value ?? "-").ToString() != "0")
+                        {
+                            labour = (selectedRow.Cells["wholeLabour"].Value ?? "-").ToString();
+                            ph.wholeLabour(labour, e);
+                        }
+                        if ((selectedRow.Cells["other"].Value ?? "0").ToString() != "0")
+                        {
+                            ph.other((selectedRow.Cells["other"].Value ?? "0").ToString(), e);
+                        }
+                        int length = tagNumber.Length;
+                        if (length >= 10)
+                        {
+                            int lastIndex = length - 8;
+                            string firstPart = tagNumber.Substring(3, lastIndex);
+                            string secondPart = tagNumber.Substring(lastIndex + 3);
+                            ph.tagNumberFirstPart(firstPart, e);
+                            ph.tagNumberSecondPart(secondPart, e);
+                        }
+                        else
+                        {
+                            ph.tagNumberSingle(tagNumber, e);
+                        }
+                        string huid1 = (selectedRow.Cells["huid1"].Value ?? "0").ToString();
+                        string huid2 = (selectedRow.Cells["huid2"].Value ?? "0").ToString();
+                        if (huid1.Length == 6)
+                        {
+                            ph.belowLabour1(huid1, e);
+                        }
+                        if (huid2.Length == 6)
+                        {
+                            ph.belowLabour2(huid2, e);
+                        }
+                        string updateQuery = $"UPDATE MAIN_DATA SET PRINT = '1'   WHERE TAG_NO = '{tagNumber}'";
+                        helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
                     }
-                    else
+                    if (selectedRow.Cells["IT_TYPE"].Value.ToString() == "S")
                     {
-                        ph.gross((selectedRow.Cells["gross"].Value ?? "0").ToString(), e);
-                        ph.net((selectedRow.Cells["net"].Value ?? "0").ToString(), e);
+                        string caret = (selectedRow.Cells["itemdesc"].Value ?? "0").ToString().Split('-')[0].Trim() ?? "0";
+
+                        if (tagtype == "weight")
+                        {
+                            if ((selectedRow.Cells["gross"].Value ?? "0").ToString() == (selectedRow.Cells["net"].Value ?? "0").ToString())
+                            {
+                                ph.silverMainUpper((selectedRow.Cells["gross"].Value ?? "0").ToString(), e);
+                                if ((selectedRow.Cells["size"].Value ?? "").ToString().Length > 0)
+                                {
+                                    ph.textBelowSilverMainUpper((selectedRow.Cells["size"].Value ?? "").ToString(), e);
+                                    ph.belowLabour2((selectedRow.Cells[10].Value ?? "").ToString(), e);
+                                }
+                                else
+                                {
+                                    ph.textBelowSilverMainUpper(caret, e);
+                                    ph.belowLabour2(caret, e);
+                                }
+                            }
+                            else
+                            {
+                                ph.gross((selectedRow.Cells["gross"].Value ?? "0").ToString(), e);
+                                ph.net((selectedRow.Cells["net"].Value ?? "0").ToString(), e);
+                                if ((selectedRow.Cells["size"].Value ?? "").ToString().Length > 0)
+                                {
+                                    ph.belowLabour2((selectedRow.Cells["size"].Value ?? "").ToString(), e);
+                                }
+                                else
+                                {
+                                    ph.belowLabour2(caret, e);
+                                }
+                            }
+                            ph.belowLabour1((selectedRow.Cells["gross"].Value ?? "0").ToString(), e);
+                            ph.image(e);
+                            ph.yamuna(e);
+                            ph.quality(caret, e);
+                            ph.QR(tagNumber, e);
+                            string labour = "0";
+                            if ((selectedRow.Cells["labour"].Value ?? "-").ToString() != "0")
+                            {
+                                labour = (selectedRow.Cells["labour"].Value ?? "-").ToString();
+                                ph.labour(labour, e);
+                            }
+                            else if ((selectedRow.Cells["wholeLabour"].Value ?? "-").ToString() != "0")
+                            {
+                                labour = (selectedRow.Cells["wholeLabour"].Value ?? "-").ToString();
+                                ph.wholeLabour(labour, e);
+                            }
+                            if ((selectedRow.Cells["other"].Value ?? "0").ToString() != "0")
+                            {
+                                ph.other((selectedRow.Cells["other"].Value ?? "0").ToString(), e);
+                            }
+                            int length = tagNumber.Length;
+                            if (length >= 10)
+                            {
+                                int lastIndex = length - 8;
+                                string firstPart = tagNumber.Substring(3, lastIndex);
+                                string secondPart = tagNumber.Substring(lastIndex + 3);
+                                ph.tagNumberFirstPart(firstPart, e);
+                                ph.tagNumberSecondPart(secondPart, e);
+                            }
+                            else
+                            {
+                                ph.tagNumberSingle(tagNumber, e);
+                            }
+                        }
+                        else if (tagtype == "price")
+                        {
+                            ph.silverMainUpper("\u20B9" + selectedRow.Cells["price"].Value.ToString(), e);
+                            ph.image(e);
+                            ph.yamuna(e);
+                            ph.quality(caret, e);
+                            ph.QR(tagNumber, e);
+                            ph.silverSecondUpper("\u20B9" + selectedRow.Cells["price"].Value.ToString(), e);
+                            int length = tagNumber.Length;
+                            if (length >= 10)
+                            {
+                                int lastIndex = length - 5;
+                                string firstPart = tagNumber.Substring(0, lastIndex);
+                                string secondPart = tagNumber.Substring(lastIndex);
+                                ph.tagNumberFirstPart(firstPart, e);
+                                ph.tagNumberSecondPart(secondPart, e);
+                            }
+                            else
+                            {
+                                ph.tagNumberSingle(tagNumber, e);
+                            }
+                            if ((selectedRow.Cells["size"].Value ?? "").ToString().Length > 0)
+                            {
+                                ph.textBelowSilverMainUpper((selectedRow.Cells["size"].Value ?? "").ToString(), e);
+                                ph.textBelowSilverSecondUpper((selectedRow.Cells["size"].Value ?? "").ToString(), e);
+                            }
+                            else
+                            {
+                                ph.textBelowSilverMainUpper(caret, e);
+                                ph.textBelowSilverSecondUpper(caret, e);
+                            }
+                        }
                     }
-                    ph.image(e);
-                    if ((selectedRow.Cells[12].Value ?? "0").ToString().Length > 0 && (selectedRow.Cells[12].Value ?? "0").ToString() != "0")
-                    {
-                        ph.sizeBelowLogo((selectedRow.Cells[12].Value ?? "0").ToString(), e);
-                    }
-                    else
-                    {
-                        ph.yamuna(e);
-                    }
-                    ph.quality((selectedRow.Cells["itemdesc"].Value ?? "0").ToString().Split('-')[0].Trim() ?? "0", e);
-                    ph.QR(tagNumber, e);
-                    string labour = "0";
-                    if (selectedRow.Cells["labour"].Value.ToString() != "0")
-                    {
-                        labour = (selectedRow.Cells["labour"].Value ?? "-").ToString();
-                        ph.labour(labour, e);
-                    }
-                    else if ((selectedRow.Cells["wholeLabour"].Value ?? "-").ToString() != "0")
-                    {
-                        labour = (selectedRow.Cells["wholeLabour"].Value ?? "-").ToString();
-                        ph.wholeLabour(labour, e);
-                    }
-                    if ((selectedRow.Cells["other"].Value ?? "0").ToString() != "0")
-                    {
-                        ph.other((selectedRow.Cells["other"].Value ?? "0").ToString(), e);
-                    }
-                    int length = tagNumber.Length;
-                    if (length >= 10)
-                    {
-                        int lastIndex = length - 5;
-                        string firstPart = tagNumber.Substring(0, lastIndex);
-                        string secondPart = tagNumber.Substring(lastIndex);
-                        ph.tagNumberFirstPart(firstPart, e);
-                        ph.tagNumberSecondPart(secondPart, e);
-                    }
-                    else
-                    {
-                        ph.tagNumberSingle(tagNumber, e);
-                    }
-                    string huid1 = (selectedRow.Cells["huid1"].Value ?? "0").ToString();
-                    string huid2 = (selectedRow.Cells["huid2"].Value ?? "0").ToString();
-                    if (huid1.Length == 6)
-                    {
-                        ph.belowLabour1(huid1, e);
-                    }
-                    if (huid2.Length == 6)
-                    {
-                        ph.belowLabour2(huid2, e);
-                    }
-                    string updateQuery = $"UPDATE MAIN_DATA SET PRINT = '1'   WHERE TAG_NO = '{tagNumber}'";
-                    helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
                 }
+
+
+
+              
             }
         }
         public static void PrintPageAddGold(object sender, PrintPageEventArgs e, DataGridViewRow selectedRow)
@@ -327,9 +438,9 @@ namespace SYA
                     int length = tagNumber.Length;
                     if (length >= 10)
                     {
-                        int lastIndex = length - 5;
-                        string firstPart = tagNumber.Substring(0, lastIndex);
-                        string secondPart = tagNumber.Substring(lastIndex);
+                        int lastIndex = length - 8;
+                        string firstPart = tagNumber.Substring(3, lastIndex);
+                        string secondPart = tagNumber.Substring(lastIndex + 3);
                         ph.tagNumberFirstPart(firstPart, e);
                         ph.tagNumberSecondPart(secondPart, e);
                     }
@@ -413,9 +524,9 @@ namespace SYA
                         int length = tagNumber.Length;
                         if (length >= 10)
                         {
-                            int lastIndex = length - 5;
-                            string firstPart = tagNumber.Substring(0, lastIndex);
-                            string secondPart = tagNumber.Substring(lastIndex);
+                            int lastIndex = length - 8;
+                            string firstPart = tagNumber.Substring(3, lastIndex);
+                            string secondPart = tagNumber.Substring(lastIndex + 3);
                             ph.tagNumberFirstPart(firstPart, e);
                             ph.tagNumberSecondPart(secondPart, e);
                         }
@@ -435,9 +546,9 @@ namespace SYA
                         int length = tagNumber.Length;
                         if (length >= 10)
                         {
-                            int lastIndex = length - 5;
-                            string firstPart = tagNumber.Substring(0, lastIndex);
-                            string secondPart = tagNumber.Substring(lastIndex);
+                            int lastIndex = length - 8;
+                            string firstPart = tagNumber.Substring(3, lastIndex);
+                            string secondPart = tagNumber.Substring(lastIndex + 3);
                             ph.tagNumberFirstPart(firstPart, e);
                             ph.tagNumberSecondPart(secondPart, e);
                         }
