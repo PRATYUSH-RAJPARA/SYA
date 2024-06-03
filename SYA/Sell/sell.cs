@@ -53,18 +53,19 @@ namespace SYA.Sell
             sellItem.Clear();
             // Try from here if not fount then search in other table and show already sold
             sellItem = helper.FetchDataTableFromSYADataBase("SELECT * FROM MAIN_DATA WHERE TAG_NO = '" + tagNo + "'");
-            if (sellItem.Rows.Count>0) {
-            ReplaceNullValuesWithEmptyString(sellItem);
-            sortAndSell(sellItem, autoSell);
+            if (sellItem.Rows.Count > 0)
+            {
+                ReplaceNullValuesWithEmptyString(sellItem);
+                sortAndSell(sellItem, autoSell);
             }
             else
             {
                 sellItem = helper.FetchDataTableFromSYADataBase("SELECT * FROM SYA_SALE_DATA WHERE TAG_NO = '" + tagNo + "'");
                 if (sellItem.Rows.Count > 0)
                 {
-                    button2.Visible=false;
+                    button2.Visible = false;
                     sortAndSell(sellItem, false);
-                    label25.Text="Item "+ sellItem.Rows[0]["TAG_NO"].ToString() + " is already Sold and Saved in Sales.";
+                    label25.Text = "Item " + sellItem.Rows[0]["TAG_NO"].ToString() + " is already Sold and Saved in Sales.";
                 }
                 else
                 {
@@ -89,7 +90,7 @@ namespace SYA.Sell
                 }
                 else if (itemToSell.Rows[0]["IT_TYPE"].ToString() == "G" && itemToSell.Rows[0]["TAG_NO"].ToString().Contains("SYA"))
                 {
-                    MessageBox.Show("s3   :   "+ itemToSell.Rows[0]["HUID1"].ToString().Length+"  :  "+ itemToSell.Rows[0]["HUID2"].ToString().Length);
+                    MessageBox.Show("s3   :   " + itemToSell.Rows[0]["HUID1"].ToString().Length + "  :  " + itemToSell.Rows[0]["HUID2"].ToString().Length);
                     if (itemToSell.Rows[0]["HUID1"].ToString().Length == 0 && itemToSell.Rows[0]["HUID2"].ToString().Length == 0)
                     {
                         MessageBox.Show("s1");
@@ -151,7 +152,7 @@ namespace SYA.Sell
             }
             void dataCareItem()
             {
-                 loadDataInLabels(itemToSell, "datacare");
+                loadDataInLabels(itemToSell, "datacare");
                 if (sell)
                 {
                     DataTable DT = helper.FetchDataTableFromSYADataBase("SELECT TAG_NO FROM SYA_SALE_DATA WHERE TAG_NO = '" + itemToSell.Rows[0]["TAG_NO"].ToString() + "'");
@@ -214,7 +215,7 @@ namespace SYA.Sell
                 if (sell)
                 {
                     MessageBox.Show(itemToSell.Rows[0]["HUID1"].ToString());
-                    string insertQuery =  
+                    string insertQuery =
                         @"INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT) 
         VALUES (
             " + (itemToSell.Rows[0]["CO_YEAR"] == DBNull.Value ? "NULL" : itemToSell.Rows[0]["CO_YEAR"].ToString()) + @",
@@ -262,6 +263,7 @@ namespace SYA.Sell
                 }
             }
         }
+
         private void txtTAGNO_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -350,13 +352,17 @@ namespace SYA.Sell
                     accDetails();
                 }
                 else
-                {
-                    bill = helper.FetchDataTableFromSYADataBase("SELECT * FROM SYA_SALE_DATA WHERE TAG_NO = '" + itemToSell.Rows[0]["TAG_NO"] + "'");
-                    billno.Text = (bill.Rows[0]["VCH_NO"] ?? "-").ToString();
-                    name.Text = (bill.Rows[0]["AC_NAME"] ?? "-").ToString();
+                {DataTable b = new DataTable();
+                    b = helper.FetchDataTableFromSYADataBase("SELECT * FROM SYA_SALE_DATA WHERE TAG_NO = '" + itemToSell.Rows[0]["TAG_NO"] + "'");
+                    if (b.Rows.Count > 0)
+                    {
+                        billno.Text = (b.Rows[0]["VCH_NO"] ?? "-").ToString();
+                    name.Text = (b.Rows[0]["AC_NAME"] ?? "-").ToString();
+
+                    }
                 }
-                }
-                void accDetails()
+            }
+            void accDetails()
             {
                 DataTable acc = new DataTable();
                 acc = helper.FetchDataTableFromDataCareDataBase("SELECT AC_NAME,AC_PHONE,AC_MOBILE,AC_MOBILE2 FROM AC_MAST WHERE AC_CODE = '" + bill.Rows[0]["AC_CODE"] + "'");
