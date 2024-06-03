@@ -22,11 +22,11 @@ namespace SYA
 
         static void HandleHttpRequests()
         {
-            // Create an HttpListener to listen for requests on port 5001
+            // Create an HttpListener to listen for requests on port 5002
             HttpListener listener = new HttpListener();
-            listener.Prefixes.Add("http://localhost:5001/");
+            listener.Prefixes.Add("http://localhost:5002/");
             listener.Start();
-            Console.WriteLine("Listening for HTTP requests on port 5001...");
+            Console.WriteLine("Listening for HTTP requests on port 5002...");
 
             // Handle incoming requests
             while (true)

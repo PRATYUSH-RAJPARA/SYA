@@ -48,7 +48,7 @@ namespace SYA
                         string str = "INSERT INTO TAGNOS (TAG_NO) VALUES ('" + tagno + "'); ";
                         helper.RunQueryWithoutParametersSYADataBase(str, "ExecuteNonQuery");
                         string query = $"SELECT * FROM MAIN_DATA WHERE TAG_NO LIKE '%{tagno}%'";
-                        using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase(query))
+                        using (SQLiteDataReader reader = helper. FetchDataFromSYADataBase(query))
                         {
                             if (reader != null && reader.Read())
                             {

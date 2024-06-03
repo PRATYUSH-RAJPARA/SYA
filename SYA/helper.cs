@@ -23,81 +23,21 @@ namespace SYA
                 return _configuration;
             }
         }
-        public static string SYAContactConnectionString
-        {
-            get { return Configuration["ConnectionStrings:ContactDataBase"]; }
-        }
-        public static string SYAConnectionString
-        {
-            get { return Configuration["ConnectionStrings:SYADatabase"]; }
-        }
-        public static string SYASummaryConnectionString
-        {
-            get { return Configuration["ConnectionStrings:SYASummaryDatabase"]; }
-        }
-        public static string accessConnectionString
-        {
-            get { return Configuration["ConnectionStrings:DataCareDatabase"]; }
-        }
-        public static string excelFile
-        {
-            get { return Configuration["FolderLocations:ExcelFile"]; }
-        }
-        public static string ImageFolder
-        {
-            get { return Configuration["FolderLocations:Images"]; }
-        }
-        public static string LogsFolder
-        {
-            get { return Configuration["FolderLocations:Logs"]; }
-        }
-        public static object aa(string query, string commandType, TextBox a)
-        {
-            object res = null;
-            try
-            {
-                using (SQLiteConnection connection = new SQLiteConnection(SYAConnectionString))
-                {
-                    connection.Open();
-                    try
-                    {
-                        using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                        {
-                            if (commandType == "ExecuteNonQuery")
-                            {
-                                res = command.ExecuteNonQuery();
-                            }
-                            else if (commandType == "ExecuteScalar")
-                            {
-                                res = command.ExecuteScalar();
-                                // result = Convert.ToInt32(res);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle or log the exception as needed
-                        a.Text = $"Errorrr executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message} lll \n\n{ex.StackTrace}\n\n{ex.InnerException}";
-                        MessageBox.Show($"Errorrr executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message} lll \n\n{ex.StackTrace}\n\n{ex.InnerException}");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Display the error message in a custom form
-                MessageBox.Show($"Outer Errorrrrr executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
-                // Re-throw the exception for higher-level handling, if needed
-                throw;
-            }
-            return res;
-        }
+        public static string SYAContactConnectionString => Configuration["ConnectionStrings:ContactDataBase"];
+        public static string SYAConnectionString => Configuration["ConnectionStrings:SYADatabase"];
+        public static string SYASummaryConnectionString => Configuration["ConnectionStrings:SYASummaryDatabase"];
+        public static string accessConnectionString => Configuration["ConnectionStrings:DataCareDatabase"];
+        public static string excelFile => Configuration["FolderLocations:ExcelFile"];
+        public static string ImageFolder => Configuration["FolderLocations:Images"];
+        public static string LogsFolder => Configuration["FolderLocations:Logs"];
+
         //i am chaning int to object so where we are implementing use proper conversion
-        public static object RunQueryWithoutParametersSYAContactDataBase(string query, string commandType)
+        public static object RunQueryWithoutParameters(string connectionString, string query, string commandType)
         {
             object res = null;
             try
             {
-                using (SQLiteConnection connection = new SQLiteConnection(SYAContactConnectionString))
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                 {
                     connection.Open();
                     try
@@ -111,100 +51,64 @@ namespace SYA
                             else if (commandType == "ExecuteScalar")
                             {
                                 res = command.ExecuteScalar();
-                                // result = Convert.ToInt32(res);
                             }
                         }
                     }
                     catch (Exception ex)
                     {
                         // Handle or log the exception as needed
-                        MessageBox.Show($"Errorrr executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message} lll \n\n{ex.StackTrace}\n\n{ex.InnerException}");
+                        MessageBox.Show($"Error executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}\n\n{ex.StackTrace}\n\n{ex.InnerException}");
                     }
                 }
             }
             catch (Exception ex)
             {
                 // Display the error message in a custom form
-                MessageBox.Show($"Outer Errorrrrr executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
+                MessageBox.Show($"Outer Error executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
                 // Re-throw the exception for higher-level handling, if needed
                 throw;
             }
             return res;
         }
-        public static object RunQueryWithoutParametersSYADataBase(string query, string commandType)
+        public static DataTable FetchDataTable(string connectionString, string query)
         {
-            object res = null;
+            DataTable dataTable = new DataTable();
             try
             {
-                using (SQLiteConnection connection = new SQLiteConnection(SYAConnectionString))
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                 {
                     connection.Open();
                     try
                     {
                         using (SQLiteCommand command = new SQLiteCommand(query, connection))
                         {
-                            if (commandType == "ExecuteNonQuery")
-                            {
-                                res = command.ExecuteNonQuery();
-                            }
-                            else if (commandType == "ExecuteScalar")
-                            {
-                                res = command.ExecuteScalar();
-                                // result = Convert.ToInt32(res);
-                            }
+                            SQLiteDataReader reader = command.ExecuteReader();
+                            dataTable.Load(reader);
                         }
                     }
                     catch (Exception ex)
                     {
                         // Handle or log the exception as needed
-                        MessageBox.Show($"Errorrr executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message} lll \n\n{ex.StackTrace}\n\n{ex.InnerException}");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Display the error message in a custom form
-                MessageBox.Show($"Outer Errorrrrr executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
-                // Re-throw the exception for higher-level handling, if needed
-                throw;
-            }
-            return res;
-        }
-        public static object RunQueryWithoutParametersSYADataBasemain(string query, string commandType)
-        {
-            object result = null;
-            try
-            {
-                using (SQLiteConnection connection = new SQLiteConnection(SYAConnectionString))
-                {
-                    connection.Open();
-                    try
-                    {
-                        using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                        {
-                            if (commandType == "ExecuteNonQuery")
-                            {
-                                result = command.ExecuteNonQuery();
-                            }
-                            else if (commandType == "ExecuteScalar")
-                            {
-                                result = command.ExecuteScalar();
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle or log the exception as needed
-                        MessageBox.Show($"RunQueryWithoutParametersSYADataBasemain Error executing non-query: {ex.Message}");
+                        MessageBox.Show($"Error executing query and filling DataTable: {ex.Message}");
                     }
                 }
             }
             catch (Exception ex)
             {
                 // Handle or log the exception as needed
-                MessageBox.Show($"Outer RunQueryWithoutParametersSYADataBasemain Error executing non-query: {ex.Message}");
+                MessageBox.Show($"Outer Error executing query and filling DataTable: {ex.Message}");
             }
-            return result;
+            return dataTable;
+        }
+
+        public static object RunQueryWithoutParametersSYAContactDataBase(string query, string commandType)
+        {
+            return RunQueryWithoutParameters(SYAContactConnectionString, query, commandType);
+        }
+
+        public static object RunQueryWithoutParametersSYADataBase(string query, string commandType)
+        {
+            return RunQueryWithoutParameters(SYAConnectionString, query, commandType);
         }
         public static bool RunQueryWithParametersSYAContactDataBase(string query, SQLiteParameter[] parameters = null)
         {
@@ -274,95 +178,19 @@ namespace SYA
                 return false;
             }
         }
-             public static DataTable FetchDataTableFromSYAContactDataBase(string query)
+        public static DataTable FetchDataTableFromSYAContactDataBase(string query)
         {
-            DataTable dataTable = new DataTable();
-            try
-            {
-                using (SQLiteConnection connection = new SQLiteConnection(SYAContactConnectionString))
-                {
-                    connection.Open();
-                    try
-                    {
-                        using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                        {
-                            SQLiteDataReader reader = command.ExecuteReader();
-                            dataTable.Load(reader);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle or log the exception as needed
-                        MessageBox.Show($"FetchDataTableFromSYADataBase Error executing query and filling DataTable: {ex.Message}");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle or log the exception as needed
-                MessageBox.Show($"Outer FetchDataTableFromSYADataBase Error executing query and filling DataTable: {ex.Message}");
-            }
-            return dataTable;
+            return FetchDataTable(SYAContactConnectionString, query);
         }
+
         public static DataTable FetchDataTableFromSYADataBase(string query)
         {
-            DataTable dataTable = new DataTable();
-            try
-            {
-                using (SQLiteConnection connection = new SQLiteConnection(SYAConnectionString))
-                {
-                    connection.Open();
-                    try
-                    {
-                        using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                        {
-                            SQLiteDataReader reader = command.ExecuteReader();
-                            dataTable.Load(reader);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle or log the exception as needed
-                        MessageBox.Show($"FetchDataTableFromSYADataBase Error executing query and filling DataTable: {ex.Message}");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle or log the exception as needed
-                MessageBox.Show($"Outer FetchDataTableFromSYADataBase Error executing query and filling DataTable: {ex.Message}");
-            }
-            return dataTable;
+            return FetchDataTable(SYAConnectionString, query);
         }
+
         public static DataTable FetchDataTableFromSYADataBaseSummary(string query)
         {
-            DataTable dataTable = new DataTable();
-            try
-            {
-                using (SQLiteConnection connection = new SQLiteConnection(SYASummaryConnectionString))
-                {
-                    connection.Open();
-                    try
-                    {
-                        using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                        {
-                            SQLiteDataReader reader = command.ExecuteReader();
-                            dataTable.Load(reader);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle or log the exception as needed
-                        MessageBox.Show($"FetchDataTableFromSYADataBase Error executing query and filling DataTable: {ex.Message}");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle or log the exception as needed
-                MessageBox.Show($"Outer FetchDataTableFromSYADataBase Error executing query and filling DataTable: {ex.Message}");
-            }
-            return dataTable;
+            return FetchDataTable(SYASummaryConnectionString, query);
         }
         public static SQLiteDataReader FetchDataFromSYADataBase(string query)
         {
@@ -381,36 +209,7 @@ namespace SYA
             }
             return reader;
         }
-        //  public static SQLiteDataReader FetchDataFromSYADataBase(string query)
-        //   {
-        //      SQLiteDataReader reader = null;
-        //     try
-        //     {
-        //         using (SQLiteConnection connection = new SQLiteConnection(SYAConnectionString))
-        //       {
-        //            connection.Open();
-        //           try
-        //          {
-        //           using (SQLiteCommand command = new SQLiteCommand(query, connection))
-        //                {
-        //                    reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-        //                    // Read data from the reader here, within the same using block
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                // Handle or log the exception as needed
-        //                MessageBox.Show($"FetchDataFromSYADataBase Error executing reader: {ex.Message}");
-        //            }
-        //        } // The connection will be automatically closed here.
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Handle or log the exception as needed
-        //        MessageBox.Show($"Outer FetchDataFromSYADataBase Error: {ex.Message}");
-        //    }
-        //    return reader;
-        //}
+
         public static DataTable FetchDataTableFromDataCareDataBase(string query)
         {
             DataTable dataCareDataTable = new DataTable();
@@ -437,42 +236,6 @@ namespace SYA
             {
                 // Handle or log the exception as needed
                 MessageBox.Show("Outer FetchFromDataCareDataBase Error executing query: " + ex.Message);
-            }
-            return dataCareDataTable;
-        }
-        public static DataTable FetchFromDataCareDataBaseWithParameters(string query, params OleDbParameter[] parameters)
-        {
-            DataTable dataCareDataTable = new DataTable();
-            try
-            {
-                using (OleDbConnection accessConnection = new OleDbConnection(accessConnectionString))
-                {
-                    accessConnection.Open();
-                    try
-                    {
-                        using (OleDbCommand command = new OleDbCommand(query, accessConnection))
-                        {
-                            if (parameters != null && parameters.Length > 0)
-                            {
-                                command.Parameters.AddRange(parameters);
-                            }
-                            using (OleDbDataAdapter adapter = new OleDbDataAdapter(command))
-                            {
-                                adapter.Fill(dataCareDataTable);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle or log the exception as needed
-                        MessageBox.Show("FetchFromDataCareDataBaseWithParameters Error executing query: " + ex.Message);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle or log the exception as needed
-                MessageBox.Show("Outer FetchFromDataCareDataBaseWithParameters Error executing query: " + ex.Message);
             }
             return dataCareDataTable;
         }
@@ -540,6 +303,7 @@ namespace SYA
             }
             return true;
         }
+
         public static string correctWeight(object cellValue)
         {
             // Check if the entered value is not null and can be converted to a decimal
