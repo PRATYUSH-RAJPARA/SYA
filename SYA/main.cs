@@ -220,9 +220,9 @@ namespace SYA
         }
         private void button17_Click(object sender, EventArgs e)
         {
-            //RichTextBox r = new RichTextBox();
-            //Contact contact = new Contact();
-            //contact.SortContactData(r, "datacare");
+            RichTextBox r = new RichTextBox();
+            Contact contact = new Contact();
+            contact.SortContactData(r, "datacare");
             panelsecond.Visible = false;
 
 

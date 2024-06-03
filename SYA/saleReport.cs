@@ -22,7 +22,8 @@ namespace SYA
             dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
         }
         private void saleReport_Load(object sender, EventArgs e)
-        {
+        {panel8.Visible = false;
+            panel10.Visible = false;
         }
         private void datagridviewload()
         {
@@ -112,6 +113,14 @@ namespace SYA
                 // Create a new DataTable with the same structure as slDataTable
                 DataTable exportDataTable = slDataTable.Clone();
                 // Manually map the columns and populate the new DataTable
+                decimal[,] sums = new decimal[4, 9];
+                for (int row = 0; row < 4; row++)
+                {
+                    for (int col = 0; col < 9; col++)
+                    {
+                        sums[row, col] = 0m; // Although this is redundant as the default value is already 0
+                    }
+                }
                 foreach (DataRow row in slDataTable.Rows)
                 {
                     int rowIndex = dataGridView1.Rows.Add();
@@ -120,6 +129,10 @@ namespace SYA
                     dataGridView1.Rows[rowIndex].Cells["VCH_NO"].Value = row["VCH_NO"].ToString();
                     dataGridView1.Rows[rowIndex].Cells["AC_NAME"].Value = row["AC_NAME"].ToString();
                     dataGridView1.Rows[rowIndex].Cells["NT_WT"].Value = row["NT_WT"].ToString();
+
+                    
+                    
+                    
                     // Calculate NET_AMT as TOT_AMT - TAX_AMT
                     decimal totAmt = Convert.ToDecimal(row["TOT_AMT"]);
                     decimal taxAmt = Convert.ToDecimal(row["TAX_AMT"]);
@@ -131,9 +144,68 @@ namespace SYA
                     dataGridView1.Rows[rowIndex].Cells["CASH_AMT"].Value = row["CASH_AMT"].ToString();
                     dataGridView1.Rows[rowIndex].Cells["CARD_AMT"].Value = row["CARD_AMT"].ToString();
                     dataGridView1.Rows[rowIndex].Cells["CHQ_AMT"].Value = row["CHQ_AMT"].ToString();
+
+                    if (row["CO_BOOK"].ToString() == "026")
+                    {
+                        sums[1, 1] += Convert.ToDecimal(row["NT_WT"]);
+                        sums[1, 2] += netAmt;
+                        sums[1, 3] += Convert.ToDecimal(row["CGST_TAX"]);
+                        sums[1, 4] += Convert.ToDecimal(row["SGST_TAX"]);
+                        sums[1, 5] += Convert.ToDecimal(row["TOT_AMT"]);
+                        sums[1, 6] += Convert.ToDecimal(row["CASH_AMT"]);
+                        sums[1, 7] += Convert.ToDecimal(row["CARD_AMT"]);
+                        sums[1, 8] += Convert.ToDecimal(row["CHQ_AMT"]);
+                    }
+                    if (row["CO_BOOK"].ToString() == "027")
+                    {
+                        sums[2, 1] += Convert.ToDecimal(row["NT_WT"]);
+                        sums[2, 2] += netAmt;
+                        sums[2, 3] += Convert.ToDecimal(row["CGST_TAX"]);
+                        sums[2, 4] += Convert.ToDecimal(row["SGST_TAX"]);
+                        sums[2, 5] += Convert.ToDecimal(row["TOT_AMT"]);
+                        sums[2, 6] += Convert.ToDecimal(row["CASH_AMT"]);
+                        sums[2, 7] += Convert.ToDecimal(row["CARD_AMT"]);
+                        sums[2, 8] += Convert.ToDecimal(row["CHQ_AMT"]);
+                    }
+
+                    sums[3, 1] += Convert.ToDecimal(row["NT_WT"]);
+                    sums[3, 2] += netAmt;
+                    sums[3, 3] += Convert.ToDecimal(row["CGST_TAX"]);
+                    sums[3, 4] += Convert.ToDecimal(row["SGST_TAX"]);
+                    sums[3, 5] += Convert.ToDecimal(row["TOT_AMT"]);
+                    sums[3, 6] += Convert.ToDecimal(row["CASH_AMT"]);
+                    sums[3, 7] += Convert.ToDecimal(row["CARD_AMT"]);
+                    sums[3, 8] += Convert.ToDecimal(row["CHQ_AMT"]);
+
                     // Populate the new DataTable
                     exportDataTable.Rows.Add(row.ItemArray);
                 }
+                label9.Text = sums[1,1].ToString();
+                label13.Text = sums[1, 2].ToString();
+                label17.Text = sums[1, 3].ToString();
+                label21.Text = sums[1, 4].ToString();
+                label25.Text = sums[1, 5].ToString();
+                label29.Text = sums[1, 6].ToString();
+                label33.Text = sums[1, 7].ToString();
+                label37.Text = sums[1, 8].ToString();
+                label10.Text = sums[2, 1].ToString();
+                label14.Text = sums[2, 2].ToString();
+                label18.Text = sums[2, 3].ToString();
+                label22.Text = sums[2, 4].ToString();
+                label26.Text = sums[2, 5].ToString();
+                label30.Text = sums[2, 6].ToString();
+                label34.Text = sums[2, 7].ToString();
+                label38.Text = sums[2, 8].ToString();
+                label11.Text = sums[3, 1].ToString();
+                label15.Text = sums[3, 2].ToString();
+                label19.Text = sums[3, 3].ToString();
+                label23.Text = sums[3, 4].ToString();
+                label27.Text = sums[3, 5].ToString();
+                label31.Text = sums[3, 6].ToString();
+                label35.Text = sums[3, 7].ToString();
+                label39.Text = sums[3, 8].ToString();
+                panel8.Visible=true;
+                panel10.Visible=true;
             }
             catch (Exception ex)
             {
@@ -378,6 +450,11 @@ namespace SYA
             Contact c = new Contact();
             c.showMsg();
             //Contact.SortContactData( richTextBox1,"datacare");
+        }
+
+        private void panel8_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

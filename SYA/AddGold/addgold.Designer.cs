@@ -745,5 +745,6 @@ namespace SYA
         private Panel panel18;
         private Panel panel36;
         private System.Windows.Forms.Timer messageBoxTimer;
+        private RichTextBox richTextBox1;
     }
 }

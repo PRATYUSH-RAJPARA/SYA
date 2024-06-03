@@ -13,6 +13,7 @@ using QRCoder;
 using System.Drawing.Printing;
 using System.Runtime.InteropServices;
 using System.Diagnostics.Eventing.Reader;
+using System.Reflection;
 namespace SYA
 {
     public partial class addgold : Form
@@ -148,6 +149,7 @@ namespace SYA
             {
                 if (e.KeyCode == Keys.Tab)
                 {
+                    dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = dataGridView1;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -171,6 +173,7 @@ namespace SYA
             {
                 if (e.KeyCode == Keys.Tab)
                 {
+                    dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = dataGridView1;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -190,6 +193,7 @@ namespace SYA
             {
                 if (e.KeyCode == Keys.Tab)
                 {
+                    dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = dataGridView1;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -232,6 +236,7 @@ namespace SYA
             {
                 if (e.KeyCode == Keys.Tab)
                 {
+                    dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = dataGridView1;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -254,6 +259,7 @@ namespace SYA
             {
                 if (e.KeyCode == Keys.Tab)
                 {
+                    dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = dataGridView1;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -564,7 +570,6 @@ namespace SYA
             {
                 return false;
             }
-            MessageBox.Show(row.Cells["comment"].Value?.ToString());
             string updateQuery = "UPDATE MAIN_DATA SET ITEM_DESC = @type, ITEM_PURITY = @caret, GW = @gross, NW = @net, " +
                      "LABOUR_AMT = @labour, WHOLE_LABOUR_AMT = @wholeLabour, OTHER_AMT = @other, HUID1 = @huid1, HUID2 = @huid2, SIZE = @size, " +
                      "\"COMMENT\" = @comment, ITEM_CODE = @prCode WHERE TAG_NO = @tagNo";

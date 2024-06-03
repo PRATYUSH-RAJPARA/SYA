@@ -103,6 +103,7 @@
             messageBoxTimer = new System.Windows.Forms.Timer(components);
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             timer1 = new System.Windows.Forms.Timer(components);
+            contextMenuStrip1 = new ContextMenuStrip(components);
             panelBackground.SuspendLayout();
             panel2.SuspendLayout();
             panel45.SuspendLayout();
@@ -895,6 +896,11 @@
             // 
             timer1.Interval = 3000;
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
             // addSilver
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1003,5 +1009,6 @@
         private Panel panel13;
         private TextBox textBox3;
         private Panel panel15;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }

@@ -318,6 +318,7 @@ namespace SYA
             }
             if (e.KeyCode == Keys.Tab)
             {
+                dataGridViewSearch.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                 string currentColumnName = dataGridViewSearch.Columns[dataGridViewSearch.CurrentCell.ColumnIndex].Name;
                 int currentRowIndex = dataGridViewSearch.CurrentCell.RowIndex;
@@ -433,6 +434,8 @@ namespace SYA
             {
                 if (e.KeyCode == Keys.Tab)
                 {
+                    dataGridViewSearch.CommitEdit(DataGridViewDataErrorContexts.Commit);
+
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     if (editingControl != null)
                     {

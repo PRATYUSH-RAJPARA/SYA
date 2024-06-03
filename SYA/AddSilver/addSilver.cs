@@ -692,6 +692,8 @@ namespace SYA
             {
                 if (e.KeyCode == Keys.Tab)
                 {
+                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = addSilverDataGridView;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -714,6 +716,8 @@ namespace SYA
             {
                 if (e.KeyCode == Keys.Tab)
                 {
+                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = addSilverDataGridView;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -738,6 +742,8 @@ namespace SYA
             {
                 if (e.KeyCode == Keys.Tab)
                 {
+                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = addSilverDataGridView;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -761,6 +767,8 @@ namespace SYA
             {
                 if (e.KeyCode == Keys.Tab)
                 {
+                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = addSilverDataGridView;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -787,6 +795,8 @@ namespace SYA
             {
                 if (e.KeyCode == Keys.Tab)
                 {
+                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = addSilverDataGridView;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -809,6 +819,8 @@ namespace SYA
             {
                 if (e.KeyCode == Keys.Tab)
                 {
+                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = addSilverDataGridView;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
