@@ -438,20 +438,43 @@ namespace SYA
         private int GetNextSequenceNumber(string prefix, string prCode, string caret)
         {
             int prefixLength = (prefix ?? string.Empty).Length + (prCode ?? string.Empty).Length + (caret ?? string.Empty).Length;
+            List<int> soldTagNumbers = new List<int>();
+
+            // Step 1: Retrieve the list of sold tag numbers
             using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
             {
-                using (SQLiteCommand command = new SQLiteCommand($"SELECT MAX(CAST(SUBSTR(TAG_NO, {prefixLength + 1}) AS INTEGER)) FROM MAIN_DATA WHERE ITEM_CODE = '{prCode}'", con))
+                using (SQLiteCommand command = new SQLiteCommand($"SELECT CAST(SUBSTR(TAG_NO, {prefixLength + 1}) AS INTEGER) FROM MAIN_DATA WHERE ITEM_CODE = '{prCode}'", con))
                 {
                     con.Open();
-                    object result = command.ExecuteScalar();
-                    if (result != DBNull.Value)
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        return Convert.ToInt32(result) + 1;
+                        while (reader.Read())
+                        {
+                            soldTagNumbers.Add(Convert.ToInt32(reader[0]));
+                        }
                     }
-                    return 1;
                 }
             }
+
+            // Step 2: Sort the list of sold tag numbers
+            soldTagNumbers.Sort();
+
+            // Step 3: Find the smallest gap between consecutive tag numbers
+            int nextSequenceNumber = 1;
+            foreach (int tagNumber in soldTagNumbers)
+            {
+                if (tagNumber > nextSequenceNumber)
+                {
+                    // Step 4: Return the first tag number after the gap as the next available sequence number
+                    return nextSequenceNumber;
+                }
+                nextSequenceNumber = tagNumber + 1;
+            }
+
+            // If there are no sold tag numbers or all numbers are sequential, return the next number after the last one
+            return nextSequenceNumber;
         }
+
         private string GetPRCode(string itemName)
         {
             using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
