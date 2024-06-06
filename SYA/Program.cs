@@ -4,35 +4,74 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SYA
 {
     internal static class Program
     {
+        private static HttpListener listener;
+        private static Thread httpThread;
+        private static CancellationTokenSource cts;
+
         [STAThread]
         static void Main()
         {
+            // Initialize the cancellation token source
+            cts = new CancellationTokenSource();
+
             // Start a new thread to handle HTTP requests
-            Thread thread = new Thread(HandleHttpRequests);
-            thread.Start();
+            httpThread = new Thread(() => HandleHttpRequests(cts.Token));
+            httpThread.Start();
+            Application.ApplicationExit += new EventHandler(OnApplicationExit);
+
             ApplicationConfiguration.Initialize();
             Application.Run(new main());
         }
 
-        static void HandleHttpRequests()
+        static void HandleHttpRequests(CancellationToken token)
         {
-            // Create an HttpListener to listen for requests on port 5002
-            HttpListener listener = new HttpListener();
-            listener.Prefixes.Add("http://localhost:5002/");
-            listener.Start();
-            Console.WriteLine("Listening for HTTP requests on port 5002...");
-
-            // Handle incoming requests
-            while (true)
+            listener = new HttpListener();
+            try
             {
-                // Accept an incoming request
-                HttpListenerContext context = listener.GetContext();
+                listener.Prefixes.Add("http://localhost:5002/");
+                listener.Start();
+                Console.WriteLine("Listening for HTTP requests on port 5002...");
+
+                // Handle incoming requests
+                while (listener.IsListening && !token.IsCancellationRequested)
+                {
+                    var contextTask = listener.GetContextAsync();
+                    contextTask.Wait(token); // Wait for a request, respecting the cancellation token
+
+                    if (token.IsCancellationRequested)
+                        break;
+
+                    HttpListenerContext context = contextTask.Result;
+                    Task.Run(() => ProcessRequest(context));
+                }
+            }
+            catch (HttpListenerException ex)
+            {
+                Console.WriteLine($"HttpListenerException: {ex.Message}");
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+            catch (OperationCanceledException)
+            {
+                // Graceful shutdown
+                Console.WriteLine("Operation was canceled.");
+            }
+            finally
+            {
+                listener?.Close();
+            }
+        }
+
+        static void ProcessRequest(HttpListenerContext context)
+        {
+            try
+            {
                 // Handle the request based on the URL path
                 string urlPath = context.Request.Url.AbsolutePath;
 
@@ -80,11 +119,11 @@ namespace SYA
                                 reparing.printReparingTag(reparingData);
 
                                 // Create a response
-                                //context.Response.StatusCode = (int)HttpStatusCode.OK;
-                                //string responseString = "Variables received and processed";
-                                //byte[] buffer = Encoding.UTF8.GetBytes(responseString);
-                                //context.Response.ContentLength64 = buffer.Length;
-                                //context.Response.OutputStream.Write(buffer, 0, buffer.Length);
+                                context.Response.StatusCode = (int)HttpStatusCode.OK;
+                                string responseString = "Variables received and processed";
+                                byte[] buffer = Encoding.UTF8.GetBytes(responseString);
+                                context.Response.ContentLength64 = buffer.Length;
+                                context.Response.OutputStream.Write(buffer, 0, buffer.Length);
                             }
                         }
                         break;
@@ -97,6 +136,21 @@ namespace SYA
 
                 context.Response.OutputStream.Close();
             }
+            catch (Exception ex)
+            {
+                // Log and handle the exception as needed
+                Console.WriteLine($"Error processing request: {ex.Message}");
+            }
+        }
+
+        private static void OnApplicationExit(object sender, EventArgs e)
+        {
+            // Signal the cancellation token
+            cts.Cancel();
+
+            // Ensure the listener is stopped when the application exits
+            listener?.Stop();
+            httpThread?.Join(); // Wait for the HTTP thread to finish
         }
     }
 }

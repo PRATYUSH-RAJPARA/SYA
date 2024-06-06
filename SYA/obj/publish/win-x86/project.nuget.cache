@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hdm1NnMvn95dZCR9vnfTKZosD44JadAmDSg6ZmfyUJ8jsvnUvha8WRnoXcZvoFFddLZKDbB9eOsbbKCQ8CPJVQ==",
+  "dgSpecHash": "jGKr3o3F0QxOpuptYbYMIyMfnkCLSPprscKu78akExK8dY8EkMyHa3F20bTY1gtCf0WNVU5JdaFl4+X8T/MJZQ==",
   "success": true,
   "projectFilePath": "F:\\SYA\\SYA\\SYA.csproj",
   "expectedPackageFiles": [
@@ -107,10 +107,7 @@
     "C:\\Users\\SYA\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
     "C:\\Users\\SYA\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\SYA\\.nuget\\packages\\winforms.datavisualization\\1.9.2\\winforms.datavisualization.1.9.2.nupkg.sha512",
-    "C:\\Users\\SYA\\.nuget\\packages\\zxing.net\\0.16.9\\zxing.net.0.16.9.nupkg.sha512",
-    "C:\\Users\\SYA\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\6.0.29\\microsoft.netcore.app.runtime.win-x86.6.0.29.nupkg.sha512",
-    "C:\\Users\\SYA\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\6.0.29\\microsoft.windowsdesktop.app.runtime.win-x86.6.0.29.nupkg.sha512",
-    "C:\\Users\\SYA\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\6.0.29\\microsoft.aspnetcore.app.runtime.win-x86.6.0.29.nupkg.sha512"
+    "C:\\Users\\SYA\\.nuget\\packages\\zxing.net\\0.16.9\\zxing.net.0.16.9.nupkg.sha512"
   ],
   "logs": [
     {
