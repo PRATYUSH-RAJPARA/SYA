@@ -1,4 +1,5 @@
-﻿using QRCoder;
+﻿using Newtonsoft.Json.Linq;
+using QRCoder;
 using Serilog.Parsing;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,17 @@ namespace SYA
 {
     public static class ph
     {
+        public static void GenerateQRCode(string url, PictureBox pictureBox)
+        {
+            RectangleF qrCodeRect = new RectangleF(0, 0, pictureBox.Width, pictureBox.Height);
+            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+            {
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
+                QRCode qrCode = new QRCode(qrCodeData);
+                System.Drawing.Bitmap qrCodeBitmap = qrCode.GetGraphic((int)qrCodeRect.Width, System.Drawing.Color.Black, System.Drawing.Color.White, true);
+                pictureBox.Image = qrCodeBitmap;
+            }
+        }
         static Font font = new Font("Arial Black", 8, FontStyle.Bold);
         static SolidBrush brush = new SolidBrush(Color.Black);
         public static void onlyGross(string value, PrintPageEventArgs e)

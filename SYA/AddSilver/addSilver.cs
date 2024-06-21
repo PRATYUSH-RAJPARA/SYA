@@ -439,7 +439,6 @@ namespace SYA
         {
             int prefixLength = (prefix ?? string.Empty).Length + (prCode ?? string.Empty).Length + (caret ?? string.Empty).Length;
             List<int> soldTagNumbers = new List<int>();
-
             // Step 1: Retrieve the list of sold tag numbers
             using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
             {
@@ -455,10 +454,8 @@ namespace SYA
                     }
                 }
             }
-
             // Step 2: Sort the list of sold tag numbers
             soldTagNumbers.Sort();
-
             // Step 3: Find the smallest gap between consecutive tag numbers
             int nextSequenceNumber = 1;
             foreach (int tagNumber in soldTagNumbers)
@@ -470,11 +467,9 @@ namespace SYA
                 }
                 nextSequenceNumber = tagNumber + 1;
             }
-
             // If there are no sold tag numbers or all numbers are sequential, return the next number after the last one
             return nextSequenceNumber;
         }
-
         private string GetPRCode(string itemName)
         {
             using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
@@ -632,22 +627,9 @@ namespace SYA
             try
             {
                 PrintDocument pd = new PrintDocument();
-                pd.PrinterSettings.PrinterName = "TSC_TE244";
-                if (!single)
-                {
-                    //for (int rowIndex = 0; rowIndex < addSilverDataGridView.Rows.Count; rowIndex++)
-                    //{
-                    //    DataGridViewRow row = addSilverDataGridView.Rows[rowIndex];
-                    //    addSilverDataGridView.CurrentCell = row.Cells[0]; pd.Print();
-                    //}
-                    pd.PrintPage += new PrintPageEventHandler(PrintFrame);
-                    pd.Print();
-                }
-                else
-                {
+                pd.PrinterSettings.PrinterName =helper.TagPrinterName;
                     pd.PrintPage += new PrintPageEventHandler(PrintPageSilver925);
                     pd.Print();
-                }
             }
             catch (Exception ex)
             {
@@ -716,7 +698,6 @@ namespace SYA
                 if (e.KeyCode == Keys.Tab)
                 {
                     addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = addSilverDataGridView;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -740,7 +721,6 @@ namespace SYA
                 if (e.KeyCode == Keys.Tab)
                 {
                     addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = addSilverDataGridView;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -766,7 +746,6 @@ namespace SYA
                 if (e.KeyCode == Keys.Tab)
                 {
                     addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = addSilverDataGridView;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -791,7 +770,6 @@ namespace SYA
                 if (e.KeyCode == Keys.Tab)
                 {
                     addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = addSilverDataGridView;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -819,7 +797,6 @@ namespace SYA
                 if (e.KeyCode == Keys.Tab)
                 {
                     addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = addSilverDataGridView;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -843,7 +820,6 @@ namespace SYA
                 if (e.KeyCode == Keys.Tab)
                 {
                     addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     DataGridView dataGridView = addSilverDataGridView;
                     string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
@@ -867,33 +843,6 @@ namespace SYA
                 BTNTAGTYPE.Text = "Weight Tag";
                 tagtype = "weight";
             }
-        }
-        private void PrintFrame(object sender, PrintPageEventArgs e)
-        {
-            Font font = new Font("Arial Black", 8, FontStyle.Bold); // Adjust the font size
-            SolidBrush brush = new SolidBrush(Color.Black);
-            // Set the starting position for printing
-            float xPos = 0; // Adjust the starting X position
-            float yPos = 0; // Adjust the starting Y position
-            // Get the printer DPI
-            float dpiX = e.PageSettings.PrinterResolution.X;
-            float dpiY = e.PageSettings.PrinterResolution.Y;
-            float rectX = 4; // Adjust the X position of the rectangle
-            float rectY = 4; // Adjust the Y position of the rectangle
-            float rectWidth = 211; // Adjust the width of the rectangle
-            float rectHeight = 45; // Adjust the height of the rectangle
-            float a = float.Parse(textBox3.Text);
-            e.Graphics.DrawRectangle(Pens.Red, 0, (float)-4, (float)60.75, (float)100);
-            e.Graphics.DrawString(textBox2.Text, new Font("Arial", (float)a, FontStyle.Bold), brush, new RectangleF((float)56.75, (float)4, (float)56.75, (float)45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            QUERY.GetSummaryData();
-            //PrintData(false);
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            // Contact.ParentDataCareData();
         }
     }
 }

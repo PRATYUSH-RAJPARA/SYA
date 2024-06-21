@@ -36,7 +36,7 @@ namespace SYA
                 //pd.PrintPage += new PrintPageEventHandler(Print);
                 //printPreviewDialog.ShowDialog();
                 PrintDocument pd = new PrintDocument();
-                pd.PrinterSettings.PrinterName = "HP LaserJet MFP M129-M134";
+                pd.PrinterSettings.PrinterName = helper.NormalPrinterName;
                 pd.PrintPage += new PrintPageEventHandler(Print);
                 pd.Print();
             }

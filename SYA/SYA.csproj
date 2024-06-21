@@ -8,6 +8,7 @@
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
     <StartupObject>SYA.Program</StartupObject>
     <UseWPF>False</UseWPF>
+    <PackageIcon>WhatsApp Image 2024-05-08 at 9.53.45 AM.jpeg</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Interop.Access">
@@ -28,6 +29,12 @@
       <Isolated>false</Isolated>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\SYA\Downloads\WhatsApp Image 2024-05-08 at 9.53.45 AM.jpeg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Guna.Charts.WinForms" Version="1.0.9" />
@@ -54,11 +61,22 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 </Project>

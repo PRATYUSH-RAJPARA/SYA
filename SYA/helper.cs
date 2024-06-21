@@ -4,6 +4,8 @@ using System.Data.OleDb;
 using System.Data.SQLite;
 using System.Windows.Forms;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Office.Interop.Excel;
+using DataTable = System.Data.DataTable;
 namespace SYA
 {
     public static class helper
@@ -24,14 +26,16 @@ namespace SYA
                 return _configuration;
             }
         }
-        public static string SYAContactConnectionString => Configuration["ConnectionStrings:ContactDataBase"];
-        public static string SYAConnectionString => Configuration["ConnectionStrings:SYADatabase"];
+        public static string SYAContactConnectionString;
+        public static string SyaSettingsDataBase => Configuration["ConnectionStrings:SyaSettingsDataBase"];
+        public static string SYAConnectionString;
         public static string SYASummaryConnectionString => Configuration["ConnectionStrings:SYASummaryDatabase"];
-        public static string accessConnectionString => Configuration["ConnectionStrings:DataCareDatabase"];
-        public static string excelFile => Configuration["FolderLocations:ExcelFile"];
-        public static string ImageFolder => Configuration["FolderLocations:Images"];
-        public static string LogsFolder => Configuration["FolderLocations:Logs"];
-
+        public static string accessConnectionString;
+        public static string excelFile;
+        public static string ImageFolder;
+        public static string LogsFolder;
+        public static string TagPrinterName;
+        public static string NormalPrinterName;
         //i am chaning int to object so where we are implementing use proper conversion
         public static object RunQueryWithoutParameters(string connectionString, string query, string commandType)
         {
@@ -65,11 +69,27 @@ namespace SYA
             catch (Exception ex)
             {
                 // Display the error message in a custom form
-                MessageBox.Show($"Outer Error executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
+                MessageBox.Show($"Outerr Error executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
                 // Re-throw the exception for higher-level handling, if needed
                 throw;
             }
             return res;
+        }
+        public static DataTable dt1 = new DataTable();
+        public static void loadSettingsValues()
+        {
+            string query = "SELECT * FROM Settings";
+             dt1 = FetchDataTableFromSYASettingsDataBase( query);
+            foreach (DataRow row in dt1.Rows)
+            {
+                SYAConnectionString = row["SYADatabase"].ToString();
+                accessConnectionString = row["DataCareDatabase"].ToString();
+                SYAContactConnectionString = row["ContactDataBase"].ToString();
+                ImageFolder = row["Images"].ToString();
+                LogsFolder = row["Logs"].ToString();
+                TagPrinterName = row["TagPrinterName"].ToString();
+                NormalPrinterName = row["NormalPrinterName"].ToString();
+            }
         }
         public static DataTable FetchDataTable(string connectionString, string query)
         {
@@ -101,12 +121,14 @@ namespace SYA
             }
             return dataTable;
         }
-
         public static object RunQueryWithoutParametersSYAContactDataBase(string query, string commandType)
         {
             return RunQueryWithoutParameters(SYAContactConnectionString, query, commandType);
         }
-
+        public static object RunQueryWithoutParametersSyaSettingsDataBase(string query, string commandType)
+        {
+            return RunQueryWithoutParameters(SyaSettingsDataBase, query, commandType);
+        }
         public static object RunQueryWithoutParametersSYADataBase(string query, string commandType)
         {
             return RunQueryWithoutParameters(SYAConnectionString, query, commandType);
@@ -179,16 +201,18 @@ namespace SYA
                 return false;
             }
         }
+        public static DataTable FetchDataTableFromSYASettingsDataBase(string query)
+        {
+            return FetchDataTable(SyaSettingsDataBase, query);
+        }
         public static DataTable FetchDataTableFromSYAContactDataBase(string query)
         {
             return FetchDataTable(SYAContactConnectionString, query);
         }
-
         public static DataTable FetchDataTableFromSYADataBase(string query)
         {
             return FetchDataTable(SYAConnectionString, query);
         }
-
         public static DataTable FetchDataTableFromSYADataBaseSummary(string query)
         {
             return FetchDataTable(SYASummaryConnectionString, query);
@@ -210,7 +234,6 @@ namespace SYA
             }
             return reader;
         }
-
         public static DataTable FetchDataTableFromDataCareDataBase(string query)
         {
             DataTable dataCareDataTable = new DataTable();
@@ -304,7 +327,6 @@ namespace SYA
             }
             return true;
         }
-
         public static string correctWeight(object cellValue)
         {
             // Check if the entered value is not null and can be converted to a decimal

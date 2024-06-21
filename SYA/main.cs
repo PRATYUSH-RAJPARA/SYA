@@ -15,18 +15,21 @@ namespace SYA
         public main()
         {
             InitializeComponent();
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(main_KeyDown);
         }
         private void main_Load(object sender, EventArgs e)
         {
-            btnStocks.Visible = false;
+            btnStocks.Visible = true;
             //btnRtgs.Visible = false;
             btnImportData.Visible = false;
             btnPrintTags.Visible = false;
             btnCustomer.Visible = false;
             panelsecond.Visible = false;
-        btnSortContact.Visible = false;
+            btnSortContact.Visible = false;
             //panelchild.visible = false;
             btnHideAllSecondPanelButtons();
+            helper.loadSettingsValues();
         }
         // Loads form by name in panelchild
         private void LoadForm(Form form)
@@ -211,7 +214,7 @@ namespace SYA
         private void button13_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
-            LoadForm(new tempVerifyData());
+            LoadForm(new VerifyData());
         }
         private void btnSortContact_Click(object sender, EventArgs e)
         {
@@ -220,12 +223,10 @@ namespace SYA
         }
         private void button17_Click(object sender, EventArgs e)
         {
-            RichTextBox r = new RichTextBox();
-            Contact contact = new Contact();
-            contact.SortContactData(r, "datacare");
+            //RichTextBox r = new RichTextBox();
+            //Contact contact = new Contact();
+            //contact.SortContactData(r, "datacare");
             panelsecond.Visible = false;
-
-
             LoadForm(new PrintRTGS());
         }
         private void button5_Click(object sender, EventArgs e)
@@ -233,5 +234,91 @@ namespace SYA
             PrintRTGS p = new PrintRTGS();
             p.PrintRTGS_API("27", "123");
         }
+        private void button11_Click(object sender, EventArgs e)
+        {
+        }
+        private void button12_Click(object sender, EventArgs e)
+        {
+            panelsecond.Visible = false;
+            LoadForm(new STOCKSummary());
+        }
+        private void main_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Check if Ctrl+S is pressed
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                // Open the form
+                LoadForm(new settings());
+            }
+            if (e.Control && e.KeyCode == Keys.L)
+            {
+                // Open the form
+                LoadForm(new Labour());
+            }
+        }
+        private async Task FetchDataFromApiAndDisplay()
+        {
+            // call like this  FetchDataFromApiAndDisplay().ConfigureAwait(false);
+            string apiUrl = "http://bcast.aaravbullion.com:7767/VOTSBroadcastStreaming/Services/xml/GetLiveRateByTemplateID/aarav?_=1718620519733"; // Replace with your actual API URL
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+                    response.EnsureSuccessStatusCode();
+                    string responseData = await response.Content.ReadAsStringAsync();
+                    // Parse the response data
+                    var parsedData = ParseApiResponse(responseData);
+                    // Display specific values in a message box
+                    foreach (var item in parsedData)
+                    {
+                        MessageBox.Show(
+                            $"ID: {item.ID}\n" +
+                            $"Name: {item.Name}\n" +
+                            $"Current Value: {item.CurrentValue}\n" +
+                            $"Open Value: {item.OpenValue}\n" +
+                            $"High Value: {item.HighValue}\n" +
+                            $"Low Value: {item.LowValue}",
+                            "API Response");
+                    }
+                }
+                catch (HttpRequestException e)
+                {
+                    MessageBox.Show($"Request error: {e.Message}", "Error");
+                }
+            }
+        }
+        private List<ApiResponseItem> ParseApiResponse(string responseData)
+        {
+            var result = new List<ApiResponseItem>();
+            var lines = responseData.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var line in lines)
+            {
+                var columns = line.Split(new[] { '\t' }, StringSplitOptions.None);
+                if (columns.Length >= 6) // Adjust based on the actual number of columns
+                {
+                    var item = new ApiResponseItem
+                    {
+                        ID = columns[0],
+                        Name = columns[1],
+                        CurrentValue = columns[2],
+                        OpenValue = columns[3],
+                        HighValue = columns[4],
+                        LowValue = columns[5]
+                    };
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+    }
+    public class ApiResponseItem
+    {
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string CurrentValue { get; set; }
+        public string OpenValue { get; set; }
+        public string HighValue { get; set; }
+        public string LowValue { get; set; }
     }
 }

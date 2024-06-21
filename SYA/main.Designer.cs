@@ -458,6 +458,7 @@
             button12.TabIndex = 11;
             button12.Text = "STOCK SUMMARY";
             button12.UseVisualStyleBackColor = false;
+            button12.Click += button12_Click;
             // 
             // button11
             // 
@@ -474,6 +475,7 @@
             button11.TabIndex = 10;
             button11.Text = "SALE SUMMARY";
             button11.UseVisualStyleBackColor = false;
+            button11.Click += button11_Click;
             // 
             // button10
             // 
@@ -675,6 +677,7 @@
             Text = "main";
             WindowState = FormWindowState.Maximized;
             Load += main_Load;
+            KeyDown += main_KeyDown;
             panelfirst.ResumeLayout(false);
             panelsecond.ResumeLayout(false);
             ResumeLayout(false);

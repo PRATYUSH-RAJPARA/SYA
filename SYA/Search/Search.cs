@@ -124,7 +124,6 @@ namespace SYA
                             dataGridViewSearch.Rows[rowIndex].Cells["size"].Value = reader["size"].ToString();
                             dataGridViewSearch.Rows[rowIndex].Cells["price"].Value = reader["price"].ToString();
                             dataGridViewSearch.Rows[rowIndex].Cells["comment"].Value = reader["COMMENT"].ToString();
-
                             if ((dataGridViewSearch.Rows[rowIndex].Cells["vchno"].Value?.ToString() ?? "0") == "SYA00")
                             {
                                 dataGridViewSearch.Rows[rowIndex].Cells["tagno"].ReadOnly = true;
@@ -245,7 +244,7 @@ namespace SYA
             try
             {
                 PrintDocument pd = new PrintDocument();
-                pd.PrinterSettings.PrinterName = "TSC_TE244";
+                pd.PrinterSettings.PrinterName = helper.TagPrinterName;
                 pd.PrintPage += new PrintPageEventHandler(PrintData);
                 pd.Print();
             }
@@ -435,7 +434,6 @@ namespace SYA
                 if (e.KeyCode == Keys.Tab)
                 {
                     dataGridViewSearch.CommitEdit(DataGridViewDataErrorContexts.Commit);
-
                     DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
                     if (editingControl != null)
                     {
@@ -512,7 +510,6 @@ namespace SYA
         private void dataGridViewSearch_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
-
         private void BTNTAGTYPE_Click(object sender, EventArgs e)
         {
             if (BTNTAGTYPE.Text == "Weight Tag")

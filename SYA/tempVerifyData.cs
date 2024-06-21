@@ -445,8 +445,6 @@ namespace SYA
                 string decimalPart = (value - Math.Floor(value)).ToString("F3");
                 // Check if the length of the formatted decimal part is 5 (including the dot)
                 return decimalPart.Length == 5;
-                //      string decimalPart = (value - Math.Floor(value)).ToString().Substring(2);
-                //  return decimalPart.PadRight(3, '0').Length == 3;
             }
             catch (Exception ex)
             {

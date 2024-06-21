@@ -1,5 +1,4 @@
-﻿
-using System.Data;
+﻿using System.Data;
 using System.Data.SQLite;
 using System.Drawing.Printing;
 using System.Text;
@@ -23,7 +22,7 @@ namespace SYA
                 //pd.PrintPage += new PrintPageEventHandler(Print);
                 //printPreviewDialog.ShowDialog();
                 PrintDocument pd = new PrintDocument();
-                pd.PrinterSettings.PrinterName = "TSC_TE244";
+                pd.PrinterSettings.PrinterName = helper.TagPrinterName;
                 pd.PrintPage += new PrintPageEventHandler(p);
                 pd.Print();
             }

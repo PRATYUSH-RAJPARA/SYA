@@ -129,10 +129,6 @@ namespace SYA
                     dataGridView1.Rows[rowIndex].Cells["VCH_NO"].Value = row["VCH_NO"].ToString();
                     dataGridView1.Rows[rowIndex].Cells["AC_NAME"].Value = row["AC_NAME"].ToString();
                     dataGridView1.Rows[rowIndex].Cells["NT_WT"].Value = row["NT_WT"].ToString();
-
-                    
-                    
-                    
                     // Calculate NET_AMT as TOT_AMT - TAX_AMT
                     decimal totAmt = Convert.ToDecimal(row["TOT_AMT"]);
                     decimal taxAmt = Convert.ToDecimal(row["TAX_AMT"]);
@@ -144,7 +140,6 @@ namespace SYA
                     dataGridView1.Rows[rowIndex].Cells["CASH_AMT"].Value = row["CASH_AMT"].ToString();
                     dataGridView1.Rows[rowIndex].Cells["CARD_AMT"].Value = row["CARD_AMT"].ToString();
                     dataGridView1.Rows[rowIndex].Cells["CHQ_AMT"].Value = row["CHQ_AMT"].ToString();
-
                     if (row["CO_BOOK"].ToString() == "026")
                     {
                         sums[1, 1] += Convert.ToDecimal(row["NT_WT"]);
@@ -167,7 +162,6 @@ namespace SYA
                         sums[2, 7] += Convert.ToDecimal(row["CARD_AMT"]);
                         sums[2, 8] += Convert.ToDecimal(row["CHQ_AMT"]);
                     }
-
                     sums[3, 1] += Convert.ToDecimal(row["NT_WT"]);
                     sums[3, 2] += netAmt;
                     sums[3, 3] += Convert.ToDecimal(row["CGST_TAX"]);
@@ -176,7 +170,6 @@ namespace SYA
                     sums[3, 6] += Convert.ToDecimal(row["CASH_AMT"]);
                     sums[3, 7] += Convert.ToDecimal(row["CARD_AMT"]);
                     sums[3, 8] += Convert.ToDecimal(row["CHQ_AMT"]);
-
                     // Populate the new DataTable
                     exportDataTable.Rows.Add(row.ItemArray);
                 }
@@ -451,10 +444,8 @@ namespace SYA
             c.showMsg();
             //Contact.SortContactData( richTextBox1,"datacare");
         }
-
         private void panel8_Paint(object sender, PaintEventArgs e)
         {
-
         }
     }
 }

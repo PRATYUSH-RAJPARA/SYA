@@ -12,48 +12,81 @@ namespace SYA
 {
     public static class print
     {
+        public static void PrintLabel(object sender, PrintPageEventArgs e, string name, string price, string type) {
+            SolidBrush brush = new SolidBrush(Color.Black);
+            if (type == "name")
+            {
+                e.Graphics.DrawString(name, new Font("Arial", (float)15, FontStyle.Bold), brush, new RectangleF(4, 4, (float)217.5, (float)45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+            }
+
+            if (type == "price")
+            {
+                e.Graphics.DrawString("\u20B9" + " " + price, new Font("Arial", (float)15, FontStyle.Bold), brush, new RectangleF(4, 4, (float)217.5, (float)45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+            }
+
+            if (type == "nameandprice")
+            {
+                e.Graphics.DrawString(name, new Font("Arial", (float)15, FontStyle.Bold), brush, new RectangleF(4, (float)4, (float)217.5, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                e.Graphics.DrawString("\u20B9" + " " + price, new Font("Arial", (float)15, FontStyle.Bold), brush, new RectangleF(4, (float)26.5, (float)217.5, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+            }
+            
+
+
+
+        }
         public static void PrintReparing(object sender, PrintPageEventArgs e, List<string> ReparingData)
         {
-            for (int i = 0; i < 5; i++)
-            {
-                MessageBox.Show(ReparingData[i].ToString());
-            }
             SolidBrush brush = new SolidBrush(Color.Black);
-            e.Graphics.DrawRectangle(Pens.Red, 4, 4, (float)109.5, (float)22.5);
+            e.Graphics.DrawLine(Pens.Red, (float)111.5, 0, (float)111.5, (float)27);
+            e.Graphics.DrawLine(Pens.Red, (float)112, 0, (float)112.5, (float)27);
+            e.Graphics.DrawLine(Pens.Red, (float)112.5, 0, (float)111.5, (float)27);
+            e.Graphics.DrawLine(Pens.Red, (float)113, 0, (float)113.5, (float)27);
+            e.Graphics.DrawLine(Pens.Red, (float)113.5, 0, (float)111.5, (float)27);
+            e.Graphics.DrawLine(Pens.Red, (float)114, 0, (float)114.5, (float)27);
+            e.Graphics.DrawLine(Pens.Red, (float)170, (float)4, (float)170, (float)29);
+            e.Graphics.DrawLine(Pens.Red, 4, (float)26.5, (float)213, (float)26.5);
             e.Graphics.DrawString(ReparingData[0].ToString(), new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF(4, 4, (float)109.5, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
-            e.Graphics.DrawString(ReparingData[0].ToString() + ReparingData[3].ToString(), new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF(4, (float)26.5, (float)109.5, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
-
-            e.Graphics.DrawRectangle(Pens.Red, (float)170, (float)4, (float)47, (float)47);
-            e.Graphics.DrawString(ReparingData[1].ToString(), new Font("Arial", (float)8, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)4, (float)56.5, (float)27), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
-
-            e.Graphics.DrawRectangle(Pens.Red, (float)113.5, (float)31, (float)56.5, (float)30);
-            e.Graphics.DrawString(ReparingData[2].ToString(), new Font("Arial", (float)8, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)31, (float)56.5, (float)20), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
-            e.Graphics.DrawString(ReparingData[4].ToString(), new Font("Arial", (float)6, FontStyle.Bold), brush, new RectangleF((float)170, (float)4, (float)47, (float)47), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+            e.Graphics.DrawString(ReparingData[4].ToString() + "  - ((  "+ ReparingData[2].ToString() +"  ))", new Font("Arial", (float)7, FontStyle.Bold), brush, new RectangleF(4, (float)26.5, (float)213, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+            e.Graphics.DrawString(ReparingData[1].ToString(), new Font("Arial", (float)6.5, FontStyle.Bold), brush, new RectangleF((float)113.5, (float)4, (float)56.5, (float)23), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });       
+            e.Graphics.DrawString(ReparingData[3].ToString(), new Font("Arial", (float)9, FontStyle.Bold), brush, new RectangleF((float)170, (float)4, (float)47, (float)23), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
         }
         public static void PrintRTGS(object sender, PrintPageEventArgs e, List<string> rtgsdata)
         {
             SolidBrush brush = new SolidBrush(Color.Black);
             e.Graphics.DrawRectangle(Pens.Red, (float)120, (float)135, (float)582.5, (float)745);
-            RTGSBackGround();
-            branch();
-            date();
-            RTGSorNEFT();
-            PayableAt();
-            BenName();
-            BenAdd();
-            BenAcc();
-            BenAccType();
-            BenBank();
-            BenAddIFSC();
-            Amount();
-            Commission();
-            Total();
-            TotalWords();
-            AccNo();
-            AccName();
-            AccPan();
-            AccPhone();
-            AccSign();
+
+
+            RectangleF qrCodeRect = new RectangleF(100, 100, (float)300, (float)300);
+                using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+                {
+                    QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://www.instagram.com/pushti.art", QRCodeGenerator.ECCLevel.Q);
+                    QRCode qrCode = new QRCode(qrCodeData);
+                    System.Drawing.Bitmap qrCodeBitmap = qrCode.GetGraphic((int)qrCodeRect.Width, System.Drawing.Color.Black, System.Drawing.Color.White, true);
+                    e.Graphics.DrawImage(qrCodeBitmap, qrCodeRect);
+                }
+            
+
+           // ph.QR("https://www.instagram.com/pushti.art", e);
+            //RTGSBackGround();
+            //branch();
+            //date();
+            //RTGSorNEFT();
+            //PayableAt();
+            //BenName();
+            //BenAdd();
+            //BenAcc();
+            //BenAccType();
+            //BenBank();
+            //BenAddIFSC();
+            //Amount();
+            //Commission();
+            //Total();
+            //TotalWords();
+            //AccNo();
+            //AccName();
+            //AccPan();
+            //AccPhone();
+            //AccSign();
             void RTGSBackGround()
             {
                 Image logoImage = Image.FromFile(helper.ImageFolder + "\\RTGS.jpg");
@@ -214,9 +247,7 @@ namespace SYA
         }
         public static void PrintPageSearch(object sender, PrintPageEventArgs e, DataGridView dataGridViewSearch, string tagtype)
         {
-
             DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
-
             if (selectedRow != null)
             {
                 string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
@@ -289,7 +320,6 @@ namespace SYA
                     if (selectedRow.Cells["IT_TYPE"].Value.ToString() == "S")
                     {
                         string caret = (selectedRow.Cells["itemdesc"].Value ?? "0").ToString().Split('-')[0].Trim() ?? "0";
-
                         if (tagtype == "weight")
                         {
                             if ((selectedRow.Cells["gross"].Value ?? "0").ToString() == (selectedRow.Cells["net"].Value ?? "0").ToString())
@@ -387,10 +417,6 @@ namespace SYA
                         }
                     }
                 }
-
-
-
-              
             }
         }
         public static void PrintPageAddGold(object sender, PrintPageEventArgs e, DataGridViewRow selectedRow)

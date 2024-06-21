@@ -653,7 +653,7 @@ namespace SYA
             try
             {
                 PrintDocument pd = new PrintDocument();
-                pd.PrinterSettings.PrinterName = "TSC_TE244";
+                pd.PrinterSettings.PrinterName = helper.TagPrinterName;
                 pd.PrintPage += new PrintPageEventHandler(Print);
                 pd.Print();
             }

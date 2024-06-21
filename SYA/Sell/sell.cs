@@ -263,7 +263,6 @@ namespace SYA.Sell
                 }
             }
         }
-
         private void txtTAGNO_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -358,7 +357,6 @@ namespace SYA.Sell
                     {
                         billno.Text = (b.Rows[0]["VCH_NO"] ?? "-").ToString();
                     name.Text = (b.Rows[0]["AC_NAME"] ?? "-").ToString();
-
                     }
                 }
             }
