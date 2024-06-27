@@ -26,6 +26,7 @@
         private void InitializeComponent()
         {
             panelfirst = new Panel();
+            button22 = new Button();
             btnSortContact = new Button();
             btnCustomer = new Button();
             btnImportData = new Button();
@@ -38,21 +39,18 @@
             btnAddItem = new Button();
             panel2 = new Panel();
             panelsecond = new Panel();
+            button23 = new Button();
             button21 = new Button();
             button20 = new Button();
             button19 = new Button();
             button18 = new Button();
             button17 = new Button();
-            button16 = new Button();
-            button15 = new Button();
-            button14 = new Button();
-            button13 = new Button();
             button12 = new Button();
+            button13 = new Button();
             button11 = new Button();
             button10 = new Button();
             button9 = new Button();
             button8 = new Button();
-            button7 = new Button();
             button6 = new Button();
             button5 = new Button();
             button4 = new Button();
@@ -61,6 +59,7 @@
             button1 = new Button();
             panel1 = new Panel();
             panelChild = new Panel();
+            button7 = new Button();
             panelfirst.SuspendLayout();
             panelsecond.SuspendLayout();
             SuspendLayout();
@@ -68,6 +67,7 @@
             // panelfirst
             // 
             panelfirst.BackColor = Color.FromArgb(3, 63, 99);
+            panelfirst.Controls.Add(button22);
             panelfirst.Controls.Add(btnSortContact);
             panelfirst.Controls.Add(btnCustomer);
             panelfirst.Controls.Add(btnImportData);
@@ -84,8 +84,25 @@
             panelfirst.Margin = new Padding(3, 2, 3, 2);
             panelfirst.MaximumSize = new Size(140, 3000);
             panelfirst.Name = "panelfirst";
-            panelfirst.Size = new Size(140, 861);
+            panelfirst.Size = new Size(140, 1061);
             panelfirst.TabIndex = 5;
+            // 
+            // button22
+            // 
+            button22.BackColor = Color.FromArgb(3, 63, 99);
+            button22.Dock = DockStyle.Top;
+            button22.FlatAppearance.BorderSize = 0;
+            button22.FlatStyle = FlatStyle.Flat;
+            button22.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button22.ForeColor = Color.White;
+            button22.Location = new Point(0, 500);
+            button22.Margin = new Padding(0);
+            button22.Name = "button22";
+            button22.Size = new Size(140, 38);
+            button22.TabIndex = 17;
+            button22.Text = "Print Labels";
+            button22.UseVisualStyleBackColor = false;
+            button22.Click += button22_Click_1;
             // 
             // btnSortContact
             // 
@@ -269,21 +286,19 @@
             // panelsecond
             // 
             panelsecond.BackColor = Color.FromArgb(254, 223, 160);
+            panelsecond.Controls.Add(button7);
+            panelsecond.Controls.Add(button23);
             panelsecond.Controls.Add(button21);
             panelsecond.Controls.Add(button20);
             panelsecond.Controls.Add(button19);
             panelsecond.Controls.Add(button18);
             panelsecond.Controls.Add(button17);
-            panelsecond.Controls.Add(button16);
-            panelsecond.Controls.Add(button15);
-            panelsecond.Controls.Add(button14);
-            panelsecond.Controls.Add(button13);
             panelsecond.Controls.Add(button12);
+            panelsecond.Controls.Add(button13);
             panelsecond.Controls.Add(button11);
             panelsecond.Controls.Add(button10);
             panelsecond.Controls.Add(button9);
             panelsecond.Controls.Add(button8);
-            panelsecond.Controls.Add(button7);
             panelsecond.Controls.Add(button6);
             panelsecond.Controls.Add(button5);
             panelsecond.Controls.Add(button4);
@@ -294,8 +309,25 @@
             panelsecond.Location = new Point(140, 120);
             panelsecond.Margin = new Padding(3, 2, 3, 2);
             panelsecond.Name = "panelsecond";
-            panelsecond.Size = new Size(140, 741);
+            panelsecond.Size = new Size(140, 941);
             panelsecond.TabIndex = 6;
+            // 
+            // button23
+            // 
+            button23.BackColor = Color.FromArgb(254, 223, 160);
+            button23.Dock = DockStyle.Top;
+            button23.FlatAppearance.BorderSize = 0;
+            button23.FlatStyle = FlatStyle.Flat;
+            button23.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button23.ForeColor = Color.FromArgb(3, 63, 99);
+            button23.Location = new Point(0, 745);
+            button23.Margin = new Padding(0);
+            button23.Name = "button23";
+            button23.Size = new Size(140, 73);
+            button23.TabIndex = 21;
+            button23.Text = "DETAILED GOLD SUMMARY";
+            button23.UseVisualStyleBackColor = false;
+            button23.Click += button23_Click;
             // 
             // button21
             // 
@@ -305,7 +337,7 @@
             button21.FlatStyle = FlatStyle.Flat;
             button21.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button21.ForeColor = Color.FromArgb(3, 63, 99);
-            button21.Location = new Point(0, 859);
+            button21.Location = new Point(0, 707);
             button21.Margin = new Padding(0);
             button21.Name = "button21";
             button21.Size = new Size(140, 38);
@@ -321,7 +353,7 @@
             button20.FlatStyle = FlatStyle.Flat;
             button20.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button20.ForeColor = Color.FromArgb(3, 63, 99);
-            button20.Location = new Point(0, 810);
+            button20.Location = new Point(0, 658);
             button20.Margin = new Padding(0);
             button20.Name = "button20";
             button20.Size = new Size(140, 49);
@@ -337,7 +369,7 @@
             button19.FlatStyle = FlatStyle.Flat;
             button19.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button19.ForeColor = Color.FromArgb(3, 63, 99);
-            button19.Location = new Point(0, 772);
+            button19.Location = new Point(0, 620);
             button19.Margin = new Padding(0);
             button19.Name = "button19";
             button19.Size = new Size(140, 38);
@@ -353,7 +385,7 @@
             button18.FlatStyle = FlatStyle.Flat;
             button18.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button18.ForeColor = Color.FromArgb(3, 63, 99);
-            button18.Location = new Point(0, 734);
+            button18.Location = new Point(0, 582);
             button18.Margin = new Padding(0);
             button18.Name = "button18";
             button18.Size = new Size(140, 38);
@@ -369,7 +401,7 @@
             button17.FlatStyle = FlatStyle.Flat;
             button17.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button17.ForeColor = Color.FromArgb(3, 63, 99);
-            button17.Location = new Point(0, 696);
+            button17.Location = new Point(0, 544);
             button17.Margin = new Padding(0);
             button17.Name = "button17";
             button17.Size = new Size(140, 38);
@@ -377,71 +409,6 @@
             button17.Text = "PRINT RTGS";
             button17.UseVisualStyleBackColor = false;
             button17.Click += button17_Click;
-            // 
-            // button16
-            // 
-            button16.BackColor = Color.FromArgb(254, 223, 160);
-            button16.Dock = DockStyle.Top;
-            button16.FlatAppearance.BorderSize = 0;
-            button16.FlatStyle = FlatStyle.Flat;
-            button16.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button16.ForeColor = Color.FromArgb(3, 63, 99);
-            button16.Location = new Point(0, 658);
-            button16.Margin = new Padding(0);
-            button16.Name = "button16";
-            button16.Size = new Size(140, 38);
-            button16.TabIndex = 15;
-            button16.Text = "QUICK PRINT";
-            button16.UseVisualStyleBackColor = false;
-            // 
-            // button15
-            // 
-            button15.BackColor = Color.FromArgb(254, 223, 160);
-            button15.Dock = DockStyle.Top;
-            button15.FlatAppearance.BorderSize = 0;
-            button15.FlatStyle = FlatStyle.Flat;
-            button15.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button15.ForeColor = Color.FromArgb(3, 63, 99);
-            button15.Location = new Point(0, 620);
-            button15.Margin = new Padding(0);
-            button15.Name = "button15";
-            button15.Size = new Size(140, 38);
-            button15.TabIndex = 14;
-            button15.Text = "FETCH TAGS";
-            button15.UseVisualStyleBackColor = false;
-            // 
-            // button14
-            // 
-            button14.BackColor = Color.FromArgb(254, 223, 160);
-            button14.Dock = DockStyle.Top;
-            button14.FlatAppearance.BorderSize = 0;
-            button14.FlatStyle = FlatStyle.Flat;
-            button14.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button14.ForeColor = Color.FromArgb(3, 63, 99);
-            button14.Location = new Point(0, 582);
-            button14.Margin = new Padding(0);
-            button14.Name = "button14";
-            button14.Size = new Size(140, 38);
-            button14.TabIndex = 13;
-            button14.Text = "MANUAL";
-            button14.UseVisualStyleBackColor = false;
-            // 
-            // button13
-            // 
-            button13.BackColor = Color.FromArgb(254, 223, 160);
-            button13.Dock = DockStyle.Top;
-            button13.FlatAppearance.BorderSize = 0;
-            button13.FlatStyle = FlatStyle.Flat;
-            button13.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button13.ForeColor = Color.FromArgb(3, 63, 99);
-            button13.Location = new Point(0, 533);
-            button13.Margin = new Padding(0);
-            button13.Name = "button13";
-            button13.Size = new Size(140, 49);
-            button13.TabIndex = 12;
-            button13.Text = "VERIFY STOCK";
-            button13.UseVisualStyleBackColor = false;
-            button13.Click += button13_Click;
             // 
             // button12
             // 
@@ -451,14 +418,31 @@
             button12.FlatStyle = FlatStyle.Flat;
             button12.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button12.ForeColor = Color.FromArgb(3, 63, 99);
-            button12.Location = new Point(0, 484);
+            button12.Location = new Point(0, 495);
             button12.Margin = new Padding(0);
             button12.Name = "button12";
             button12.Size = new Size(140, 49);
-            button12.TabIndex = 11;
+            button12.TabIndex = 12;
             button12.Text = "STOCK SUMMARY";
             button12.UseVisualStyleBackColor = false;
             button12.Click += button12_Click;
+            // 
+            // button13
+            // 
+            button13.BackColor = Color.FromArgb(254, 223, 160);
+            button13.Dock = DockStyle.Top;
+            button13.FlatAppearance.BorderSize = 0;
+            button13.FlatStyle = FlatStyle.Flat;
+            button13.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button13.ForeColor = Color.FromArgb(3, 63, 99);
+            button13.Location = new Point(0, 446);
+            button13.Margin = new Padding(0);
+            button13.Name = "button13";
+            button13.Size = new Size(140, 49);
+            button13.TabIndex = 11;
+            button13.Text = "VERIFY STOCK";
+            button13.UseVisualStyleBackColor = false;
+            button13.Click += button13_Click;
             // 
             // button11
             // 
@@ -468,7 +452,7 @@
             button11.FlatStyle = FlatStyle.Flat;
             button11.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button11.ForeColor = Color.FromArgb(3, 63, 99);
-            button11.Location = new Point(0, 435);
+            button11.Location = new Point(0, 397);
             button11.Margin = new Padding(0);
             button11.Name = "button11";
             button11.Size = new Size(140, 49);
@@ -485,7 +469,7 @@
             button10.FlatStyle = FlatStyle.Flat;
             button10.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button10.ForeColor = Color.FromArgb(3, 63, 99);
-            button10.Location = new Point(0, 397);
+            button10.Location = new Point(0, 359);
             button10.Margin = new Padding(0);
             button10.Name = "button10";
             button10.Size = new Size(140, 38);
@@ -502,7 +486,7 @@
             button9.FlatStyle = FlatStyle.Flat;
             button9.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button9.ForeColor = Color.FromArgb(3, 63, 99);
-            button9.Location = new Point(0, 337);
+            button9.Location = new Point(0, 299);
             button9.Margin = new Padding(0);
             button9.Name = "button9";
             button9.Size = new Size(140, 60);
@@ -518,29 +502,13 @@
             button8.FlatStyle = FlatStyle.Flat;
             button8.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button8.ForeColor = Color.FromArgb(3, 63, 99);
-            button8.Location = new Point(0, 288);
+            button8.Location = new Point(0, 250);
             button8.Margin = new Padding(0);
             button8.Name = "button8";
             button8.Size = new Size(140, 49);
             button8.TabIndex = 7;
             button8.Text = "SELL WITHOUT TAG";
             button8.UseVisualStyleBackColor = false;
-            // 
-            // button7
-            // 
-            button7.BackColor = Color.FromArgb(254, 223, 160);
-            button7.Dock = DockStyle.Top;
-            button7.FlatAppearance.BorderSize = 0;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button7.ForeColor = Color.FromArgb(3, 63, 99);
-            button7.Location = new Point(0, 250);
-            button7.Margin = new Padding(0);
-            button7.Name = "button7";
-            button7.Size = new Size(140, 38);
-            button7.TabIndex = 6;
-            button7.Text = "UNDO SALE";
-            button7.UseVisualStyleBackColor = false;
             // 
             // button6
             // 
@@ -660,14 +628,31 @@
             panelChild.Location = new Point(280, 120);
             panelChild.Margin = new Padding(3, 2, 3, 2);
             panelChild.Name = "panelChild";
-            panelChild.Size = new Size(1067, 741);
+            panelChild.Size = new Size(1067, 941);
             panelChild.TabIndex = 1;
+            // 
+            // button7
+            // 
+            button7.BackColor = Color.FromArgb(254, 223, 160);
+            button7.Dock = DockStyle.Top;
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button7.ForeColor = Color.FromArgb(3, 63, 99);
+            button7.Location = new Point(0, 818);
+            button7.Margin = new Padding(0);
+            button7.Name = "button7";
+            button7.Size = new Size(140, 73);
+            button7.TabIndex = 22;
+            button7.Text = "DETAILED SILVER SUMMARY";
+            button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
             // 
             // main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1347, 861);
+            ClientSize = new Size(1347, 1061);
             Controls.Add(panelChild);
             Controls.Add(panelsecond);
             Controls.Add(panel1);
@@ -700,16 +685,12 @@
         private Button button19;
         private Button button18;
         private Button button17;
-        private Button button16;
-        private Button button15;
-        private Button button14;
-        private Button button13;
         private Button button12;
+        private Button button13;
         private Button button11;
         private Button button10;
         private Button button9;
         private Button button8;
-        private Button button7;
         private Button button6;
         private Button button5;
         private Button button4;
@@ -719,5 +700,8 @@
         private Button button21;
         private Button btnCustomer;
         private Button btnSortContact;
+        private Button button22;
+        private Button button23;
+        private Button button7;
     }
 }

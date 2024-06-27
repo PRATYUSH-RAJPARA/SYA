@@ -114,6 +114,7 @@ namespace SYA
         private void button1_Click(object sender, EventArgs e)
         {
             UpdateDatabase();
+            helper.loadSettingsValues();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

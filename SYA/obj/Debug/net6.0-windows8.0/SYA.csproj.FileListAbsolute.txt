@@ -141,7 +141,6 @@ F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.csproj.ResolveComReference.cache
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.addgold.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.addSilver.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.DataCareData.resources
-F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Form1.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.login.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.main.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Properties.Resources.resources
@@ -276,3 +275,6 @@ F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.STOCKSummary.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.settings.resources
 F:\SYA\SYA\bin\Debug\net6.0-windows8.0\SYA.dll.config
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Labour.resources
+F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.PrintLabel.resources
+F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Stocks.goldStockDetailedSummary.resources
+F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Stocks.silverStockDetailedSummary.resources

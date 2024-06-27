@@ -1,11 +1,6 @@
-﻿using Microsoft.Office.Interop.Excel;
-using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.SQLite;
-using System.Diagnostics;
-using System.Drawing;
 using System.Text;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Application = System.Windows.Forms.Application;
 using DataTable = System.Data.DataTable;
 using TextBox = System.Windows.Forms.TextBox;
@@ -93,7 +88,6 @@ namespace SYA
                 else
                 {
                     MessageBox.Show($"InsertInStockDataIntoSQLite 4 : : : Data fetched from Access and inserted/updated in SQLite successfully.\nInserted Rows: {insertedCount}\nUpdated Rows: {updatedCount}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // UpdateMessageBox("");
                 }
             }
             catch (Exception ex)
@@ -177,78 +171,78 @@ namespace SYA
             string SYA_PRINT = null;
             void nullit()
             {
-                 CO_CODE = null;
-                 CO_YEAR = null;
-                 CO_BOOK = null;
-                 VCH_NO = null;
-                 SR_NO = null;
-                 VCH_DATE = null;
-                 BOOK_NAME = null;
-                 VCH_TYPE = null;
-                 AC_CODE = null;
-                 CUST_AC = null;
-                 IT_CODE = null;
-                 IT_DESC = null;
-                 PR_CODE = null;
-                 IT_TYPE = null;
-                 TAG_SRNO = null;
-                 TAG_NO = null;
-                 DESIGN = null;
-                 ITM_SIZE = null;
-                 ITM_PCS = null;
-                 ITM_GWT = null;
-                 TAG_NWT = null;
-                 ITM_NWT = null;
-                 ITM_TOUCH = null;
-                 ITM_WEST = null;
-                 ITM_FINE = null;
-                 ITM_RAT = null;
-                 ITM_AMT = null;
-                 LBR_RATE = null;
-                 LBR_AMT = null;
-                 OTH_AMT = null;
-                 NET_AMT = null;
-                 NET_COST = null;
-                 MRP = null;
-                 KR_NAME = null;
-                 RATE_TYPE = null;
-                 TR_TYPE = null;
-                 SIGN = null;
-                 EMP_CODE = null;
-                 KR_OTH_WT = null;
-                 KR_ITM_NWT = null;
-                 KR_ITM_TOUCH = null;
-                 KR_ITM_WEST = null;
-                 KR_ITM_FINE = null;
-                 HD_VCH_NO = null;
-                 VCH_SRNO = null;
-                 AND_TRFR = null;
-                 BAG_WT = null;
-                 BOX_WT = null;
-                 SYA_ID = null;
-                 SYA_CO_YEAR = null;
-                 SYA_CO_BOOK = null;
-                 SYA_VCH_NO = null;
-                 SYA_VCH_DATE = null;
-                 SYA_TAG_NO = null;
-                 SYA_GW = null;
-                 SYA_NW = null;
-                 SYA_LABOUR_AMT = null;
-                 SYA_WHOLE_LABOUR_AMT = null;
-                 SYA_OTHER_AMT = null;
-                 SYA_IT_TYPE = null;
-                 SYA_ITEM_CODE = null;
-                 SYA_ITEM_PURITY = null;
-                 SYA_ITEM_DESC = null;
-                 SYA_HUID1 = null;
-                 SYA_HUID2 = null;
-                 SYA_SIZE = null;
-                 SYA_PRICE = null;
-                 SYA_STATUS = null;
-                 SYA_AC_CODE = null;
-                 SYA_AC_NAME = null;
-                 SYA_COMMENT = null;
-                 SYA_PRINT = null;
+                CO_CODE = null;
+                CO_YEAR = null;
+                CO_BOOK = null;
+                VCH_NO = null;
+                SR_NO = null;
+                VCH_DATE = null;
+                BOOK_NAME = null;
+                VCH_TYPE = null;
+                AC_CODE = null;
+                CUST_AC = null;
+                IT_CODE = null;
+                IT_DESC = null;
+                PR_CODE = null;
+                IT_TYPE = null;
+                TAG_SRNO = null;
+                TAG_NO = null;
+                DESIGN = null;
+                ITM_SIZE = null;
+                ITM_PCS = null;
+                ITM_GWT = null;
+                TAG_NWT = null;
+                ITM_NWT = null;
+                ITM_TOUCH = null;
+                ITM_WEST = null;
+                ITM_FINE = null;
+                ITM_RAT = null;
+                ITM_AMT = null;
+                LBR_RATE = null;
+                LBR_AMT = null;
+                OTH_AMT = null;
+                NET_AMT = null;
+                NET_COST = null;
+                MRP = null;
+                KR_NAME = null;
+                RATE_TYPE = null;
+                TR_TYPE = null;
+                SIGN = null;
+                EMP_CODE = null;
+                KR_OTH_WT = null;
+                KR_ITM_NWT = null;
+                KR_ITM_TOUCH = null;
+                KR_ITM_WEST = null;
+                KR_ITM_FINE = null;
+                HD_VCH_NO = null;
+                VCH_SRNO = null;
+                AND_TRFR = null;
+                BAG_WT = null;
+                BOX_WT = null;
+                SYA_ID = null;
+                SYA_CO_YEAR = null;
+                SYA_CO_BOOK = null;
+                SYA_VCH_NO = null;
+                SYA_VCH_DATE = null;
+                SYA_TAG_NO = null;
+                SYA_GW = null;
+                SYA_NW = null;
+                SYA_LABOUR_AMT = null;
+                SYA_WHOLE_LABOUR_AMT = null;
+                SYA_OTHER_AMT = null;
+                SYA_IT_TYPE = null;
+                SYA_ITEM_CODE = null;
+                SYA_ITEM_PURITY = null;
+                SYA_ITEM_DESC = null;
+                SYA_HUID1 = null;
+                SYA_HUID2 = null;
+                SYA_SIZE = null;
+                SYA_PRICE = null;
+                SYA_STATUS = null;
+                SYA_AC_CODE = null;
+                SYA_AC_NAME = null;
+                SYA_COMMENT = null;
+                SYA_PRINT = null;
             }
             DataTable accessData = helper.FetchDataTableFromDataCareDataBase("SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'");
             if (accessData.Rows.Count > 0)
@@ -377,7 +371,7 @@ namespace SYA
                     }
                     void insert()
                     {
-                        string insertQuery = "INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT,ITM_RAT3" +
+                        string insertQuery = "INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT,ITM_RAT" +
                             " ,ITM_AMT,LBR_RATE,LBR_AMT,OTH_AMT,NET_AMT) VALUES ('" + CO_YEAR + "','" + CO_BOOK + "','" + VCH_NO + "','" + Convert.ToDateTime(VCH_DATE).ToString("yyyy-MM-dd HH:mm:ss") + "','" + TAG_NO + "','" + ITM_GWT + "','" + ITM_NWT + "','" + SYA_LABOUR_AMT + "','" + SYA_WHOLE_LABOUR_AMT + "','" + SYA_OTHER_AMT + "','" + IT_TYPE + "','" + SYA_ITEM_CODE + "','" + SYA_ITEM_PURITY + "','" + SYA_ITEM_DESC + "','" + SYA_HUID1 + "','" + SYA_HUID2 + "','" + SYA_SIZE + "','" + SYA_PRICE + "','" + SYA_STATUS + "','" + AC_CODE + "', '" + AC_NAME + "','" + SYA_COMMENT + "','" + SYA_PRINT + "' ,'" + ITM_RAT + "','" + ITM_AMT + "','" + LBR_RATE + "','" + LBR_AMT + "','" + OTH_AMT + "','" + NET_AMT + "'); ";
                         nullit();
                         helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
@@ -399,7 +393,6 @@ namespace SYA
         }
         private static void MapInStockParameters(SQLiteParameterCollection parameters, DataRow row)
         {
-            // Map MS Access column values to SQLite parameters
             parameters.AddWithValue("@CO_YEAR", row["CO_YEAR"]);
             parameters.AddWithValue("@CO_BOOK", row["CO_BOOK"]);
             parameters.AddWithValue("@VCH_NO", "SYA00");
@@ -413,54 +406,34 @@ namespace SYA
             parameters.AddWithValue("@ITEM_CODE", row["PR_CODE"]);
             string PR_CODE = row["PR_CODE"].ToString();
             parameters.AddWithValue("@ITEM_PURITY", HelperFetchData.GetItemPurity(row["IT_CODE"].ToString(), PR_CODE));
-            // Extract ITEM_DESC based on mappings
-            string IT_TYPE = row["IT_TYPE"].ToString(); // Assuming this is a constant value
-            string itemDesc = HelperFetchData.GetItemDescFromSQLite(PR_CODE, IT_TYPE);
+            string IT_TYPE = row["IT_TYPE"].ToString(); string itemDesc = HelperFetchData.GetItemDescFromSQLite(PR_CODE, IT_TYPE);
             parameters.AddWithValue("@ITEM_DESC", itemDesc);
-            // UNCOMMENT BELOW
-            parameters.AddWithValue("@HUID1", DBNull.Value); // Set to DBNull since it's NULL in MS Access
-            parameters.AddWithValue("@HUID2", DBNull.Value); // Set to DBNull since it's NULL in MS Access
-            parameters.AddWithValue("@SIZE", row["ITM_SIZE"]);
+            parameters.AddWithValue("@HUID1", DBNull.Value); parameters.AddWithValue("@HUID2", DBNull.Value); parameters.AddWithValue("@SIZE", row["ITM_SIZE"]);
             parameters.AddWithValue("@PRICE", row["MRP"]);
-            parameters.AddWithValue("@STATUS", "INSTOCK"); // Assuming this is a constant value
-            parameters.AddWithValue("@AC_CODE", DBNull.Value); // Set to DBNull since it's NULL in MS Access
-            parameters.AddWithValue("@AC_NAME", DBNull.Value); // Set to DBNull since it's NULL in MS Access
-            parameters.AddWithValue("@COMMENT", row["DESIGN"]);
+            parameters.AddWithValue("@STATUS", "INSTOCK"); parameters.AddWithValue("@AC_CODE", DBNull.Value); parameters.AddWithValue("@AC_NAME", DBNull.Value); parameters.AddWithValue("@COMMENT", row["DESIGN"]);
         }
         private static void ShowInStockErrorRowsDialog(List<int> errorRows, DataTable data)
         {
-            // Create a new form to display error rows
             Form errorForm = new Form();
             errorForm.Text = "Error Rows";
-            // Set the height of the form based on the number of rows
-            int rowHeight = 22; // Adjust this value based on the actual row height
-            int formHeight = Math.Min(errorRows.Count * rowHeight + 100, Screen.PrimaryScreen.WorkingArea.Height);
-            // Set the width of the form to the full available width
+            int rowHeight = 22; int formHeight = Math.Min(errorRows.Count * rowHeight + 100, Screen.PrimaryScreen.WorkingArea.Height);
             errorForm.Width = Screen.PrimaryScreen.WorkingArea.Width;
-            // Center the form on the screen
             errorForm.StartPosition = FormStartPosition.CenterScreen;
-            // Create a DataGridView to display error rows along with original data
             DataGridView errorGridView = new DataGridView();
             errorGridView.Dock = DockStyle.Fill;
             errorGridView.AllowUserToAddRows = false;
             errorGridView.ReadOnly = true;
-            // Add columns to display both error information and relevant original data
             errorGridView.Columns.Add("RowNumber", "Row Number");
             errorGridView.Columns.Add("ErrorMessage", "Error Message");
-            // Add columns relevant to insertion
             foreach (string columnName in new[] { "TAG_NO", "VCH_DATE", "ITM_GWT", "ITM_NWT", "LBR_RATE", "OTH_AMT", "PR_CODE", "IT_CODE", "IT_DESC", "ITM_SIZE", "MRP", "DESIGN" })
             {
                 errorGridView.Columns.Add(columnName, columnName);
             }
-            // Populate the DataGridView with error row numbers and error messages
             foreach (int rowNum in errorRows)
             {
                 errorGridView.Rows.Add(rowNum, "Error occurred in this row");
-                // Add the original data from the row with an error
-                DataRow errorRow = data.Rows[rowNum - 1]; // Adjusting to 0-based index
-                // Populate relevant data columns
-                object[] rowData = new object[]
-                {
+                DataRow errorRow = data.Rows[rowNum - 1]; object[] rowData = new object[]
+{
                     "","",
             errorRow["TAG_NO"],
             errorRow["VCH_DATE"],
@@ -474,15 +447,12 @@ namespace SYA
             errorRow["ITM_SIZE"],
             errorRow["MRP"],
             errorRow["DESIGN"],
-                };
+};
                 errorGridView.Rows.Add(rowData);
             }
-            // Add the DataGridView to the form
             errorForm.Controls.Add(errorGridView);
-            // Calculate the height of the form title bar and add it to the form height
             int titleBarHeight = errorForm.Height - errorForm.ClientRectangle.Height;
             errorForm.Height = formHeight + titleBarHeight;
-            // Show the form
             errorForm.ShowDialog();
         }
         public static void UpdateMessageBox(string message, TextBox txtMessageBox)
@@ -501,15 +471,10 @@ namespace SYA
         }
         public static string GetItemPurity(string itCode, string prcode)
         {
-            // Assuming itCode has a format like "PR_CODEXXX" where XXX is the item purity
             return itCode.Replace(prcode, "");
         }
         public static string GetItemDescFromSQLite(string PR_CODE, string IT_TYPE)
         {
-            // Implement logic to fetch ITEM_DESC from SQLite based on PR_CODE and IT_TYPE
-            // You can modify this method based on your database schema and logic
-            // For example, you might need to query the ITEM_MASTER table
-            // Sample logic (replace with actual query and logic)
             string query = "SELECT IT_NAME FROM ITEM_MASTER WHERE PR_CODE = '" + PR_CODE + "' AND IT_TYPE = '" + IT_TYPE + "'";
             object result = helper.RunQueryWithoutParametersSYADataBase(query, "ExecuteScalar");
             if (result != null)

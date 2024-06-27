@@ -36,6 +36,8 @@ namespace SYA
         public static string LogsFolder;
         public static string TagPrinterName;
         public static string NormalPrinterName;
+        public static string DataVerificationOldTable;
+        public static string DataVerificationNewTable;
         //i am chaning int to object so where we are implementing use proper conversion
         public static object RunQueryWithoutParameters(string connectionString, string query, string commandType)
         {
@@ -89,6 +91,8 @@ namespace SYA
                 LogsFolder = row["Logs"].ToString();
                 TagPrinterName = row["TagPrinterName"].ToString();
                 NormalPrinterName = row["NormalPrinterName"].ToString();
+                DataVerificationOldTable = row["DataVerificationOldTable"].ToString();
+                DataVerificationNewTable = row["DataVerificationNewTable"].ToString();
             }
         }
         public static DataTable FetchDataTable(string connectionString, string query)
