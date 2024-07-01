@@ -4,16 +4,13 @@
     <_LastSelectedProfileId>F:\SYA\SYA\Properties\PublishProfiles\FolderProfile24.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="AddGold\addgold.cs">
+    <Compile Update="AddItem\addgold.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AddSilver\addSilver.cs">
+    <Compile Update="AddItem\addSilver.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="DataCareData\DataCareData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Labour.cs">
+    <Compile Update="Labour\Labour.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Login\login.cs">
@@ -22,7 +19,10 @@
     <Compile Update="main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="PrintLabel.cs">
+    <Compile Update="Extra\PrintLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="NotifyForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="RTGS\PrintRTGS.cs">
@@ -31,7 +31,10 @@
     <Compile Update="RTGS\RTGSList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="settings.cs">
+    <Compile Update="Search\Search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Settings\settings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Stocks\goldStockDetailedSummary.cs">
@@ -46,22 +49,13 @@
     <Compile Update="Sell\SaleItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="saleReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Search\Search.cs">
+    <Compile Update="Sales\saleReport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Sell\sell.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="statement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="tempVerifyData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="VerifyData.cs">
+    <Compile Update="Stocks\VerifyStock.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

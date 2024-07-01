@@ -153,7 +153,7 @@
             panel5.Location = new Point(0, 573);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1347, 41);
+            panel5.Size = new Size(1502, 41);
             panel5.TabIndex = 4;
             // 
             // panel34
@@ -170,7 +170,7 @@
             panel34.Location = new Point(9, 4);
             panel34.Margin = new Padding(3, 2, 3, 2);
             panel34.Name = "panel34";
-            panel34.Size = new Size(1329, 33);
+            panel34.Size = new Size(1484, 33);
             panel34.TabIndex = 13;
             // 
             // btnFetchSaleData
@@ -229,7 +229,7 @@
             // panel44
             // 
             panel44.Dock = DockStyle.Right;
-            panel44.Location = new Point(1170, 0);
+            panel44.Location = new Point(1325, 0);
             panel44.Margin = new Padding(3, 2, 3, 2);
             panel44.Name = "panel44";
             panel44.Size = new Size(95, 33);
@@ -238,7 +238,7 @@
             // panel15
             // 
             panel15.Dock = DockStyle.Right;
-            panel15.Location = new Point(1265, 0);
+            panel15.Location = new Point(1420, 0);
             panel15.Margin = new Padding(3, 2, 3, 2);
             panel15.Name = "panel15";
             panel15.Size = new Size(32, 33);
@@ -247,7 +247,7 @@
             // panel13
             // 
             panel13.Dock = DockStyle.Right;
-            panel13.Location = new Point(1297, 0);
+            panel13.Location = new Point(1452, 0);
             panel13.Margin = new Padding(3, 2, 3, 2);
             panel13.Name = "panel13";
             panel13.Size = new Size(32, 33);
@@ -267,7 +267,7 @@
             // 
             panel23.BackColor = Color.FromArgb(16, 0, 43);
             panel23.Dock = DockStyle.Right;
-            panel23.Location = new Point(1338, 4);
+            panel23.Location = new Point(1493, 4);
             panel23.Margin = new Padding(3, 2, 3, 2);
             panel23.Name = "panel23";
             panel23.Size = new Size(9, 33);
@@ -280,7 +280,7 @@
             panel21.Location = new Point(0, 37);
             panel21.Margin = new Padding(3, 2, 3, 2);
             panel21.Name = "panel21";
-            panel21.Size = new Size(1347, 4);
+            panel21.Size = new Size(1502, 4);
             panel21.TabIndex = 3;
             // 
             // panel10
@@ -290,7 +290,7 @@
             panel10.Location = new Point(0, 0);
             panel10.Margin = new Padding(3, 2, 3, 2);
             panel10.Name = "panel10";
-            panel10.Size = new Size(1347, 4);
+            panel10.Size = new Size(1502, 4);
             panel10.TabIndex = 1;
             // 
             // panelBackground
@@ -309,7 +309,7 @@
             panelBackground.Location = new Point(0, 0);
             panelBackground.Margin = new Padding(3, 2, 3, 2);
             panelBackground.Name = "panelBackground";
-            panelBackground.Size = new Size(1347, 614);
+            panelBackground.Size = new Size(1502, 614);
             panelBackground.TabIndex = 1;
             // 
             // panel31
@@ -360,7 +360,7 @@
             dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewSearch.RowsDefaultCellStyle = dataGridViewCellStyle19;
             dataGridViewSearch.RowTemplate.Height = 29;
-            dataGridViewSearch.Size = new Size(1338, 404);
+            dataGridViewSearch.Size = new Size(1493, 404);
             dataGridViewSearch.TabIndex = 13;
             dataGridViewSearch.CellContentClick += dataGridViewSearch_CellContentClick;
             dataGridViewSearch.CellEndEdit += dataGridViewSearch_CellEndEdit;
@@ -514,7 +514,7 @@
             // 
             panel24.BackColor = Color.FromArgb(16, 0, 43);
             panel24.Dock = DockStyle.Right;
-            panel24.Location = new Point(1338, 120);
+            panel24.Location = new Point(1493, 120);
             panel24.Margin = new Padding(3, 2, 3, 2);
             panel24.Name = "panel24";
             panel24.Size = new Size(9, 404);
@@ -527,7 +527,7 @@
             panel20.Location = new Point(0, 524);
             panel20.Margin = new Padding(3, 2, 3, 2);
             panel20.Name = "panel20";
-            panel20.Size = new Size(1347, 11);
+            panel20.Size = new Size(1502, 11);
             panel20.TabIndex = 6;
             // 
             // panel6
@@ -542,7 +542,7 @@
             panel6.Location = new Point(0, 535);
             panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(1347, 38);
+            panel6.Size = new Size(1502, 38);
             panel6.TabIndex = 5;
             // 
             // panel9
@@ -559,7 +559,7 @@
             panel9.Location = new Point(41, 0);
             panel9.Margin = new Padding(3, 2, 3, 2);
             panel9.Name = "panel9";
-            panel9.Size = new Size(1265, 38);
+            panel9.Size = new Size(1420, 38);
             panel9.TabIndex = 44;
             // 
             // panel19
@@ -569,20 +569,20 @@
             panel19.Location = new Point(478, 6);
             panel19.Margin = new Padding(3, 2, 3, 2);
             panel19.Name = "panel19";
-            panel19.Size = new Size(787, 26);
+            panel19.Size = new Size(942, 26);
             panel19.TabIndex = 16;
             // 
             // txtMessageBox
             // 
             txtMessageBox.BackColor = Color.FromArgb(255, 214, 255);
             txtMessageBox.BorderStyle = BorderStyle.None;
-            txtMessageBox.Dock = DockStyle.Left;
+            txtMessageBox.Dock = DockStyle.Fill;
             txtMessageBox.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
             txtMessageBox.Location = new Point(0, 0);
             txtMessageBox.Margin = new Padding(3, 2, 3, 2);
             txtMessageBox.Name = "txtMessageBox";
             txtMessageBox.ReadOnly = true;
-            txtMessageBox.Size = new Size(572, 23);
+            txtMessageBox.Size = new Size(942, 23);
             txtMessageBox.TabIndex = 100;
             txtMessageBox.TextAlign = HorizontalAlignment.Center;
             // 
@@ -592,7 +592,7 @@
             panel16.Location = new Point(478, 0);
             panel16.Margin = new Padding(3, 2, 3, 2);
             panel16.Name = "panel16";
-            panel16.Size = new Size(787, 6);
+            panel16.Size = new Size(942, 6);
             panel16.TabIndex = 15;
             // 
             // panel17
@@ -601,7 +601,7 @@
             panel17.Location = new Point(478, 32);
             panel17.Margin = new Padding(3, 2, 3, 2);
             panel17.Name = "panel17";
-            panel17.Size = new Size(787, 6);
+            panel17.Size = new Size(942, 6);
             panel17.TabIndex = 15;
             // 
             // panel14
@@ -670,7 +670,7 @@
             // panel36
             // 
             panel36.Dock = DockStyle.Right;
-            panel36.Location = new Point(1306, 0);
+            panel36.Location = new Point(1461, 0);
             panel36.Margin = new Padding(3, 2, 3, 2);
             panel36.Name = "panel36";
             panel36.Size = new Size(32, 38);
@@ -690,7 +690,7 @@
             // 
             panel12.BackColor = Color.FromArgb(16, 0, 43);
             panel12.Dock = DockStyle.Right;
-            panel12.Location = new Point(1338, 0);
+            panel12.Location = new Point(1493, 0);
             panel12.Margin = new Padding(3, 2, 3, 2);
             panel12.Name = "panel12";
             panel12.Size = new Size(9, 38);
@@ -717,7 +717,7 @@
             panel3.Location = new Point(0, 82);
             panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1347, 38);
+            panel3.Size = new Size(1502, 38);
             panel3.TabIndex = 2;
             // 
             // button5
@@ -848,7 +848,7 @@
             // panel38
             // 
             panel38.Dock = DockStyle.Right;
-            panel38.Location = new Point(1306, 0);
+            panel38.Location = new Point(1461, 0);
             panel38.Margin = new Padding(3, 2, 3, 2);
             panel38.Name = "panel38";
             panel38.Size = new Size(32, 27);
@@ -868,7 +868,7 @@
             // 
             panel25.BackColor = Color.FromArgb(16, 0, 43);
             panel25.Dock = DockStyle.Right;
-            panel25.Location = new Point(1338, 0);
+            panel25.Location = new Point(1493, 0);
             panel25.Margin = new Padding(3, 2, 3, 2);
             panel25.Name = "panel25";
             panel25.Size = new Size(9, 27);
@@ -881,7 +881,7 @@
             panel18.Location = new Point(0, 27);
             panel18.Margin = new Padding(3, 2, 3, 2);
             panel18.Name = "panel18";
-            panel18.Size = new Size(1347, 11);
+            panel18.Size = new Size(1502, 11);
             panel18.TabIndex = 3;
             // 
             // panel2
@@ -905,7 +905,7 @@
             panel2.Location = new Point(0, 41);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1347, 41);
+            panel2.Size = new Size(1502, 41);
             panel2.TabIndex = 1;
             // 
             // BTNTAGTYPE
@@ -917,7 +917,7 @@
             BTNTAGTYPE.FlatStyle = FlatStyle.Popup;
             BTNTAGTYPE.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
             BTNTAGTYPE.ForeColor = Color.Black;
-            BTNTAGTYPE.Location = new Point(1152, 4);
+            BTNTAGTYPE.Location = new Point(1307, 4);
             BTNTAGTYPE.Margin = new Padding(3, 2, 3, 2);
             BTNTAGTYPE.Name = "BTNTAGTYPE";
             BTNTAGTYPE.Size = new Size(186, 37);
@@ -1055,7 +1055,7 @@
             // 
             panel26.BackColor = Color.FromArgb(16, 0, 43);
             panel26.Dock = DockStyle.Right;
-            panel26.Location = new Point(1338, 4);
+            panel26.Location = new Point(1493, 4);
             panel26.Margin = new Padding(3, 2, 3, 2);
             panel26.Name = "panel26";
             panel26.Size = new Size(9, 37);
@@ -1068,7 +1068,7 @@
             panel8.Location = new Point(0, 0);
             panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(1347, 4);
+            panel8.Size = new Size(1502, 4);
             panel8.TabIndex = 1;
             // 
             // panel1
@@ -1082,7 +1082,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1347, 41);
+            panel1.Size = new Size(1502, 41);
             panel1.TabIndex = 0;
             // 
             // button6
@@ -1094,7 +1094,7 @@
             button6.Location = new Point(9, 4);
             button6.Margin = new Padding(3, 2, 3, 2);
             button6.Name = "button6";
-            button6.Size = new Size(1329, 37);
+            button6.Size = new Size(1484, 37);
             button6.TabIndex = 12;
             button6.Text = "SEARCH ITEMS";
             button6.UseVisualStyleBackColor = false;
@@ -1113,7 +1113,7 @@
             // 
             panel27.BackColor = Color.FromArgb(16, 0, 43);
             panel27.Dock = DockStyle.Right;
-            panel27.Location = new Point(1338, 4);
+            panel27.Location = new Point(1493, 4);
             panel27.Margin = new Padding(3, 2, 3, 2);
             panel27.Name = "panel27";
             panel27.Size = new Size(9, 37);
@@ -1126,7 +1126,7 @@
             panel22.Location = new Point(0, 0);
             panel22.Margin = new Padding(3, 2, 3, 2);
             panel22.Name = "panel22";
-            panel22.Size = new Size(1347, 4);
+            panel22.Size = new Size(1502, 4);
             panel22.TabIndex = 4;
             // 
             // backgroundWorker1
@@ -1143,7 +1143,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1347, 614);
+            ClientSize = new Size(1502, 614);
             Controls.Add(panelBackground);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Search";

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using SYA.Helper;
 namespace SYA.Sell
 {
     public partial class sell : Form
@@ -236,7 +237,7 @@ namespace SYA.Sell
             " + (itemToSell.Rows[0]["HUID2"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["HUID2"].ToString() + "'") + @",
             " + (itemToSell.Rows[0]["SIZE"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["SIZE"].ToString() + "'") + @",
             " + (itemToSell.Rows[0]["PRICE"] == DBNull.Value ? "NULL" : Convert.ToDecimal(itemToSell.Rows[0]["PRICE"]).ToString()) + @",
-            " + (itemToSell.Rows[0]["STATUS"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["STATUS"].ToString() + "'") + @",
+            " + "SOLD" + @",
             " + (itemToSell.Rows[0]["AC_CODE"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["AC_CODE"].ToString() + "'") + @",
             " + (itemToSell.Rows[0]["AC_NAME"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["AC_NAME"].ToString() + "'") + @",
             " + (itemToSell.Rows[0]["COMMENT"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["COMMENT"].ToString() + "'") + @",

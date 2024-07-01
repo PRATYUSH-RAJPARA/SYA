@@ -158,7 +158,6 @@
             panel57 = new Panel();
             panel58 = new Panel();
             panel76 = new Panel();
-            dg916 = new DataGridView();
             panel93 = new Panel();
             panel94 = new Panel();
             panel95 = new Panel();
@@ -317,8 +316,6 @@
             panel2.SuspendLayout();
             panel57.SuspendLayout();
             panel58.SuspendLayout();
-            panel76.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dg916).BeginInit();
             panel94.SuspendLayout();
             panel95.SuspendLayout();
             panel96.SuspendLayout();
@@ -1804,23 +1801,12 @@
             // 
             // panel76
             // 
-            panel76.Controls.Add(dg916);
             panel76.Dock = DockStyle.Left;
             panel76.Location = new Point(720, 0);
             panel76.Margin = new Padding(0);
             panel76.Name = "panel76";
             panel76.Size = new Size(525, 285);
             panel76.TabIndex = 7;
-            // 
-            // dg916
-            // 
-            dg916.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dg916.Dock = DockStyle.Fill;
-            dg916.Location = new Point(0, 0);
-            dg916.Name = "dg916";
-            dg916.RowTemplate.Height = 25;
-            dg916.Size = new Size(525, 285);
-            dg916.TabIndex = 6;
             // 
             // panel93
             // 
@@ -2853,8 +2839,6 @@
             panel2.ResumeLayout(false);
             panel57.ResumeLayout(false);
             panel58.ResumeLayout(false);
-            panel76.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dg916).EndInit();
             panel94.ResumeLayout(false);
             panel95.ResumeLayout(false);
             panel96.ResumeLayout(false);
@@ -3126,7 +3110,6 @@
         private Panel panel148;
         private Label label104;
         private TextBox textBox1;
-        private DataGridView dg916;
         private Panel panel76;
     }
 }

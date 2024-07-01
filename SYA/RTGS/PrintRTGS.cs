@@ -1,4 +1,5 @@
 ﻿using Humanizer;
+using SYA.Helper;
 using System;
 using System.Data;
 using System.Drawing.Printing;
@@ -47,7 +48,7 @@ namespace SYA
         }
         private void Print(object sender, PrintPageEventArgs e)
         {
-            print.PrintRTGS(sender, e,RTGSDATA);
+            PrintHelper.PrintRTGS(sender, e,RTGSDATA);
         }
         private void SecondForm_FormClosed(object sender, FormClosedEventArgs e)
         {

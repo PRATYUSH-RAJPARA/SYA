@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using SYA.Helper;
 namespace SYA
 {
     public partial class RTGSList : Form

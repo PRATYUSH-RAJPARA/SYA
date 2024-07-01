@@ -140,7 +140,6 @@ F:\SYA\SYA\obj\Debug\net6.0-windows8.0\Interop.Microsoft.Office.Interop.Excel.dl
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.csproj.ResolveComReference.cache
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.addgold.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.addSilver.resources
-F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.DataCareData.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.login.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.main.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Properties.Resources.resources
@@ -150,8 +149,6 @@ F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.saleReport.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Search.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.SaleItem.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Sell.sell.resources
-F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.statement.resources
-F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.tempVerifyData.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.csproj.GenerateResource.cache
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.GeneratedMSBuildEditorConfig.editorconfig
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.AssemblyInfoInputs.cache
@@ -270,7 +267,6 @@ F:\SYA\SYA\obj\Debug\net6.0-windows8.0\refint\SYA.dll
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.pdb
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.genruntimeconfig.cache
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\ref\SYA.dll
-F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.VerifyData.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.STOCKSummary.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.settings.resources
 F:\SYA\SYA\bin\Debug\net6.0-windows8.0\SYA.dll.config
@@ -278,3 +274,5 @@ F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Labour.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.PrintLabel.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Stocks.goldStockDetailedSummary.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Stocks.silverStockDetailedSummary.resources
+F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.VerifyStock.resources
+F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.NotifyForm.resources

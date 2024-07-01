@@ -97,10 +97,12 @@
             // dataGridView2
             // 
             dataGridView2.BackgroundColor = Color.FromArgb(74, 86, 56);
+            dataGridView2.BorderStyle = BorderStyle.None;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Name = "dataGridView2";
+            dataGridView2.ReadOnly = true;
             dataGridView2.RowTemplate.Height = 25;
             dataGridView2.Size = new Size(520, 709);
             dataGridView2.TabIndex = 0;
@@ -173,10 +175,12 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = Color.FromArgb(74, 86, 56);
+            dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(520, 709);
             dataGridView1.TabIndex = 0;

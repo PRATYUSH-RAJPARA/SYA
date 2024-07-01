@@ -178,6 +178,7 @@
             // dataGridView4
             // 
             dataGridView4.BackgroundColor = Color.FromArgb(74, 86, 56);
+            dataGridView4.BorderStyle = BorderStyle.None;
             dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView4.Dock = DockStyle.Fill;
             dataGridView4.Location = new Point(0, 0);
@@ -229,6 +230,7 @@
             // dataGridView3
             // 
             dataGridView3.BackgroundColor = Color.FromArgb(74, 86, 56);
+            dataGridView3.BorderStyle = BorderStyle.None;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView3.Dock = DockStyle.Fill;
             dataGridView3.Location = new Point(0, 0);
@@ -300,6 +302,7 @@
             // dataGridView2
             // 
             dataGridView2.BackgroundColor = Color.FromArgb(74, 86, 56);
+            dataGridView2.BorderStyle = BorderStyle.None;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.Location = new Point(0, 0);
@@ -367,6 +370,7 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = Color.FromArgb(74, 86, 56);
+            dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);

@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.SQLite;
 using System.Text;
+using SYA.Helper;
 namespace SYA
 {
     public  class Contact
