@@ -276,3 +276,7 @@ F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Stocks.goldStockDetailedSummary.resou
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Stocks.silverStockDetailedSummary.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.VerifyStock.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.NotifyForm.resources
+F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Stocks.SaleSummary.resources
+F:\SYA\SYA\bin\Debug\net6.0-windows8.0\ExcelDataReader.dll
+F:\SYA\SYA\bin\Debug\net6.0-windows8.0\ExcelDataReader.DataSet.dll
+F:\SYA\SYA\bin\Debug\net6.0-windows8.0\RestSharp.dll

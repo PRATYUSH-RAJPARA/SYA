@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_LastSelectedProfileId>F:\SYA\SYA\Properties\PublishProfiles\FolderProfile24.pubxml</_LastSelectedProfileId>
+    <_LastSelectedProfileId>F:\SYA\SYA\Properties\PublishProfiles\FolderProfile25.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="AddItem\addgold.cs">
@@ -22,7 +22,7 @@
     <Compile Update="Extra\PrintLabel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="NotifyForm.cs">
+    <Compile Update="Helper\NotifyForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="RTGS\PrintRTGS.cs">
@@ -38,6 +38,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Stocks\goldStockDetailedSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Sales\SaleSummary.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Stocks\silverStockDetailedSummary.cs">

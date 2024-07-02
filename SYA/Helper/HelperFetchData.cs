@@ -10,7 +10,6 @@ namespace SYA.Helper
     {
         public static string connectionToSYADatabase = helper.SYAConnectionString;
         public static NotifyForm notifyForm;
-
         public static void InsertInStockDataIntoSQLite( string queryToFetchFromMSAccess)
         {
             DataTable data = helper.FetchDataTableFromDataCareDataBase(queryToFetchFromMSAccess);
@@ -81,7 +80,6 @@ namespace SYA.Helper
                                 MessageBox.Show($"InsertInStockDataIntoSQLite 3 : : : Error retrieving data from the database for TAG_NO = {row["TAG_NO"]}: {retrievalEx.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
-                        
                         string str1 = string.Empty, str2 = string.Empty;
                         str1 = "Fetching Data .....";
                         str2 = "Inserted Rows : " + insertedCount + " Updated Rows : " + updatedCount;
@@ -89,11 +87,8 @@ namespace SYA.Helper
                         notifyForm.ShowNotification2(str2);
                         notifyForm.ShowNotification1(str1);
                         Application.DoEvents();
-
-                        
                     }
                     notifyForm.Close();
-
                 }
                 if (errorRows.Count > 0)
                 {

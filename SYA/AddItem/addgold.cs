@@ -94,13 +94,11 @@ namespace SYA
                     textBox.SelectAll();
                 }
             }
-
             if (e.ColumnIndex == 1 && e.RowIndex == dataGridView1.Rows.Count - 1)
             {
                 // dataGridView1.Rows[e.RowIndex].Cells["labour"].Value = helper.GoldPerGramLabour;
                 // dataGridView1.Rows[e.RowIndex].Cells["wholeLabour"].Value = "0";
                 dataGridView1.Rows[e.RowIndex].Cells["other"].Value = "0";
-
                 if (dataGridView1.Rows.Count > 1)
                 {
                     DataGridViewRow previousRow = dataGridView1.Rows[dataGridView1.Rows.Count - 2];
@@ -111,7 +109,6 @@ namespace SYA
                     // dataGridView1.Rows[e.RowIndex].Cells["labour"].Value = (previousRow.Cells["labour"].Value ?? "0").ToString();
                     // dataGridView1.Rows[e.RowIndex].Cells["wholeLabour"].Value = (previousRow.Cells["wholeLabour"].Value ?? "0").ToString();
                     dataGridView1.Rows[e.RowIndex].Cells["other"].Value = (previousRow.Cells["other"].Value ?? "0").ToString();
-
                     this.BeginInvoke(new MethodInvoker(delegate
                     {
                         dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells["type"];
@@ -120,7 +117,6 @@ namespace SYA
                 }
             }
         }
-
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
@@ -132,11 +128,9 @@ namespace SYA
                         dataGridView1.Rows[e.RowIndex].Cells["net"].Value = dataGridView1.Rows[e.RowIndex].Cells["gross"].Value;
                     }
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = helper.correctWeight(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-
                     decimal[] a = objLabour.getLabourAndWholeLabour(dataGridView1.Rows[e.RowIndex].Cells["gross"].Value.ToString());
                     dataGridView1.Rows[e.RowIndex].Cells["labour"].Value = a[0];
                     dataGridView1.Rows[e.RowIndex].Cells["wholeLabour"].Value = a[1];
-
                 }
                 else if (dataGridView1.Columns[e.ColumnIndex].Name == "net")
                 {
@@ -238,7 +232,6 @@ namespace SYA
             if (currentColumnName1 == "net")
             {
                 selectedRow.Cells["net"].Value = helper.correctWeight(selectedRow.Cells["net"].Value);
-
                 //decimal[] a = objLabour.getLabourAndWholeLabour(selectedRow.Cells["net"].Value.ToString());
                 //selectedRow.Cells["labour"].Value = a[0];
                 //selectedRow.Cells["net"].Value = a[1];
@@ -731,4 +724,3 @@ namespace SYA
         }
     }
 }
-

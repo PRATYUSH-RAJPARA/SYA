@@ -94,7 +94,6 @@ namespace SYA
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-
                 if (addSilverDataGridView.Columns[e.ColumnIndex].Name == "gross")
                 {
                     if (addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value == null || (decimal.Parse(addSilverDataGridView.Rows[e.RowIndex].Cells["net"].Value.ToString()) > decimal.Parse(addSilverDataGridView.Rows[e.RowIndex].Cells["gross"].Value.ToString())))

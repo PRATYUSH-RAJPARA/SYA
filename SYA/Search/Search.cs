@@ -65,9 +65,7 @@ namespace SYA
                 COMMENT,
                 PRINT
             FROM MAIN_DATA
-
             UNION ALL
-
             SELECT
                 ID,
                 CO_YEAR,
@@ -196,7 +194,6 @@ namespace SYA
                                 dataGridViewSearch.Rows[rowIndex].Cells["net"].ReadOnly = true;
                             }
                             dataGridViewSearch.Rows[rowIndex].Cells["IT_TYPE"].Value = reader["IT_TYPE"].ToString();
-
                             if (reader["status"].ToString() == "SOLD")
                             {
                                 dataGridViewSearch.Rows[rowIndex].Cells["tagno"].Style.BackColor = Color.FromArgb(33, 37, 41);
@@ -213,7 +210,6 @@ namespace SYA
                                 dataGridViewSearch.Rows[rowIndex].Cells["size"].Style.BackColor = Color.FromArgb(73, 80, 87);
                                 dataGridViewSearch.Rows[rowIndex].Cells["price"].Style.BackColor = Color.FromArgb(52, 58, 64);
                                 dataGridViewSearch.Rows[rowIndex].Cells["comment"].Style.BackColor = Color.FromArgb(33, 37, 41);
-
                                 dataGridViewSearch.Rows[rowIndex].Cells["tagno"].Style.ForeColor = Color.White;
                                 dataGridViewSearch.Rows[rowIndex].Cells["vchno"].Style.ForeColor = Color.White;
                                 dataGridViewSearch.Rows[rowIndex].Cells["vchdate"].Style.ForeColor = Color.White;
@@ -480,8 +476,6 @@ namespace SYA
             {
                 string searchValue = txtSearchAnything.Text;
                 MessageBox.Show(searchValue);
-
-
                 string query = @$"
     SELECT 
         ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, 
@@ -510,9 +504,7 @@ namespace SYA
         STATUS LIKE '%{searchValue}%' OR 
         AC_CODE LIKE '%{searchValue}%' OR 
         AC_NAME LIKE '%{searchValue}%' 
-
     UNION ALL 
-
     SELECT 
         ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, 
         IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT 
@@ -540,9 +532,7 @@ namespace SYA
         STATUS LIKE '%{searchValue}%' OR 
         AC_CODE LIKE '%{searchValue}%' OR 
         AC_NAME LIKE '%{searchValue}%';";
-
                 // Now use the `query` string in your SQLite execution code
-
                 LoadDataFromSQLite(query);
             }
         }
@@ -597,8 +587,6 @@ namespace SYA
             if (!leaveEventFlag)
             {
                 string q = @$"SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM MAIN_DATA WHERE TAG_NO LIKE '%{txtTagno.Text}%' UNION ALL SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM SYA_SALE_DATA WHERE TAG_NO LIKE '%{txtTagno.Text}%';";
-
-
                 LoadDataFromSQLite(q);
             }
         }
@@ -637,7 +625,6 @@ namespace SYA
         {
             //  queryToFetchFromMSAccess = "SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'";
             //  HelperFetchData.InsertSaleDataIntoSQLite(queryToFetchFromMSAccess);
-
             // FetchSaleDataHelper.fetchSaleData();
         }
         private void dataGridViewSearch_CellContentClick(object sender, DataGridViewCellEventArgs e)

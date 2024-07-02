@@ -116,12 +116,10 @@ namespace SYA
             dataGridView1.RowHeadersVisible = false;
             // Define the widths for each column
             int[] columnWidths = { 150, 100, 100, 285, 75,100,90,90,100,100,100,100 }; // Example widths, adjust as needed
-
             // Apply styles to the DataGridView columns
             for (int i = 0; i < dataGridView1.Columns.Count; i++)
             {
                 DataGridViewColumn column = dataGridView1.Columns[i];
-
                 // Set individual column width
                 if (i < columnWidths.Length)
                 {
@@ -131,13 +129,11 @@ namespace SYA
                 {
                     column.Width = 100; // Default width if not specified
                 }
-
                 // Set column header style
                 column.HeaderCell.Style.BackColor = Color.LightBlue;
                 column.HeaderCell.Style.ForeColor = Color.Black;
                 column.HeaderCell.Style.Font = new Font("Arial", 10F, FontStyle.Bold);
                 column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
                 // Set default cell style for the entire column
                 column.DefaultCellStyle.BackColor = Color.White;
                 column.DefaultCellStyle.ForeColor = Color.Black;
@@ -163,20 +159,17 @@ namespace SYA
                 DateTime startDate = startDatePicker.Value.Date;
                 DateTime endDate = endDatePicker.Value.Date;
                 string dateRange = $"{startDate.ToString("dd-MM-yyyy")} to {endDate.ToString("dd-MM-yyyy")}";
-                
                 string month = startDate.ToString("MMMM");
                 string baseFileName = $"{month}_{dateRange}";
                 string fileName = baseFileName + ".xlsx";
                 string fullPath = Path.Combine(folderPath, fileName);
                 int counter = 1;
-
                 while (File.Exists(fullPath))
                 {
                     fileName = $"{baseFileName}_{counter}.xlsx";
                     fullPath = Path.Combine(folderPath, fileName);
                     counter++;
                 }
-
                 ExportToExcel(dataGridView, fullPath);
             }
             catch (Exception ex)
@@ -184,7 +177,6 @@ namespace SYA
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void ExportToExcel(DataGridView dataGridView, string filePath)
         {
             try
@@ -192,16 +184,13 @@ namespace SYA
                 Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
                 Workbook excelWorkbook = excelApp.Workbooks.Add();
                 Worksheet excelWorksheet = (Worksheet)excelWorkbook.Sheets[1];
-
                 // Copy the column headers from the DataGridView to Excel
                 for (int i = 0; i < dataGridView.Columns.Count; i++)
                 {
                     excelWorksheet.Cells[1, i + 1] = dataGridView.Columns[i].HeaderText;
                     ApplyHeaderCellFormatting(excelWorksheet.Cells[1, i + 1]);
                 }
-
                 int rowIndex = 2;
-
                 foreach (DataGridViewRow row in dataGridView.Rows)
                 {
                     for (int j = 0; j < dataGridView.Columns.Count; j++)
@@ -211,12 +200,10 @@ namespace SYA
                     }
                     rowIndex++;
                 }
-
                 excelWorksheet.Columns.AutoFit();
                 excelWorkbook.SaveAs(filePath);
                 excelWorkbook.Close();
                 excelApp.Quit();
-
                 MessageBox.Show("Data exported to Excel successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -232,7 +219,6 @@ namespace SYA
             cell.HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
             cell.VerticalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
         }
-
         private void ApplyDataCellFormatting(Microsoft.Office.Interop.Excel.Range cell)
         {
             cell.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
@@ -387,17 +373,11 @@ namespace SYA
         {
             // Export the new DataTable to Excel
             //ExportToExcel(dataGridView1, "C:\\SYA_SOFT\\config\\ExportedData.xlsx");
-
             DateTime startDate = startDatePicker.Value.Date;
             DateTime endDate = endDatePicker.Value.Date;
             string dateRange = $"{startDate.ToString("dd-MM-yyyy")} to {endDate.ToString("dd-MM-yyyy")}";
             ExportDataWithDynamicFileName(dataGridView1, helper.excelFile);
-
         }
-        
-
-
-
         private void OpenFolderInExplorer(string folderPath)
         {
             try
@@ -409,15 +389,12 @@ namespace SYA
                 MessageBox.Show($"Error opening folder: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             OpenFolderInExplorer(helper.excelFile);
-
         }
         private void getMonth()
         {
-            
             DateTime now = DateTime.Now;
             currentMonth = now.ToString("MMMM");
             previousMonth = now.AddMonths(-1).ToString("MMMM");
@@ -430,7 +407,6 @@ namespace SYA
         {
             try
             {
-
                 string query = "SELECT * FROM SL_DATA WHERE VCH_DATE >= #" + startDate.ToString("MM/dd/yyyy") + "# AND VCH_DATE <= #" + endDate.ToString("MM/dd/yyyy") + "# AND CO_BOOK IN ('26', '27', '026', '027') ORDER BY CInt(CO_BOOK), VCH_DATE, VCH_NO";
                 slDataTable = helper.FetchDataTableFromDataCareDataBase(query);
                 // Clear existing rows in the DataGridView
@@ -531,46 +507,33 @@ namespace SYA
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
-
             DateTime now = DateTime.Now;
             DateTime firstDayOfPreviousMonth = now.AddMonths(-2).Date;
             firstDayOfPreviousMonth = new DateTime(firstDayOfPreviousMonth.Year, firstDayOfPreviousMonth.Month, 1);
             DateTime lastDayOfPreviousMonth = firstDayOfPreviousMonth.AddMonths(1).AddDays(-1);
             startDatePicker.Value = firstDayOfPreviousMonth;
             endDatePicker.Value = lastDayOfPreviousMonth;
-
-
             showdata(firstDayOfPreviousMonth, lastDayOfPreviousMonth);
-
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             DateTime now = DateTime.Now;
-
             DateTime firstDayOfPreviousMonth = now.AddMonths(-1).Date;
             firstDayOfPreviousMonth = new DateTime(firstDayOfPreviousMonth.Year, firstDayOfPreviousMonth.Month, 1);
             DateTime lastDayOfPreviousMonth = firstDayOfPreviousMonth.AddMonths(1).AddDays(-1);
-
             startDatePicker.Value = firstDayOfPreviousMonth;
             endDatePicker.Value = lastDayOfPreviousMonth;
-
             showdata(firstDayOfPreviousMonth, lastDayOfPreviousMonth);
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             DateTime now = DateTime.Now;
-
             DateTime startDate = new DateTime(now.Year, now.Month, 1);
-
             DateTime endDate = startDate.AddMonths(1).AddDays(-1);
             startDatePicker.Value = startDate;
             endDatePicker.Value = endDate;
-
             showdata(startDate, endDate);
         }
     }

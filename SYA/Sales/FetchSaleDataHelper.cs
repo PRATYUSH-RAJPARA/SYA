@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace SYA.Sales
 {
-
     public static class FetchSaleDataHelper
     {
         public static string str1 = "";
@@ -19,22 +18,21 @@ namespace SYA.Sales
         public static int totalUpdated = 0;
         public static string connectionString = helper.accessConnectionString;
         public static NotifyForm notifyForm;
-
         public static void fetchSaleData()
         {
             string query = "SELECT * FROM DataCareFiles";
             DataTable dt = helper.FetchDataTableFromSYASettingsDataBase(query);
-            if(dt.Rows.Count>0 )
+            if (dt.Rows.Count > 0)
             {
                 notifyForm = new NotifyForm();
                 notifyForm.Show();
+                int i = 0;
                 foreach (DataRow dt_row in dt.Rows)
                 {
-                    
-                        SetFileName(dt_row["DataCareFileName"].ToString());
-                        DataTable accessData = FetchDataTableFromDataCareDataBase("SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'");
-                        fetchSaleData( accessData, dt_row["DataCareFileName"].ToString());
-                    
+                    SetFileName(dt_row["DataCareFileName"].ToString());
+                    DataTable accessData = FetchDataTableFromDataCareDataBase("SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'");
+                    // DataTable accessData = helper.FetchDataTableFromDataCareDataBase("SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'");
+                    fetchData(accessData, dt_row["DataCareFileName"].ToString());
                 }
                 notifyForm.Close();
             }
@@ -84,13 +82,10 @@ namespace SYA.Sales
                 }
             }
             connectionString = string.Join(";", parts);
-            s +="\n"+ connectionString;
+            s += "\n" + connectionString;
         }
-        public static void fetchSaleData(DataTable accessData,string FileName)
+        public static void fetchData(DataTable accessData, string FileName)
         {
-          
-
-
             string CO_YEAR = null;
             string CO_BOOK = null;
             string VCH_NO = null;
@@ -122,7 +117,6 @@ namespace SYA.Sales
             string AC_NAME = null;
             string SYA_COMMENT = null;
             string SYA_PRINT = null;
-
             void nullit()
             {
                 CO_YEAR = null;
@@ -134,8 +128,8 @@ namespace SYA.Sales
                 ITM_GWT = null;
                 ITM_NWT = null;
                 IT_TYPE = null;
-                 PR_CODE = null;
-                 IT_CODE = null;
+                PR_CODE = null;
+                IT_CODE = null;
                 ITM_RAT = null;
                 ITM_AMT = null;
                 LBR_RATE = null;
@@ -157,15 +151,11 @@ namespace SYA.Sales
                 SYA_COMMENT = null;
                 SYA_PRINT = null;
             }
-
             int accessDataCount = accessData.Rows.Count;
             int updateCount = 0;
             int insertCount = 0;
             if (accessData.Rows.Count > 0)
             {
-                
-                           
-              
                 foreach (DataRow row in accessData.Rows)
                 {
                     CO_YEAR = row["CO_YEAR"] != DBNull.Value ? row["CO_YEAR"].ToString() : "";
@@ -183,16 +173,14 @@ namespace SYA.Sales
                     LBR_AMT = row["LBR_AMT"] != DBNull.Value ? row["LBR_AMT"].ToString() : "";
                     OTH_AMT = row["OTH_AMT"] != DBNull.Value ? row["OTH_AMT"].ToString() : "";
                     NET_AMT = row["NET_AMT"] != DBNull.Value ? row["NET_AMT"].ToString() : "";
-                    PR_CODE  = row["PR_CODE"] != DBNull.Value ? row["PR_CODE"].ToString() : "";
+                    PR_CODE = row["PR_CODE"] != DBNull.Value ? row["PR_CODE"].ToString() : "";
                     IT_CODE = row["IT_CODE"] != DBNull.Value ? row["IT_CODE"].ToString() : "";
                     SYA_STATUS = "SOLD";
-
                     DataTable ac_dt = helper.FetchDataTableFromDataCareDataBase("SELECT AC_NAME FROM AC_MAST WHERE AC_CODE = '" + AC_CODE + "'");
                     if (ac_dt.Rows.Count > 0)
                     {
                         AC_NAME = ac_dt.Rows[0]["AC_NAME"].ToString();
                     }
-
                     DataTable sya_dt = helper.FetchDataTableFromSYADataBase("SELECT * FROM MAIN_DATA WHERE TAG_NO = '" + TAG_NO + "'");
                     if (sya_dt.Rows.Count > 0)
                     {
@@ -213,22 +201,21 @@ namespace SYA.Sales
                             SYA_PRINT = sya_row["PRINT"] != DBNull.Value ? sya_row["PRINT"].ToString() : "";
                         }
                     }
-
                     void update()
                     {
-                        if(SYA_LABOUR_AMT == null)
+                        if (SYA_LABOUR_AMT == null)
                         {
                             SYA_LABOUR_AMT = "0";
                         }
-                        if(SYA_WHOLE_LABOUR_AMT == null)
+                        if (SYA_WHOLE_LABOUR_AMT == null)
                         {
                             SYA_WHOLE_LABOUR_AMT = LBR_AMT;
                         }
-                        if(SYA_OTHER_AMT == null)
+                        if (SYA_OTHER_AMT == null)
                         {
                             SYA_OTHER_AMT = OTH_AMT;
                         }
-                        if(SYA_ITEM_CODE == null)
+                        if (SYA_ITEM_CODE == null)
                         {
                             SYA_ITEM_CODE = PR_CODE;
                         }
@@ -243,7 +230,7 @@ namespace SYA.Sales
                         }
                         if (SYA_ITEM_DESC == null)
                         {
-                            string ItemName=null;
+                            string ItemName = null;
                             string query = $"SELECT * FROM ITEM_MASTER WHERE PR_CODE = '{PR_CODE}' AND IT_TYPE = '{IT_TYPE}'";
                             using (SQLiteDataReader reader1 = helper.FetchDataFromSYADataBase(query))
                             {
@@ -288,7 +275,6 @@ namespace SYA.Sales
                         helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
                         nullit();
                     }
-
                     void insert()
                     {
                         if (SYA_LABOUR_AMT == null)
@@ -312,7 +298,8 @@ namespace SYA.Sales
                             try
                             {
                                 IT_CODE = IT_CODE.Replace(PR_CODE, "");
-                            }catch(Exception ex) { MessageBox.Show(ex.Message + "   \n"+IT_CODE+"   "+PR_CODE); }
+                            }
+                            catch (Exception ex) { MessageBox.Show(ex.Message + "   \n" + IT_CODE + "   " + PR_CODE); }
                             SYA_ITEM_PURITY = IT_CODE;
                         }
                         if (SYA_ITEM_DESC == null)
@@ -329,13 +316,13 @@ namespace SYA.Sales
                             }
                             SYA_ITEM_DESC = ItemName;
                         }
-                        string insertQuery = "INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT, ITM_RAT, ITM_AMT, LBR_RATE, LBR_AMT, OTH_AMT, NET_AMT) " +
+                        string insertQuery = "INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT, ITM_RAT, ITM_AMT, LBR_RATE, LBR_AMT, OTH_AMT, NET_" +
+                            "AMT) " +
                                              "VALUES ('" + CO_YEAR + "', '" + CO_BOOK + "', '" + VCH_NO + "', '" + Convert.ToDateTime(VCH_DATE).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + TAG_NO + "', '" + ITM_GWT + "', '" + ITM_NWT + "', '" + SYA_LABOUR_AMT + "', '" + SYA_WHOLE_LABOUR_AMT + "', '" + SYA_OTHER_AMT + "', '" + IT_TYPE + "', '" + SYA_ITEM_CODE + "', '" + SYA_ITEM_PURITY + "', '" + SYA_ITEM_DESC + "', '" + SYA_HUID1 + "', '" + SYA_HUID2 + "', '" + SYA_SIZE + "', '" + SYA_PRICE + "', '" + "SOLD" + "', '" + AC_CODE + "', '" + AC_NAME + "', '" + SYA_COMMENT + "', '" + SYA_PRINT + "', '" + ITM_RAT + "', '" + ITM_AMT + "', '" + LBR_RATE + "', '" + LBR_AMT + "', '" + OTH_AMT + "', '" + NET_AMT + "')";
                         helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
                         nullit();
                     }
-
-                    DataTable sale_dt = helper.FetchDataTableFromSYADataBase("SELECT TAG_NO FROM SYA_SALE_DATA WHERE TAG_NO = '" + TAG_NO + "' AND VCH_NO ='"+VCH_NO+"' AND CO_YEAR ='"+CO_YEAR+"'");
+                    DataTable sale_dt = helper.FetchDataTableFromSYADataBase("SELECT TAG_NO FROM SYA_SALE_DATA WHERE TAG_NO = '" + TAG_NO + "' AND VCH_NO ='" + VCH_NO + "' AND CO_YEAR ='" + CO_YEAR + "'");
                     if (sale_dt.Rows.Count > 0)
                     {
                         update();
@@ -349,14 +336,12 @@ namespace SYA.Sales
                         totalInserted++;
                     }
                     str1 = "Fetching Sale Data" + Environment.NewLine + Environment.NewLine + " Total Updated Count: " + totalUpdated + Environment.NewLine + " Total Inserted Count: " + totalInserted;
-                    str2 = FileName + Environment.NewLine + Environment.NewLine + "  Total_Count: " + accessDataCount + Environment.NewLine + " Updated_Count: " + updateCount + Environment.NewLine +    " Inserted_Count: " + insertCount;
+                    str2 = FileName + Environment.NewLine + Environment.NewLine + "  Total_Count: " + accessDataCount + Environment.NewLine + " Updated_Count: " + updateCount + Environment.NewLine + " Inserted_Count: " + insertCount;
                     notifyForm.ShowNotification2(str2);
-                    notifyForm.ShowNotification1(str1);               
+                    notifyForm.ShowNotification1(str1);
                     Application.DoEvents();
                 }
             }
         }
-
-     
     }
 }

@@ -41,7 +41,6 @@ namespace SYA.Helper
         public static string GoldPerGramLabour;
         public static string SilverPerGramLabour;
         public static DataTable tableLabour = new DataTable();
-
         //i am chaning int to object so where we are implementing use proper conversion
         public static object RunQueryWithoutParameters(string connectionString, string query, string commandType)
         {
@@ -106,7 +105,6 @@ namespace SYA.Helper
         {
             string query = "SELECT * FROM Labour";
              tableLabour = FetchDataTableFromSYASettingsDataBase(query);
-
         }
         public static DataTable FetchDataTable(string connectionString, string query)
         {

@@ -19,7 +19,6 @@ namespace SYA
         }
         private void settings_Load(object sender, EventArgs e)
         {
-           
             DataTable dt = helper.dt1;
             int i = 0;
             foreach (DataRow row in dt.Rows)
@@ -117,10 +116,8 @@ namespace SYA
             UpdateDatabase();
             helper.loadSettingsValues();
         }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
         }
         // Method to fetch data from the API and display in a message box
     }

@@ -18,7 +18,6 @@ namespace SYA
         {
             DataTable dt = new DataTable();
             t = t.ToUpper();
-
             dt = helper.FetchDataTableFromSYADataBase("SELECT * FROM " + helper.DataVerificationOldTable + " WHERE TAG_NO = '" + t + "'");
             if (dt.Rows.Count > 0)
             {

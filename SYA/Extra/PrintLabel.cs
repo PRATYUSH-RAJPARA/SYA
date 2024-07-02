@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SYA.Helper;
-
 namespace SYA
 {
     public partial class PrintLabel : Form
@@ -18,14 +17,9 @@ namespace SYA
         {
             InitializeComponent();
         }
-
         private void PrintLabel_Load(object sender, EventArgs e)
         {
-
         }
-
-
-
         public string name;
         public string price;
         public string type;
@@ -33,7 +27,6 @@ namespace SYA
         {
             try
             {
-
                 PrintDocument pd = new PrintDocument();
                 pd.PrinterSettings.PrinterName = helper.TagPrinterName;
                 pd.PrintPage += new PrintPageEventHandler(Print);
@@ -80,29 +73,18 @@ namespace SYA
             price = textBox4.Text.ToString();
             pp();
         }
-
-
-
-
-
-
-       
-
         private void button1_Click(object sender, EventArgs e)
         {
             names();
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
             prices();
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
             nameandprice();
         }
-
         private void button6_Click(object sender, EventArgs e)
         {
             names();
@@ -110,4 +92,3 @@ namespace SYA
         }
     }
 }
-

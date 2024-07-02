@@ -27,7 +27,6 @@ namespace SYA
             textBox18.Leave += new EventHandler(TextBox_Leave);
             textBox17.Leave += new EventHandler(TextBox_Leave);
             textBox38.Leave += new EventHandler(TextBox_Leave);
-           
         }
         private void Labour_Load(object sender, EventArgs e)
         {
@@ -35,7 +34,6 @@ namespace SYA
             labourLoad("recommanded");
           //  decimal[] a = Verification.getLabourAndWholeLabour("1");
           //  MessageBox.Show(a[0].ToString()+" : " + a[1].ToString());   
-
         }
         private void TextBox_Leave(object sender, EventArgs e)
         {
@@ -46,7 +44,6 @@ namespace SYA
                 textBox.Text = roundedValue.ToString();
             }
         }
-      
         private void labourLoad(string s)
         {
             string query = "SELECT * FROM Labour";
@@ -58,9 +55,6 @@ namespace SYA
             double[] slabMax = new double[6];
             double[] oldLabourMin = new double[6];
             double[] oldLabourMax = new double[6];
-
-
-
             void getLabourData(DataTable dt)
             {
                 int i = 0;
@@ -127,12 +121,8 @@ namespace SYA
                 setSlabValues();
                 setOnDataLabourValues();
                 setOnDataWholeLabourValues();
-
             }
-
             double newLabour = textBox1.Text == "" ? 0 : Convert.ToDouble(textBox1.Text);
-
-
             if (s == "recommanded")
             {
                 query = "SELECT * FROM labourExample";
@@ -176,7 +166,6 @@ namespace SYA
                     textBox60.Text = RoundToNearest50(newLabourMax[4]).ToString();
                     textBox59.Text = RoundToNearest50(newLabourMax[5]).ToString();
                     textBox58.Text = "0";
-
                     UpdateIndividualTextBoxColor(textBox16, textBox71);
                     UpdateIndividualTextBoxColor(textBox15, textBox70);
                     UpdateIndividualTextBoxColor(textBox14, textBox69);
@@ -206,7 +195,6 @@ namespace SYA
                 {
                     return Math.Round(value / 50) * 50;
                 }
-
             }
         }
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -261,7 +249,6 @@ namespace SYA
         }
         private void button2_Click(object sender, EventArgs e)
         {
-           
             labourLoad("recommanded");
         }
         private void button1_Click_1(object sender, EventArgs e)
@@ -272,12 +259,10 @@ namespace SYA
         {
             return Math.Round(value / 50.0) * 50;
         }
-
         private Color GetColorBasedOnDifference(double difference)
         {
             int maxIntensity = 255;
             int scaledIntensity = (int)(Math.Min(Math.Abs(difference), maxIntensity));
-
             if (difference < 0) // On-data value is lower than recommended
             {
                 return Color.FromArgb(255, 255, maxIntensity - scaledIntensity, maxIntensity - scaledIntensity); // Shades of red
@@ -291,14 +276,12 @@ namespace SYA
                 return Color.Black; // Default font color
             }
         }
-
         public  decimal[] getLabourAndWholeLabour(string wt)
         {
             decimal weight = decimal.Parse(wt);
             decimal[] l = new decimal[2];
             void parseLabour(int index)
             {
-
                 if (weight >= 3)
                 {
                     l[0] = CustomRound(decimal.Parse(helper.GoldPerGramLabour),50);
@@ -312,7 +295,6 @@ namespace SYA
                     l[1]= CustomRound(l[1],50);
                 }
             }
-
             if (weight is > 0 and < (decimal)0.5)
             {
                 parseLabour(0);
@@ -342,7 +324,6 @@ namespace SYA
                 parseLabour(5);
             }
             return l;
-
         }
         private decimal CustomRound(decimal value, decimal step)
         {
@@ -356,7 +337,6 @@ namespace SYA
                 return value + (step - remainder);
             }
         }
-
         public void UpdateIndividualTextBoxColor(TextBox onDataTextBox, TextBox recommendedTextBox)
         {
             if (onDataTextBox != null && recommendedTextBox != null &&
@@ -364,14 +344,9 @@ namespace SYA
                 double.TryParse(recommendedTextBox.Text, out double recommendedValue))
             {
                 double difference = onDataValue - recommendedValue;
-
                 // Choose the color based on the difference
                 onDataTextBox.ForeColor = GetColorBasedOnDifference(difference);
             }
         }
-
-
-
     }
-
 }

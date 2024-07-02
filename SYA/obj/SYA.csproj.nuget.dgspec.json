@@ -49,6 +49,10 @@
         "net6.0-windows8.0": {
           "targetAlias": "net6.0-windows8.0",
           "dependencies": {
+            "ExcelDataReader.DataSet": {
+              "target": "Package",
+              "version": "[3.7.0, )"
+            },
             "Guna.Charts.WinForms": {
               "target": "Package",
               "version": "[1.0.9, )"
@@ -92,6 +96,10 @@
             "QRCoder": {
               "target": "Package",
               "version": "[1.4.3, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[111.3.0, )"
             },
             "Serilog": {
               "target": "Package",

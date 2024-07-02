@@ -42,14 +42,11 @@ F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.csproj.AssemblyReference.cache
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.csproj.ResolveComReference.cache
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.addgold.resources
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.addSilver.resources
-F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.DataCareData.resources
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.login.resources
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.main.resources
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.SaleItem.resources
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.saleReport.resources
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.Search.resources
-F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.statement.resources
-F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.tempVerifyData.resources
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.csproj.GenerateResource.cache
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.GeneratedMSBuildEditorConfig.editorconfig
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.AssemblyInfoInputs.cache
@@ -135,3 +132,12 @@ F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.Properties.Resources.resources
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.PrintRTGS.resources
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.RTGSList.resources
 F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.Sell.sell.resources
+F:\SYA\SYA\bin\Release\net6.0-windows8.0\SYA.dll.config
+F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.PrintLabel.resources
+F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.Labour.resources
+F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.NotifyForm.resources
+F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.settings.resources
+F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.Stocks.goldStockDetailedSummary.resources
+F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.Stocks.silverStockDetailedSummary.resources
+F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.STOCKSummary.resources
+F:\SYA\SYA\obj\Release\net6.0-windows8.0\SYA.VerifyStock.resources

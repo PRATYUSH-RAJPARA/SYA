@@ -173,6 +173,9 @@ namespace SYA
         }
         private void button11_Click(object sender, EventArgs e)
         {
+            
+                 panelsecond.Visible = false;
+            LoadForm(new SaleSummary());
         }
         private void button12_Click(object sender, EventArgs e)
         {

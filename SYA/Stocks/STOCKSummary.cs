@@ -340,7 +340,5 @@ namespace SYA
                 panel57.Visible = true;
             }
         }
-        
-
     }
 }

@@ -100,6 +100,5 @@ namespace SYA.Helper
         {
             e.Graphics.DrawString(value, new Font("Arial", 10, FontStyle.Bold), brush, new RectangleF((float)113.5, 31, (float)56.5, 20), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
         }
-
     }
 }

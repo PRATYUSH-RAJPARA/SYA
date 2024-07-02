@@ -3,48 +3,32 @@
   "WorkspaceRootPath": "F:\\SYA\\SYA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\stocks\\silverstockdetailedsummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:stocks\\silverstockdetailedsummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\sales\\salesummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:sales\\salesummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\stocks\\goldstockdetailedsummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:stocks\\goldstockdetailedsummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\sales\\salesummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:sales\\salesummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\stocks\\goldstockdetailedsummary.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:stocks\\goldstockdetailedsummary.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\stocks\\silverstockdetailedsummary.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:stocks\\silverstockdetailedsummary.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\stocks\\silverstockdetailedsummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:stocks\\silverstockdetailedsummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\stocks\\goldstockdetailedsummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:stocks\\goldstockdetailedsummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\sell\\sell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:sell\\sell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\stocks\\stocksummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:stocks\\stocksummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\sell\\sell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:sell\\sell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\stocks\\stocksummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:stocks\\stocksummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\sya.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:sya.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -53,7 +37,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 158,
+          "DockedWidth": 107,
           "SelectedChildIndex": 3,
           "Children": [
             {
@@ -63,136 +47,90 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "goldStockDetailedSummary.Designer.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Stocks\\goldStockDetailedSummary.Designer.cs",
-              "RelativeDocumentMoniker": "Stocks\\goldStockDetailedSummary.Designer.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Stocks\\goldStockDetailedSummary.Designer.cs",
-              "RelativeToolTip": "Stocks\\goldStockDetailedSummary.Designer.cs",
-              "ViewState": "AQIAAFwBAAAAAAAAAAAowGwBAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T15:35:33.054Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "silverStockDetailedSummary.Designer.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Stocks\\silverStockDetailedSummary.Designer.cs",
-              "RelativeDocumentMoniker": "Stocks\\silverStockDetailedSummary.Designer.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Stocks\\silverStockDetailedSummary.Designer.cs",
-              "RelativeToolTip": "Stocks\\silverStockDetailedSummary.Designer.cs",
-              "ViewState": "AQIAAJoAAAAAAAAAAAAowLYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T14:24:05.744Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "silverStockDetailedSummary.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Stocks\\silverStockDetailedSummary.cs",
-              "RelativeDocumentMoniker": "Stocks\\silverStockDetailedSummary.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Stocks\\silverStockDetailedSummary.cs",
-              "RelativeToolTip": "Stocks\\silverStockDetailedSummary.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAAFwAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T14:18:19.922Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "goldStockDetailedSummary.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Stocks\\goldStockDetailedSummary.cs",
-              "RelativeDocumentMoniker": "Stocks\\goldStockDetailedSummary.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Stocks\\goldStockDetailedSummary.cs",
-              "RelativeToolTip": "Stocks\\goldStockDetailedSummary.cs",
-              "ViewState": "AQIAAJYAAAAAAAAAAAAwwAYBAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T13:44:29.004Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "silverStockDetailedSummary.cs [Design]",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Stocks\\silverStockDetailedSummary.cs",
-              "RelativeDocumentMoniker": "Stocks\\silverStockDetailedSummary.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Stocks\\silverStockDetailedSummary.cs [Design]",
-              "RelativeToolTip": "Stocks\\silverStockDetailedSummary.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T14:18:07.1Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "goldStockDetailedSummary.cs [Design]",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Stocks\\goldStockDetailedSummary.cs",
-              "RelativeDocumentMoniker": "Stocks\\goldStockDetailedSummary.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Stocks\\goldStockDetailedSummary.cs [Design]",
-              "RelativeToolTip": "Stocks\\goldStockDetailedSummary.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T14:17:14.653Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "main.Designer.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\main.Designer.cs",
-              "RelativeDocumentMoniker": "main.Designer.cs",
-              "ToolTip": "F:\\SYA\\SYA\\main.Designer.cs",
-              "RelativeToolTip": "main.Designer.cs",
-              "ViewState": "AQIAAI4CAAAAAAAAAAAiwK8CAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T14:12:29.464Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "main.cs",
               "DocumentMoniker": "F:\\SYA\\SYA\\main.cs",
               "RelativeDocumentMoniker": "main.cs",
               "ToolTip": "F:\\SYA\\SYA\\main.cs",
               "RelativeToolTip": "main.cs",
-              "ViewState": "AQIAAG4AAAAAAAAAAAAMwIcAAAAUAAAA",
+              "ViewState": "AQIAAJEAAAAAAAAAAADgv7EAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T14:12:25.627Z"
+              "WhenOpened": "2024-07-02T09:17:36.763Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "main.cs [Design]",
               "DocumentMoniker": "F:\\SYA\\SYA\\main.cs",
               "RelativeDocumentMoniker": "main.cs",
               "ToolTip": "F:\\SYA\\SYA\\main.cs [Design]",
               "RelativeToolTip": "main.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T14:11:29.329Z"
+              "WhenOpened": "2024-07-02T09:17:28.353Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "STOCKSummary.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Stocks\\STOCKSummary.cs",
-              "RelativeDocumentMoniker": "Stocks\\STOCKSummary.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Stocks\\STOCKSummary.cs",
-              "RelativeToolTip": "Stocks\\STOCKSummary.cs",
-              "ViewState": "AQIAACMBAAAAAAAAAAAIwEsBAAA+AAAA",
+              "DocumentIndex": 0,
+              "Title": "SaleSummary.cs",
+              "DocumentMoniker": "F:\\SYA\\SYA\\Sales\\SaleSummary.cs",
+              "RelativeDocumentMoniker": "Sales\\SaleSummary.cs",
+              "ToolTip": "F:\\SYA\\SYA\\Sales\\SaleSummary.cs",
+              "RelativeToolTip": "Sales\\SaleSummary.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAYwBYAAACQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T13:44:33.604Z"
+              "WhenOpened": "2024-07-02T09:13:01.093Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "STOCKSummary.cs [Design]",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Stocks\\STOCKSummary.cs",
-              "RelativeDocumentMoniker": "Stocks\\STOCKSummary.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Stocks\\STOCKSummary.cs [Design]",
-              "RelativeToolTip": "Stocks\\STOCKSummary.cs [Design]",
+              "DocumentIndex": 1,
+              "Title": "SaleSummary.cs [Design]",
+              "DocumentMoniker": "F:\\SYA\\SYA\\Sales\\SaleSummary.cs",
+              "RelativeDocumentMoniker": "Sales\\SaleSummary.cs",
+              "ToolTip": "F:\\SYA\\SYA\\Sales\\SaleSummary.cs [Design]",
+              "RelativeToolTip": "Sales\\SaleSummary.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T11:13:48.535Z"
+              "WhenOpened": "2024-07-02T07:35:43.521Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "sell.cs",
+              "DocumentMoniker": "F:\\SYA\\SYA\\Sell\\sell.cs",
+              "RelativeDocumentMoniker": "Sell\\sell.cs",
+              "ToolTip": "F:\\SYA\\SYA\\Sell\\sell.cs",
+              "RelativeToolTip": "Sell\\sell.cs",
+              "ViewState": "AQIAACoBAAAAAAAAAAApwMgAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-02T07:34:10.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "sell.cs [Design]",
+              "DocumentMoniker": "F:\\SYA\\SYA\\Sell\\sell.cs",
+              "RelativeDocumentMoniker": "Sell\\sell.cs",
+              "ToolTip": "F:\\SYA\\SYA\\Sell\\sell.cs [Design]",
+              "RelativeToolTip": "Sell\\sell.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-02T07:34:07.757Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SYA.csproj",
+              "DocumentMoniker": "F:\\SYA\\SYA\\SYA.csproj",
+              "RelativeDocumentMoniker": "SYA.csproj",
+              "ToolTip": "F:\\SYA\\SYA\\SYA.csproj",
+              "RelativeToolTip": "SYA.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-07-02T04:54:41.834Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -19,21 +19,15 @@ namespace SYA.Helper
             {
                 e.Graphics.DrawString(name, new Font("Arial", 15, FontStyle.Bold), brush, new RectangleF(4, 4, (float)217.5, 45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
             }
-
             if (type == "price")
             {
                 e.Graphics.DrawString("\u20B9" + " " + price, new Font("Arial", 15, FontStyle.Bold), brush, new RectangleF(4, 4, (float)217.5, 45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
             }
-
             if (type == "nameandprice")
             {
                 e.Graphics.DrawString(name, new Font("Arial", 15, FontStyle.Bold), brush, new RectangleF(4, 4, (float)217.5, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
                 e.Graphics.DrawString("\u20B9" + " " + price, new Font("Arial", 15, FontStyle.Bold), brush, new RectangleF(4, (float)26.5, (float)217.5, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
             }
-
-
-
-
         }
         public static void PrintReparing(object sender, PrintPageEventArgs e, List<string> ReparingData)
         {
@@ -55,8 +49,6 @@ namespace SYA.Helper
         {
             SolidBrush brush = new SolidBrush(Color.Black);
             e.Graphics.DrawRectangle(Pens.Red, 120, 135, (float)582.5, 745);
-
-
             RectangleF qrCodeRect = new RectangleF(100, 100, 300, 300);
             using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
             {
@@ -65,8 +57,6 @@ namespace SYA.Helper
                 Bitmap qrCodeBitmap = qrCode.GetGraphic((int)qrCodeRect.Width, Color.Black, Color.White, true);
                 e.Graphics.DrawImage(qrCodeBitmap, qrCodeRect);
             }
-
-
             // ph.QR("https://www.instagram.com/pushti.art", e);
             //RTGSBackGround();
             //branch();
