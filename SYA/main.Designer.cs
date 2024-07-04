@@ -54,6 +54,7 @@
             button1 = new Button();
             panel1 = new Panel();
             panelChild = new Panel();
+            button4 = new Button();
             panelfirst.SuspendLayout();
             panelsecond.SuspendLayout();
             SuspendLayout();
@@ -61,6 +62,7 @@
             // panelfirst
             // 
             panelfirst.BackColor = Color.FromArgb(3, 63, 99);
+            panelfirst.Controls.Add(button4);
             panelfirst.Controls.Add(button22);
             panelfirst.Controls.Add(btnSortContact);
             panelfirst.Controls.Add(btnCustomer);
@@ -541,6 +543,23 @@
             panelChild.Size = new Size(1067, 941);
             panelChild.TabIndex = 1;
             // 
+            // button4
+            // 
+            button4.BackColor = Color.FromArgb(3, 63, 99);
+            button4.Dock = DockStyle.Top;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.ForeColor = Color.White;
+            button4.Location = new Point(0, 560);
+            button4.Margin = new Padding(0);
+            button4.Name = "button4";
+            button4.Size = new Size(140, 40);
+            button4.TabIndex = 18;
+            button4.Text = "SaleAuto";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
             // main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -590,5 +609,6 @@
         private Button button7;
         private Button button5;
         private Button button3;
+        private Button button4;
     }
 }

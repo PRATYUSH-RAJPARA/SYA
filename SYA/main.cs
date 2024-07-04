@@ -2,6 +2,7 @@
 using SYA.Sales;
 using SYA.Sell;
 using SYA.Stocks;
+using SYA.Testing_Phase;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -173,8 +174,8 @@ namespace SYA
         }
         private void button11_Click(object sender, EventArgs e)
         {
-            
-                 panelsecond.Visible = false;
+
+            panelsecond.Visible = false;
             LoadForm(new SaleSummary());
         }
         private void button12_Click(object sender, EventArgs e)
@@ -227,6 +228,12 @@ namespace SYA
         {
             panelsecond.Visible = false;
             FetchSaleDataHelper.fetchSaleData();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            LoadForm(new SaleAuto());
+
         }
     }
     public class ApiResponseItem
