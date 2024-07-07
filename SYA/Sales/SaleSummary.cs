@@ -4,7 +4,6 @@ using System.Net;
 using System.Windows.Forms;
 using RestSharp;
 using System.Text.Json.Nodes;
-
 namespace SYA.Stocks
 {
     public partial class SaleSummary : Form
@@ -13,22 +12,18 @@ namespace SYA.Stocks
         {
             InitializeComponent();
         }
-
         private void SaleSummary_Load(object sender, EventArgs e)
         {
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             ConvertPdfToExcel("https://api.pspdfkit.com/build", "C:\\Users\\SYA\\Downloads\\report.pdf", "C:\\Users\\SYA\\Downloads\\result.xlsx");
         }
-
         public static void ConvertPdfToExcel(string apiUrl, string inputPdfPath, string outputExcelPath)
         {
             try
             {
                 var client = new RestClient(apiUrl);
-
                 var request = new RestRequest();
                 request.Method = Method.Post;
                 request.AddHeader("Authorization", "Bearer pdf_live_guovuWJqM7SrM93YySSqN5HMlfnkLSMqyaOBasRIOp1")
@@ -47,9 +42,7 @@ namespace SYA.Stocks
                                ["type"] = "xlsx"
                            }
                        }.ToString());
-
                 var response = client.Execute(request);
-
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     using var responseStream = new MemoryStream(response.RawBytes);
@@ -63,7 +56,6 @@ namespace SYA.Stocks
                     var responseContent = responseStreamReader.ReadToEnd();
                     MessageBox.Show("Error: " + responseContent, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
                 if (response.ErrorException != null)
                 {
                     throw new ApplicationException("Error converting PDF to Excel", response.ErrorException);

@@ -174,7 +174,6 @@ namespace SYA
         }
         private void button11_Click(object sender, EventArgs e)
         {
-
             panelsecond.Visible = false;
             LoadForm(new SaleSummary());
         }
@@ -229,11 +228,9 @@ namespace SYA
             panelsecond.Visible = false;
             FetchSaleDataHelper.fetchSaleData();
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
             LoadForm(new SaleAuto());
-
         }
     }
     public class ApiResponseItem
