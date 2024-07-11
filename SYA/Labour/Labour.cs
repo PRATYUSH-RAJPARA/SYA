@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using SYA.Helper;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SYA.Helper;
 namespace SYA
 {
     public partial class Labour : Form
@@ -32,8 +24,8 @@ namespace SYA
         {
             labourLoad("general");
             labourLoad("recommanded");
-          //  decimal[] a = Verification.getLabourAndWholeLabour("1");
-          //  MessageBox.Show(a[0].ToString()+" : " + a[1].ToString());   
+            //  decimal[] a = Verification.getLabourAndWholeLabour("1");
+            //  MessageBox.Show(a[0].ToString()+" : " + a[1].ToString());   
         }
         private void TextBox_Leave(object sender, EventArgs e)
         {
@@ -178,7 +170,7 @@ namespace SYA
                     UpdateIndividualTextBoxColor(textBox18, textBox61);
                     UpdateIndividualTextBoxColor(textBox17, textBox60);
                     UpdateIndividualTextBoxColor(textBox38, textBox59);
-                    textBox4.ForeColor=Color.Black;
+                    textBox4.ForeColor = Color.Black;
                 }
                 void setRecommandedWholeLabourValues()
                 {
@@ -276,7 +268,7 @@ namespace SYA
                 return Color.Black; // Default font color
             }
         }
-        public  decimal[] getLabourAndWholeLabour(string wt)
+        public decimal[] getLabourAndWholeLabour(string wt)
         {
             decimal weight = decimal.Parse(wt);
             decimal[] l = new decimal[2];
@@ -284,7 +276,7 @@ namespace SYA
             {
                 if (weight >= 3)
                 {
-                    l[0] = CustomRound(decimal.Parse(helper.GoldPerGramLabour),50);
+                    l[0] = CustomRound(decimal.Parse(helper.GoldPerGramLabour), 50);
                     l[1] = 0;
                 }
                 else
@@ -292,7 +284,7 @@ namespace SYA
                     l[0] = 0;
                     l[1] = decimal.Parse(helper.tableLabour.Rows[index]["PRICE_MIN"].ToString())
                         + ((weight - decimal.Parse(helper.tableLabour.Rows[index]["SLAB_MIN"].ToString())) / (decimal.Parse(helper.tableLabour.Rows[index]["SLAB_MAX"].ToString()) - decimal.Parse(helper.tableLabour.Rows[index]["SLAB_MIN"].ToString()))) * (decimal.Parse(helper.tableLabour.Rows[index]["PRICE_MAX"].ToString()) - decimal.Parse(helper.tableLabour.Rows[index]["PRICE_MIN"].ToString()));
-                    l[1]= CustomRound(l[1],50);
+                    l[1] = CustomRound(l[1], 50);
                 }
             }
             if (weight is > 0 and < (decimal)0.5)

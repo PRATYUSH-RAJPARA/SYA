@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SYA.Helper;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using SYA.Helper;
 namespace SYA.Stocks
 {
     public static class StockHelper
@@ -104,7 +99,7 @@ namespace SYA.Stocks
                     totalGrossWeight += Convert.ToDecimal(row.Cells["GROSS_WEIGHT"].Value);
                 }
             }
-          //  dg.Rows.Add("", "", 0,0,0);
+            //  dg.Rows.Add("", "", 0,0,0);
             dg.Rows.Add("---", " ------ T O T A L ------ ", totalCount, totalNetWeight, totalGrossWeight);
             dg.Sorted += (s, e) =>
             {

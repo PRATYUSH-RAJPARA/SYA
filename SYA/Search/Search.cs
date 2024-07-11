@@ -1,20 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Common;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
-using System.Data.SQLite;
-using System.Diagnostics;
-using System.Drawing.Printing;
-using System.Text;
-using System.Windows.Forms;
-using System.Xml.Linq;
-using Microsoft.Office.Interop.Excel;
-using QRCoder;
-using Serilog;
+﻿using Serilog;
 using SYA.Helper;
-using SYA.Sales;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data.SQLite;
+using System.Drawing.Printing;
 using Font = System.Drawing.Font;
 namespace SYA
 {

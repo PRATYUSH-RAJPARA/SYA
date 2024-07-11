@@ -1,8 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-
-namespace SYA.Testing_Phase
+﻿namespace SYA.Testing_Phase
 {
     public partial class SaleAuto : Form
     {

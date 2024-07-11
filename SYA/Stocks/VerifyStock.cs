@@ -1,6 +1,6 @@
-﻿using System.Data;
+﻿using SYA.Helper;
+using System.Data;
 using System.Data.SQLite;
-using SYA.Helper;
 namespace SYA
 {
     public partial class VerifyStock : Form

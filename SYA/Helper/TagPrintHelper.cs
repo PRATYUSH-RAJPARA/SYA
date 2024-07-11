@@ -1,13 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
-using QRCoder;
-using Serilog.Parsing;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using QRCoder;
 using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 namespace SYA.Helper
 {
     public static class TagPrintHelper

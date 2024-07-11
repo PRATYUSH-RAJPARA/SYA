@@ -1,8 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using RestSharp;
 using System.Net;
-using System.Windows.Forms;
-using RestSharp;
 using System.Text.Json.Nodes;
 namespace SYA.Stocks
 {

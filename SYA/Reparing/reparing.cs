@@ -1,8 +1,5 @@
-﻿using System.Data;
-using System.Data.SQLite;
+﻿using SYA.Helper;
 using System.Drawing.Printing;
-using System.Text;
-using SYA.Helper;
 namespace SYA.Reparing
 {
     public class reparing

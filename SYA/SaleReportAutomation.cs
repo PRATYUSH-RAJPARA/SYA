@@ -1,10 +1,5 @@
-﻿using Humanizer;
-using SYA.Helper;
-using System;
+﻿using SYA.Helper;
 using System.Data;
-using System.Drawing;
-using System.Globalization;
-using System.Windows.Forms; // Ensure you have included Windows Forms namespace
 
 namespace SYA
 {
@@ -19,7 +14,7 @@ namespace SYA
         public SaleReportAutomation()
         {
             // Initialize DataGridView
-       
+
 
             // Initialize other components or variables if needed
         }
@@ -32,7 +27,7 @@ namespace SYA
             set_column_result();
             set_column_final();
             start();
-         
+
         }
 
         void get_raw_pdf_data()
@@ -97,7 +92,7 @@ namespace SYA
             final.Columns.Add("STATUS", typeof(string));
             final.Columns.Add("ERROR", typeof(string));
         }
-         string ExtractName(string input)
+        string ExtractName(string input)
         {
             // Split the string by the '/' character
             string[] parts = input.Split('/');
@@ -227,7 +222,7 @@ namespace SYA
             }
         }
 
-       
+
 
 
 

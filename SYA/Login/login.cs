@@ -1,7 +1,5 @@
-﻿using System;
+﻿using SYA.Helper;
 using System.Data.SQLite;
-using System.Windows.Forms;
-using SYA.Helper;
 namespace SYA
 {
     public partial class login : Form
@@ -10,8 +8,8 @@ namespace SYA
         public login()
         {
             InitializeComponent();
-              connection = new SQLiteConnection(helper.SYAConnectionString);
-        //    connection = new SQLiteConnection("Data Source=C:\\Users\\91760\\Desktop\\SYA\\SYADataBase.db;Version=3;");
+            connection = new SQLiteConnection(helper.SYAConnectionString);
+            //    connection = new SQLiteConnection("Data Source=C:\\Users\\91760\\Desktop\\SYA\\SYADataBase.db;Version=3;");
         }
         private void login_Load(object sender, EventArgs e)
         {

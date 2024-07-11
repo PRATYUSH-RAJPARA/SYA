@@ -1,10 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SQLite;
-using System.Windows.Forms;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Office.Interop.Excel;
 using DataTable = System.Data.DataTable;
 namespace SYA.Helper
 {
@@ -104,7 +101,7 @@ namespace SYA.Helper
         public static void loadLabourTable()
         {
             string query = "SELECT * FROM Labour";
-             tableLabour = FetchDataTableFromSYASettingsDataBase(query);
+            tableLabour = FetchDataTableFromSYASettingsDataBase(query);
         }
         public static DataTable FetchDataTable(string connectionString, string query)
         {

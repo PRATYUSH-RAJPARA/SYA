@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using SYA.Helper;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Media;
-using SYA.Helper;
 namespace SYA.Sell
 {
     public partial class sell : Form
@@ -352,12 +344,13 @@ namespace SYA.Sell
                     accDetails();
                 }
                 else
-                {DataTable b = new DataTable();
+                {
+                    DataTable b = new DataTable();
                     b = helper.FetchDataTableFromSYADataBase("SELECT * FROM SYA_SALE_DATA WHERE TAG_NO = '" + itemToSell.Rows[0]["TAG_NO"] + "'");
                     if (b.Rows.Count > 0)
                     {
                         billno.Text = (b.Rows[0]["VCH_NO"] ?? "-").ToString();
-                    name.Text = (b.Rows[0]["AC_NAME"] ?? "-").ToString();
+                        name.Text = (b.Rows[0]["AC_NAME"] ?? "-").ToString();
                     }
                 }
             }

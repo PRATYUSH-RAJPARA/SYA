@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
+using SYA.Reparing;
 using System.Net;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SYA.Reparing;
 namespace SYA
 {
     internal static class Program
@@ -99,7 +93,7 @@ namespace SYA
                                 // Display the values for debugging
                                 // Process the data
                                 reparing reparing = new reparing();
-                                 reparing.printReparingTag(reparingData);
+                                reparing.printReparingTag(reparingData);
                                 // Create a response
                                 context.Response.StatusCode = (int)HttpStatusCode.OK;
                                 string responseString = "Variables received and processed";

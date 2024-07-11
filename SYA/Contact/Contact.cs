@@ -1,27 +1,27 @@
-﻿using System.Data;
+﻿using SYA.Helper;
+using System.Data;
 using System.Data.SQLite;
 using System.Text;
-using SYA.Helper;
 namespace SYA
 {
-    public  class Contact
+    public class Contact
     {
-         DataTable RawData = new DataTable();
-         DataTable ExcludedData = new DataTable();
-         DataTable CustomerData = new DataTable();
-         DataTable OtherData = new DataTable();
-         DataTable RelativeData = new DataTable();
-         DataTable KarigarData = new DataTable();
-         DataTable VepariData = new DataTable();
-         DataTable UnverifiedData = new DataTable();
-         DataTable RawDataSorted = new DataTable();
-         DataTable WrongData = new DataTable();
-         string rawMobile;
-         string rawName;
-         string rawSource;
-         string mobile;
-         RichTextBox richText = new RichTextBox();
-         void checkNumber(DataTable dt)
+        DataTable RawData = new DataTable();
+        DataTable ExcludedData = new DataTable();
+        DataTable CustomerData = new DataTable();
+        DataTable OtherData = new DataTable();
+        DataTable RelativeData = new DataTable();
+        DataTable KarigarData = new DataTable();
+        DataTable VepariData = new DataTable();
+        DataTable UnverifiedData = new DataTable();
+        DataTable RawDataSorted = new DataTable();
+        DataTable WrongData = new DataTable();
+        string rawMobile;
+        string rawName;
+        string rawSource;
+        string mobile;
+        RichTextBox richText = new RichTextBox();
+        void checkNumber(DataTable dt)
         {
             for (int i = dt.Rows.Count - 1; i >= 0; i--)
             {
@@ -38,12 +38,12 @@ namespace SYA
                 }
                 else
                 {
-                    row["acMobile"]=number;
+                    row["acMobile"] = number;
                 }
             }
             dt.AcceptChanges();
         }
-         void fetchData(string tableName)
+        void fetchData(string tableName)
         {
             clearData(RawData);
             if (tableName == "datacare")
@@ -71,7 +71,7 @@ namespace SYA
             clearData(VepariData);
             VepariData = helper.FetchDataTableFromSYAContactDataBase("SELECT * FROM VepariData");
         }
-         void setDataTableColumns(DataTable dt)
+        void setDataTableColumns(DataTable dt)
         {
             clearData(dt);
             dt.Columns.Add("acCode", typeof(string));
@@ -94,11 +94,11 @@ namespace SYA
             dt.Columns.Add("acGroup", typeof(string));
             dt.Columns.Add("acSource", typeof(string));
         }
-         void AddText(string text)
+        void AddText(string text)
         {
             richText.Text += "\n\n" + text;
         }
-         void printDT(DataTable dt)
+        void printDT(DataTable dt)
         {
             StringBuilder message = new StringBuilder();
             foreach (DataRow row in dt.Rows)
@@ -110,12 +110,12 @@ namespace SYA
                 message.AppendLine();
             }
         }
-         void clearData(DataTable dt)
+        void clearData(DataTable dt)
         {
             dt.Clear();
             dt.Columns.Clear();
         }
-        public  void SortContactData(RichTextBox richTextBox1, string tableName)
+        public void SortContactData(RichTextBox richTextBox1, string tableName)
         {
             richText = richTextBox1;
             fetchData(tableName);
@@ -184,7 +184,7 @@ namespace SYA
             checkNumber(RawDataSorted);
             compare(RawDataSorted);
         }
-         bool compareInTable(DataRow row_RawData, DataTable dt, bool addInUnverifiedData, string namee)
+        bool compareInTable(DataRow row_RawData, DataTable dt, bool addInUnverifiedData, string namee)
         {
             rawMobile = row_RawData["acMobile"].ToString();
             rawName = row_RawData["acName0"].ToString();
@@ -223,7 +223,7 @@ namespace SYA
             }
             return r;
         }
-        private  void compare(DataTable dt)
+        private void compare(DataTable dt)
         {
             DataRow[] dtRows = dt.Select();
             for (int rowIndex = 0; rowIndex < dtRows.Length; rowIndex++)
@@ -257,7 +257,7 @@ namespace SYA
             addDatatableToDatabase(UnverifiedData, "UnverifiedData");
             printDT(OtherData);
         }
-        public  void addDatatableToDatabase(DataTable dt, string tableName)
+        public void addDatatableToDatabase(DataTable dt, string tableName)
         {
             // Remove all data from the table
             string deleteQuery = $"DELETE FROM {tableName}";
@@ -290,7 +290,7 @@ namespace SYA
             }
             MessageBox.Show($"Data successfully inserted into {tableName} table.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        public  void showMsg()
+        public void showMsg()
         {
             MessageBox.Show("Hello");
         }

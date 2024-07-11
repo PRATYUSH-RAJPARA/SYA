@@ -1,9 +1,6 @@
-﻿using Humanizer;
-using SYA.Helper;
-using System;
+﻿using SYA.Helper;
 using System.Data;
 using System.Drawing.Printing;
-using System.Windows.Forms;
 using Form = System.Windows.Forms.Form;
 namespace SYA
 {
@@ -48,7 +45,7 @@ namespace SYA
         }
         private void Print(object sender, PrintPageEventArgs e)
         {
-            PrintHelper.PrintRTGS(sender, e,RTGSDATA);
+            PrintHelper.PrintRTGS(sender, e, RTGSDATA);
         }
         private void SecondForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -95,7 +92,8 @@ namespace SYA
                     {
                         textBox3.Focus();
                     }));
-                } catch { }
+                }
+                catch { }
             }
         }
         private void button2_Click(object sender, EventArgs e)
@@ -212,7 +210,7 @@ namespace SYA
                 PrintLabels();
             }
         }
-        public void PrintRTGS_API(string id,string amt)
+        public void PrintRTGS_API(string id, string amt)
         {
             FetchAndLoadData(id);
             SortAndPrintRTGS(amt);

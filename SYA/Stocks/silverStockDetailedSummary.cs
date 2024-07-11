@@ -1,7 +1,5 @@
-﻿using System;
+﻿using SYA.Helper;
 using System.Data;
-using System.Windows.Forms;
-using SYA.Helper;
 namespace SYA.Stocks
 {
     public partial class silverStockDetailedSummary : Form
@@ -26,7 +24,7 @@ namespace SYA.Stocks
             StockHelper.LoadDataGridView(Table_925, dataGridView2, "S");
             dataGridView1.Sort(dataGridView1.Columns["ITEM_NAME"], System.ComponentModel.ListSortDirection.Ascending);
             dataGridView2.Sort(dataGridView2.Columns["ITEM_NAME"], System.ComponentModel.ListSortDirection.Ascending);
-             void PopulateTable(DataTable dt, string purity)
+            void PopulateTable(DataTable dt, string purity)
             {
                 foreach (System.Data.DataRow row in MAIN_DATA.Rows)
                 {

@@ -1,20 +1,9 @@
 ﻿using Serilog;
-using System;
-using System.Data;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
-using System.Data.SQLite;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using static System.Data.Entity.Infrastructure.Design.Executor;
-using System.ComponentModel;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using TextBox = System.Windows.Forms.TextBox;
-using QRCoder;
-using System.Drawing.Printing;
-using System.Runtime.InteropServices;
-using System.Diagnostics.Eventing.Reader;
-using System.Reflection;
 using SYA.Helper;
+using System.Data;
+using System.Data.SQLite;
+using System.Drawing.Printing;
+using TextBox = System.Windows.Forms.TextBox;
 namespace SYA
 {
     public partial class addgold : Form
@@ -123,7 +112,7 @@ namespace SYA
             {
                 if (dataGridView1.Columns[e.ColumnIndex].Name == "gross")
                 {
-                    if (dataGridView1.Rows[e.RowIndex].Cells["net"].Value == null || (decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells["net"].Value.ToString())>decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells["gross"].Value.ToString())))
+                    if (dataGridView1.Rows[e.RowIndex].Cells["net"].Value == null || (decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells["net"].Value.ToString()) > decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells["gross"].Value.ToString())))
                     {
                         dataGridView1.Rows[e.RowIndex].Cells["net"].Value = dataGridView1.Rows[e.RowIndex].Cells["gross"].Value;
                     }

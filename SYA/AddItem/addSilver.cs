@@ -1,19 +1,8 @@
-﻿using QRCoder;
-using Serilog;
+﻿using Serilog;
 using SYA.Helper;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
-using System.Data.OleDb;
 using System.Data.SQLite;
-using System.Drawing;
 using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 namespace SYA
 {
     public partial class addSilver : Form
@@ -45,7 +34,7 @@ namespace SYA
             addSilverDataGridView.DataSource = GetEmptyDataTable();
             addSilverDataGridView.RowHeadersVisible = true;
             UpdateRowNumbers();
-            txtCurrentPrice.Text=helper.SilverPerGramLabour;
+            txtCurrentPrice.Text = helper.SilverPerGramLabour;
         }
         private void InitializeDatabaseConnection()
         {
@@ -634,9 +623,9 @@ namespace SYA
             try
             {
                 PrintDocument pd = new PrintDocument();
-                pd.PrinterSettings.PrinterName =helper.TagPrinterName;
-                    pd.PrintPage += new PrintPageEventHandler(PrintPageSilver925);
-                    pd.Print();
+                pd.PrinterSettings.PrinterName = helper.TagPrinterName;
+                pd.PrintPage += new PrintPageEventHandler(PrintPageSilver925);
+                pd.Print();
             }
             catch (Exception ex)
             {

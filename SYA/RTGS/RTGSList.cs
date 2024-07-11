@@ -1,8 +1,5 @@
-﻿using System;
+﻿using SYA.Helper;
 using System.Data;
-using System.Linq;
-using System.Windows.Forms;
-using SYA.Helper;
 namespace SYA
 {
     public partial class RTGSList : Form
@@ -60,8 +57,8 @@ namespace SYA
             }
             else if (e.KeyChar == (char)Keys.Enter)
             {
-                    selectedID = dataGridView1.CurrentRow.Cells[0].Value.ToString(); ;
-                    this.Close();
+                selectedID = dataGridView1.CurrentRow.Cells[0].Value.ToString(); ;
+                this.Close();
             }
             else
             {

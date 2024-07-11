@@ -10,7 +10,7 @@ namespace SYA.Helper
     {
         public static string connectionToSYADatabase = helper.SYAConnectionString;
         public static NotifyForm notifyForm;
-        public static void InsertInStockDataIntoSQLite( string queryToFetchFromMSAccess)
+        public static void InsertInStockDataIntoSQLite(string queryToFetchFromMSAccess)
         {
             DataTable data = helper.FetchDataTableFromDataCareDataBase(queryToFetchFromMSAccess);
             List<int> errorRows = new List<int>();

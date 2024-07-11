@@ -1,16 +1,7 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using SYA.Helper;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.OleDb;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using DataTable = System.Data.DataTable;
 using Font = System.Drawing.Font;
 namespace SYA
@@ -115,7 +106,7 @@ namespace SYA
         {
             dataGridView1.RowHeadersVisible = false;
             // Define the widths for each column
-            int[] columnWidths = { 150, 100, 100, 285, 75,100,90,90,100,100,100,100 }; // Example widths, adjust as needed
+            int[] columnWidths = { 150, 100, 100, 285, 75, 100, 90, 90, 100, 100, 100, 100 }; // Example widths, adjust as needed
             // Apply styles to the DataGridView columns
             for (int i = 0; i < dataGridView1.Columns.Count; i++)
             {
@@ -141,7 +132,7 @@ namespace SYA
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
         }
-            private void btnShowData_Click(object sender, EventArgs e)
+        private void btnShowData_Click(object sender, EventArgs e)
         {
             DateTime startDate = startDatePicker.Value.Date;
             DateTime endDate = endDatePicker.Value.Date;
