@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Microsoft.Office.Interop.Excel;
+using System.Data;
 using System.Data.SQLite;
 using System.Text;
 using Application = System.Windows.Forms.Application;
@@ -34,7 +35,7 @@ namespace SYA.Helper
                                 int rowCount = Convert.ToInt32(checkCommand.ExecuteScalar());
                                 if (rowCount > 0)
                                 {
-                                    using (SQLiteCommand updateCommand = new SQLiteCommand("UPDATE MAIN_DATA SET CO_YEAR = @CO_YEAR, CO_BOOK = @CO_BOOK, VCH_NO = @VCH_NO, VCH_DATE = @VCH_DATE, GW = @GW, NW = @NW,IT_TYPE = @IT_TYPE, ITEM_CODE = @ITEM_CODE, ITEM_PURITY = @ITEM_PURITY, AC_CODE = @AC_CODE, AC_NAME = @AC_NAME, ITEM_DESC = @ITEM_DESC WHERE TAG_NO = @TAG_NO", sqliteConnection))
+                                    using (SQLiteCommand updateCommand = new SQLiteCommand("UPDATE MAIN_DATA SET CO_YEAR = @CO_YEAR, CO_BOOK = @CO_BOOK, VCH_NO = @VCH_NO, VCH_DATE = @VCH_DATE, GW = @GW, NW = @NW,IT_TYPE = @IT_TYPE, ITEM_CODE = @ITEM_CODE,ITEM_TYPE = @ITEM_TYPE, ITEM_PURITY = @ITEM_PURITY,WHOLE_LABOUR_AMT=@LBR_AMT,LABOUR_AMT=@LABOUR_AMT, OTHER_AMT=@OTHER_AMT, AC_CODE = @AC_CODE, AC_NAME = @AC_NAME, ITEM_DESC = @ITEM_DESC WHERE TAG_NO = @TAG_NO", sqliteConnection))
                                     {
                                         MapInStockParameters(updateCommand.Parameters, row);
                                         updateCommand.ExecuteNonQuery();
@@ -43,7 +44,7 @@ namespace SYA.Helper
                                 }
                                 else
                                 {
-                                    using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW,HUID1,HUID2, LABOUR_AMT, OTHER_AMT,IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW,@HUID1,@HUID2, @LABOUR_AMT, @OTHER_AMT, @IT_TYPE, @ITEM_CODE, @ITEM_PURITY, @ITEM_DESC, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
+                                    using (SQLiteCommand insertCommand = new SQLiteCommand("INSERT INTO MAIN_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW,HUID1,HUID2, WHOLE_LABOUR_AMT,LABOUR_AMT, OTHER_AMT,IT_TYPE, ITEM_CODE,ITEM_TYPE, ITEM_PURITY, ITEM_DESC, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @TAG_NO, @GW, @NW,@HUID1,@HUID2, @LBR_AMT,@LABOUR_AMT, @OTHER_AMT, @IT_TYPE, @ITEM_CODE,@ITEM_TYPE, @ITEM_PURITY, @ITEM_DESC, @SIZE, @PRICE, @STATUS, @AC_CODE, @AC_NAME, @COMMENT)", sqliteConnection))
                                     {
                                         MapInStockParameters(insertCommand.Parameters, row);
                                         insertCommand.ExecuteNonQuery();
@@ -89,6 +90,8 @@ namespace SYA.Helper
                         Application.DoEvents();
                     }
                     notifyForm.Close();
+                    main l = new main();
+                    l.LoadForm(new Search());
                 }
                 if (errorRows.Count > 0)
                 {
@@ -106,24 +109,55 @@ namespace SYA.Helper
         }
         private static void MapInStockParameters(SQLiteParameterCollection parameters, DataRow row)
         {
+
             parameters.AddWithValue("@CO_YEAR", row["CO_YEAR"]);
             parameters.AddWithValue("@CO_BOOK", row["CO_BOOK"]);
             parameters.AddWithValue("@VCH_NO", "SYA00");
             parameters.AddWithValue("@VCH_DATE", row["VCH_DATE"]);
             parameters.AddWithValue("@TAG_NO", row["TAG_NO"]);
             parameters.AddWithValue("@GW", row["ITM_GWT"]);
+            parameters.AddWithValue("@ITEM_TYPE", row["ITM_SIZE"]);
             parameters.AddWithValue("@NW", row["ITM_NWT"]);
-            parameters.AddWithValue("@LABOUR_AMT", row["LBR_RATE"]);
+            if (row["LBR_RATE"].ToString() == "0")
+            {
+                parameters.AddWithValue("@LABOUR_AMT", row["LBR_RATE"]);
+                parameters.AddWithValue("@LBR_AMT", row["LBR_AMT"]);
+            }
+            else
+            {
+                parameters.AddWithValue("@LABOUR_AMT", row["LBR_RATE"]);
+                parameters.AddWithValue("@LBR_AMT","0");
+            }
+           
             parameters.AddWithValue("@OTHER_AMT", row["OTH_AMT"]);
             parameters.AddWithValue("@IT_TYPE", row["IT_TYPE"]);
             parameters.AddWithValue("@ITEM_CODE", row["PR_CODE"]);
             string PR_CODE = row["PR_CODE"].ToString();
             parameters.AddWithValue("@ITEM_PURITY", GetItemPurity(row["IT_CODE"].ToString(), PR_CODE));
-            string IT_TYPE = row["IT_TYPE"].ToString(); string itemDesc = GetItemDescFromSQLite(PR_CODE, IT_TYPE);
+            string IT_TYPE = row["IT_TYPE"].ToString();
+            string itemDesc = GetItemDescFromSQLite(PR_CODE, IT_TYPE);
             parameters.AddWithValue("@ITEM_DESC", itemDesc);
-            parameters.AddWithValue("@HUID1", DBNull.Value); parameters.AddWithValue("@HUID2", DBNull.Value); parameters.AddWithValue("@SIZE", row["ITM_SIZE"]);
+
+            seperateHUID(row["DESIGN"].ToString(), parameters);
+            parameters.AddWithValue("@SIZE", DBNull.Value);
             parameters.AddWithValue("@PRICE", row["MRP"]);
-            parameters.AddWithValue("@STATUS", "INSTOCK"); parameters.AddWithValue("@AC_CODE", DBNull.Value); parameters.AddWithValue("@AC_NAME", DBNull.Value); parameters.AddWithValue("@COMMENT", row["DESIGN"]);
+            parameters.AddWithValue("@STATUS", "INSTOCK");
+            parameters.AddWithValue("@AC_CODE", DBNull.Value);
+            parameters.AddWithValue("@AC_NAME", DBNull.Value);
+        }
+        private static void seperateHUID(string value, SQLiteParameterCollection parameters1)
+        {
+
+            string A1 = "", A2 = "", A3 = "";
+
+            string[] values = value.Split(',');
+
+            if (values.Length > 0) A1 = values[0];
+            if (values.Length > 1) A2 = values[1];
+            if (values.Length > 2) A3 = string.Join(",", values.Skip(2));
+            parameters1.AddWithValue("@HUID1", A1);
+            parameters1.AddWithValue("@HUID2", A2);
+            parameters1.AddWithValue("@COMMENT", A3);
         }
         private static void ShowInStockErrorRowsDialog(List<int> errorRows, DataTable data)
         {

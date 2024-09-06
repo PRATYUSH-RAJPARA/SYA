@@ -26,6 +26,7 @@
         private void InitializeComponent()
         {
             panelfirst = new Panel();
+            button4 = new Button();
             button22 = new Button();
             btnSortContact = new Button();
             btnCustomer = new Button();
@@ -39,6 +40,8 @@
             btnAddItem = new Button();
             panel2 = new Panel();
             panelsecond = new Panel();
+            btnEditRTGS = new Button();
+            button8 = new Button();
             button5 = new Button();
             button3 = new Button();
             button7 = new Button();
@@ -54,7 +57,6 @@
             button1 = new Button();
             panel1 = new Panel();
             panelChild = new Panel();
-            button4 = new Button();
             panelfirst.SuspendLayout();
             panelsecond.SuspendLayout();
             SuspendLayout();
@@ -80,8 +82,25 @@
             panelfirst.Margin = new Padding(3, 2, 3, 2);
             panelfirst.MaximumSize = new Size(140, 3000);
             panelfirst.Name = "panelfirst";
-            panelfirst.Size = new Size(140, 1061);
+            panelfirst.Size = new Size(140, 1005);
             panelfirst.TabIndex = 5;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.FromArgb(3, 63, 99);
+            button4.Dock = DockStyle.Top;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.ForeColor = Color.White;
+            button4.Location = new Point(0, 560);
+            button4.Margin = new Padding(0);
+            button4.Name = "button4";
+            button4.Size = new Size(140, 40);
+            button4.TabIndex = 18;
+            button4.Text = "SaleAuto";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // button22
             // 
@@ -282,6 +301,8 @@
             // panelsecond
             // 
             panelsecond.BackColor = Color.FromArgb(254, 223, 160);
+            panelsecond.Controls.Add(btnEditRTGS);
+            panelsecond.Controls.Add(button8);
             panelsecond.Controls.Add(button5);
             panelsecond.Controls.Add(button3);
             panelsecond.Controls.Add(button7);
@@ -299,8 +320,42 @@
             panelsecond.Location = new Point(140, 120);
             panelsecond.Margin = new Padding(3, 2, 3, 2);
             panelsecond.Name = "panelsecond";
-            panelsecond.Size = new Size(140, 941);
+            panelsecond.Size = new Size(140, 885);
             panelsecond.TabIndex = 6;
+            // 
+            // btnEditRTGS
+            // 
+            btnEditRTGS.BackColor = Color.FromArgb(254, 223, 160);
+            btnEditRTGS.Dock = DockStyle.Top;
+            btnEditRTGS.FlatAppearance.BorderSize = 0;
+            btnEditRTGS.FlatStyle = FlatStyle.Flat;
+            btnEditRTGS.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEditRTGS.ForeColor = Color.FromArgb(3, 63, 99);
+            btnEditRTGS.Location = new Point(0, 691);
+            btnEditRTGS.Margin = new Padding(0);
+            btnEditRTGS.Name = "btnEditRTGS";
+            btnEditRTGS.Size = new Size(140, 40);
+            btnEditRTGS.TabIndex = 26;
+            btnEditRTGS.Text = "Add / Edit RTGS";
+            btnEditRTGS.UseVisualStyleBackColor = false;
+            btnEditRTGS.Click += btnEditRTGS_Click;
+            // 
+            // button8
+            // 
+            button8.BackColor = Color.FromArgb(254, 223, 160);
+            button8.Dock = DockStyle.Top;
+            button8.FlatAppearance.BorderSize = 0;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button8.ForeColor = Color.FromArgb(3, 63, 99);
+            button8.Location = new Point(0, 624);
+            button8.Margin = new Padding(0);
+            button8.Name = "button8";
+            button8.Size = new Size(140, 67);
+            button8.TabIndex = 25;
+            button8.Text = "FETCH DATACARE CONTACTS";
+            button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // button5
             // 
@@ -530,7 +585,7 @@
             panel1.Location = new Point(140, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1207, 120);
+            panel1.Size = new Size(1144, 120);
             panel1.TabIndex = 1;
             // 
             // panelChild
@@ -540,31 +595,14 @@
             panelChild.Location = new Point(280, 120);
             panelChild.Margin = new Padding(3, 2, 3, 2);
             panelChild.Name = "panelChild";
-            panelChild.Size = new Size(1067, 941);
+            panelChild.Size = new Size(1004, 885);
             panelChild.TabIndex = 1;
-            // 
-            // button4
-            // 
-            button4.BackColor = Color.FromArgb(3, 63, 99);
-            button4.Dock = DockStyle.Top;
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.ForeColor = Color.White;
-            button4.Location = new Point(0, 560);
-            button4.Margin = new Padding(0);
-            button4.Name = "button4";
-            button4.Size = new Size(140, 40);
-            button4.TabIndex = 18;
-            button4.Text = "SaleAuto";
-            button4.UseVisualStyleBackColor = false;
-            button4.Click += button4_Click;
             // 
             // main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1347, 1061);
+            ClientSize = new Size(1284, 1005);
             Controls.Add(panelChild);
             Controls.Add(panelsecond);
             Controls.Add(panel1);
@@ -610,5 +648,7 @@
         private Button button5;
         private Button button3;
         private Button button4;
+        private Button button8;
+        private Button btnEditRTGS;
     }
 }

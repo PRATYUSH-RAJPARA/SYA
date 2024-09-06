@@ -28,7 +28,7 @@ namespace SYA
             helper.loadLabourTable();
         }
         // Loads form by name in panelchild
-        private void LoadForm(Form form)
+        public void LoadForm(Form form)
         {
             // Close the currently displayed form (if any)
             if (panelChild.Controls.Count > 0)
@@ -96,6 +96,7 @@ namespace SYA
             btnHideAllSecondPanelButtons();
             panelsecond.Visible = true;
             button17.Visible = true;
+            btnEditRTGS.Visible = true;
         }
         private void btnImportData_Click(object sender, EventArgs e)
         {
@@ -103,6 +104,7 @@ namespace SYA
             panelsecond.Visible = true;
             button20.Visible = true;
             button3.Visible = true;
+            button4.Visible = true;
             button5.Visible = true;
         }
         private void btnHideAllSecondPanelButtons()
@@ -110,6 +112,7 @@ namespace SYA
             button1.Visible = false;
             button2.Visible = false;
             button3.Visible = false;
+            button4.Visible = false;
             button5.Visible = false;
             button6.Visible = false;
             button10.Visible = false;
@@ -117,6 +120,7 @@ namespace SYA
             button13.Visible = false;
             button12.Visible = false;
             button17.Visible = false;
+            btnEditRTGS.Visible = false;
             button20.Visible = false;
             button23.Visible = false;
             button22.Visible = false;
@@ -213,6 +217,7 @@ namespace SYA
             panelsecond.Visible = false;
             string queryToFetchFromMSAccess = "SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '015' OR CO_BOOK = '15'";
             HelperFetchData.InsertInStockDataIntoSQLite(queryToFetchFromMSAccess);
+
         }
         private void button5_Click(object sender, EventArgs e)
         {
@@ -222,6 +227,20 @@ namespace SYA
         private void button4_Click(object sender, EventArgs e)
         {
             LoadForm(new SaleAuto());
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            panelsecond.Visible = false;
+            RichTextBox r = new RichTextBox();
+            Contact contact = new Contact();
+            contact.SortContactData(r, "datacare");
+        }
+
+        private void btnEditRTGS_Click(object sender, EventArgs e)
+        {
+            panelsecond.Visible = false;
+            LoadForm(new ADDEDITRTGS());
         }
     }
     public class ApiResponseItem

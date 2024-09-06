@@ -30,6 +30,7 @@ namespace SYA
                 label3.Text = $"Data Not Found for TagNumber : {t}";
                 textBox1.Text = "";
                 textBox1.Focus();
+                panel1.BackColor = Color.Red;
             }
         }
         private void InsertRowIntoNewTable(DataRow row)
@@ -41,6 +42,7 @@ namespace SYA
                 {
                     label3.Text = $"Data Already Exists for TagNumber : {row["TAG_NO"]}";
                     textBox1.Text = "";
+                    panel1.BackColor= Color.Yellow;
                     textBox1.Focus();
                     return;
                 }
@@ -48,11 +50,12 @@ namespace SYA
                 {
                     string insertQuery = $@"
                     INSERT INTO {helper.DataVerificationNewTable} 
-                    (ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT)
+                    (ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE,ITEM_TYPE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT)
                     VALUES 
-                    ({row["ID"]}, '{row["CO_YEAR"]}', '{row["CO_BOOK"]}', '{row["VCH_NO"]}', '{row["VCH_DATE"]}', '{row["TAG_NO"]}', '{row["GW"]}', '{row["NW"]}', '{row["LABOUR_AMT"]}', '{row["WHOLE_LABOUR_AMT"]}', '{row["OTHER_AMT"]}', '{row["IT_TYPE"]}', '{row["ITEM_CODE"]}', '{row["ITEM_PURITY"]}', '{row["ITEM_DESC"]}', '{row["HUID1"]}', '{row["HUID2"]}', '{row["SIZE"]}', '{row["PRICE"]}', '{row["STATUS"]}', '{row["AC_CODE"]}', '{row["AC_NAME"]}', '{row["COMMENT"]}', '{row["PRINT"]}')";
+                    ({row["ID"]}, '{row["CO_YEAR"]}', '{row["CO_BOOK"]}', '{row["VCH_NO"]}', '{row["VCH_DATE"]}', '{row["TAG_NO"]}', '{row["GW"]}', '{row["NW"]}', '{row["LABOUR_AMT"]}', '{row["WHOLE_LABOUR_AMT"]}', '{row["OTHER_AMT"]}', '{row["IT_TYPE"]}', '{row["ITEM_CODE"]}','{row["ITEM_CODE"]}', '{row["ITEM_PURITY"]}', '{row["ITEM_DESC"]}', '{row["HUID1"]}', '{row["HUID2"]}', '{row["SIZE"]}', '{row["PRICE"]}', '{row["STATUS"]}', '{row["AC_CODE"]}', '{row["AC_NAME"]}', '{row["COMMENT"]}', '{row["PRINT"]}')";
                     helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
                     label3.Text = $"Data Inserted Successfully for TagNumber : {row["TAG_NO"]}";
+                    panel1.BackColor = Color.Green;
                     textBox1.Text = "";
                     textBox1.Focus();
                 }

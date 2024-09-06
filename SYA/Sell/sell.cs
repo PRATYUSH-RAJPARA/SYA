@@ -1,4 +1,5 @@
 ﻿using SYA.Helper;
+using SYA.Sales;
 using System.Data;
 using System.Media;
 namespace SYA.Sell
@@ -75,33 +76,31 @@ namespace SYA.Sell
             }
             void sort()
             {
-                MessageBox.Show("s34");
-                MessageBox.Show("s3111   :   " + itemToSell.Rows[0]["HUID1"].ToString().Length + "  :  " + itemToSell.Rows[0]["HUID2"].ToString().Length);
+
                 if (itemToSell.Rows[0]["IT_TYPE"].ToString() == "S")
                 {
                     silverItem();
                 }
                 else if (itemToSell.Rows[0]["IT_TYPE"].ToString() == "G" && itemToSell.Rows[0]["TAG_NO"].ToString().Contains("SYA"))
                 {
-                    MessageBox.Show("s3   :   " + itemToSell.Rows[0]["HUID1"].ToString().Length + "  :  " + itemToSell.Rows[0]["HUID2"].ToString().Length);
                     if (itemToSell.Rows[0]["HUID1"].ToString().Length == 0 && itemToSell.Rows[0]["HUID2"].ToString().Length == 0)
                     {
-                        MessageBox.Show("s1");
+
                         syaItem();
                     }
                     else if (itemToSell.Rows[0]["HUID1"].ToString().Length == 6 || itemToSell.Rows[0]["HUID2"].ToString().Length == 6)
                     {
-                        MessageBox.Show("s2");
+
                         syaHUIDItem();
                     }
                 }
                 else if (itemToSell.Rows[0]["IT_TYPE"].ToString() == "G")
                 {
+
                     dataCareItem();
                 }
                 else
                 {
-                    MessageBox.Show(itemToSell.Rows[0]["IT_TYPE"].ToString());
                 }
             }
             bool check(string s)
@@ -170,11 +169,18 @@ namespace SYA.Sell
                             DialogResult result = MessageBox.Show("Item bill is created but data is not fetched yet, Do you wanna fetch data right now?", "Confirmation", MessageBoxButtons.YesNo);
                             if (result == DialogResult.Yes)
                             {
-                                MessageBox.Show("User clicked Yes");
+                                string tag = txtTAGNO.Text.ToUpper();
+                                FetchSaleDataHelper.fetchSaleData();
+                                if (!autoSell)
+                                {
+                                    button2.Visible = true;
+                                    button2.Focus();
+                                }
+                                getSellItem(txtTAGNO.Text);
+                                txtTAGNO.Text = string.Empty;
                             }
                             else if (result == DialogResult.No)
                             {
-                                MessageBox.Show("User clicked No");
                             }
                         }
                         else
@@ -203,13 +209,11 @@ namespace SYA.Sell
             }
             void syaHUIDItem()
             {
-                MessageBox.Show("s");
                 loadDataInLabels(itemToSell, "sya");
                 if (sell)
                 {
-                    MessageBox.Show(itemToSell.Rows[0]["HUID1"].ToString());
                     string insertQuery =
-                        @"INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT) 
+                        @"INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT) 
         VALUES (
             " + (itemToSell.Rows[0]["CO_YEAR"] == DBNull.Value ? "NULL" : itemToSell.Rows[0]["CO_YEAR"].ToString()) + @",
             " + (itemToSell.Rows[0]["CO_BOOK"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["CO_BOOK"].ToString() + "'") + @",
@@ -221,6 +225,7 @@ namespace SYA.Sell
             " + (itemToSell.Rows[0]["LABOUR_AMT"] == DBNull.Value ? "NULL" : Convert.ToDecimal(itemToSell.Rows[0]["LABOUR_AMT"]).ToString()) + @",
             " + (itemToSell.Rows[0]["WHOLE_LABOUR_AMT"] == DBNull.Value ? "NULL" : Convert.ToDecimal(itemToSell.Rows[0]["WHOLE_LABOUR_AMT"]).ToString()) + @",
             " + (itemToSell.Rows[0]["OTHER_AMT"] == DBNull.Value ? "NULL" : Convert.ToDecimal(itemToSell.Rows[0]["OTHER_AMT"]).ToString()) + @",
+            " + (itemToSell.Rows[0]["ITEM_TYPE"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["ITEM_TYPE"].ToString() + "'") + @",
             " + (itemToSell.Rows[0]["IT_TYPE"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["IT_TYPE"].ToString() + "'") + @",
             " + (itemToSell.Rows[0]["ITEM_CODE"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["ITEM_CODE"].ToString() + "'") + @",
             " + (itemToSell.Rows[0]["ITEM_PURITY"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["ITEM_PURITY"].ToString() + "'") + @",
@@ -229,7 +234,7 @@ namespace SYA.Sell
             " + (itemToSell.Rows[0]["HUID2"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["HUID2"].ToString() + "'") + @",
             " + (itemToSell.Rows[0]["SIZE"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["SIZE"].ToString() + "'") + @",
             " + (itemToSell.Rows[0]["PRICE"] == DBNull.Value ? "NULL" : Convert.ToDecimal(itemToSell.Rows[0]["PRICE"]).ToString()) + @",
-            " + "SOLD" + @",
+            " + "'SOLD'" + @",
             " + (itemToSell.Rows[0]["AC_CODE"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["AC_CODE"].ToString() + "'") + @",
             " + (itemToSell.Rows[0]["AC_NAME"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["AC_NAME"].ToString() + "'") + @",
             " + (itemToSell.Rows[0]["COMMENT"] == DBNull.Value ? "NULL" : "'" + itemToSell.Rows[0]["COMMENT"].ToString() + "'") + @",
@@ -260,6 +265,7 @@ namespace SYA.Sell
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
+
                 txtTAGNO.Text = txtTAGNO.Text.ToUpper();
                 if (!autoSell)
                 {
@@ -368,7 +374,7 @@ namespace SYA.Sell
         {
             EmptyLabels();
             button2.Visible = false;
-            txtTAGNO.Text = string.Empty;
+           // txtTAGNO.Text = string.Empty;
             label25.Text = string.Empty;
             timer1.Stop();
         }

@@ -1,4 +1,5 @@
-﻿using SYA.Helper;
+﻿using LiveCharts.Configurations;
+using SYA.Helper;
 using System.Data;
 namespace SYA
 {
@@ -25,7 +26,7 @@ namespace SYA
             labourLoad("general");
             labourLoad("recommanded");
             //  decimal[] a = Verification.getLabourAndWholeLabour("1");
-            //  MessageBox.Show(a[0].ToString()+" : " + a[1].ToString());   
+ 
         }
         private void TextBox_Leave(object sender, EventArgs e)
         {
@@ -270,7 +271,15 @@ namespace SYA
         }
         public decimal[] getLabourAndWholeLabour(string wt)
         {
-            decimal weight = decimal.Parse(wt);
+            decimal weight = 0;
+            try
+            {
+                 weight = decimal.Parse(wt);
+            }
+            catch
+            {
+                weight = 0;
+            }
             decimal[] l = new decimal[2];
             void parseLabour(int index)
             {

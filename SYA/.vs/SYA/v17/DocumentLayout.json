@@ -3,28 +3,16 @@
   "WorkspaceRootPath": "F:\\SYA\\SYA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\helper\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:helper\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\additem\\silver\\addsilver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:additem\\silver\\addsilver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\salereportautomation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:salereportautomation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya\\sya\\additem\\silver\\normalfunc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:additem\\silver\\normalfunc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\additem\\addgold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:additem\\addgold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\testing phase\\saleauto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:testing phase\\saleauto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\sales\\salesummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:sales\\salesummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\testing phase\\saleauto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:testing phase\\saleauto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA\\SYA\\additem\\silver\\addsilver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:additem\\silver\\addsilver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,7 +21,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 107,
+          "DockedWidth": 373,
           "SelectedChildIndex": 1,
           "Children": [
             {
@@ -43,75 +31,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "helper.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Helper\\helper.cs",
-              "RelativeDocumentMoniker": "Helper\\helper.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Helper\\helper.cs",
-              "RelativeToolTip": "Helper\\helper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "addSilver.cs",
+              "DocumentMoniker": "F:\\SYA\\SYA\\AddItem\\Silver\\addSilver.cs",
+              "RelativeDocumentMoniker": "AddItem\\Silver\\addSilver.cs",
+              "ToolTip": "F:\\SYA\\SYA\\AddItem\\Silver\\addSilver.cs",
+              "RelativeToolTip": "AddItem\\Silver\\addSilver.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAKwCAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T04:51:47.623Z",
+              "WhenOpened": "2024-09-05T14:13:29.303Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "addgold.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\AddItem\\addgold.cs",
-              "RelativeDocumentMoniker": "AddItem\\addgold.cs",
-              "ToolTip": "F:\\SYA\\SYA\\AddItem\\addgold.cs",
-              "RelativeToolTip": "AddItem\\addgold.cs",
-              "ViewState": "AQIAAJgAAAAAAAAAAADwv7oAAAAQAAAA",
+              "Title": "addSilver.cs [Design]",
+              "DocumentMoniker": "F:\\SYA\\SYA\\AddItem\\Silver\\addSilver.cs",
+              "RelativeDocumentMoniker": "AddItem\\Silver\\addSilver.cs",
+              "ToolTip": "F:\\SYA\\SYA\\AddItem\\Silver\\addSilver.cs [Design]",
+              "RelativeToolTip": "AddItem\\Silver\\addSilver.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-05T18:43:22.377Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SaleSummary.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Sales\\SaleSummary.cs",
-              "RelativeDocumentMoniker": "Sales\\SaleSummary.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Sales\\SaleSummary.cs",
-              "RelativeToolTip": "Sales\\SaleSummary.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-04T11:56:38.979Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SaleAuto.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Testing Phase\\SaleAuto.cs",
-              "RelativeDocumentMoniker": "Testing Phase\\SaleAuto.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Testing Phase\\SaleAuto.cs*",
-              "RelativeToolTip": "Testing Phase\\SaleAuto.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-04T10:21:38.869Z"
-            },
+              "WhenOpened": "2024-09-05T14:13:15.334Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 373,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SaleReportAutomation.cs",
-              "DocumentMoniker": "F:\\SYA\\SYA\\SaleReportAutomation.cs",
-              "RelativeDocumentMoniker": "SaleReportAutomation.cs",
-              "ToolTip": "F:\\SYA\\SYA\\SaleReportAutomation.cs",
-              "RelativeToolTip": "SaleReportAutomation.cs",
-              "ViewState": "AQIAAKkAAAAAAAAAAADwv8sAAAAAAAAA",
+              "Title": "NormalFunc.cs",
+              "DocumentMoniker": "F:\\SYA\\SYA\\AddItem\\Silver\\NormalFunc.cs",
+              "RelativeDocumentMoniker": "AddItem\\Silver\\NormalFunc.cs",
+              "ToolTip": "F:\\SYA\\SYA\\AddItem\\Silver\\NormalFunc.cs",
+              "RelativeToolTip": "AddItem\\Silver\\NormalFunc.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEIAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-04T09:14:31.173Z",
+              "WhenOpened": "2024-09-05T14:11:28.505Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SaleAuto.cs [Design]",
-              "DocumentMoniker": "F:\\SYA\\SYA\\Testing Phase\\SaleAuto.cs",
-              "RelativeDocumentMoniker": "Testing Phase\\SaleAuto.cs",
-              "ToolTip": "F:\\SYA\\SYA\\Testing Phase\\SaleAuto.cs [Design]*",
-              "RelativeToolTip": "Testing Phase\\SaleAuto.cs [Design]*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-04T10:21:37.553Z"
             }
           ]
         }

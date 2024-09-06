@@ -256,10 +256,7 @@ namespace SYA
                                 match_data_result.Rows.Remove(result[0]);
                                 match_data_result.AcceptChanges();
                             }
-                            if (sl_data_row["AC_NAME"].ToString() == "KETAN SRAGARA")
-                            {
-                                MessageBox.Show("Ketan Sragara");
-                            }
+                         
                             str += "1";
                             match = true;
                             // Add row to result DataTable

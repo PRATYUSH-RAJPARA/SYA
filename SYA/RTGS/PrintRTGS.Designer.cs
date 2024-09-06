@@ -153,7 +153,7 @@
             // panel2
             // 
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(1425, 0);
+            panel2.Location = new Point(1274, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(10, 774);
             panel2.TabIndex = 1;
@@ -163,7 +163,7 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(10, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1415, 10);
+            panel3.Size = new Size(1264, 10);
             panel3.TabIndex = 2;
             // 
             // panel4
@@ -171,7 +171,7 @@
             panel4.Dock = DockStyle.Bottom;
             panel4.Location = new Point(10, 764);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1415, 10);
+            panel4.Size = new Size(1264, 10);
             panel4.TabIndex = 3;
             // 
             // panel5
@@ -180,7 +180,7 @@
             panel5.Dock = DockStyle.Top;
             panel5.Location = new Point(10, 10);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1415, 56);
+            panel5.Size = new Size(1264, 56);
             panel5.TabIndex = 4;
             // 
             // label1
@@ -189,7 +189,7 @@
             label1.Font = new Font("Algerian", 36F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(1415, 56);
+            label1.Size = new Size(1264, 56);
             label1.TabIndex = 0;
             label1.Text = "R T G S";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -202,7 +202,7 @@
             panel6.Dock = DockStyle.Top;
             panel6.Location = new Point(10, 66);
             panel6.Name = "panel6";
-            panel6.Size = new Size(1415, 220);
+            panel6.Size = new Size(1264, 220);
             panel6.TabIndex = 5;
             // 
             // panel13
@@ -279,7 +279,7 @@
             panel10.Dock = DockStyle.Top;
             panel10.Location = new Point(0, 0);
             panel10.Name = "panel10";
-            panel10.Size = new Size(1415, 10);
+            panel10.Size = new Size(1264, 10);
             panel10.TabIndex = 3;
             // 
             // panel7
@@ -810,6 +810,7 @@
             label16.Size = new Size(400, 38);
             label16.TabIndex = 0;
             label16.TextAlign = ContentAlignment.MiddleLeft;
+            label16.Click += label16_Click;
             // 
             // panel45
             // 
@@ -826,7 +827,7 @@
             panel42.Dock = DockStyle.Top;
             panel42.Location = new Point(765, 286);
             panel42.Name = "panel42";
-            panel42.Size = new Size(660, 38);
+            panel42.Size = new Size(509, 38);
             panel42.TabIndex = 10;
             // 
             // panel43
@@ -925,7 +926,7 @@
             panel47.Dock = DockStyle.Top;
             panel47.Location = new Point(765, 324);
             panel47.Name = "panel47";
-            panel47.Size = new Size(660, 20);
+            panel47.Size = new Size(509, 20);
             panel47.TabIndex = 11;
             // 
             // panel54
@@ -934,7 +935,7 @@
             panel54.Dock = DockStyle.Top;
             panel54.Location = new Point(765, 344);
             panel54.Name = "panel54";
-            panel54.Size = new Size(660, 38);
+            panel54.Size = new Size(509, 38);
             panel54.TabIndex = 12;
             // 
             // panel61
@@ -966,7 +967,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(218, 201, 141);
-            ClientSize = new Size(1435, 774);
+            ClientSize = new Size(1284, 774);
             Controls.Add(panel54);
             Controls.Add(panel47);
             Controls.Add(panel42);

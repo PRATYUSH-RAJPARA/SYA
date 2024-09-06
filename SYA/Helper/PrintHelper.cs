@@ -40,36 +40,36 @@ namespace SYA.Helper
         public static void PrintRTGS(object sender, PrintPageEventArgs e, List<string> rtgsdata)
         {
             SolidBrush brush = new SolidBrush(Color.Black);
-            e.Graphics.DrawRectangle(Pens.Red, 120, 135, (float)582.5, 745);
-            RectangleF qrCodeRect = new RectangleF(100, 100, 300, 300);
-            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
-            {
-                QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://www.instagram.com/pushti.art", QRCodeGenerator.ECCLevel.Q);
-                QRCode qrCode = new QRCode(qrCodeData);
-                Bitmap qrCodeBitmap = qrCode.GetGraphic((int)qrCodeRect.Width, Color.Black, Color.White, true);
-                e.Graphics.DrawImage(qrCodeBitmap, qrCodeRect);
-            }
-            // ph.QR("https://www.instagram.com/pushti.art", e);
-            //RTGSBackGround();
-            //branch();
-            //date();
-            //RTGSorNEFT();
-            //PayableAt();
-            //BenName();
-            //BenAdd();
-            //BenAcc();
-            //BenAccType();
-            //BenBank();
-            //BenAddIFSC();
-            //Amount();
-            //Commission();
-            //Total();
-            //TotalWords();
-            //AccNo();
-            //AccName();
-            //AccPan();
-            //AccPhone();
-            //AccSign();
+            //e.Graphics.DrawRectangle(Pens.Red, 120, 135, (float)582.5, 745);
+            //RectangleF qrCodeRect = new RectangleF(100, 100, 300, 300);
+            //using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+            //{
+            //    QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://www.instagram.com/pushti.art", QRCodeGenerator.ECCLevel.Q);
+            //    QRCode qrCode = new QRCode(qrCodeData);
+            //    Bitmap qrCodeBitmap = qrCode.GetGraphic((int)qrCodeRect.Width, Color.Black, Color.White, true);
+            //    e.Graphics.DrawImage(qrCodeBitmap, qrCodeRect);
+            //}
+           // ph.QR("https://www.instagram.com/pushti.art", e);
+            RTGSBackGround();
+            branch();
+            date();
+            RTGSorNEFT();
+            PayableAt();
+            BenName();
+            BenAdd();
+            BenAcc();
+            BenAccType();
+            BenBank();
+            BenAddIFSC();
+            Amount();
+            Commission();
+            Total();
+            TotalWords();
+            AccNo();
+            AccName();
+            AccPan();
+            AccPhone();
+            AccSign();
             void RTGSBackGround()
             {
                 Image logoImage = Image.FromFile(helper.ImageFolder + "\\RTGS.jpg");
@@ -228,7 +228,7 @@ namespace SYA.Helper
                 e.Graphics.DrawString(rtgsdata[18].ToString() ?? "", new Font("Arial", (float)12.5, FontStyle.Regular), brush, new RectangleF(120, 850, (float)582.5, 30), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
             }
         }
-        public static void PrintPageSearch(object sender, PrintPageEventArgs e, DataGridView dataGridViewSearch, string tagtype)
+        public static void PrintPageSearch(object sender, PrintPageEventArgs e, DataGridView dataGridViewSearch, string tagtype , string printlabour)
         {
             DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
             if (selectedRow != null)
@@ -263,7 +263,10 @@ namespace SYA.Helper
                         if ((selectedRow.Cells["labour"].Value ?? "-").ToString() != "0")
                         {
                             labour = (selectedRow.Cells["labour"].Value ?? "-").ToString();
-                            TagPrintHelper.labour(labour, e);
+                            if (printlabour == "on")
+                            {
+                                TagPrintHelper.labour(labour, e);
+                            }
                         }
                         else if ((selectedRow.Cells["wholeLabour"].Value ?? "-").ToString() != "0")
                         {
@@ -341,7 +344,11 @@ namespace SYA.Helper
                             if ((selectedRow.Cells["labour"].Value ?? "-").ToString() != "0")
                             {
                                 labour = (selectedRow.Cells["labour"].Value ?? "-").ToString();
+                                if (printlabour == "on")
+                                {
                                 TagPrintHelper.labour(labour, e);
+
+                                }
                             }
                             else if ((selectedRow.Cells["wholeLabour"].Value ?? "-").ToString() != "0")
                             {

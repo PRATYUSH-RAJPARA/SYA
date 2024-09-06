@@ -145,7 +145,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1394, 790);
+            panel1.Size = new Size(1284, 790);
             panel1.TabIndex = 0;
             // 
             // panel10
@@ -888,7 +888,7 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(100, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1294, 124);
+            panel3.Size = new Size(1184, 124);
             panel3.TabIndex = 1;
             // 
             // panel2
@@ -903,7 +903,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1394, 790);
+            ClientSize = new Size(1284, 790);
             Controls.Add(panel1);
             Name = "VerifyStock";
             StartPosition = FormStartPosition.CenterScreen;

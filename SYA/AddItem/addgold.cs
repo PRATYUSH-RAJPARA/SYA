@@ -607,7 +607,6 @@ namespace SYA
         {
             try
             {
-                MessageBox.Show(row.Cells["comment"].Value?.ToString());
                 string InsertQuery = "INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW, LABOUR_AMT,WHOLE_LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, \"COMMENT\",IT_TYPE, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net, @labour,@wholeLabour, @other, @huid1, @huid2, @size, @comment,@ittype, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)";
                 {
                     UpdateTagNo(row.Index);
@@ -651,7 +650,6 @@ namespace SYA
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error inserting data: {ex.Message}");
                 MessageBox.Show($"Error inserting data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }

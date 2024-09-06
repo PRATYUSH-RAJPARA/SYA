@@ -24,9 +24,13 @@ namespace SYA.Sales
                 foreach (DataRow dt_row in dt.Rows)
                 {
                     SetFileName(dt_row["DataCareFileName"].ToString());
-                    DataTable accessData = FetchDataTableFromDataCareDataBase("SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'");
-                    // DataTable accessData = helper.FetchDataTableFromDataCareDataBase("SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'");
-                    fetchData(accessData, dt_row["DataCareFileName"].ToString());
+                    try
+                    {
+                        DataTable accessData = FetchDataTableFromDataCareDataBase("SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'");
+                        // DataTable accessData = helper.FetchDataTableFromDataCareDataBase("SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '026' OR CO_BOOK = '26'");
+                        fetchData(accessData, dt_row["DataCareFileName"].ToString());
+                    }
+                    catch { }
                 }
                 notifyForm.Close();
             }
@@ -88,6 +92,7 @@ namespace SYA.Sales
             string TAG_NO = null;
             string ITM_GWT = null;
             string ITM_NWT = null;
+            string ITEM_TYPE = null;
             string IT_TYPE = null;
             string PR_CODE = null;
             string IT_CODE = null;
@@ -121,6 +126,7 @@ namespace SYA.Sales
                 TAG_NO = null;
                 ITM_GWT = null;
                 ITM_NWT = null;
+                ITEM_TYPE = null;
                 IT_TYPE = null;
                 PR_CODE = null;
                 IT_CODE = null;
@@ -160,6 +166,8 @@ namespace SYA.Sales
                     TAG_NO = row["TAG_NO"] != DBNull.Value ? row["TAG_NO"].ToString() : "";
                     ITM_GWT = row["ITM_GWT"] != DBNull.Value ? row["ITM_GWT"].ToString() : "";
                     ITM_NWT = row["ITM_NWT"] != DBNull.Value ? row["ITM_NWT"].ToString() : "";
+                    ITEM_TYPE = row["ITM_SIZE"] != DBNull.Value ? row["ITM_SIZE"].ToString() : "";
+
                     IT_TYPE = row["IT_TYPE"] != DBNull.Value ? row["IT_TYPE"].ToString() : "";
                     ITM_RAT = row["ITM_RAT"] != DBNull.Value ? row["ITM_RAT"].ToString() : "";
                     ITM_AMT = row["ITM_AMT"] != DBNull.Value ? row["ITM_AMT"].ToString() : "";
@@ -246,6 +254,7 @@ namespace SYA.Sales
                                              "LABOUR_AMT = '" + SYA_LABOUR_AMT + "', " +
                                              "WHOLE_LABOUR_AMT = '" + SYA_WHOLE_LABOUR_AMT + "', " +
                                              "OTHER_AMT = '" + SYA_OTHER_AMT + "', " +
+                                             "ITEM_TYPE = '" + ITEM_TYPE + "', " +
                                              "IT_TYPE = '" + IT_TYPE + "', " +
                                              "ITEM_CODE = '" + SYA_ITEM_CODE + "', " +
                                              "ITEM_PURITY = '" + SYA_ITEM_PURITY + "', " +
@@ -310,9 +319,9 @@ namespace SYA.Sales
                             }
                             SYA_ITEM_DESC = ItemName;
                         }
-                        string insertQuery = "INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT, ITM_RAT, ITM_AMT, LBR_RATE, LBR_AMT, OTH_AMT, NET_" +
+                        string insertQuery = "INSERT INTO SYA_SALE_DATA (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT, ITM_RAT, ITM_AMT, LBR_RATE, LBR_AMT, OTH_AMT, NET_" +
                             "AMT) " +
-                                             "VALUES ('" + CO_YEAR + "', '" + CO_BOOK + "', '" + VCH_NO + "', '" + Convert.ToDateTime(VCH_DATE).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + TAG_NO + "', '" + ITM_GWT + "', '" + ITM_NWT + "', '" + SYA_LABOUR_AMT + "', '" + SYA_WHOLE_LABOUR_AMT + "', '" + SYA_OTHER_AMT + "', '" + IT_TYPE + "', '" + SYA_ITEM_CODE + "', '" + SYA_ITEM_PURITY + "', '" + SYA_ITEM_DESC + "', '" + SYA_HUID1 + "', '" + SYA_HUID2 + "', '" + SYA_SIZE + "', '" + SYA_PRICE + "', '" + "SOLD" + "', '" + AC_CODE + "', '" + AC_NAME + "', '" + SYA_COMMENT + "', '" + SYA_PRINT + "', '" + ITM_RAT + "', '" + ITM_AMT + "', '" + LBR_RATE + "', '" + LBR_AMT + "', '" + OTH_AMT + "', '" + NET_AMT + "')";
+                                             "VALUES ('" + CO_YEAR + "', '" + CO_BOOK + "', '" + VCH_NO + "', '" + Convert.ToDateTime(VCH_DATE).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + TAG_NO + "', '" + ITM_GWT + "', '" + ITM_NWT + "', '" + SYA_LABOUR_AMT + "', '" + SYA_WHOLE_LABOUR_AMT + "', '" + SYA_OTHER_AMT + "', '" + ITEM_TYPE + "', '" + IT_TYPE + "', '" + SYA_ITEM_CODE + "', '" + SYA_ITEM_PURITY + "', '" + SYA_ITEM_DESC + "', '" + SYA_HUID1 + "', '" + SYA_HUID2 + "', '" + SYA_SIZE + "', '" + SYA_PRICE + "', '" + "SOLD" + "', '" + AC_CODE + "', '" + AC_NAME + "', '" + SYA_COMMENT + "', '" + SYA_PRINT + "', '" + ITM_RAT + "', '" + ITM_AMT + "', '" + LBR_RATE + "', '" + LBR_AMT + "', '" + OTH_AMT + "', '" + NET_AMT + "')";
                         helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
                         nullit();
                     }

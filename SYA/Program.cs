@@ -65,7 +65,6 @@ namespace SYA
                     case "/SortContacts":
                         PrintRTGS objPrintRTGS = new PrintRTGS();
                         objPrintRTGS.PrintRTGS_API("27", "123");
-                        MessageBox.Show("hi");
                         RichTextBox r = new RichTextBox();
                         Contact contact = new Contact();
                         contact.SortContactData(r, "all");

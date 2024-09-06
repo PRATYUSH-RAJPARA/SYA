@@ -147,7 +147,6 @@ F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.PrintRTGS.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.RTGSList.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.saleReport.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Search.resources
-F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.SaleItem.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Sell.sell.resources
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.csproj.GenerateResource.cache
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.GeneratedMSBuildEditorConfig.editorconfig
@@ -281,3 +280,5 @@ F:\SYA\SYA\bin\Debug\net6.0-windows8.0\ExcelDataReader.dll
 F:\SYA\SYA\bin\Debug\net6.0-windows8.0\ExcelDataReader.DataSet.dll
 F:\SYA\SYA\bin\Debug\net6.0-windows8.0\RestSharp.dll
 F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Testing_Phase.SaleAuto.resources
+F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.Sell.SaleItem.resources
+F:\SYA\SYA\obj\Debug\net6.0-windows8.0\SYA.ADDEDITRTGS.resources

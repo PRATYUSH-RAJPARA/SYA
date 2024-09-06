@@ -290,9 +290,6 @@ namespace SYA
             }
             MessageBox.Show($"Data successfully inserted into {tableName} table.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        public void showMsg()
-        {
-            MessageBox.Show("Hello");
-        }
+        
     }
 }

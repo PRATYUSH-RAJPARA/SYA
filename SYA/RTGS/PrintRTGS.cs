@@ -215,5 +215,10 @@ namespace SYA
             FetchAndLoadData(id);
             SortAndPrintRTGS(amt);
         }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace SYA.Helper
         }
         public static void labour(string value, PrintPageEventArgs e)
         {
+            //pratyushchange
             e.Graphics.DrawString("L: " + value, new Font("Arial", 7, FontStyle.Bold), brush, new RectangleF((float)113.5, 4, (float)56.5, 11), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
         }
         public static void wholeLabour(string value, PrintPageEventArgs e)

@@ -9,6 +9,7 @@ namespace SYA
     {
         bool quickSaveAndPrint = true;
         string tagtype = "weight";
+        string printlabour = "on";
         private SQLiteConnection connectionToSYADatabase;
         private void InitializeDatabaseConnection()
         {
@@ -38,6 +39,7 @@ namespace SYA
                 LABOUR_AMT,
                 WHOLE_LABOUR_AMT,
                 OTHER_AMT,
+                ITEM_TYPE,
                 IT_TYPE,
                 ITEM_CODE,
                 ITEM_PURITY,
@@ -65,6 +67,7 @@ namespace SYA
                 LABOUR_AMT,
                 WHOLE_LABOUR_AMT,
                 OTHER_AMT,
+                ITEM_TYPE,
                 IT_TYPE,
                 ITEM_CODE,
                 ITEM_PURITY,
@@ -78,7 +81,7 @@ namespace SYA
                 AC_NAME,
                 COMMENT,
                 PRINT
-            FROM SYA_SALE_DATA; ";
+            FROM SYA_SALE_DATA ORDER BY ID DESC; ";
             LoadDataFromSQLite(q);
             //LoadDataFromSQLite("SELECT * FROM MAIN_DATA ORDER BY VCH_DATE DESC ;");
         }
@@ -154,14 +157,14 @@ namespace SYA
                         dataGridViewSearch.Rows.Clear();
                         // Pratyush add this count to settings so user can change
                         int count = 0;
-                        while (reader.Read() && count < 100)
+                        while (reader.Read() && count < 1000)
                         {
                             count++;
                             int rowIndex = dataGridViewSearch.Rows.Add();
                             dataGridViewSearch.Rows[rowIndex].Cells["tagno"].Value = reader["TAG_NO"].ToString();
                             dataGridViewSearch.Rows[rowIndex].Cells["vchno"].Value = reader["VCH_NO"].ToString();
                             dataGridViewSearch.Rows[rowIndex].Cells["vchdate"].Value = Convert.ToDateTime(reader["VCH_DATE"]).ToString("dd-MM-yyyy");
-                            dataGridViewSearch.Rows[rowIndex].Cells["itemdesc"].Value = reader["ITEM_PURITY"].ToString() + "  -  " + reader["ITEM_DESC"].ToString();
+                            dataGridViewSearch.Rows[rowIndex].Cells["itemdesc"].Value = reader["ITEM_PURITY"].ToString() + "  -  " + reader["ITEM_TYPE"].ToString();
                             dataGridViewSearch.Rows[rowIndex].Cells["gross"].Value = string.Format("{0:0.000}", reader["GW"]);
                             dataGridViewSearch.Rows[rowIndex].Cells["net"].Value = string.Format("{0:0.000}", reader["NW"]);
                             dataGridViewSearch.Rows[rowIndex].Cells["huid1"].Value = reader["HUID1"].ToString();
@@ -328,7 +331,7 @@ namespace SYA
         //okok
         private void PrintData(object sender, PrintPageEventArgs e)
         {
-            PrintHelper.PrintPageSearch(sender, e, dataGridViewSearch, tagtype);
+            PrintHelper.PrintPageSearch(sender, e, dataGridViewSearch, tagtype,printlabour);
         }
         private bool leaveEventFlag = false;
         //ok
@@ -419,7 +422,7 @@ namespace SYA
         {
             if (!leaveEventFlag)
             {
-                string query = @$"SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM MAIN_DATA WHERE GW LIKE '%{txtWeight.Text}%' OR NW LIKE '%{txtWeight.Text}%' UNION ALL SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM SYA_SALE_DATA WHERE GW LIKE '%{txtWeight.Text}%' OR NW LIKE '%{txtWeight.Text}%';";
+                string query = @$"SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM MAIN_DATA WHERE GW LIKE '%{txtWeight.Text}%' OR NW LIKE '%{txtWeight.Text}%' UNION ALL SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM SYA_SALE_DATA WHERE GW LIKE '%{txtWeight.Text}%' OR NW LIKE '%{txtWeight.Text}%';";
                 LoadDataFromSQLite(query);
             }
         }
@@ -433,7 +436,7 @@ namespace SYA
         {
             if (!leaveEventFlag)
             {
-                string query = @$"SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM MAIN_DATA WHERE VCH_NO LIKE '%{txtBillNo.Text}%' UNION ALL SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM SYA_SALE_DATA WHERE VCH_NO LIKE '%{txtBillNo.Text}%';";
+                string query = @$"SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM MAIN_DATA WHERE VCH_NO LIKE '%{txtBillNo.Text}%' UNION ALL SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM SYA_SALE_DATA WHERE VCH_NO LIKE '%{txtBillNo.Text}%';";
                 LoadDataFromSQLite(query);
             }
         }
@@ -447,7 +450,7 @@ namespace SYA
         {
             if (!leaveEventFlag)
             {
-                string query = @$"SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM MAIN_DATA WHERE HUID1 LIKE '%{txtHUID.Text}%' OR HUID2 LIKE '%{txtHUID.Text}%' UNION ALL SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM SYA_SALE_DATA  WHERE HUID1 LIKE '%{txtHUID.Text}%' OR HUID2 LIKE '%{txtHUID.Text}%';";
+                string query = @$"SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM MAIN_DATA WHERE HUID1 LIKE '%{txtHUID.Text}%' OR HUID2 LIKE '%{txtHUID.Text}%' UNION ALL SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM SYA_SALE_DATA  WHERE HUID1 LIKE '%{txtHUID.Text}%' OR HUID2 LIKE '%{txtHUID.Text}%';";
                 LoadDataFromSQLite(query);
             }
         }
@@ -462,10 +465,9 @@ namespace SYA
             if (!leaveEventFlag)
             {
                 string searchValue = txtSearchAnything.Text;
-                MessageBox.Show(searchValue);
                 string query = @$"
     SELECT 
-        ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, 
+        ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, 
         IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT 
     FROM MAIN_DATA 
     WHERE 
@@ -482,6 +484,7 @@ namespace SYA
         LABOUR_AMT LIKE '%{searchValue}%' OR 
         WHOLE_LABOUR_AMT LIKE '%{searchValue}%' OR 
         OTHER_AMT LIKE '%{searchValue}%' OR 
+        ITEM_TYPE LIKE '%{searchValue}%' OR
         IT_TYPE LIKE '%{searchValue}%' OR 
         ITEM_CODE LIKE '%{searchValue}%' OR 
         HUID1 LIKE '%{searchValue}%' OR 
@@ -510,6 +513,7 @@ namespace SYA
         LABOUR_AMT LIKE '%{searchValue}%' OR 
         WHOLE_LABOUR_AMT LIKE '%{searchValue}%' OR 
         OTHER_AMT LIKE '%{searchValue}%' OR 
+        ITEM_TYPE LIKE '%{searchValue}%' OR
         IT_TYPE LIKE '%{searchValue}%' OR 
         ITEM_CODE LIKE '%{searchValue}%' OR 
         HUID1 LIKE '%{searchValue}%' OR 
@@ -573,7 +577,7 @@ namespace SYA
         {
             if (!leaveEventFlag)
             {
-                string q = @$"SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM MAIN_DATA WHERE TAG_NO LIKE '%{txtTagno.Text}%' UNION ALL SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM SYA_SALE_DATA WHERE TAG_NO LIKE '%{txtTagno.Text}%';";
+                string q = @$"SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM MAIN_DATA WHERE TAG_NO LIKE '%{txtTagno.Text}%' UNION ALL SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM SYA_SALE_DATA WHERE TAG_NO LIKE '%{txtTagno.Text}%';";
                 LoadDataFromSQLite(q);
             }
         }
@@ -607,6 +611,9 @@ namespace SYA
         {
             queryToFetchFromMSAccess = "SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '015' OR CO_BOOK = '15'";
             HelperFetchData.InsertInStockDataIntoSQLite(queryToFetchFromMSAccess);
+
+
+
         }
         private void btnFetchSaleData_Click(object sender, EventArgs e)
         {
@@ -628,6 +635,20 @@ namespace SYA
             {
                 BTNTAGTYPE.Text = "Weight Tag";
                 tagtype = "weight";
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (button7.Text == "Labour Print ON")
+            {
+                button7.Text = "Labour Print OFF";
+                printlabour = "off";
+            }
+            else if (button7.Text == "Labour Print OFF")
+            {
+                button7.Text = "Labour Print ON";
+                printlabour = "on";
             }
         }
     }
