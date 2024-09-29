@@ -36,11 +36,6 @@ namespace SYA
             UpdateRowNumbers();
             txtCurrentPrice.Text = helper.SilverPerGramLabour;
         }
-        private void InitializeLogging()
-        {
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.File(helper.LogsFolder + "\\logs.txt", rollingInterval: RollingInterval.Day).CreateLogger();
-        }
         private void InitializeDatabaseConnection()
         {
             connectionToSYADatabase = new SQLiteConnection(helper.SYAConnectionString);
@@ -75,7 +70,7 @@ namespace SYA
                     addSilverDataGridView.Rows[e.RowIndex].Cells["labour"].Value = (previousRow.Cells["labour"].Value ?? "0").ToString();
                     addSilverDataGridView.Rows[e.RowIndex].Cells["wholeLabour"].Value = (previousRow.Cells["wholeLabour"].Value ?? "0").ToString();
                     addSilverDataGridView.Rows[e.RowIndex].Cells["other"].Value = (previousRow.Cells["other"].Value ?? "0").ToString();
-                    addSilverDataGridView.Rows[e.RowIndex].Cells["size"].Value = (previousRow.Cells["size"].Value ?? "").ToString();
+                   // addSilverDataGridView.Rows[e.RowIndex].Cells["size"].Value = (previousRow.Cells["size"].Value ?? "0").ToString();
                     this.BeginInvoke(new MethodInvoker(delegate
                     {
                         addSilverDataGridView.CurrentCell = addSilverDataGridView.Rows[e.RowIndex].Cells["type"];
@@ -133,212 +128,6 @@ namespace SYA
                     addSilverDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = (addSilverDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value ?? "").ToString().ToUpper();
                 }
             }
-        }
-        private void messageBoxTimer_Tick(object sender, EventArgs e)
-        {
-            txtMessageBox.Text = string.Empty;
-            messageBoxTimer.Stop();
-        }
-        private void btnQuickSaveAndPrint_Click(object sender, EventArgs e)
-        {
-            if (btnQuickSaveAndPrint.Text == "Enable Quick Save & Print")
-            {
-                btnQuickSaveAndPrint.Text = "Disable Quick Save & Print";
-                txtMessageBox.Text = "Quick Save & Print Enabled.";
-                messageBoxTimer.Start();
-                quickSaveAndPrint = true;
-            }
-            else if (btnQuickSaveAndPrint.Text == "Disable Quick Save & Print")
-            {
-                btnQuickSaveAndPrint.Text = "Enable Quick Save & Print";
-                txtMessageBox.Text = "Quick Save & Print Disabled.";
-                messageBoxTimer.Start();
-                quickSaveAndPrint = false;
-            }
-        }
-        private void buttonquicksave_Click(object sender, EventArgs e)
-        {
-            if (buttonquicksave.Text == "Enable Quick Save")
-            {
-                buttonquicksave.Text = "Disable Quick Save";
-                txtMessageBox.Text = "Quick Save Enabled.";
-                messageBoxTimer.Start();
-                quickSave = true;
-            }
-            else if (buttonquicksave.Text == "Disable Quick Save")
-            {
-                buttonquicksave.Text = "Enable Quick Save";
-                txtMessageBox.Text = "Quick Save Disabled.";
-                messageBoxTimer.Start();
-                quickSave = false;
-            }
-        }
-        private void addSilver_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            DataGridView dataGridView10 = addSilverDataGridView;
-            string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
-            DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
-            if (currentColumnName1 == "net")
-            {
-                selectedRow.Cells["net"].Value = helper.correctWeight(selectedRow.Cells["net"].Value);
-            }
-            if (currentColumnName1 == "gross")
-            {
-                selectedRow.Cells["gross"].Value = helper.correctWeight(selectedRow.Cells["gross"].Value);
-            }
-            if (quickSaveAndPrint)
-            {
-                if (e.KeyCode == Keys.Tab)
-                {
-                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-                    DataGridView dataGridView = addSilverDataGridView;
-                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-                    if (currentColumnName == "comment")
-                    {
-                        DataGridViewRow empty = new DataGridViewRow();
-                        if (SaveData(selectedRow))
-                        {
-                            string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
-                            if (tagNumber.Length > 1)
-                            {
-                                PrintData(true);
-                            }
-                        }
-                    }
-                }
-            }
-            else if (quickSave)
-            {
-                if (e.KeyCode == Keys.Tab)
-                {
-                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-                    DataGridView dataGridView = addSilverDataGridView;
-                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-                    if (currentColumnName == "comment")
-                    {
-                        SaveData(selectedRow);
-                    }
-                }
-            }
-        }
-        private void addSilverDataGridView_KeyDown(object sender, KeyEventArgs e)
-        {
-            DataGridView dataGridView10 = addSilverDataGridView;
-            string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
-            if (currentColumnName1 == "net")
-            {
-                DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
-                selectedRow.Cells["net"].Value = helper.correctWeight(selectedRow.Cells["net"].Value);
-            }
-            if (quickSaveAndPrint)
-            {
-                if (e.KeyCode == Keys.Tab)
-                {
-                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-                    DataGridView dataGridView = addSilverDataGridView;
-                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-                    if (currentColumnName == "comment")
-                    {
-                        DataGridViewRow empty = new DataGridViewRow();
-                        DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
-                        if (SaveData(selectedRow))
-                        {
-                            string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
-                            if (tagNumber.Length > 1)
-                            {
-                                PrintData(true);
-                            }
-                        }
-                    }
-                }
-            }
-            else if (quickSave)
-            {
-                if (e.KeyCode == Keys.Tab)
-                {
-                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-                    DataGridView dataGridView = addSilverDataGridView;
-                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-                    if (currentColumnName == "comment")
-                    {
-                        DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
-                        SaveData(selectedRow);
-                    }
-                }
-            }
-        }
-        private void addSilverDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            e.Control.PreviewKeyDown -= dataGridView_EditingControl_PreviewKeyDown;
-            e.Control.PreviewKeyDown += dataGridView_EditingControl_PreviewKeyDown;
-        }
-        private void dataGridView_EditingControl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            DataGridView dataGridView10 = addSilverDataGridView;
-            string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
-            DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
-            if (quickSaveAndPrint)
-            {
-                if (e.KeyCode == Keys.Tab)
-                {
-                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-                    DataGridView dataGridView = addSilverDataGridView;
-                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-                    if (currentColumnName == "comment")
-                    {
-                        DataGridViewRow empty = new DataGridViewRow();
-                        if (SaveData(selectedRow))
-                        {
-                            string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
-                            if (tagNumber.Length > 1)
-                            {
-                                PrintData(true);
-                            }
-                        }
-                    }
-                }
-            }
-            else if (quickSave)
-            {
-                if (e.KeyCode == Keys.Tab)
-                {
-                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-                    DataGridView dataGridView = addSilverDataGridView;
-                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-                    if (currentColumnName == "comment")
-                    {
-                        SaveData(selectedRow);
-                    }
-                }
-            }
-        }
-        private void BTNTAGTYPE_Click(object sender, EventArgs e)
-        {
-            if (BTNTAGTYPE.Text == "Weight Tag")
-            {
-                BTNTAGTYPE.Text = "Price Tag";
-                tagtype = "price";
-            }
-            else if (BTNTAGTYPE.Text == "Price Tag")
-            {
-                BTNTAGTYPE.Text = "Weight Tag";
-                tagtype = "weight";
-            }
-        }
-        private void addSilverDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
         }
         private void caretValueChanged(DataGridViewCellEventArgs e)
         {
@@ -483,8 +272,19 @@ namespace SYA
                 return value + (step - remainder);
             }
         }
-       
-        
+        private void addSilverDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+        private void InitializeLogging()
+        {
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File(helper.LogsFolder + "\\logs.txt", rollingInterval: RollingInterval.Day).CreateLogger();
+        }
+        private void SelectCell(DataGridView dataGridView, int rowIndex, string columnName)
+        {
+            dataGridView.CurrentCell = dataGridView.Rows[rowIndex].Cells[columnName];
+            dataGridView.BeginEdit(true);
+        }
         private void gridviewstyle()
         {
             int formWidth = this.ClientSize.Width;
@@ -682,15 +482,66 @@ namespace SYA
                 }
             }
         }
-        
+        private bool ValidateData(DataGridViewRow row)
+        {
+            if (row.Cells["type"].Value == null || string.IsNullOrWhiteSpace(row.Cells["type"].Value.ToString()))
+            {
+                MessageBox.Show($"Please add a valid type for Row {row.Index + 1}.");
+                SelectCell(addSilverDataGridView, row.Index, "type");
+                return false;
+            }
+            if (!decimal.TryParse(row.Cells["gross"].Value?.ToString(), out decimal grossWeight) || grossWeight < 0)
+            {
+                MessageBox.Show($"Gross weight should be a non-negative numeric value for Row {row.Index + 1}.");
+                SelectCell(addSilverDataGridView, row.Index, "gross");
+                return false;
+            }
+            if (!decimal.TryParse(row.Cells["net"].Value?.ToString(), out decimal netWeight) || netWeight < 0)
+            {
+                MessageBox.Show($"Net weight should be a non-negative numeric value for Row {row.Index + 1}.");
+                SelectCell(addSilverDataGridView, row.Index, "net");
+                return false;
+            }
+            if (grossWeight < netWeight)
+            {
+                MessageBox.Show($"Gross weight should be greater than or equal to net weight for Row {row.Index + 1}.");
+                SelectCell(addSilverDataGridView, row.Index, "gross");
+                return false;
+            }
+            if (!decimal.TryParse(row.Cells["labour"].Value?.ToString(), out decimal labour) || labour < 0)
+            {
+                MessageBox.Show($"Labour should be a non-negative numeric value for Row {row.Index + 1}.");
+                SelectCell(addSilverDataGridView, row.Index, "labour");
+                return false;
+            }
+            if (!decimal.TryParse(row.Cells["wholeLabour"].Value?.ToString(), out decimal wholeLabour) || wholeLabour < 0)
+            {
+                MessageBox.Show($"Whole Labour should be a non-negative numeric value for Row {row.Index + 1}.");
+                SelectCell(addSilverDataGridView, row.Index, "wholeLabour");
+                return false;
+            }
+            if (row.Cells["price"].Value != null && (!decimal.TryParse(row.Cells["price"].Value?.ToString(), out decimal price) || price < 0))
+            {
+                MessageBox.Show($"Price should be a non-negative numeric value for Row {row.Index + 1}.");
+                SelectCell(addSilverDataGridView, row.Index, "price");
+                return false;
+            }
+            if (row.Cells["other"].Value != null && (!decimal.TryParse(row.Cells["other"].Value?.ToString(), out decimal other) || other < 0))
+            {
+                MessageBox.Show($"Other should be a non-negative numeric value for Row {row.Index + 1}.");
+                SelectCell(addSilverDataGridView, row.Index, "other");
+                return false;
+            }
+            return true;
+        }
         private bool UpdateData(DataGridViewRow row)
         {
-            if (!NormalFunc.ValidateData(row, addSilverDataGridView))
+            if (!ValidateData(row))
             {
                 return false;
             }
             string updateQuery = "UPDATE MAIN_DATA SET ITEM_DESC = @type, ITEM_PURITY = @caret, GW = @gross, NW = @net, LABOUR_AMT = @labour," +
-                "WHOLE_LABOUR_AMT = @wholelable, OTHER_AMT = @other, HUID1 = @huid1, HUID2 = @huid2,PRICE= @price, SIZE = @size, COMMENT = @comment, ITEM_CODE = @prCode WHERE TAG_NO = @tagNo";
+                "WHOLE_LABOUR_AMT = @wholelable, OTHER_AMT = @other, HUID1 = @huid1, HUID2 = @huid2,PRICE= @price, SIZE = @size, COMMENT = @comment,ITEM_TYPE = @item_type, ITEM_CODE = @prCode WHERE TAG_NO = @tagNo";
             {
                 SQLiteParameter[] parameters = new SQLiteParameter[]
 {
@@ -707,6 +558,7 @@ namespace SYA
     new SQLiteParameter("@price", row.Cells["price"].Value?.ToString()),
     new SQLiteParameter("@size", row.Cells["size"].Value?.ToString()),
     new SQLiteParameter("@comment", row.Cells["comment"].Value?.ToString()),
+    new SQLiteParameter("@item_type", row.Cells["prcode"].Value?.ToString()),
     new SQLiteParameter("@prCode", row.Cells["prcode"].Value?.ToString())
 };
                 if (helper.RunQueryWithParametersSYADataBase(updateQuery, parameters))
@@ -720,10 +572,10 @@ namespace SYA
         {
             try
             {
-                string InsertQuery = "INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW,WHOLE_LABOUR_AMT, LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, COMMENT,IT_TYPE, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net,@wholelabouramt, @labour, @other, @huid1, @huid2, @size, @comment,@ittype, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)";
+                string InsertQuery = "INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW,WHOLE_LABOUR_AMT, LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, COMMENT,IT_TYPE,ITEM_TYPE, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net,@wholelabouramt, @labour, @other, @huid1, @huid2, @size, @comment,@ittype,@prCode, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)";
                 {
                     UpdateTagNo(row.Index);
-                    if (!NormalFunc.ValidateData(row, addSilverDataGridView))
+                    if (!ValidateData(row))
                     {
                         row.Cells["tagno"].Value = null;
                         return false;
@@ -784,6 +636,226 @@ namespace SYA
         private void PrintPageSilver925(object sender, PrintPageEventArgs e)
         {
             PrintHelper.PrintPageAddSilver(sender, e, addSilverDataGridView, tagtype);
+        }
+        private void messageBoxTimer_Tick(object sender, EventArgs e)
+        {
+            txtMessageBox.Text = string.Empty;
+            messageBoxTimer.Stop();
+        }
+        private void btnQuickSaveAndPrint_Click(object sender, EventArgs e)
+        {
+            if (btnQuickSaveAndPrint.Text == "Enable Quick Save & Print")
+            {
+                btnQuickSaveAndPrint.Text = "Disable Quick Save & Print";
+                txtMessageBox.Text = "Quick Save & Print Enabled.";
+                messageBoxTimer.Start();
+                quickSaveAndPrint = true;
+            }
+            else if (btnQuickSaveAndPrint.Text == "Disable Quick Save & Print")
+            {
+                btnQuickSaveAndPrint.Text = "Enable Quick Save & Print";
+                txtMessageBox.Text = "Quick Save & Print Disabled.";
+                messageBoxTimer.Start();
+                quickSaveAndPrint = false;
+            }
+        }
+        private void buttonquicksave_Click(object sender, EventArgs e)
+        {
+            if (buttonquicksave.Text == "Enable Quick Save")
+            {
+                buttonquicksave.Text = "Disable Quick Save";
+                txtMessageBox.Text = "Quick Save Enabled.";
+                messageBoxTimer.Start();
+                quickSave = true;
+            }
+            else if (buttonquicksave.Text == "Disable Quick Save")
+            {
+                buttonquicksave.Text = "Enable Quick Save";
+                txtMessageBox.Text = "Quick Save Disabled.";
+                messageBoxTimer.Start();
+                quickSave = false;
+            }
+        }
+        private void addSilver_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            MessageBox.Show("ajhadada");
+            DataGridView dataGridView10 = addSilverDataGridView;
+            string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
+            DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
+            if (currentColumnName1 == "net")
+            {
+                selectedRow.Cells["net"].Value = helper.correctWeight(selectedRow.Cells["net"].Value);
+            }
+            if (currentColumnName1 == "gross")
+            {
+                selectedRow.Cells["gross"].Value = helper.correctWeight(selectedRow.Cells["gross"].Value);
+            }
+            if (quickSaveAndPrint)
+            {
+                if (e.KeyCode == Keys.Tab)
+                {
+                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+                    DataGridView dataGridView = addSilverDataGridView;
+                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                    if (currentColumnName == "comment")
+                    {
+                        DataGridViewRow empty = new DataGridViewRow();
+                        if (SaveData(selectedRow))
+                        {
+                            string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
+                            if (tagNumber.Length > 1)
+                            {
+                                PrintData(true);
+                            }
+                        }
+                    }
+                }
+            }
+            else if (quickSave)
+            {
+                if (e.KeyCode == Keys.Tab)
+                {
+                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+                    DataGridView dataGridView = addSilverDataGridView;
+                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                    if (currentColumnName == "comment")
+                    {
+                        SaveData(selectedRow);
+                    }
+                }
+            }
+        }
+        private void addSilverDataGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            DataGridView dataGridView10 = addSilverDataGridView;
+            string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
+            if (currentColumnName1 == "net")
+            {
+                DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
+                selectedRow.Cells["net"].Value = helper.correctWeight(selectedRow.Cells["net"].Value);
+            }
+            if (quickSaveAndPrint)
+            {
+                if (e.KeyCode == Keys.Tab)
+                {
+                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+                    DataGridView dataGridView = addSilverDataGridView;
+                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                    if (currentColumnName == "comment")
+                    {
+                        DataGridViewRow empty = new DataGridViewRow();
+                        DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
+                        if (SaveData(selectedRow))
+                        {
+                            string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
+                            if (tagNumber.Length > 1)
+                            {
+                                PrintData(true);
+                            }
+                        }
+                    }
+                }
+            }
+            else if (quickSave)
+            {
+                if (e.KeyCode == Keys.Tab)
+                {
+                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+                    DataGridView dataGridView = addSilverDataGridView;
+                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                    if (currentColumnName == "comment")
+                    {
+                        DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
+                        SaveData(selectedRow);
+                    }
+                }
+            }
+        }
+        private void addSilverDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            e.Control.PreviewKeyDown -= dataGridView_EditingControl_PreviewKeyDown;
+            e.Control.PreviewKeyDown += dataGridView_EditingControl_PreviewKeyDown;
+        }
+        private void dataGridView_EditingControl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            DataGridView dataGridView10 = addSilverDataGridView;
+            string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
+            DataGridViewRow selectedRow = addSilverDataGridView.CurrentRow;
+            if (quickSaveAndPrint)
+            {
+                if (e.KeyCode == Keys.Tab)
+                {
+                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+                    DataGridView dataGridView = addSilverDataGridView;
+                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                    if (currentColumnName == "comment")
+                    {
+                        DataGridViewRow empty = new DataGridViewRow();
+                        if (SaveData(selectedRow))
+                        {
+                            string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
+                            if (tagNumber.Length > 1)
+                            {
+                                PrintData(true);
+                            }
+                        }
+                    }
+                }
+            }
+            else if (quickSave)
+            {
+                if (e.KeyCode == Keys.Tab)
+                {
+                    addSilverDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+                    DataGridView dataGridView = addSilverDataGridView;
+                    string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
+                    int currentRowIndex = dataGridView.CurrentCell.RowIndex;
+                    if (currentColumnName == "comment")
+                    {
+                        SaveData(selectedRow);
+                    }
+                }
+            }
+        }
+        private void BTNTAGTYPE_Click(object sender, EventArgs e)
+        {
+            if (BTNTAGTYPE.Text == "Weight Tag")
+            {
+                BTNTAGTYPE.Text = "Price Tag";
+                tagtype = "price";
+            }
+            else if (BTNTAGTYPE.Text == "Price Tag")
+            {
+                BTNTAGTYPE.Text = "Weight Tag";
+                tagtype = "weight";
+            }
+        }
+        private bool isMouseClick = false;
+        private void addSilverDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (addSilverDataGridView.Columns[e.ColumnIndex].Name == "gross")
+            {
+                if (string.IsNullOrWhiteSpace(Convert.ToString(e.FormattedValue)) && !isMouseClick)
+                {
+                    e.Cancel = true;
+                }
+            }
+            isMouseClick = false;
+        }
+        private void addSilverDataGridView_MouseDown(object sender, MouseEventArgs e)
+        {
+            isMouseClick = true;
         }
     }
 }

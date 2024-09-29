@@ -40,6 +40,7 @@
             btnAddItem = new Button();
             panel2 = new Panel();
             panelsecond = new Panel();
+            button9 = new Button();
             btnEditRTGS = new Button();
             button8 = new Button();
             button5 = new Button();
@@ -57,6 +58,7 @@
             button1 = new Button();
             panel1 = new Panel();
             panelChild = new Panel();
+            btnDisplayPrice = new Button();
             panelfirst.SuspendLayout();
             panelsecond.SuspendLayout();
             SuspendLayout();
@@ -64,6 +66,7 @@
             // panelfirst
             // 
             panelfirst.BackColor = Color.FromArgb(3, 63, 99);
+            panelfirst.Controls.Add(btnDisplayPrice);
             panelfirst.Controls.Add(button4);
             panelfirst.Controls.Add(button22);
             panelfirst.Controls.Add(btnSortContact);
@@ -93,7 +96,7 @@
             button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button4.ForeColor = Color.White;
-            button4.Location = new Point(0, 560);
+            button4.Location = new Point(0, 460);
             button4.Margin = new Padding(0);
             button4.Name = "button4";
             button4.Size = new Size(140, 40);
@@ -110,7 +113,7 @@
             button22.FlatStyle = FlatStyle.Flat;
             button22.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button22.ForeColor = Color.White;
-            button22.Location = new Point(0, 520);
+            button22.Location = new Point(0, 420);
             button22.Margin = new Padding(0);
             button22.Name = "button22";
             button22.Size = new Size(140, 40);
@@ -127,7 +130,7 @@
             btnSortContact.FlatStyle = FlatStyle.Flat;
             btnSortContact.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSortContact.ForeColor = Color.White;
-            btnSortContact.Location = new Point(0, 480);
+            btnSortContact.Location = new Point(0, 380);
             btnSortContact.Margin = new Padding(0);
             btnSortContact.Name = "btnSortContact";
             btnSortContact.Size = new Size(140, 40);
@@ -144,7 +147,7 @@
             btnCustomer.FlatStyle = FlatStyle.Flat;
             btnCustomer.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCustomer.ForeColor = Color.White;
-            btnCustomer.Location = new Point(0, 440);
+            btnCustomer.Location = new Point(0, 340);
             btnCustomer.Margin = new Padding(0);
             btnCustomer.Name = "btnCustomer";
             btnCustomer.Size = new Size(140, 40);
@@ -160,7 +163,7 @@
             btnImportData.FlatStyle = FlatStyle.Flat;
             btnImportData.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnImportData.ForeColor = Color.White;
-            btnImportData.Location = new Point(0, 400);
+            btnImportData.Location = new Point(0, 300);
             btnImportData.Margin = new Padding(0);
             btnImportData.Name = "btnImportData";
             btnImportData.Size = new Size(140, 40);
@@ -177,7 +180,7 @@
             btnRtgs.FlatStyle = FlatStyle.Flat;
             btnRtgs.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnRtgs.ForeColor = Color.White;
-            btnRtgs.Location = new Point(0, 360);
+            btnRtgs.Location = new Point(0, 260);
             btnRtgs.Margin = new Padding(0);
             btnRtgs.Name = "btnRtgs";
             btnRtgs.Size = new Size(140, 40);
@@ -194,7 +197,7 @@
             btnPrintTags.FlatStyle = FlatStyle.Flat;
             btnPrintTags.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnPrintTags.ForeColor = Color.White;
-            btnPrintTags.Location = new Point(0, 320);
+            btnPrintTags.Location = new Point(0, 220);
             btnPrintTags.Margin = new Padding(0);
             btnPrintTags.Name = "btnPrintTags";
             btnPrintTags.Size = new Size(140, 40);
@@ -211,7 +214,7 @@
             btnStocks.FlatStyle = FlatStyle.Flat;
             btnStocks.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnStocks.ForeColor = Color.White;
-            btnStocks.Location = new Point(0, 280);
+            btnStocks.Location = new Point(0, 180);
             btnStocks.Margin = new Padding(0);
             btnStocks.Name = "btnStocks";
             btnStocks.Size = new Size(140, 40);
@@ -228,7 +231,7 @@
             btnSales.FlatStyle = FlatStyle.Flat;
             btnSales.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSales.ForeColor = Color.White;
-            btnSales.Location = new Point(0, 240);
+            btnSales.Location = new Point(0, 140);
             btnSales.Margin = new Padding(0);
             btnSales.Name = "btnSales";
             btnSales.Size = new Size(140, 40);
@@ -245,7 +248,7 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(0, 200);
+            btnSearch.Location = new Point(0, 100);
             btnSearch.Margin = new Padding(0);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(140, 40);
@@ -262,7 +265,7 @@
             btnSellItem.FlatStyle = FlatStyle.Flat;
             btnSellItem.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSellItem.ForeColor = Color.White;
-            btnSellItem.Location = new Point(0, 160);
+            btnSellItem.Location = new Point(0, 60);
             btnSellItem.Margin = new Padding(0);
             btnSellItem.Name = "btnSellItem";
             btnSellItem.Size = new Size(140, 40);
@@ -279,7 +282,7 @@
             btnAddItem.FlatStyle = FlatStyle.Flat;
             btnAddItem.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddItem.ForeColor = Color.White;
-            btnAddItem.Location = new Point(0, 120);
+            btnAddItem.Location = new Point(0, 20);
             btnAddItem.Margin = new Padding(0);
             btnAddItem.Name = "btnAddItem";
             btnAddItem.Size = new Size(140, 40);
@@ -295,12 +298,13 @@
             panel2.Location = new Point(0, 0);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(140, 120);
+            panel2.Size = new Size(140, 20);
             panel2.TabIndex = 5;
             // 
             // panelsecond
             // 
             panelsecond.BackColor = Color.FromArgb(254, 223, 160);
+            panelsecond.Controls.Add(button9);
             panelsecond.Controls.Add(btnEditRTGS);
             panelsecond.Controls.Add(button8);
             panelsecond.Controls.Add(button5);
@@ -317,11 +321,28 @@
             panelsecond.Controls.Add(button2);
             panelsecond.Controls.Add(button1);
             panelsecond.Dock = DockStyle.Left;
-            panelsecond.Location = new Point(140, 120);
+            panelsecond.Location = new Point(140, 20);
             panelsecond.Margin = new Padding(3, 2, 3, 2);
             panelsecond.Name = "panelsecond";
-            panelsecond.Size = new Size(140, 885);
+            panelsecond.Size = new Size(140, 985);
             panelsecond.TabIndex = 6;
+            // 
+            // button9
+            // 
+            button9.BackColor = Color.FromArgb(254, 223, 160);
+            button9.Dock = DockStyle.Top;
+            button9.FlatAppearance.BorderSize = 0;
+            button9.FlatStyle = FlatStyle.Flat;
+            button9.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button9.ForeColor = Color.FromArgb(3, 63, 99);
+            button9.Location = new Point(0, 731);
+            button9.Margin = new Padding(0);
+            button9.Name = "button9";
+            button9.Size = new Size(140, 67);
+            button9.TabIndex = 27;
+            button9.Text = "FETCH NON-DATACARE CONTACTS";
+            button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
             // 
             // btnEditRTGS
             // 
@@ -585,18 +606,35 @@
             panel1.Location = new Point(140, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1144, 120);
+            panel1.Size = new Size(1144, 20);
             panel1.TabIndex = 1;
             // 
             // panelChild
             // 
             panelChild.BackColor = SystemColors.ActiveCaption;
             panelChild.Dock = DockStyle.Fill;
-            panelChild.Location = new Point(280, 120);
+            panelChild.Location = new Point(280, 20);
             panelChild.Margin = new Padding(3, 2, 3, 2);
             panelChild.Name = "panelChild";
-            panelChild.Size = new Size(1004, 885);
+            panelChild.Size = new Size(1004, 985);
             panelChild.TabIndex = 1;
+            // 
+            // btnDisplayPrice
+            // 
+            btnDisplayPrice.BackColor = Color.FromArgb(3, 63, 99);
+            btnDisplayPrice.Dock = DockStyle.Top;
+            btnDisplayPrice.FlatAppearance.BorderSize = 0;
+            btnDisplayPrice.FlatStyle = FlatStyle.Flat;
+            btnDisplayPrice.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDisplayPrice.ForeColor = Color.White;
+            btnDisplayPrice.Location = new Point(0, 500);
+            btnDisplayPrice.Margin = new Padding(0);
+            btnDisplayPrice.Name = "btnDisplayPrice";
+            btnDisplayPrice.Size = new Size(140, 40);
+            btnDisplayPrice.TabIndex = 19;
+            btnDisplayPrice.Text = "Display Price";
+            btnDisplayPrice.UseVisualStyleBackColor = false;
+            btnDisplayPrice.Click += btnDisplayPrice_Click;
             // 
             // main
             // 
@@ -650,5 +688,7 @@
         private Button button4;
         private Button button8;
         private Button btnEditRTGS;
+        private Button button9;
+        private Button btnDisplayPrice;
     }
 }

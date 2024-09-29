@@ -3,17 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 namespace SYA
 {
     public class NormalFunc
     {
-        public static  void SelectCell(DataGridView dataGridView, int rowIndex, string columnName)
+        public static void enterkeyhandle(DataGridView dataGridView1, KeyEventArgs e)
+        {
+            MessageBox.Show("as");
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Commit the cell edit if the cell is in edit mode
+                if (dataGridView1.IsCurrentCellInEditMode)
+                {
+                    dataGridView1.EndEdit();
+                }
+                // Get the currently active cell
+                var currentCell = dataGridView1.CurrentCell;
+                if (currentCell != null)
+                {
+                    int currentColumnIndex = currentCell.ColumnIndex;
+                    int currentRowIndex = currentCell.RowIndex;
+                    // Move to the next column
+                    int nextColumnIndex = (currentColumnIndex + 1) % dataGridView1.Columns.Count;
+                    // If moving to the next column exceeds the number of columns, move to the next row
+                    if (nextColumnIndex == 0)
+                    {
+                        dataGridView1.CurrentCell = dataGridView1.Rows[currentRowIndex].Cells[nextColumnIndex];
+                    }
+                    else
+                    {
+                        dataGridView1.CurrentCell = dataGridView1.Rows[currentRowIndex].Cells[nextColumnIndex];
+                    }
+                    // Prevent the default behavior of Enter key
+                    e.SuppressKeyPress = true;
+                }
+            }
+        }
+        public static void SelectCell(DataGridView dataGridView, int rowIndex, string columnName)
         {
             dataGridView.CurrentCell = dataGridView.Rows[rowIndex].Cells[columnName];
             dataGridView.BeginEdit(true);
         }
-        public static bool ValidateData(DataGridViewRow row,DataGridView addSilverDataGridView)
+        public static bool ValidateData(DataGridViewRow row, DataGridView addSilverDataGridView)
         {
             if (row.Cells["type"].Value == null || string.IsNullOrWhiteSpace(row.Cells["type"].Value.ToString()))
             {

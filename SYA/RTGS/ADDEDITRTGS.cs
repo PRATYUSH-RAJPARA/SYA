@@ -15,9 +15,7 @@ namespace SYA
         }
         private void ADDEDITRTGS_Load(object sender, EventArgs e)
         {
-
         }
-
         private void SecondForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             RTGSList secondForm = (RTGSList)sender;
@@ -71,7 +69,6 @@ namespace SYA
             string bAcType = SA_CA;
             string bBank = textBox6.Text;
             string bIfs = textBox7.Text;
-
             if (string.IsNullOrEmpty(main_id))
             {
                 // Insert new record if main_id is not set (new entry)
@@ -90,7 +87,6 @@ namespace SYA
                     WHERE ID = {main_id}";
                 helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
             }
-
             // Nullify main_id after operation
             main_id = null;
             textBox1.Text = "";
@@ -100,7 +96,6 @@ namespace SYA
             textBox6.Text = "";
             textBox7.Text = "";
         }
-
         private void button2_Click_1(object sender, EventArgs e)
         {
             insertquery();

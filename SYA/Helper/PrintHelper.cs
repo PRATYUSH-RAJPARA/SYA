@@ -61,10 +61,10 @@ namespace SYA.Helper
             BenAccType();
             BenBank();
             BenAddIFSC();
-            Amount();
+          //  Amount();
             Commission();
-            Total();
-            TotalWords();
+        //    Total();
+         //   TotalWords();
             AccNo();
             AccName();
             AccPan();
@@ -347,7 +347,6 @@ namespace SYA.Helper
                                 if (printlabour == "on")
                                 {
                                 TagPrintHelper.labour(labour, e);
-
                                 }
                             }
                             else if ((selectedRow.Cells["wholeLabour"].Value ?? "-").ToString() != "0")

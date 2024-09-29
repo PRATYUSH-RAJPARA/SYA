@@ -26,7 +26,6 @@ namespace SYA
             labourLoad("general");
             labourLoad("recommanded");
             //  decimal[] a = Verification.getLabourAndWholeLabour("1");
- 
         }
         private void TextBox_Leave(object sender, EventArgs e)
         {

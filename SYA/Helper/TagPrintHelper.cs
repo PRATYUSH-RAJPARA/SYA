@@ -1,4 +1,5 @@
 ﻿using QRCoder;
+using System.Drawing;
 using System.Drawing.Printing;
 namespace SYA.Helper
 {
@@ -19,7 +20,10 @@ namespace SYA.Helper
             e.Graphics.DrawString("N: " + value, new Font("Arial", (float)9.5, FontStyle.Bold), brush, new RectangleF(4, (float)26.5, 75, (float)22.5), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
         }
         public static void image(PrintPageEventArgs e)
-        {
+        {//hello
+            Pen pen = new Pen(Color.Black); // Define a pen for the rectangle
+          //  e.Graphics.DrawRectangle(pen, 83, 4, (float)22.5, (float)22.5);
+         //   e.Graphics.DrawLine(pen, 83, (float)28.5, (float)105.5, (float)28.5);
             Image logoImage = Image.FromFile(helper.ImageFolder + "\\logo.jpg"); e.Graphics.DrawImage(logoImage, new RectangleF(83, 4, (float)22.5, (float)22.5));
         }
         public static void sizeBelowLogo(string value, PrintPageEventArgs e)

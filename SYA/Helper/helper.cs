@@ -15,7 +15,7 @@ namespace SYA.Helper
                 if (_configuration == null)
                 {
                     _configuration = new ConfigurationBuilder()
-                        .SetBasePath(@"D:\\SYA_DATA_NEW\\config")
+                        .SetBasePath(@"C:\\SYA_DATA_NEW\\config")
                         //.SetBasePath(@"F:\SYA_APP\SYA_SOFT_TEST\config")
                         .AddJsonFile("appsettings.json")
                         .Build();
@@ -41,6 +41,8 @@ namespace SYA.Helper
         //i am chaning int to object so where we are implementing use proper conversion
         public static object RunQueryWithoutParameters(string connectionString, string query, string commandType)
         {
+            // pratyush delete
+          //  MessageBox.Show(query);
             object res = null;
             try
             {

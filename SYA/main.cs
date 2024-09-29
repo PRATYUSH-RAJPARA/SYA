@@ -21,7 +21,7 @@ namespace SYA
             btnPrintTags.Visible = false;
             btnCustomer.Visible = false;
             panelsecond.Visible = false;
-            btnSortContact.Visible = false;
+            //  btnSortContact.Visible = false;
             //panelchild.visible = false;
             btnHideAllSecondPanelButtons();
             helper.loadSettingsValues();
@@ -136,6 +136,7 @@ namespace SYA
         private void button2_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
+            // LoadForm(new Form1()); 
             LoadForm(new addSilver());
         }
         private void button10_Click(object sender, EventArgs e)
@@ -156,6 +157,8 @@ namespace SYA
         }
         private void btnSortContact_Click(object sender, EventArgs e)
         {
+            panelsecond.Visible = false;
+            LoadForm(new ContactDisplay());
             //RichTextBox r = new RichTextBox();
             //Contact.SortContactData(r, "datacare");
         }
@@ -217,7 +220,6 @@ namespace SYA
             panelsecond.Visible = false;
             string queryToFetchFromMSAccess = "SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '015' OR CO_BOOK = '15'";
             HelperFetchData.InsertInStockDataIntoSQLite(queryToFetchFromMSAccess);
-
         }
         private void button5_Click(object sender, EventArgs e)
         {
@@ -228,7 +230,6 @@ namespace SYA
         {
             LoadForm(new SaleAuto());
         }
-
         private void button8_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
@@ -236,11 +237,23 @@ namespace SYA
             Contact contact = new Contact();
             contact.SortContactData(r, "datacare");
         }
-
         private void btnEditRTGS_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
             LoadForm(new ADDEDITRTGS());
+        }
+        private void button9_Click(object sender, EventArgs e)
+        {
+            panelsecond.Visible = false;
+            RichTextBox r = new RichTextBox();
+            Contact contact = new Contact();
+            contact.SortContactData(r, "all");
+        }
+
+        private void btnDisplayPrice_Click(object sender, EventArgs e)
+        {
+            panelsecond.Visible = false;
+            LoadForm(new ShowOnDisplayForm());
         }
     }
     public class ApiResponseItem

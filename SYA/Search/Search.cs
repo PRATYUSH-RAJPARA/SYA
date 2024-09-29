@@ -10,6 +10,7 @@ namespace SYA
         bool quickSaveAndPrint = true;
         string tagtype = "weight";
         string printlabour = "on";
+        string scanPrint = "off";
         private SQLiteConnection connectionToSYADatabase;
         private void InitializeDatabaseConnection()
         {
@@ -331,7 +332,7 @@ namespace SYA
         //okok
         private void PrintData(object sender, PrintPageEventArgs e)
         {
-            PrintHelper.PrintPageSearch(sender, e, dataGridViewSearch, tagtype,printlabour);
+            PrintHelper.PrintPageSearch(sender, e, dataGridViewSearch, tagtype, printlabour);
         }
         private bool leaveEventFlag = false;
         //ok
@@ -368,48 +369,6 @@ namespace SYA
                 txtMessageBox.Text = "Quick Save Disabled.";
                 messageBoxTimer.Start();
                 quickSave = false;
-            }
-        }
-        private void dataGridViewSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            string currentColumnName1 = dataGridViewSearch.Columns[dataGridViewSearch.CurrentCell.ColumnIndex].Name;
-            DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
-            if (currentColumnName1 == "net")
-            {
-                selectedRow.Cells["net"].Value = helper.correctWeight(selectedRow.Cells["net"].Value);
-            }
-            if (currentColumnName1 == "gross")
-            {
-                selectedRow.Cells["gross"].Value = helper.correctWeight(selectedRow.Cells["gross"].Value);
-            }
-            if (currentColumnName1 == "huid1")
-            {
-                selectedRow.Cells["huid1"].Value = (selectedRow.Cells["huid1"].Value ?? "").ToString().ToUpper();
-            }
-            if (currentColumnName1 == "huid2")
-            {
-                selectedRow.Cells["huid2"].Value = (selectedRow.Cells["huid2"].Value ?? "").ToString().ToUpper();
-            }
-            if (e.KeyCode == Keys.Tab)
-            {
-                dataGridViewSearch.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-                string currentColumnName = dataGridViewSearch.Columns[dataGridViewSearch.CurrentCell.ColumnIndex].Name;
-                int currentRowIndex = dataGridViewSearch.CurrentCell.RowIndex;
-                if (currentColumnName == "comment")
-                {
-                    if (SaveDataToSQLite(selectedRow))
-                    {
-                        if (quickSaveAndPrint)
-                        {
-                            string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
-                            if (tagNumber.Length > 1)
-                            {
-                                PrintLabels();
-                            }
-                        }
-                    }
-                }
             }
         }
         private void txtTagno_Leave(object sender, EventArgs e)
@@ -580,6 +539,10 @@ namespace SYA
                 string q = @$"SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM MAIN_DATA WHERE TAG_NO LIKE '%{txtTagno.Text}%' UNION ALL SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, TAG_NO, GW, NW, LABOUR_AMT, WHOLE_LABOUR_AMT, OTHER_AMT,ITEM_TYPE, IT_TYPE, ITEM_CODE, ITEM_PURITY, ITEM_DESC, HUID1, HUID2, SIZE, PRICE, STATUS, AC_CODE, AC_NAME, COMMENT, PRINT FROM SYA_SALE_DATA WHERE TAG_NO LIKE '%{txtTagno.Text}%';";
                 LoadDataFromSQLite(q);
             }
+            if (scanPrint == "on")
+            {
+                printquickscan(sender, txtTagno.Text);
+            }
         }
         private void dataGridViewSearch_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -611,9 +574,6 @@ namespace SYA
         {
             queryToFetchFromMSAccess = "SELECT * FROM MAIN_TAG_DATA WHERE CO_BOOK = '015' OR CO_BOOK = '15'";
             HelperFetchData.InsertInStockDataIntoSQLite(queryToFetchFromMSAccess);
-
-
-
         }
         private void btnFetchSaleData_Click(object sender, EventArgs e)
         {
@@ -637,7 +597,6 @@ namespace SYA
                 tagtype = "weight";
             }
         }
-
         private void button7_Click(object sender, EventArgs e)
         {
             if (button7.Text == "Labour Print ON")
@@ -649,6 +608,74 @@ namespace SYA
             {
                 button7.Text = "Labour Print ON";
                 printlabour = "on";
+            }
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (button8.Text == "Scan And Print ON")
+            {
+                button8.Text = "Scan And Print OFF";
+                scanPrint = "off";
+            }
+            else if (button8.Text == "Scan And Print OFF")
+            {
+                button8.Text = "Scan And Print ON";
+                scanPrint = "on";
+            }
+        }
+        private void dataGridViewSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            string currentColumnName1 = dataGridViewSearch.Columns[dataGridViewSearch.CurrentCell.ColumnIndex].Name;
+            DataGridViewRow selectedRow = dataGridViewSearch.CurrentRow;
+            if (currentColumnName1 == "net")
+            {
+                selectedRow.Cells["net"].Value = helper.correctWeight(selectedRow.Cells["net"].Value);
+            }
+            if (currentColumnName1 == "gross")
+            {
+                selectedRow.Cells["gross"].Value = helper.correctWeight(selectedRow.Cells["gross"].Value);
+            }
+            if (currentColumnName1 == "huid1")
+            {
+                selectedRow.Cells["huid1"].Value = (selectedRow.Cells["huid1"].Value ?? "").ToString().ToUpper();
+            }
+            if (currentColumnName1 == "huid2")
+            {
+                selectedRow.Cells["huid2"].Value = (selectedRow.Cells["huid2"].Value ?? "").ToString().ToUpper();
+            }
+            if (e.KeyCode == Keys.Tab)
+            {
+                dataGridViewSearch.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
+                string currentColumnName = dataGridViewSearch.Columns[dataGridViewSearch.CurrentCell.ColumnIndex].Name;
+                int currentRowIndex = dataGridViewSearch.CurrentCell.RowIndex;
+                if (currentColumnName == "comment")
+                {
+                    if (SaveDataToSQLite(selectedRow))
+                    {
+                        if (quickSaveAndPrint)
+                        {
+                            string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
+                            if (tagNumber.Length > 1)
+                            {
+                                PrintLabels();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private void printquickscan(object sender,string tagno)
+        {
+          //  string currentColumnName1 = dataGridViewSearch.Columns[dataGridViewSearch.CurrentCell.ColumnIndex].Name;
+            // Access the first row instead of the selected row
+            DataGridViewRow firstRow = dataGridViewSearch.Rows[0];
+            string tagNumber = (firstRow.Cells["tagno"].Value ?? "0").ToString();
+            if (tagNumber.Length > 1 && tagNumber == tagno.ToUpper())
+            {
+                PrintLabels();
+                txtTagno.Text = "";
+                txtTagno.Focus();
             }
         }
     }

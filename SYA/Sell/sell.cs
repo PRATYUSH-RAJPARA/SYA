@@ -1,11 +1,13 @@
 ﻿using SYA.Helper;
 using SYA.Sales;
+using System.IO.Ports;
 using System.Data;
 using System.Media;
 namespace SYA.Sell
 {
     public partial class sell : Form
     {
+        SerialPort serialPort;
         private SoundPlayer deleteSound;
         DataTable sellItem = new DataTable();
         bool autoSell = true;
@@ -13,6 +15,8 @@ namespace SYA.Sell
         {
             InitializeComponent();
             deleteSound = new SoundPlayer(@"F:\SYA_APP\SYA_SOFT_TEST\config\Audio\delete.wav");
+            serialPort = new SerialPort("COM3", 9600);  // Change "COM3" to your Arduino's COM port
+         //   serialPort.Open();
         }
         private void sell_Load(object sender, EventArgs e)
         {
@@ -76,7 +80,6 @@ namespace SYA.Sell
             }
             void sort()
             {
-
                 if (itemToSell.Rows[0]["IT_TYPE"].ToString() == "S")
                 {
                     silverItem();
@@ -85,18 +88,15 @@ namespace SYA.Sell
                 {
                     if (itemToSell.Rows[0]["HUID1"].ToString().Length == 0 && itemToSell.Rows[0]["HUID2"].ToString().Length == 0)
                     {
-
                         syaItem();
                     }
                     else if (itemToSell.Rows[0]["HUID1"].ToString().Length == 6 || itemToSell.Rows[0]["HUID2"].ToString().Length == 6)
                     {
-
                         syaHUIDItem();
                     }
                 }
                 else if (itemToSell.Rows[0]["IT_TYPE"].ToString() == "G")
                 {
-
                     dataCareItem();
                 }
                 else
@@ -265,7 +265,6 @@ namespace SYA.Sell
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-
                 txtTAGNO.Text = txtTAGNO.Text.ToUpper();
                 if (!autoSell)
                 {
@@ -374,7 +373,7 @@ namespace SYA.Sell
         {
             EmptyLabels();
             button2.Visible = false;
-           // txtTAGNO.Text = string.Empty;
+            // txtTAGNO.Text = string.Empty;
             label25.Text = string.Empty;
             timer1.Stop();
         }
@@ -395,5 +394,96 @@ namespace SYA.Sell
         {
             sortAndSell(sellItem, true);
         }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            serialPort.Open();  // Open the serial port
+
+        
+            long numberToSend = 12345678;
+
+          
+            if (serialPort.IsOpen)
+            {
+            serialPort.WriteLine(numberToSend.ToString());  // Write the number followed by a newline
+          
+                serialPort.Close();
+            }
+        }
+        private void sell_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Close the serial port when the form closes
+            if (serialPort.IsOpen)
+            {
+                serialPort.Close();
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                txtTAGNO.Text = txtTAGNO.Text.ToUpper();
+
+                showPrice(textBox1.Text);
+                textBox1.Text = string.Empty;
+            }
+        }
+        private void showPrice(string tagNo)
+        {
+            sellItem.Clear();
+
+            // Fetch the data based on TAG_NO
+            sellItem = helper.FetchDataTableFromSYADataBase("SELECT * FROM MAIN_DATA WHERE TAG_NO = '" + tagNo + "'");
+
+            if (sellItem.Rows.Count > 0)
+            {
+                ReplaceNullValuesWithEmptyString(sellItem);
+
+                // Parse the necessary fields from the fetched data
+                float gw = float.Parse(sellItem.Rows[0]["GW"].ToString());
+                float nw = float.Parse(sellItem.Rows[0]["NW"].ToString());
+                float l = float.Parse(sellItem.Rows[0]["LABOUR_AMT"].ToString());
+                float wl = float.Parse(sellItem.Rows[0]["WHOLE_LABOUR_AMT"].ToString());
+                float o = float.Parse(sellItem.Rows[0]["OTHER_AMT"].ToString());
+
+                // Calculate the price
+                float price = (nw * (94 + l) + wl + o);
+                showOnDisplay(long.Parse(price.ToString()));
+                // Send the first 4 digits of the price to the Arduino if the serial port is open
+                if (serialPort.IsOpen)
+                {
+                    string numberToSend = price.ToString("F0");  // Convert to string, no decimal points
+                    if (numberToSend.Length > 4)
+                    {
+                        numberToSend = numberToSend.Substring(0, 4);  // Take the first 4 digits
+                    }
+
+                    serialPort.WriteLine(numberToSend);  // Send the trimmed number to Arduino
+                }
+
+                // Display the detailed values on the label
+                label25.Text = (gw + " " + nw + " " + l + " " + o + " " + wl + " " + price);
+            }
+            else
+            {
+                button2.Visible = false;
+                label25.Text = "Item " + tagNo + " was not found or might have been sold and deleted.";
+            }
+        }
+        private void showOnDisplay(long numberToSend)
+        {
+            serialPort.Open();  // Open the serial port
+
+
+
+
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine(numberToSend.ToString());  // Write the number followed by a newline
+
+                serialPort.Close();
+            }
+        }
+
     }
 }

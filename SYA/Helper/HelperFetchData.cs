@@ -109,7 +109,6 @@ namespace SYA.Helper
         }
         private static void MapInStockParameters(SQLiteParameterCollection parameters, DataRow row)
         {
-
             parameters.AddWithValue("@CO_YEAR", row["CO_YEAR"]);
             parameters.AddWithValue("@CO_BOOK", row["CO_BOOK"]);
             parameters.AddWithValue("@VCH_NO", "SYA00");
@@ -128,7 +127,6 @@ namespace SYA.Helper
                 parameters.AddWithValue("@LABOUR_AMT", row["LBR_RATE"]);
                 parameters.AddWithValue("@LBR_AMT","0");
             }
-           
             parameters.AddWithValue("@OTHER_AMT", row["OTH_AMT"]);
             parameters.AddWithValue("@IT_TYPE", row["IT_TYPE"]);
             parameters.AddWithValue("@ITEM_CODE", row["PR_CODE"]);
@@ -137,7 +135,6 @@ namespace SYA.Helper
             string IT_TYPE = row["IT_TYPE"].ToString();
             string itemDesc = GetItemDescFromSQLite(PR_CODE, IT_TYPE);
             parameters.AddWithValue("@ITEM_DESC", itemDesc);
-
             seperateHUID(row["DESIGN"].ToString(), parameters);
             parameters.AddWithValue("@SIZE", DBNull.Value);
             parameters.AddWithValue("@PRICE", row["MRP"]);
@@ -147,11 +144,8 @@ namespace SYA.Helper
         }
         private static void seperateHUID(string value, SQLiteParameterCollection parameters1)
         {
-
             string A1 = "", A2 = "", A3 = "";
-
             string[] values = value.Split(',');
-
             if (values.Length > 0) A1 = values[0];
             if (values.Length > 1) A2 = values[1];
             if (values.Length > 2) A3 = string.Join(",", values.Skip(2));

@@ -225,6 +225,8 @@ namespace SYA
         }
         private void compare(DataTable dt)
         {
+            UpdateLogForm logForm = new UpdateLogForm();
+            logForm.Show();  // Open the log form
             DataRow[] dtRows = dt.Select();
             for (int rowIndex = 0; rowIndex < dtRows.Length; rowIndex++)
             {
@@ -247,17 +249,17 @@ namespace SYA
             OtherData.AcceptChanges();
             WrongData.AcceptChanges();
             UnverifiedData.AcceptChanges();
-            addDatatableToDatabase(ExcludedData, "ExcludedData");
-            addDatatableToDatabase(CustomerData, "CustomerData");
-            addDatatableToDatabase(RelativeData, "RelativeData");
-            addDatatableToDatabase(KarigarData, "KarigarData");
-            addDatatableToDatabase(VepariData, "VepariData");
-            addDatatableToDatabase(OtherData, "OtherData");
-            addDatatableToDatabase(WrongData, "WrongData");
-            addDatatableToDatabase(UnverifiedData, "UnverifiedData");
+            addDatatableToDatabase(ExcludedData, "ExcludedData", logForm);
+            addDatatableToDatabase(CustomerData, "CustomerData", logForm);
+            addDatatableToDatabase(RelativeData, "RelativeData", logForm);
+            addDatatableToDatabase(KarigarData, "KarigarData", logForm);
+            addDatatableToDatabase(VepariData, "VepariData", logForm);
+            addDatatableToDatabase(OtherData, "OtherData", logForm);
+            addDatatableToDatabase(WrongData, "WrongData", logForm);
+            addDatatableToDatabase(UnverifiedData, "UnverifiedData", logForm);
             printDT(OtherData);
         }
-        public void addDatatableToDatabase(DataTable dt, string tableName)
+        public void addDatatableToDatabase(DataTable dt, string tableName, UpdateLogForm logForm)
         {
             // Remove all data from the table
             string deleteQuery = $"DELETE FROM {tableName}";
@@ -284,12 +286,11 @@ namespace SYA
                 bool insertSuccess = helper.RunQueryWithParametersSYAContactDataBase(insertQuery, parameters);
                 if (!insertSuccess)
                 {
-                    MessageBox.Show($"Failed to insert data into {tableName} table.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logForm.AddLog($"Failed to insert data into {tableName} table.");
                     return;
                 }
             }
-            MessageBox.Show($"Data successfully inserted into {tableName} table.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            logForm.AddLog($"Data successfully inserted into {tableName} table.");
         }
-        
     }
 }

@@ -185,9 +185,11 @@
             addSilverDataGridView.TabIndex = 13;
             addSilverDataGridView.CellEndEdit += addSilverDataGridView_CellEndEdit;
             addSilverDataGridView.CellEnter += addSilverDataGridView_CellEnter;
+            addSilverDataGridView.CellValidating += addSilverDataGridView_CellValidating;
             addSilverDataGridView.CellValueChanged += addSilverDataGridView_CellValueChanged;
             addSilverDataGridView.EditingControlShowing += addSilverDataGridView_EditingControlShowing;
             addSilverDataGridView.KeyDown += addSilverDataGridView_KeyDown;
+            addSilverDataGridView.MouseDown += addSilverDataGridView_MouseDown;
             // 
             // select
             // 

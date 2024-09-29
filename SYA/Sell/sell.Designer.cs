@@ -133,6 +133,7 @@
             panel35 = new Panel();
             label22 = new Label();
             panel30 = new Panel();
+            textBox1 = new TextBox();
             panel79 = new Panel();
             panel80 = new Panel();
             button2 = new Button();
@@ -141,6 +142,7 @@
             panel44 = new Panel();
             button1 = new Button();
             panel10 = new Panel();
+            button3 = new Button();
             label25 = new Label();
             panel40 = new Panel();
             panel13 = new Panel();
@@ -1386,6 +1388,7 @@
             // 
             // panel30
             // 
+            panel30.Controls.Add(textBox1);
             panel30.Controls.Add(panel79);
             panel30.Controls.Add(panel78);
             panel30.Controls.Add(panel29);
@@ -1394,6 +1397,16 @@
             panel30.Name = "panel30";
             panel30.Size = new Size(1093, 60);
             panel30.TabIndex = 3;
+            // 
+            // textBox1
+            // 
+            textBox1.Dock = DockStyle.Fill;
+            textBox1.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(300, 0);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(793, 39);
+            textBox1.TabIndex = 16;
+            textBox1.KeyPress += textBox1_KeyPress;
             // 
             // panel79
             // 
@@ -1473,6 +1486,7 @@
             // 
             // panel10
             // 
+            panel10.Controls.Add(button3);
             panel10.Controls.Add(label25);
             panel10.Controls.Add(panel40);
             panel10.Controls.Add(panel13);
@@ -1481,6 +1495,16 @@
             panel10.Name = "panel10";
             panel10.Size = new Size(1093, 60);
             panel10.TabIndex = 9;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(683, 18);
+            button3.Name = "button3";
+            button3.Size = new Size(75, 23);
+            button3.TabIndex = 14;
+            button3.Text = "button3";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // label25
             // 
@@ -1629,6 +1653,7 @@
             Controls.Add(panel1);
             Name = "sell";
             Text = "sell";
+            FormClosing += sell_FormClosing;
             Load += sell_Load;
             panel1.ResumeLayout(false);
             panel6.ResumeLayout(false);
@@ -1690,6 +1715,7 @@
             panel41.ResumeLayout(false);
             panel35.ResumeLayout(false);
             panel30.ResumeLayout(false);
+            panel30.PerformLayout();
             panel79.ResumeLayout(false);
             panel80.ResumeLayout(false);
             panel29.ResumeLayout(false);
@@ -1833,5 +1859,7 @@
         private Panel panel80;
         private Button button2;
         private Panel panel78;
+        private Button button3;
+        private TextBox textBox1;
     }
 }

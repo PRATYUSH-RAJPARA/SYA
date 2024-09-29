@@ -6,7 +6,6 @@
         {
             InitializeComponent();
         }
-
         private void SaleAuto_Load(object sender, EventArgs e)
         {
             SaleReportAutomation saleReportAutomation = new SaleReportAutomation();
@@ -15,12 +14,10 @@
             dataGridView1.DataBindingComplete += DataGridView1_DataBindingComplete;
             dataGridView1.Refresh();
         }
-
         private void DataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             ApplyConditionalFormatting();
         }
-
         void ApplyConditionalFormatting()
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)

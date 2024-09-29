@@ -1,6 +1,5 @@
 ﻿using SYA.Helper;
 using System.Data;
-
 namespace SYA
 {
     public class SaleReportAutomation : Form
@@ -10,15 +9,11 @@ namespace SYA
         public DataTable amount_count = new DataTable();
         public DataTable match_data_result = new DataTable();
         public DataTable final = new DataTable();
-
         public SaleReportAutomation()
         {
             // Initialize DataGridView
-
-
             // Initialize other components or variables if needed
         }
-
         public void main_fnc()
         {
             get_raw_pdf_data();
@@ -27,14 +22,11 @@ namespace SYA
             set_column_result();
             set_column_final();
             start();
-
         }
-
         void get_raw_pdf_data()
         {
             raw_pdf_data = helper.FetchDataTableFromSYADataBase("select * from RAW_PDF_DATA where TR_TYPE = 'Cr'");
         }
-
         void get_sl_data()
         {
             DateTime startDate = new DateTime(2024, 6, 1);
@@ -47,13 +39,11 @@ namespace SYA
                                 WHERE VCH_DATE >= #" + startDateString + "# AND VCH_DATE <= #" + endDateString + "#";
             sl_data = helper.FetchDataTableFromDataCareDataBase(query);
         }
-
         void get_amount_count()
         {
             string query = "SELECT AMOUNT, COUNT(*) AS COUNT FROM RAW_PDF_DATA  where TR_TYPE = 'Cr' GROUP BY AMOUNT ORDER BY COUNT";
             amount_count = helper.FetchDataTableFromSYADataBase(query);
         }
-
         void set_column_result()
         {
             match_data_result.Columns.Add("SRNO", typeof(string));
@@ -69,7 +59,6 @@ namespace SYA
             match_data_result.Columns.Add("CHQ_AMT", typeof(string));
             match_data_result.Columns.Add("AC_NAME", typeof(string));
         }
-
         void set_column_final()
         {
             final.Columns.Add("CO_YEAR", typeof(string));
@@ -96,13 +85,11 @@ namespace SYA
         {
             // Split the string by the '/' character
             string[] parts = input.Split('/');
-
             // Get the last part which contains the name
             if (parts.Length > 0)
             {
                 return parts[parts.Length - 1];
             }
-
             return string.Empty; // Return an empty string if the input is not in the expected format
         }
         void start()
@@ -130,13 +117,11 @@ namespace SYA
                     decimal CARD_AMT = Convert.ToDecimal(sl_row["CARD_AMT"]);
                     decimal CHQ_AMT = Convert.ToDecimal(sl_row["CHQ_AMT"]);
                     string AC_NAME = sl_row["AC_NAME"].ToString();
-
                     bool NAMEMATCH = false;
                     bool CASHMATCH = false;
                     bool CARDMATCH = false;
                     bool CHQMATCH = false;
                     bool DATEMATCH = false;
-
                     void amount_name_date_match(decimal amt)
                     {
                         if (NAME == AC_NAME)
@@ -160,7 +145,6 @@ namespace SYA
                             DATEMATCH = true;
                         }
                     }
-
                     if (count_amount == 1)
                     {
                         amount_name_date_match(AMOUNT);
@@ -169,7 +153,6 @@ namespace SYA
                     {
                         amount_name_date_match(AMOUNT);
                     }
-
                     if (DATEMATCH && (CARDMATCH || CASHMATCH || CHQMATCH))
                     {
                         final.Rows.Add(
@@ -221,15 +204,6 @@ namespace SYA
                 }
             }
         }
-
-
-
-
-
-
-
-
-
         void find_matching_data()
         {
             string amount = "";
@@ -256,7 +230,6 @@ namespace SYA
                                 match_data_result.Rows.Remove(result[0]);
                                 match_data_result.AcceptChanges();
                             }
-                         
                             str += "1";
                             match = true;
                             // Add row to result DataTable
@@ -322,31 +295,26 @@ namespace SYA
                 }
             }
         }
-
         void check_data()
         {
             int count = 0;
             int count1 = 0;
             int count2 = 0;
             string str = "";
-
             foreach (DataRow dt in amount_count.Rows)
             {
                 count++;
-
                 if (dt["COUNT"].ToString() == "1")
                 {
                     count1++;
                     string amount_condition = "AMOUNT = '" + dt["AMOUNT"].ToString() + "'";
                     DataRow[] result = match_data_result.Select(amount_condition);
-
                     if (result.Length > 0)
                     {
                         for (int i = 0; i < result.Length; i++)
                         {
                             count2++;
                             DataRow row = result[i];
-
                             // Convert amounts to decimal
                             decimal rawAmount = Convert.ToDecimal(row["AMOUNT"]);
                             decimal cashAmount = Convert.ToDecimal(row["CASH_AMT"]);
@@ -357,7 +325,6 @@ namespace SYA
                             bool CARDMATCH = false;
                             bool CHQMATCH = false;
                             bool DATEMATCH = false;
-
                             if (row["DATE"].ToString() == row["BILL_DATE"].ToString())
                             {
                                 DATEMATCH = true;
@@ -378,7 +345,6 @@ namespace SYA
                             {
                                 CHQMATCH = true;
                             }
-
                             final.Rows.Add(
                                 row["CO_YEAR"].ToString(),
                                 row["SRNO"].ToString(),

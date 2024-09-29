@@ -52,6 +52,7 @@
             btnFetch = new Button();
             panel35 = new Panel();
             panel44 = new Panel();
+            button8 = new Button();
             panel15 = new Panel();
             panel13 = new Panel();
             panel32 = new Panel();
@@ -132,6 +133,7 @@
             messageBoxTimer = new System.Windows.Forms.Timer(components);
             panel5.SuspendLayout();
             panel34.SuspendLayout();
+            panel44.SuspendLayout();
             panelBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewSearch).BeginInit();
             panel6.SuspendLayout();
@@ -229,12 +231,31 @@
             // 
             // panel44
             // 
+            panel44.Controls.Add(button8);
             panel44.Dock = DockStyle.Right;
-            panel44.Location = new Point(1107, 0);
+            panel44.Location = new Point(920, 0);
             panel44.Margin = new Padding(3, 2, 3, 2);
             panel44.Name = "panel44";
-            panel44.Size = new Size(95, 33);
+            panel44.Size = new Size(282, 33);
             panel44.TabIndex = 40;
+            // 
+            // button8
+            // 
+            button8.BackColor = Color.FromArgb(214, 137, 255);
+            button8.Dock = DockStyle.Left;
+            button8.FlatAppearance.BorderColor = Color.FromArgb(165, 100, 211);
+            button8.FlatAppearance.BorderSize = 5;
+            button8.FlatStyle = FlatStyle.Popup;
+            button8.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button8.Location = new Point(0, 0);
+            button8.Margin = new Padding(3, 2, 3, 2);
+            button8.Name = "button8";
+            button8.Size = new Size(186, 33);
+            button8.TabIndex = 49;
+            button8.Text = "Scan And Print OFF";
+            button8.TextImageRelation = TextImageRelation.ImageAboveText;
+            button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // panel15
             // 
@@ -1172,6 +1193,7 @@
             Load += Search_Load;
             panel5.ResumeLayout(false);
             panel34.ResumeLayout(false);
+            panel44.ResumeLayout(false);
             panelBackground.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewSearch).EndInit();
             panel6.ResumeLayout(false);
@@ -1276,5 +1298,6 @@
         private Button btnFetchSaleData;
         private Button BTNTAGTYPE;
         private Button button7;
+        private Button button8;
     }
 }

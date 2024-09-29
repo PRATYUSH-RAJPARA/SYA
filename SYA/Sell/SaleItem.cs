@@ -75,7 +75,6 @@
 //                            //  helper.RunQueryWithoutParametersSYADataBase(deleteQuery, "ExecuteNonQuery");
 //                            label2.Text = "";
 //                        }
-                       
 //                        else
 //                        {
 //                            MessageBox.Show("Bill for Tag_Number " + tagNo_TextBox + " is not generated.");
